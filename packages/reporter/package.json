@@ -1,0 +1,54 @@
+{
+  "name": "@acot/reporter",
+  "version": "0.0.0",
+  "description": "A reporter toolset and built-in reporters for @acot/cli.",
+  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/reporter"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts?(x)"
+    ]
+  },
+  "dependencies": {
+    "@acot/html-pickup": "0.0.0",
+    "@acot/module-loader": "0.0.0",
+    "@acot/utils": "0.0.0",
+    "boxen": "^4.2.0",
+    "chalk": "^4.0.0",
+    "figures": "^3.2.0",
+    "indent-string": "^4.0.0",
+    "log-symbols": "^4.0.0",
+    "log-update": "^4.0.0",
+    "ora": "^5.1.0",
+    "plur": "^4.0.0",
+    "strip-ansi": "^6.0.0",
+    "text-table": "^0.2.0"
+  },
+  "devDependencies": {
+    "@acot/types": "0.0.0",
+    "@types/text-table": "^0.2.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

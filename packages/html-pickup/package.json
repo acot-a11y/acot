@@ -1,0 +1,43 @@
+{
+  "name": "@acot/html-pickup",
+  "version": "0.0.0",
+  "description": "Use the CSS Selector to pick up the elements from the HTML string.",
+  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/html-pickup"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts?(x)"
+    ]
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "cli-truncate": "^2.1.0",
+    "css-select": "^2.1.0",
+    "css-select-parse5-adapter": "^1.0.0-pre.1",
+    "parse5": "^6.0.0",
+    "strip-ansi": "^6.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

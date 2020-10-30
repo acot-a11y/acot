@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DocGenerator basic 1`] = `
+"| Name                                                                        | Description                        | :heavy_check_mark: |
+| :-------------------------------------------------------------------------- | :--------------------------------- | :----------------- |
+| [\`test/rule1\`](./docs/rules/rule1.md)                                       | rule1 desc                         |                    |
+| [\`test/rule2\`](./docs/rules/rule2.md)                                       | rule2 desc                         | :heavy_check_mark: |
+| [\`test/rule3-long-rule-identity\`](./docs/rules/rule3-long-rule-identity.md) | test/rule3-long-rule-identity desc | :heavy_check_mark: |"
+`;
+
+exports[`DocGenerator scoped package 1`] = `
+"| Name                                    | Description | :heavy_check_mark: |
+| :-------------------------------------- | :---------- | :----------------- |
+| [\`@scope/rule1\`](./docs/rules/rule1.md) | rule1 desc  |                    |
+| [\`@scope/rule2\`](./docs/rules/rule2.md) | rule2 desc  | :heavy_check_mark: |"
+`;

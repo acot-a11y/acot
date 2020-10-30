@@ -1,0 +1,8 @@
+{
+  "extends": "@acot/tsconfig",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "outDir": "lib",
+    "rootDir": "src"
+  }
+}

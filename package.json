@@ -1,0 +1,57 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "postbuild": "lerna link",
+    "clean": "rimraf \"packages/**/tsconfig.tsbuildinfo\" \"packages/**/lib\" \"**/.acot\"",
+    "format": "npm-run-all format:prettier format:script",
+    "format:prettier": "prettier --write .",
+    "format:script": "yarn lint:script --fix",
+    "lint": "npm-run-all -p lint:*",
+    "lint:prettier": "prettier --check .",
+    "lint:script": "eslint . --ext \".js,.jsx,.ts,.tsx\"",
+    "test": "lerna run --no-bail --scope \"@acot/*\" test",
+    "test:ci": "yarn test --parallel"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md,yml,json}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@acot/tsconfig": "0.0.2",
+    "@types/jest": "^26.0.5",
+    "@types/markdown-table": "^2.0.0",
+    "@types/mock-fs": "^4.10.0",
+    "@types/node": "^14.11.2",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^24.0.1",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.2.2",
+    "mock-fs": "^4.13.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "prettier-plugin-packagejson": "^2.2.5",
+    "rimraf": "^3.0.2",
+    "scaffdog": "^0.3.0",
+    "ts-jest": "^26.1.3",
+    "ts-node": "^9.0.0",
+    "type-fest": "^0.16.0",
+    "typescript": "^4.0.2"
+  }
+}

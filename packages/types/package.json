@@ -1,0 +1,36 @@
+{
+  "name": "@acot/types",
+  "version": "0.0.0",
+  "description": "acot's underlying type declarations.",
+  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/types"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@acot/find-chrome": "0.0.0",
+    "@acot/schema-validator": "0.0.0",
+    "puppeteer-core": "^5.3.0",
+    "type-fest": "^0.16.0"
+  },
+  "devDependencies": {
+    "@types/puppeteer-core": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

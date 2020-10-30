@@ -1,0 +1,57 @@
+{
+  "name": "@acot/core",
+  "version": "0.0.0",
+  "description": "More accessible web, all over the world.",
+  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/core"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts?(x)"
+    ]
+  },
+  "dependencies": {
+    "@acot/factory": "0.0.0",
+    "@acot/html-pickup": "0.0.0",
+    "@acot/logger": "0.0.0",
+    "@acot/module-loader": "0.0.0",
+    "@acot/schema-validator": "0.0.0",
+    "@acot/types": "0.0.0",
+    "@acot/utils": "0.0.0",
+    "debug": "^4.2.0",
+    "emittery": "^0.7.1",
+    "filenamify": "^4.1.0",
+    "lodash": "^4.17.19",
+    "puppeteer-core": "^5.3.0",
+    "puppeteer-element2selector": "^0.0.1"
+  },
+  "devDependencies": {
+    "@acot/find-chrome": "0.0.0",
+    "@acot/mock-logger": "0.0.0",
+    "@types/lodash": "^4.14.158",
+    "@types/puppeteer-core": "^2.0.0",
+    "puppeteer": "^5.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

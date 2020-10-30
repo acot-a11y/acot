@@ -1,0 +1,35 @@
+{
+  "name": "@acot/acot-plugin-axe",
+  "version": "0.0.0",
+  "description": "An axe rule set for acot.",
+  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/acot-plugin-axe"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "docgen": "acot plugin docgen README.md -vvv",
+    "serve": "acot plugin serve --watch -vvv",
+    "test": "acot plugin test --port 1235"
+  },
+  "dependencies": {
+    "@acot/cli": "0.0.0",
+    "@acot/core": "0.0.0",
+    "axe-core": "^4.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

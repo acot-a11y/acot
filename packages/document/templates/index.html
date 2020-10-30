@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,address=no,email=no" />
+    <title>{{ name }} - acot plugin</title>
+    <style>
+      :root {
+        --space-8: calc(8 / 16 * 1rem);
+        --space-16: 1rem;
+        --space-24: calc(24 / 16 * 1rem);
+        --space-32: calc(32 / 16 * 1rem);
+        --space-40: calc(40 / 16 * 1rem);
+        --space-48: calc(48 / 16 * 1rem);
+        --space-56: calc(56 / 16 * 1rem);
+        --space-64: calc(64 / 16 * 1rem);
+        --space-72: calc(72 / 16 * 1rem);
+        --space-80: calc(80 / 16 * 1rem);
+
+        --font-sans-serif: sans-serif;
+        --font-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo,
+          monospace;
+        --font-size-40: calc(40 / 16 * 1rem);
+        --font-size-32: calc(32 / 16 * 1rem);
+        --font-size-24: calc(24 / 16 * 1rem);
+        --font-size-18: calc(18 / 16 * 1rem);
+        --font-size-16: 1rem;
+        --font-size-14: calc(14 / 16 * 1rem);
+
+        --color-black: #090909;
+        --color-white: #fff;
+        --color-border: #c0c0c0;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      :root {
+        color: var(--color-black);
+        font-family: var(--font-sans-serif);
+        line-height: 1.6;
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0 var(--space-16);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.2;
+      }
+
+      header {
+        margin: var(--space-80) 0;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: var(--font-size-40);
+      }
+
+      h1 + p {
+        margin: var(--space-8) 0 0;
+      }
+
+      h2 {
+        margin: 0;
+      }
+
+      h2 + p {
+        margin: var(--space-8) 0 0;
+      }
+
+      section + section {
+        margin: var(--space-80) 0;
+      }
+
+      ul {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-gap: var(--space-24);
+        margin: var(--space-24) 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .case {
+        display: block;
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        color: inherit;
+        text-decoration: none;
+        transition: all 125ms ease-out;
+      }
+
+      .case:hover {
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1),
+          0px 2px 3px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.14);
+        transform: translateY(-1px);
+      }
+
+      .case__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-8);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .case__type {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 var(--space-16);
+        width: 8em;
+        height: var(--font-size-32);
+        border-radius: var(--font-size-16);
+        background: var(--color-black);
+        color: var(--color-white);
+        font-weight: bold;
+        font-size: var(--font-size-14);
+      }
+
+      .case__id {
+        padding-left: var(--space-8);
+        font-weight: bold;
+        font-size: var(--font-size-16);
+      }
+
+      .case__code {
+        overflow: auto;
+        margin: 0;
+        padding: var(--space-16);
+        height: calc(3em * 1.6 + var(--space-16) * 2);
+        background: #f9f9f9;
+        border-radius: 0 0 4px 4px;
+        line-height: 1.6;
+        font-family: var(--font-monospace);
+        font-size: var(--font-size-14);
+      }
+
+      footer {
+        margin: var(--space-80) 0;
+      }
+
+      @media (min-width: 768px) {
+        body {
+          padding-right: 12%;
+          padding-left: 12%;
+        }
+
+        ul {
+          grid-template-columns: repeat(2, 50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Rule List</h1>
+      <p>
+        {{ name }}, {{ groups.length }} rules, {{ rules.length }} test cases.
+      </p>
+    </header>
+
+    <main>
+      {{# groups }}
+      <section>
+        <h2 id="{{ rule }}"><a href="#{{ rule }}">{{ rule }}</a></h2>
+        <p>{{ summary }}</p>
+        <ul>
+          {{# rules }}
+          <li>
+            <a class="case" href="{{ url }}" rel="noopener noreferrer">
+              <div class="case__header">
+                <span class="case__id">Code {{ id }}</span>
+                <span class="case__type">{{ type }}</span>
+              </div>
+              <pre class="case__code"><code>{{ html }}</code></pre>
+            </a>
+          </li>
+          {{/ rules }}
+        </ul>
+      </section>
+      {{/ groups }}
+    </main>
+
+    <footer>
+      <p>TODO: Document links.</p>
+    </footer>
+  </body>
+</html>

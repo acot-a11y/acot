@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loadConfig success (load: file.js) 1`] = `
+Object {
+  "rules": Object {
+    "@acot/test/rule1": Array [
+      "error",
+      null,
+    ],
+  },
+}
+`;
+
+exports[`loadConfig success (search: acot.config.js) 1`] = `
+Object {
+  "rules": Object {
+    "@acot/test/rule1": Array [
+      "error",
+      null,
+    ],
+    "@acot/test/rule2": Array [
+      "warn",
+      null,
+    ],
+    "@acot/test/rule3": Array [
+      "off",
+      null,
+    ],
+    "rule1": Array [
+      "warn",
+      null,
+    ],
+    "rule2": Array [
+      "warn",
+      null,
+    ],
+    "rule3": Array [
+      "warn",
+      null,
+    ],
+    "rule4": Array [
+      "warn",
+      null,
+    ],
+    "rule5": Array [
+      "error",
+      null,
+    ],
+  },
+}
+`;

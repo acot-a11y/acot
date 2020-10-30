@@ -1,0 +1,45 @@
+{
+  "name": "@acot/runner",
+  "version": "0.0.0",
+  "description": "A runner toolset for @acot/cli.",
+  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/runner"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts?(x)"
+    ]
+  },
+  "dependencies": {
+    "@acot/connection": "0.0.0",
+    "@acot/module-loader": "0.0.0",
+    "debug": "^4.2.0",
+    "emittery": "^0.7.1"
+  },
+  "devDependencies": {
+    "@acot/factory": "0.0.0",
+    "@acot/types": "0.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

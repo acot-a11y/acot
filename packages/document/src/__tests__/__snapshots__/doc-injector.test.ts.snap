@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DocInjector inject - comment format 1`] = `
+"<!--acot-rules:start-->
+--- injected!! ---
+<!--    	 acot-rules:end 		          -->"
+`;
+
+exports[`DocInjector inject - empty 1`] = `
+"# Title
+
+> Summary
+
+
+<!-- acot-rules:start -->   
+--- injected!! ---
+   <!-- acot-rules:end -->
+
+- Foo
+  - Bar
+    - Baz
+
+<div>
+  <p>HTML Paragraph.</p>
+</div>"
+`;
+
+exports[`DocInjector inject - replace 1`] = `
+"# Title
+
+<!-- acot-rules:start -->
+--- injected!! ---
+<!-- acot-rules:end -->
+
+- Foo
+  - Bar
+    - Baz"
+`;

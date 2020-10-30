@@ -1,0 +1,6 @@
+{
+  "extends": "@acot/tsconfig",
+  "compilerOptions": {
+    "rootDir": ""
+  }
+}

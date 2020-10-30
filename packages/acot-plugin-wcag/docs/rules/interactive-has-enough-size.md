@@ -1,0 +1,46 @@
+# interactive-has-enough-size
+
+> _T.B.A_
+
+_T.B.A_
+
+## :white_check_mark: Correct
+
+Allow UA default styles.
+
+```html
+<a href="/path/to">Inline link</a>
+
+<button type="button">Button</button>
+
+<input type="checkbox" />
+
+<input id="radio-control" type="radio" />
+
+<label for="radio-control">Label</label>
+```
+
+Adequately sized targets.
+
+```html
+<button style="display: inline-block; width: 44px; height: 44px;">
+  Small button
+</button>
+```
+
+## :warning: Incorrect
+
+```html
+<input type="checkbox" />
+
+<button style="display: inline-block; width: 43px; height: 43px;">
+  Small button
+</button>
+
+<style>
+  input[type='checkbox'] {
+    width: 24px;
+    height: 24px;
+  }
+</style>
+```

@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "rule1": "warn",
+    "rule2": "warn",
+    "rule3": "warn"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "@example/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "start-storybook -p 6006",
+    "test": "acot run --command \"yarn start --ci\"",
+    "test:server": "acot run"
+  },
+  "devDependencies": {
+    "@acot/acot-plugin-wcag": "0.0.0",
+    "@acot/acot-runner-storybook": "0.0.0",
+    "@acot/cli": "0.0.0",
+    "@babel/core": "^7.10.5",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "babel-loader": "^8.1.0",
+    "eslint-plugin-react": "^7.20.0",
+    "puppeteer": "^5.3.0",
+    "styled-components": "^5.1.0"
+  },
+  "acot": {
+    "origin": "http://localhost:6006",
+    "runner": {
+      "uses": "@acot/storybook"
+    },
+    "plugins": [
+      "@acot/wcag"
+    ],
+    "rules": {
+      "@acot/wcag/button-has-name": "error",
+      "@acot/wcag/interactive-supports-focus": "error",
+      "@acot/wcag/table-has-valid-role": "error"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "@acot/document",
+  "version": "0.0.0",
+  "description": "A set of tools for working with documentation for acot plugins.",
+  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/document"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts?(x)"
+    ]
+  },
+  "dependencies": {
+    "@acot/core": "0.0.0",
+    "@acot/factory": "0.0.0",
+    "@acot/find-chrome": "0.0.0",
+    "@acot/html-pickup": "0.0.0",
+    "@acot/logger": "0.0.0",
+    "fast-glob": "^3.2.2",
+    "fastify": "^3.1.1",
+    "indent-string": "^4.0.0",
+    "log-symbols": "^4.0.0",
+    "mdast-util-to-string": "^1.1.0",
+    "mustache": "^4.0.1",
+    "plur": "^4.0.0",
+    "puppeteer-core": "^5.3.0",
+    "remark-parse": "^8.0.3",
+    "strip-ansi": "^6.0.0",
+    "type-fest": "^0.16.0",
+    "unified": "^9.0.0",
+    "unist-util-visit-parents": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/mustache": "^4.0.1",
+    "@types/puppeteer-core": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>page4</title>
+  </head>
+  <body>
+    <div id="div1">This is a div1</div>
+    <div id="div2">This is a div2</div>
+
+    <script>
+      const div1 = document.getElementById('div1');
+      const div2 = document.getElementById('div2');
+
+      // invalid
+      div1.addEventListener('click', () => {}, false);
+
+      // valid
+      div2.addEventListener('click', () => {}, false);
+      div2.addEventListener('keydown', () => {}, false);
+    </script>
+  </body>
+</html>

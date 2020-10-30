@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>page1</title>
+  </head>
+  <body>
+    <h1>Dialog test</h1>
+
+    <button type="button">Fake button</button>
+    <button type="button" id="opener">Open</button>
+
+    <dialog id="dialog">
+      <h2>Dialog content</h2>
+      <p>Paragraph</p>
+      <button type="button" id="closer">Close</button>
+    </dialog>
+
+    <script>
+      const dialog = document.getElementById('dialog');
+      const opener = document.getElementById('opener');
+      const closer = document.getElementById('closer');
+
+      const check = () => {
+        console.log(opener.offsetWidth, opener.getClientRects().length);
+        console.log(closer.offsetWidth, closer.getClientRects().length);
+      };
+
+      check();
+
+      opener.addEventListener(
+        'click',
+        (e) => {
+          e.preventDefault();
+          dialog.showModal();
+          check();
+        },
+        false,
+      );
+
+      closer.addEventListener(
+        'click',
+        (e) => {
+          e.preventDefault();
+          dialog.close();
+        },
+        false,
+      );
+
+      dialog.addEventListener(
+        'close',
+        (e) => {
+          opener.focus();
+          check();
+        },
+        false,
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`command/help command - parent 1`] = `
+"parent summary
+
+USAGE
+  acot parent <command> [flags]
+
+AVAILABLE COMMANDS
+  sub1                                     sub1 summary
+  sub2                                     sub2 summary
+
+COMMAND OPTIONS
+  -t, --the-name-of-a-long-command-option  description of command options.
+
+GLOBAL OPTIONS
+  -q, --quiet                              Disable stdout/stderr
+  -v, --verbose                            Enable logging.
+      --debug                              Dump debug infomation for acot modules.
+      --no-color                           Force disabling of color
+      --help                               Show help
+      --version                            Output the version number"
+`;
+
+exports[`command/help command - with options 1`] = `
+"with-options summary
+
+USAGE
+  acot with-options [flags]
+
+COMMAND OPTIONS
+      --opt1      opt1 desc
+  -o, --opt2      opt2 desc
+  -p, --opt3      opt3 desc
+
+GLOBAL OPTIONS
+  -q, --quiet     Disable stdout/stderr
+  -v, --verbose   Enable logging.
+      --debug     Dump debug infomation for acot modules.
+      --no-color  Force disabling of color
+      --help      Show help
+      --version   Output the version number"
+`;
+
+exports[`command/help command - without options 1`] = `
+"without-options summary
+
+USAGE
+  acot without-options <files..>
+
+GLOBAL OPTIONS
+  -q, --quiet     Disable stdout/stderr
+  -v, --verbose   Enable logging.
+      --debug     Dump debug infomation for acot modules.
+      --no-color  Force disabling of color
+      --help      Show help
+      --version   Output the version number"
+`;
+
+exports[`command/help no arguments 1`] = `
+"This is help command test.
+
+USAGE
+  acot <command> [subcommand..] [flags]
+
+AVAILABLE COMMANDS
+  with-options     with-options summary
+  without-options  without-options summary
+  parent           parent summary
+
+GLOBAL OPTIONS
+  -q, --quiet      Disable stdout/stderr
+  -v, --verbose    Enable logging.
+      --debug      Dump debug infomation for acot modules.
+      --no-color   Force disabling of color
+      --help       Show help
+      --version    Output the version number
+
+Run \`acot help [command..]\` for help with a specific command."
+`;
+
+exports[`command/help nonexistent command 1`] = `" ERROR  \\"notfound\\" command does not exists"`;
+
+exports[`command/help subcommand 1`] = `
+"sub1 summary
+
+USAGE
+  acot parent sub1 [flags]
+
+COMMAND OPTIONS
+  -o, --opt1      opt1 desc
+
+GLOBAL OPTIONS
+  -q, --quiet     Disable stdout/stderr
+  -v, --verbose   Enable logging.
+      --debug     Dump debug infomation for acot modules.
+      --no-color  Force disabling of color
+      --help      Show help
+      --version   Output the version number"
+`;

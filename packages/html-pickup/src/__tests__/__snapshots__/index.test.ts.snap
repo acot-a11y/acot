@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pickup basic 1`] = `"<div class=\\"container\\" id=\\"element\\" data-foo=\\"bar\\"><h2>Sub title</h2><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li><…"`;
+
+exports[`pickup no trucate 1`] = `"<div class=\\"container\\" id=\\"element\\" data-foo=\\"bar\\"><h2>Sub title</h2><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul></div>"`;
+
+exports[`pickup self closing tag 1`] = `"<img src=\\"/path/to.jpg\\" alt=\\"text content\\" />"`;
