@@ -1,17 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
-import chalk from 'chalk';
-import execa from 'execa';
-import { emojify } from 'node-emoji';
 import type { Config } from '@acot/types';
+import { shorthand2pkg } from '@acot/utils';
+import chalk from 'chalk';
 import enquirer from 'enquirer';
+import execa from 'execa';
 import Listr from 'listr';
-import isURL from 'validator/lib/isURL';
+import { emojify } from 'node-emoji';
 import prettier from 'prettier';
+import isURL from 'validator/lib/isURL';
 import { createCommand } from '../command';
 import { debug } from '../logging';
-import { shorthand2pkg } from '../../../utils/lib';
 
 const writeFile = promisify(fs.writeFile);
 

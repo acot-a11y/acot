@@ -13,8 +13,8 @@ import type {
   RunnerFactoryConfig,
   Timing,
 } from '@acot/types';
+import { parseViewport } from '@acot/utils';
 import table from 'markdown-table';
-import { parseViewport } from '../../../utils/lib';
 import { createCommand } from '../command';
 import { debug } from '../logging';
 import { createDefaultRunner } from '../runner';
