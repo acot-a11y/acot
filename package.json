@@ -14,8 +14,14 @@
     "lint": "npm-run-all -p lint:*",
     "lint:prettier": "prettier --check .",
     "lint:script": "eslint . --ext \".js,.jsx,.ts,.tsx\"",
+    "release": "lerna publish from-package",
     "test": "lerna run --no-bail --scope \"@acot/*\" test",
-    "test:ci": "yarn test --parallel"
+    "test:ci": "yarn test --parallel",
+    "versionup": "lerna version --conventional-commits",
+    "versionup:cancel": "git tag --points-at @ | xargs -I{} git tag --delete {} && git reset --hard @^",
+    "versionup:major": "lerna version major --conventional-commits",
+    "versionup:minor": "lerna version minor --conventional-commits",
+    "versionup:patch": "lerna version patch --conventional-commits"
   },
   "husky": {
     "hooks": {
