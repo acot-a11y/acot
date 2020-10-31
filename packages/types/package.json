@@ -1,6 +1,6 @@
 {
   "name": "@acot/types",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "acot's underlying type declarations.",
   "homepage": "https://github.com/acot-a11y/acot#readme",
   "bugs": {
@@ -22,8 +22,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/find-chrome": "0.0.0",
-    "@acot/schema-validator": "0.0.0",
+    "@acot/find-chrome": "0.0.1",
+    "@acot/schema-validator": "0.0.1",
     "puppeteer-core": "^5.4.1",
     "type-fest": "^0.18.0"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@acot/module-loader",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Load the module according to the naming rule of acot.",
   "homepage": "https://github.com/acot-a11y/acot#readme",
   "bugs": {
@@ -30,7 +30,7 @@
     ]
   },
   "dependencies": {
-    "@acot/utils": "0.0.0",
+    "@acot/utils": "0.0.1",
     "debug": "^4.2.0"
   },
   "publishConfig": {

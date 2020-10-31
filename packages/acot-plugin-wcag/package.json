@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-plugin-wcag",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A WCAG-based rule set for acot.",
   "homepage": "https://github.com/acot-a11y/acot#readme",
   "bugs": {
@@ -26,8 +26,8 @@
     "test": "acot plugin test --port 1234"
   },
   "dependencies": {
-    "@acot/cli": "0.0.0",
-    "@acot/core": "0.0.0"
+    "@acot/cli": "0.0.1",
+    "@acot/core": "0.0.1"
   },
   "publishConfig": {
     "access": "public"

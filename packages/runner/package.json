@@ -1,6 +1,6 @@
 {
   "name": "@acot/runner",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A runner toolset for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot#readme",
   "bugs": {
@@ -30,14 +30,14 @@
     ]
   },
   "dependencies": {
-    "@acot/connection": "0.0.0",
-    "@acot/module-loader": "0.0.0",
+    "@acot/connection": "0.0.1",
+    "@acot/module-loader": "0.0.1",
     "debug": "^4.2.0",
     "emittery": "^0.7.1"
   },
   "devDependencies": {
-    "@acot/factory": "0.0.0",
-    "@acot/types": "0.0.0"
+    "@acot/factory": "0.0.1",
+    "@acot/types": "0.0.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@acot/mock-logger",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -18,6 +18,6 @@
     ]
   },
   "dependencies": {
-    "@acot/logger": "0.0.0"
+    "@acot/logger": "0.0.1"
   }
 }

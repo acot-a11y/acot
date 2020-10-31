@@ -1,6 +1,6 @@
 {
   "name": "@acot/document",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A set of tools for working with documentation for acot plugins.",
   "homepage": "https://github.com/acot-a11y/acot#readme",
   "bugs": {
@@ -31,11 +31,11 @@
     ]
   },
   "dependencies": {
-    "@acot/core": "0.0.0",
-    "@acot/factory": "0.0.0",
-    "@acot/find-chrome": "0.0.0",
-    "@acot/html-pickup": "0.0.0",
-    "@acot/logger": "0.0.0",
+    "@acot/core": "0.0.1",
+    "@acot/factory": "0.0.1",
+    "@acot/find-chrome": "0.0.1",
+    "@acot/html-pickup": "0.0.1",
+    "@acot/logger": "0.0.1",
     "fast-glob": "^3.2.2",
     "fastify": "^3.1.1",
     "indent-string": "^4.0.0",
