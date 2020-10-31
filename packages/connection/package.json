@@ -2,7 +2,7 @@
   "name": "@acot/connection",
   "version": "0.0.1",
   "description": "Manage the connection to the server.",
-  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/connection",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

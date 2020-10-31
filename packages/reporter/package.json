@@ -2,7 +2,7 @@
   "name": "@acot/reporter",
   "version": "0.0.1",
   "description": "A reporter toolset and built-in reporters for @acot/cli.",
-  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/reporter",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

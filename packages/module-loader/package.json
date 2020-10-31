@@ -2,7 +2,7 @@
   "name": "@acot/module-loader",
   "version": "0.0.1",
   "description": "Load the module according to the naming rule of acot.",
-  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/module-loader",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

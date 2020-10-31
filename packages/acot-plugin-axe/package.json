@@ -2,7 +2,7 @@
   "name": "@acot/acot-plugin-axe",
   "version": "0.0.1",
   "description": "An axe rule set for acot.",
-  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-plugin-axe",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

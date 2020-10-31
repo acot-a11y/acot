@@ -2,7 +2,7 @@
   "name": "@acot/runner",
   "version": "0.0.1",
   "description": "A runner toolset for @acot/cli.",
-  "homepage": "https://github.com/acot-a11y/acot#readme",
+  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/runner",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
