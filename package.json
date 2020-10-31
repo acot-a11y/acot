@@ -17,11 +17,11 @@
     "release": "lerna publish from-package",
     "test": "lerna run --no-bail --scope \"@acot/*\" test",
     "test:ci": "yarn test --parallel",
-    "versionup": "lerna version --conventional-commits",
+    "versionup": "lerna version --exact --no-private --conventional-commits",
     "versionup:cancel": "git tag --points-at @ | xargs -I{} git tag --delete {} && git reset --hard @^",
-    "versionup:major": "lerna version major --conventional-commits",
-    "versionup:minor": "lerna version minor --conventional-commits",
-    "versionup:patch": "lerna version patch --conventional-commits"
+    "versionup:major": "lerna version major --exact --no-private --conventional-commits",
+    "versionup:minor": "lerna version minor --exact --no-private --conventional-commits",
+    "versionup:patch": "lerna version patch --exact --no-private --conventional-commits"
   },
   "husky": {
     "hooks": {
