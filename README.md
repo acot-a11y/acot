@@ -51,6 +51,8 @@ You can build the configuration file and install the dependent packages with the
 $ npx acot init
 ```
 
+![Running acot init command](./docs/assets/acot-init.gif)
+
 And then, The `run` subcommand performs an audit based on the configuration file.
 
 ```bash
@@ -73,25 +75,33 @@ _T.B.A_
 
 ### Foundations
 
-- [@acot/core](./packages/core/)
-- [@acot/cli](./packages/cli/)
+| Package                            | Version                                                                                                           | Description                             |
+| :--------------------------------- | :---------------------------------------------------------------------------------------------------------------- | :-------------------------------------- |
+| [@acot/core](./packages/core/)     | [![npm](https://img.shields.io/npm/v/@acot/core?style=flat-square)](https://www.npmjs.com/package/@acot/core)     | acot core API.                          |
+| [@acot/cli](./packages/cli/)       | [![npm](https://img.shields.io/npm/v/@acot/cli?style=flat-square)](https://www.npmjs.com/package/@acot/cli)       | acot command line tool.                 |
+| [@acot/config](./packages/config/) | [![npm](https://img.shields.io/npm/v/@acot/config?style=flat-square)](https://www.npmjs.com/package/@acot/config) | A module to manipulate configs of acot. |
 
-### Configs
+### Configs / Plugins
 
-- [@acot/acot-config](./packages/acot-config/)
-
-### Plugings
-
-- [@acot/acot-plugin-wcag](./packages/acot-plugin-wcag/)
-- [@acot/acot-plugin-axe](./packages/acot-plugin-axe/)
+| Package                                                | Version                                                                                                                               | Description                     |
+| :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------ |
+| [@acot/acot-config](./packages/acot-config/)           | [![npm](https://img.shields.io/npm/v/@acot/acot-config?style=flat-square)](https://www.npmjs.com/package/@acot/acot-config)           | A basic acot rule set.          |
+| [@acot/acot-plugin-wcag](./packages/acot-plugin-wcag/) | [![npm](https://img.shields.io/npm/v/@acot/acot-plugin-wcag?style=flat-square)](https://www.npmjs.com/package/@acot/acot-plugin-wcag) | A WCAG-based rule set for acot. |
+| [@acot/acot-plugin-axe](./packages/acot-plugin-axe/)   | [![npm](https://img.shields.io/npm/v/@acot/acot-plugin-axe?style=flat-square)](https://www.npmjs.com/package/@acot/acot-plugin-axe)   | An axe rule set for acot.       |
 
 ### Runners
 
-- [@acot/acot-runner-storybook](./packages/acot-runner-storybook/)
+| Package                                                          | Version                                                                                                                                         | Description                                                                      |
+| :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| [@acot/acot-runner-storybook](./packages/acot-runner-storybook/) | [![npm](https://img.shields.io/npm/v/@acot/acot-runner-storybook?style=flat-square)](https://www.npmjs.com/package/@acot/acot-runner-storybook) | An acot custom runner for [Storybook](https://github.com/storybookjs/storybook). |
 
-## Changelog
+### Utilities
 
-See [CHANGELOG.md](./CHANGELOG.md).
+| Package                                                | Version                                                                                                                               | Description                                                                          |
+| :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------- |
+| [@acot/find-chrome](./packages/find-chrome/)           | [![npm](https://img.shields.io/npm/v/@acot/find-chrome?style=flat-square)](https://www.npmjs.com/package/@acot/find-chrome)           | Find Chrome available in your runtime environment.                                   |
+| [@acot/html-pickup](./packages/html-pickup/)           | [![npm](https://img.shields.io/npm/v/@acot/html-pickup?style=flat-square)](https://www.npmjs.com/package/@acot/html-pickup)           | Use the CSS Selector to pick up the elements from the HTML string.                   |
+| [@acot/schema-validator](./packages/schema-validator/) | [![npm](https://img.shields.io/npm/v/@acot/schema-validator?style=flat-square)](https://www.npmjs.com/package/@acot/schema-validator) | A simple wrapper module for [schema-utils](https://github.com/webpack/schema-utils). |
 
 ## FAQ
 
