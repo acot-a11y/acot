@@ -1,7 +1,5 @@
-import { validate as validateSchema, ValidationError } from 'schema-utils';
+import { validate as validateSchema } from 'schema-utils';
 import type { Schema } from './types';
-
-export { ValidationError };
 
 export type ValidateConfig = {
   name: string;
