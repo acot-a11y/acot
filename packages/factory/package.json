@@ -26,7 +26,7 @@
     "@acot/types": "0.0.0",
     "deepmerge": "^4.2.2",
     "is-plain-object": "^5.0.0",
-    "type-fest": "^0.16.0"
+    "type-fest": "^0.18.0"
   },
   "publishConfig": {
     "access": "public"

@@ -17,8 +17,8 @@
     "@storybook/react": "^5.3.18",
     "babel-loader": "^8.1.0",
     "eslint-plugin-react": "^7.20.0",
-    "puppeteer": "^5.3.0",
-    "styled-components": "^5.1.0"
+    "puppeteer": "^5.4.1",
+    "styled-components": "^5.2.1"
   },
   "acot": {
     "origin": "http://localhost:6006",

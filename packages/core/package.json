@@ -41,15 +41,15 @@
     "emittery": "^0.7.1",
     "filenamify": "^4.1.0",
     "lodash": "^4.17.19",
-    "puppeteer-core": "^5.3.0",
+    "puppeteer-core": "^5.4.1",
     "puppeteer-element2selector": "^0.0.1"
   },
   "devDependencies": {
     "@acot/find-chrome": "0.0.0",
     "@acot/mock-logger": "0.0.0",
-    "@types/lodash": "^4.14.158",
+    "@types/lodash": "^4.14.164",
     "@types/puppeteer-core": "^2.0.0",
-    "puppeteer": "^5.3.0"
+    "puppeteer": "^5.4.1"
   },
   "publishConfig": {
     "access": "public"

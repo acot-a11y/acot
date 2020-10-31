@@ -41,7 +41,7 @@
     "chalk": "^4.0.0",
     "chokidar": "^3.4.1",
     "enquirer": "^2.3.6",
-    "execa": "^4.0.3",
+    "execa": "^4.1.0",
     "fast-glob": "^3.2.2",
     "listr": "^0.14.3",
     "markdown-table": "^2.0.0",
@@ -50,7 +50,7 @@
     "portfinder": "^1.0.27",
     "prettier": "^2.1.2",
     "strip-ansi": "^6.0.0",
-    "type-fest": "^0.16.0",
+    "type-fest": "^0.18.0",
     "validator": "^13.1.17",
     "yargs": "^16.0.3"
   },
