@@ -15,13 +15,14 @@
     "lint:prettier": "prettier --check .",
     "lint:script": "eslint . --ext \".js,.jsx,.ts,.tsx\"",
     "release": "lerna publish from-package",
+    "release:canary": "yarn release --npm-tag canary",
     "test": "lerna run --no-bail --scope \"@acot/*\" test",
     "test:ci": "yarn test --parallel",
-    "versionup": "lerna version --exact --no-private --conventional-commits",
+    "versionup": "lerna version --conventional-commits",
     "versionup:cancel": "git tag --points-at @ | xargs -I{} git tag --delete {} && git reset --hard @^",
-    "versionup:major": "lerna version major --exact --no-private --conventional-commits",
-    "versionup:minor": "lerna version minor --exact --no-private --conventional-commits",
-    "versionup:patch": "lerna version patch --exact --no-private --conventional-commits"
+    "versionup:major": "lerna version major --conventional-commits",
+    "versionup:minor": "lerna version minor --conventional-commits",
+    "versionup:patch": "lerna version patch --conventional-commits"
   },
   "husky": {
     "hooks": {
