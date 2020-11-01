@@ -17,9 +17,12 @@ describe('BrowserPool', () => {
         const closer = {
           close: async () => {},
         } as any;
-        this._status = 'idle';
+
         this._browser = closer;
         this._page = closer;
+
+        this.close = jest.fn().mockReturnValue(Promise.resolve());
+
         return this;
       }
     }
@@ -60,7 +63,7 @@ describe('BrowserPool', () => {
 
     await pool.bootstrap(4);
 
-    expect((pool as any)._browsers.length).toBe(4);
+    expect((pool as any)._available.size).toBe(4);
   });
 
   /**
@@ -76,8 +79,8 @@ describe('BrowserPool', () => {
 
     await pool.bootstrap(2);
 
-    const mock = jest.fn().mockResolvedValue('success');
-    expect(await pool.execute(mock)).toBe('success');
+    const mock = jest.fn().mockReturnValue(Promise.resolve());
+    await pool.execute(mock);
     expect(mock).toBeCalled();
   });
 
@@ -90,7 +93,9 @@ describe('BrowserPool', () => {
     await pool.bootstrap(2);
     await pool.terminate();
 
-    expect((pool as any)._browsers[0].status()).toBe('closed');
-    expect((pool as any)._browsers[1].status()).toBe('closed');
+    const browsers = [...(pool as any)._available];
+
+    expect(browsers[0].close).toBeCalled();
+    expect(browsers[1].close).toBeCalled();
   });
 });

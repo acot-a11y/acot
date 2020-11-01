@@ -23,20 +23,12 @@ describe('Browser', () => {
 
   test('launch to close', async () => {
     const browser = new Browser(10);
-    expect(browser.status()).toBe('closed');
 
     const res = await browser.launch(launchOptions);
-    expect(browser.status()).toBe('idle');
+
     expect(res).toBe(browser);
-    expect((browser.page() as any).constructor.name).toBe('Page');
-
-    browser.lock();
-    expect(browser.status()).toBe('active');
-
-    browser.release();
-    expect(browser.status()).toBe('idle');
+    expect(((await browser.page()) as any).constructor.name).toBe('Page');
 
     await browser.close();
-    expect(browser.status()).toBe('closed');
   });
 });

@@ -97,7 +97,9 @@ export class Connection {
     try {
       debug('disconnect server connection... (pid: "%f")', this._proc.pid);
 
-      this._proc.kill();
+      const result = this._proc.kill('SIGKILL');
+
+      debug('kill=%s', result);
     } catch (e) {
       debug(e);
     }

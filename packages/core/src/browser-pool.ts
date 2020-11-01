@@ -1,6 +1,20 @@
 import type { LaunchOptions } from 'puppeteer-core';
 import { Browser } from './browser';
 
+const WORK_INTERVAL = 30;
+
+export type BrowserTask<T extends any[] = any[]> = (
+  browser: Browser,
+  ...args: T
+) => Promise<void>;
+
+export type BrowserJob = {
+  fn: BrowserTask;
+  args: any[];
+  resolve: (value?: any) => void;
+  reject: (reason?: any) => void;
+};
+
 export type BrowserPoolConfig = {
   launchOptions: LaunchOptions;
   timeout: number;
@@ -8,7 +22,10 @@ export type BrowserPoolConfig = {
 
 export class BrowserPool {
   private _config: BrowserPoolConfig;
-  private _browsers: Browser[] = [];
+  private _queue: BrowserJob[] = [];
+  private _available: Set<Browser> = new Set();
+  private _busy: Set<Browser> = new Set();
+  private _interval: NodeJS.Timeout | null = null;
 
   public constructor(config: BrowserPoolConfig) {
     this._config = {
@@ -33,57 +50,56 @@ export class BrowserPool {
   public async bootstrap(parallel: number): Promise<void> {
     const { launchOptions } = this._config;
 
-    this._browsers = await Promise.all(
-      Array.from(Array(parallel || 1)).map((_, i) =>
-        new Browser(i).launch(launchOptions),
-      ),
+    await Promise.all(
+      Array.from(Array(parallel || 1)).map(async (_, i) => {
+        this._available.add(await new Browser(i).launch(launchOptions));
+      }),
     );
+
+    this._interval = setInterval(() => this._work(), WORK_INTERVAL);
   }
 
   public async terminate(): Promise<void> {
-    await Promise.all(this._browsers.map((browser) => browser.close()));
-  }
-
-  public async execute<T = void, A extends any[] = any[]>(
-    callback: (browser: Browser, ...args: A) => Promise<T>,
-    ...args: A
-  ): Promise<T> {
-    const browser = await this._waitForIdleBrowser();
-    let result: T;
-
-    try {
-      browser.lock();
-      result = await callback(browser, ...args);
-    } finally {
-      browser.release();
+    if (this._interval != null) {
+      clearInterval(this._interval);
     }
 
-    return result;
+    await Promise.all(
+      [...this._available, ...this._busy].map((browser) => browser.close()),
+    );
   }
 
-  private _waitForIdleBrowser(): Promise<Browser> {
-    const { timeout } = this._config;
-    const start = Date.now();
-
+  public execute<T extends any[] = any[]>(
+    fn: BrowserTask<T>,
+    ...args: T
+  ): Promise<T> {
     return new Promise((resolve, reject) => {
-      const callback = () => {
-        const diff = Date.now() - start;
-        if (diff >= timeout) {
-          return reject(new Error(`Browser idle timed out. (${timeout} ms)`));
-        }
-
-        const idle = this._browsers.find(
-          (browser) => browser.status() === 'idle',
-        );
-
-        if (idle) {
-          return resolve(idle);
-        }
-
-        setImmediate(callback);
-      };
-
-      setImmediate(callback);
+      this._queue.push({ fn: fn as BrowserTask, args, resolve, reject });
     });
+  }
+
+  private async _work(): Promise<void> {
+    if (this._available.size === 0 || this._queue.length === 0) {
+      return;
+    }
+
+    const job = this._queue.shift()!;
+    const browser = [...this._available.values()].shift()!;
+
+    this._busy.add(browser);
+
+    try {
+      await job.fn(browser, ...job.args);
+      job.resolve();
+    } catch (e) {
+      job.reject(e);
+    }
+
+    this._busy.delete(browser);
+    this._available.add(browser);
+
+    if (this._queue.length > 0) {
+      this._work();
+    }
   }
 }
