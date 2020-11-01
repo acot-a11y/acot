@@ -8,9 +8,9 @@
     "test:server": "acot run"
   },
   "devDependencies": {
-    "@acot/acot-plugin-wcag": "0.0.0",
-    "@acot/acot-runner-storybook": "0.0.0",
-    "@acot/cli": "0.0.0",
+    "@acot/acot-plugin-wcag": "latest",
+    "@acot/acot-runner-storybook": "latest",
+    "@acot/cli": "latest",
     "@babel/core": "^7.10.5",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addons": "^5.3.18",

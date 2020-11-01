@@ -7,10 +7,10 @@
     "test": "acot run"
   },
   "devDependencies": {
-    "@acot/acot-config": "*",
-    "@acot/acot-plugin-axe": "*",
-    "@acot/acot-plugin-wcag": "*",
-    "@acot/cli": "0.0.0",
+    "@acot/acot-config": "latest",
+    "@acot/acot-plugin-axe": "latest",
+    "@acot/acot-plugin-wcag": "latest",
+    "@acot/cli": "latest",
     "puppeteer": "^5.4.1",
     "serve": "^11.3.0",
     "typescript": "^4.0.5"
