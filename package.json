@@ -18,11 +18,12 @@
     "release:canary": "yarn release --dist-tag canary",
     "test": "lerna run --no-bail --stream --scope \"@acot/*\" test",
     "test:ci": "yarn test --parallel",
-    "versionup": "lerna version --conventional-commits",
+    "versionup": "lerna version",
+    "versionup:canary": "lerna version prerelease --preid canary",
     "versionup:cancel": "git tag --points-at @ | xargs -I{} git tag --delete {} && git reset --hard @^",
-    "versionup:major": "lerna version major --conventional-commits",
-    "versionup:minor": "lerna version minor --conventional-commits",
-    "versionup:patch": "lerna version patch --conventional-commits"
+    "versionup:major": "lerna version major",
+    "versionup:minor": "lerna version minor",
+    "versionup:patch": "lerna version patch"
   },
   "husky": {
     "hooks": {
