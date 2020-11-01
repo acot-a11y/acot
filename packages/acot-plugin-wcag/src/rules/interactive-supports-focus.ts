@@ -80,7 +80,7 @@ export default createRule<Options>({
             await context.report({
               node,
               message:
-                'Interactive element should have the same handler as the click event.',
+                'Interactive element MUST have the same handler as the click event.',
             });
           }
         }),
