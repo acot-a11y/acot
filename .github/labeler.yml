@@ -1,0 +1,34 @@
+A-documentation:
+  - '*.md'
+  - 'docs/**'
+
+A-example:
+  - 'examples/**'
+
+A-foundation:
+  - 'packages/cli/**'
+  - 'packages/config/**'
+  - 'packages/connection/**'
+  - 'packages/core/**'
+  - 'packages/document/**'
+  - 'packages/factory/**'
+  - 'packages/logger/**'
+  - 'packages/mock-logger/**'
+  - 'packages/module-loader/**'
+  - 'packages/reporter/**'
+  - 'packages/runner/**'
+  - 'packages/types/**'
+  - 'packages/utils/**'
+
+A-config:
+  - 'packages/acot-config/**'
+  - 'packages/acot-config-*/**'
+
+A-plugin:
+  - 'packages/acot-plugin-*/**'
+
+A-runner:
+  - 'packages/acot-runner-*/**'
+
+A-reporter:
+  - 'packages/acot-reporter-*/**'
