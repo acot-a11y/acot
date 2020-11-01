@@ -192,10 +192,19 @@ export class DocServer {
       }
     }
 
-    const html = mustache.render(template, {
+    const vars: Record<string, any> = {
       title: `${code.rule} - ${project.name}`,
-      html: code.html,
-    });
+    };
+
+    if (code.meta['acot-head'] === true) {
+      vars.head = code.html;
+      vars.html = '';
+    } else {
+      vars.head = '';
+      vars.html = code.html;
+    }
+
+    const html = mustache.render(template, vars);
 
     reply
       .headers({

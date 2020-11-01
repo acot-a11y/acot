@@ -20,6 +20,7 @@ describe('doc-code', () => {
       createDocCode({
         meta: {
           'acot-ignore': true,
+          'acot-head': false,
           'acot-template': 'template',
           'acot-foo': 'foo',
           bar: 'bar',

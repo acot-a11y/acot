@@ -41,6 +41,10 @@ $ no-html "foo bar baz"
 <p class="correct-2"></p>
 \`\`\`
 
+\`\`\`html acot-head
+<title>Title</title>
+\`\`\`
+
 ## Incorrect
 
 \`\`\`html attr1:"string1", attr2:'string2', attr3:string3, attr4:1000, attr5:false, attr6:null
@@ -85,8 +89,18 @@ $ no-html "foo bar baz"
       createDocCode({
         path,
         rule,
-        type: 'incorrect',
+        type: 'correct',
         id: '3',
+        meta: {
+          'acot-head': true,
+        },
+        html: '<title>Title</title>',
+      }),
+      createDocCode({
+        path,
+        rule,
+        type: 'incorrect',
+        id: '4',
         meta: {
           attr1: 'string1',
           attr2: 'string2',
@@ -101,7 +115,7 @@ $ no-html "foo bar baz"
         path,
         rule,
         type: 'incorrect',
-        id: '4',
+        id: '5',
         meta: {
           'acot-ignore': true,
         },
