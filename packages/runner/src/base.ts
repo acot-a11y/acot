@@ -50,10 +50,22 @@ export class BaseRunner implements Runner {
     await this._setup();
     await this._connect();
     await this._collect();
-    const summary = await this._audit();
-    await this._cleanup();
 
-    return summary;
+    let summary: Summary;
+    let error: any | null = null;
+    try {
+      summary = await this._audit();
+    } catch (e) {
+      error = e;
+    } finally {
+      await this._cleanup();
+    }
+
+    if (error != null) {
+      throw error;
+    }
+
+    return summary!;
   }
 
   private async _setup(): Promise<void> {

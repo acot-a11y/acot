@@ -157,7 +157,7 @@ export class Tester {
     browser: Browser,
     [id, rule, options]: TesterRuleGroup,
   ): Promise<void> {
-    const page = browser.page();
+    const page = await browser.page();
 
     await Promise.all([
       this._config.headers && page.setExtraHTTPHeaders(this._config.headers),

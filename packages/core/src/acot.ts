@@ -49,8 +49,8 @@ export class Acot implements Core {
       origin: config.origin ?? '',
       parallel: Math.max(config.parallel ?? 1, 1),
       plugins: config.plugins ?? [],
-      browserTimeout: 1000 * 30,
-      readyTimeout: 1000 * 30,
+      browserTimeout: config.browserTimeout ?? 1000 * 30,
+      readyTimeout: config.readyTimeout ?? 1000 * 30,
     };
 
     this._store = new RuleStore();
