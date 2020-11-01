@@ -2,6 +2,7 @@ export type DocCodeType = 'correct' | 'incorrect';
 
 export type DocCodeMeta = {
   'acot-ignore'?: boolean;
+  'acot-head'?: boolean;
   'acot-template'?: string;
   [key: string]: string | number | boolean | null | undefined;
 };
@@ -15,7 +16,7 @@ export type DocCode = {
   html: string;
 };
 
-const reservedMetaKeys = ['acot-ignore', 'acot-template'] as const;
+const reservedMetaKeys = ['acot-ignore', 'acot-head', 'acot-template'] as const;
 
 export const extractCodeMeta = (
   code: DocCode,
