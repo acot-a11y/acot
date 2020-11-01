@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import type { Config } from '@acot/types';
-import { shorthand2pkg } from '@acot/utils';
 import chalk from 'chalk';
 import enquirer from 'enquirer';
 import execa from 'execa';
@@ -185,7 +184,7 @@ const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
           message: 'Default runner',
         },
         {
-          name: '@acot/acot-runner-storybook',
+          name: '@acot/storybook',
           message: 'Storybook runner',
         },
       ],
@@ -254,7 +253,10 @@ const result2string = (result: PromptResult) => {
   }
 
   config.origin = result.origin;
-  config.paths = ['/'];
+
+  if (result.runner !== '@acot/storybook') {
+    config.paths = ['/'];
+  }
 
   const content = JSON.stringify(config, null, '  ');
 
@@ -403,7 +405,7 @@ export default createCommand({
         const deps: string[] = [];
 
         if (result.useConfig) {
-          deps.push(shorthand2pkg('@acot', 'config'));
+          deps.push('@acot/acot-config');
         }
 
         if (result.installPuppeteer) {
@@ -411,12 +413,19 @@ export default createCommand({
         }
 
         switch (result.runner) {
-          case 'storybook':
+          case '@acot/storybook':
             deps.push('@acot/acot-runner-storybook');
             break;
         }
 
-        return execa(result.npmClient, ['install', '-D', ...deps]);
+        switch (result.npmClient) {
+          case 'npm':
+            return execa('npm', ['install', '-D', ...deps]);
+          case 'yarn':
+            return execa('yarn', ['add', '-D', ...deps]);
+          default:
+            throw new Error('Invalid npm client');
+        }
       },
     },
   ]);
