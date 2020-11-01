@@ -16,13 +16,13 @@ ignore: ['**/*']
 
 **TODO:** Description.
 
-## Correct
+## :white_check_mark: Correct
 
 ```html
 <!-- TODO -->
 ```
 
-## Incorrect
+## :warning: Incorrect
 
 ```html
 <!-- TODO -->
