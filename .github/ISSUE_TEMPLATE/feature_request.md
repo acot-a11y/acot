@@ -1,10 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[FEATURE_REQUEST] XXX"
+title: '[FEATURE_REQUEST] XXX'
 labels: ''
 assignees: ''
-
 ---
 
 ## Is your feature request related to a problem? Please describe.

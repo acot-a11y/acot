@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: "[BUG] XXX"
+title: '[BUG] XXX'
 labels: ''
 assignees: ''
-
 ---
 
 ## Describe the bug
@@ -40,5 +39,5 @@ Add any other context about the problem here.
 
  <!-- please complete the following information -->
 
- - OS: [e.g. iOS]
- - Version [e.g. 22]
+- OS: [e.g. iOS]
+- Version [e.g. 22]
