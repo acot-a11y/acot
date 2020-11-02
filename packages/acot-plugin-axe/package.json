@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-plugin-axe",
-  "version": "0.0.1",
+  "version": "0.0.2-canary.0",
   "description": "An axe rule set for acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-plugin-axe",
   "bugs": {
@@ -25,8 +25,8 @@
     "test": "acot plugin test --port 1235"
   },
   "dependencies": {
-    "@acot/cli": "0.0.1",
-    "@acot/core": "0.0.1",
+    "@acot/cli": "0.0.2-canary.0",
+    "@acot/core": "0.0.2-canary.0",
     "axe-core": "^4.0.1"
   },
   "publishConfig": {

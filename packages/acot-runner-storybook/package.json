@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner-storybook",
-  "version": "0.0.1",
+  "version": "0.0.2-canary.0",
   "description": "An acot custom runner for Storybook.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-runner-storybook",
   "bugs": {
@@ -22,16 +22,16 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/config": "0.0.1",
-    "@acot/runner": "0.0.1",
-    "@acot/schema-validator": "0.0.1",
+    "@acot/config": "0.0.2-canary.0",
+    "@acot/runner": "0.0.2-canary.0",
+    "@acot/schema-validator": "0.0.2-canary.0",
     "debug": "^4.2.0",
     "deepmerge": "^4.2.2",
     "is-plain-object": "^5.0.0",
     "puppeteer-core": "^5.4.1"
   },
   "devDependencies": {
-    "@acot/types": "0.0.1"
+    "@acot/types": "0.0.2-canary.0"
   },
   "publishConfig": {
     "access": "public"
