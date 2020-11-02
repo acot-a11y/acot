@@ -10,70 +10,53 @@ import type { TestResult } from '@acot/types';
 import logUpdate from 'log-update';
 import logSymbols from 'log-symbols';
 import plur from 'plur';
+import stripAnsi from 'strip-ansi';
 import { pickup } from '@acot/html-pickup';
 import { createReporterFactory } from '../factory';
 
 const readFile = promisify(fs.readFile);
 
-const getSymbol = (result: TestResult) => {
-  let symbol = logSymbols.success;
-  if (result.errorCount > 0) {
-    symbol = logSymbols.error;
-  } else {
-    symbol = logSymbols.warning;
-  }
-  return symbol;
-};
-
 const count = (s: string, n: number) => `${n} ${plur(s, n)}`;
+
+const stringLength = (s: string) => stripAnsi(s).length;
 
 class AuditProgress {
   protected _current = 0;
   protected _urls: string[];
   protected _stream: NodeJS.WritableStream;
-  protected _map: Map<
-    string,
-    [spinner: ora.Ora, text: string, result: TestResult | null]
-  >;
   protected _timer: NodeJS.Timeout | null = null;
+  protected _spinner: ora.Ora;
+  protected _text = 'Waiting...';
   protected _update: logUpdate.LogUpdate;
 
   public constructor(urls: string[], stream: NodeJS.WritableStream) {
     this._urls = urls;
     this._stream = stream;
-    this._map = new Map();
+    this._spinner = ora({ color: 'gray', stream });
     this._update = logUpdate.create(stream);
   }
 
-  public start() {
-    this._urls.forEach((url) => {
-      const text = chalk.bold(url);
-      this._map.set(url, [
-        ora({ color: 'gray', stream: this._stream }),
-        text,
-        null,
-      ]);
-    });
+  public isComplete() {
+    return this._current >= this._urls.length;
+  }
 
+  public start() {
     this._loop();
   }
 
   public increment(result: TestResult) {
-    const entry = this._map.get(result.url)!;
     const summary = [
       count('error', result.errorCount),
       count('warning', result.warningCount),
       count('pass', result.passCount),
     ].join(', ');
 
-    const text = chalk`{bold ${result.url}} {gray (${summary})}`;
+    this._text = `${result.url} (${summary})`;
 
-    this._map.set(result.url, [entry[0], text, result]);
     this._current++;
 
-    if (this._current >= this._urls.length) {
-      this.stop();
-      this._render();
+    if (this.isComplete()) {
+      this.done();
     }
   }
 
@@ -84,18 +67,38 @@ class AuditProgress {
     }
   }
 
+  public done() {
+    this.stop();
+    this._text = 'DONE';
+    this._render();
+  }
+
   private _render() {
     const total = this._urls.length;
-    const percent = Math.floor((this._current / total) * 100);
-    let output = chalk`{bold Running on ${total} URLs:} {cyan ${percent}%}\n`;
+    const progress = this._current / total;
+    const percent = `${Math.floor(progress * 100)}`.padStart(3);
+    const format = {
+      size: 30,
+      complete: '\u2588',
+      incomplete: '\u2591',
+    };
 
-    this._map.forEach(([spinner, text, result]) => {
-      if (result != null) {
-        output += `${getSymbol(result)} ${text}\n`;
-      } else {
-        output += `${spinner.frame()}${text}\n`;
-      }
-    });
+    const complete = Math.round(progress * format.size);
+    const incomplete = format.size - complete;
+    const bar =
+      format.complete.repeat(complete) +
+      chalk.gray(format.incomplete.repeat(incomplete));
+
+    const spinner = this.isComplete() ? '' : `${this._spinner.frame()}`;
+
+    let output = [
+      chalk.bold(`Running on ${total} URLs:`),
+      chalk`{cyan ${percent}%} ${bar} ${spinner}{gray ${this._text}}`,
+    ].join('\n');
+
+    if (this.isComplete()) {
+      output += '\n';
+    }
 
     this._update(output);
   }
@@ -128,7 +131,7 @@ class AuditLinearProgress extends AuditProgress {
 
     this._stream.write(`${output}\n`);
 
-    if (this._current >= total) {
+    if (this.isComplete()) {
       this._stream.write('\n');
     }
   }
@@ -150,11 +153,20 @@ export default createReporterFactory(
 
     stdout.write(
       boxen(
-        table([
-          ['acot core:', chalk.green`v${runner.version.core}`],
-          ['runner:', chalk.green`${runner.name} (v${runner.version.self})`],
-          ['origin:', chalk.green.underline`${config.origin}`],
-        ]),
+        [
+          chalk.bold.green('Audit by acot'),
+          table(
+            [
+              [chalk.bold('acot core:'), `v${runner.version.core}`],
+              [
+                chalk.bold('runner:'),
+                `${runner.name} (v${runner.version.self})`,
+              ],
+              [chalk.bold('origin:'), chalk.underline(`${config.origin}`)],
+            ],
+            { stringLength },
+          ),
+        ].join('\n\n'),
         { borderColor: 'gray', padding: 1 },
       ) + '\n\n',
     );
@@ -175,7 +187,7 @@ export default createReporterFactory(
     });
 
     runner.on('connect:complete', () => {
-      spinner.succeed(`Connected (${config.origin})`);
+      spinner.succeed(chalk`Connected {gray.underline (${config.origin})}`);
     });
 
     runner.on('collect:start', () => {
@@ -183,7 +195,7 @@ export default createReporterFactory(
     });
 
     runner.on('collect:complete', ([results]) => {
-      spinner.succeed(`Collected (${results.length} cases)`);
+      spinner.succeed(chalk`Collected {gray ({bold ${results.length}} cases)}`);
     });
 
     runner.on('launch:start', () => {
@@ -240,7 +252,7 @@ export default createReporterFactory(
 
               const msg = res.message;
               const rule = chalk.gray(res.rule);
-              const lines = [indent([status, msg, rule].join('  '), 2)];
+              const lines = [[status, msg, rule].join('  ')];
               const meta: string[] = [];
 
               if (res.tags.length > 0) {
@@ -266,7 +278,7 @@ export default createReporterFactory(
                   })
                   .join('\n');
 
-                lines.push(indent(chalk.gray(metaStr), 5));
+                lines.push(indent(chalk.gray(metaStr), 3));
               }
 
               return `${lines.join('\n')}`;
@@ -282,9 +294,18 @@ export default createReporterFactory(
             ? chalk.bgRed.black.bold(' ERROR ')
             : chalk.bgYellow.black.bold(' WARN ');
 
-          const url = chalk.bold(result.url);
+          const url = chalk.bold.underline(result.url);
 
-          stdout.write(`${label} ${url}\n${filtered.join('\n\n')}\n\n`);
+          const short = [
+            chalk.green(`${stripAnsi(logSymbols.success)} ${result.passCount}`),
+            chalk.red(`${stripAnsi(logSymbols.error)} ${result.errorCount}`),
+            chalk.yellow(
+              `${stripAnsi(logSymbols.warning)} ${result.warningCount}`,
+            ),
+          ].join(' ');
+
+          stdout.write(`${label} ${url} - ${short}\n`);
+          stdout.write(`${filtered.join('\n\n')}\n\n`);
         }),
       );
 
