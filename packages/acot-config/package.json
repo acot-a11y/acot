@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-config",
-  "version": "0.0.2-canary.0",
+  "version": "0.0.2-canary.1",
   "description": "A basic acot rule set.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-config",
   "bugs": {
@@ -21,8 +21,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/acot-plugin-axe": "0.0.2-canary.0",
-    "@acot/acot-plugin-wcag": "0.0.2-canary.0"
+    "@acot/acot-plugin-axe": "0.0.2-canary.1",
+    "@acot/acot-plugin-wcag": "0.0.2-canary.1"
   },
   "publishConfig": {
     "access": "public"
