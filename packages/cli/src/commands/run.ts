@@ -14,6 +14,7 @@ import type {
   Timing,
 } from '@acot/types';
 import { parseViewport } from '@acot/utils';
+import isCI from 'is-ci';
 import table from 'markdown-table';
 import { createCommand } from '../command';
 import { debug } from '../logging';
@@ -202,7 +203,7 @@ export default createCommand({
     const cfg: ReporterFactoryConfig<any> = {
       stdout: logger.getStdout(),
       stderr: logger.getStderr(),
-      verbose: !!args.verbose, // TODO isCI
+      verbose: !!args.verbose || isCI,
       options: {},
       config,
     };

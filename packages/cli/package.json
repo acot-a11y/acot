@@ -43,6 +43,7 @@
     "enquirer": "^2.3.6",
     "execa": "^4.1.0",
     "fast-glob": "^3.2.2",
+    "is-ci": "^2.0.0",
     "listr": "^0.14.3",
     "markdown-table": "^2.0.0",
     "node-emoji": "^1.10.0",
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@acot/mock-logger": "0.0.1",
+    "@types/is-ci": "^2.0.0",
     "@types/listr": "^0.14.2",
     "@types/node-emoji": "^1.8.1",
     "@types/prettier": "^2.1.5",
