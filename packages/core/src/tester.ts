@@ -60,6 +60,8 @@ export class Tester {
 
     await this._config.onTestStart(this._config.url, ids);
 
+    this._debug(`start ${ids.length} rules`);
+
     await Promise.all(
       rules.map((loop) =>
         pool.execute(async (browser, args) => {
@@ -157,14 +159,19 @@ export class Tester {
     browser: Browser,
     [id, rule, options]: TesterRuleGroup,
   ): Promise<void> {
+    this._debug('creating page...');
     const page = await browser.page();
+    this._debug('created page!');
 
+    this._debug('set headers & viewport');
     await Promise.all([
       this._config.headers && page.setExtraHTTPHeaders(this._config.headers),
       this._config.viewport && page.setViewport(this._config.viewport),
     ]);
 
+    this._debug('wait for ready...');
     await this._waitForReady(page);
+    this._debug('ready!');
 
     const results: TestcaseResult[] = [];
 
@@ -273,5 +280,9 @@ export class Tester {
         this._config.url,
       ),
     ]);
+  }
+
+  private _debug(...args: any[]) {
+    debug(`${this._config.url}:`, ...args);
   }
 }
