@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.2](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.1...@acot/core@0.0.2-canary.2) (2020-11-03)
+
+### Bug Fixes
+
+- Minor bug fixes that occur during Audit ([0ec7b94](https://github.com/acot-a11y/acot/commit/0ec7b94e8f885cb45aae351d0279033367b8d94c))
+
+### Features
+
+- **core:** Add debug log ([c0b9837](https://github.com/acot-a11y/acot/commit/c0b98374abf2d5547c6e78b4b1cc9a92027e9f3a))
+
 ## [0.0.2-canary.1](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.0...@acot/core@0.0.2-canary.1) (2020-11-02)
 
 **Note:** Version bump only for package @acot/core
