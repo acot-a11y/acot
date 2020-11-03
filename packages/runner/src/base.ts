@@ -94,7 +94,7 @@ export class BaseRunner implements Runner {
       await this._conn.connect();
     } catch (e) {
       debug('Connection failed!');
-      await this._conn.disconnect();
+      this._conn.disconnect();
       this._conn = null;
       throw e;
     }
@@ -130,7 +130,7 @@ export class BaseRunner implements Runner {
 
     await this._emitter.emit('cleanup:start', []);
 
-    await this._conn?.disconnect();
+    this._conn?.disconnect();
     this._conn = null;
 
     if (cleanup != null) {

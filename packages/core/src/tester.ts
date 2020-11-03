@@ -180,20 +180,26 @@ export class Tester {
       options,
     });
 
+    const addErrorResult = (e: unknown) => {
+      debug('Unexpected error occurred:', e);
+
+      results.push(
+        createTestcaseResult({
+          process: browser.id(),
+          status: 'error',
+          rule: id,
+          message:
+            e instanceof Error ? e.message : `Unexpected error occurred: ${e}`,
+        }),
+      );
+    };
+
     switch (rule.type) {
       case 'global': {
         try {
           await rule.test(context);
         } catch (e) {
-          debug('Global rule test error:', e);
-          results.push(
-            createTestcaseResult({
-              process: browser.id(),
-              status: 'error',
-              rule: id,
-              message: e.message,
-            }),
-          );
+          addErrorResult(e);
         }
         break;
       }
@@ -207,15 +213,7 @@ export class Tester {
               try {
                 await rule.test(context, node);
               } catch (e) {
-                debug('Unexpected error occurred:', e);
-                results.push(
-                  createTestcaseResult({
-                    process: browser.id(),
-                    status: 'error',
-                    rule: id,
-                    message: e.message,
-                  }),
-                );
+                addErrorResult(e);
               }
             }),
           );
@@ -259,7 +257,9 @@ export class Tester {
     const { readyTimeout } = this._config;
 
     await Promise.all([
-      page.goto(this._config.url),
+      page.goto(this._config.url, {
+        timeout: readyTimeout,
+      }),
       page.waitForFunction(
         (url: string) => {
           const { readyState } = window.document;

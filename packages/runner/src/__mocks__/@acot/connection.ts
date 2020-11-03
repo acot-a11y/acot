@@ -3,7 +3,7 @@ export class Connection {
     // ...
   }
 
-  public async disconnect(): Promise<void> {
+  public disconnect(): void {
     // ...
   }
 }

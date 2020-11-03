@@ -1,26 +1,6 @@
-import cp from 'child_process';
+import execa from 'execa';
 import waitOn from 'wait-on';
 const debug = require('debug')('acot:connection');
-
-const spawn = (command: string) => {
-  const [cmd, ...args] = command.split(/\s+/);
-  const proc = cp.spawn(cmd, args, {
-    shell: true,
-  });
-
-  proc.stdout.setEncoding('utf8');
-  proc.stderr.setEncoding('utf8');
-
-  proc.stdout.on('data', (d) => {
-    debug(d.toString().trim());
-  });
-
-  proc.stderr.on('data', (d) => {
-    debug(d.toString().trim());
-  });
-
-  return proc;
-};
 
 const waitForServer = (url: string, timeout: number) =>
   new Promise((resolve, reject) => {
@@ -50,7 +30,7 @@ export class Connection {
   private _url: string;
   private _config: ConnectionConfig;
   private _status: ConnectionStatus = 'DISCONNECTED';
-  private _proc: cp.ChildProcess | null = null;
+  private _proc: execa.ExecaChildProcess | null = null;
 
   public get status(): ConnectionStatus {
     return this._status;
@@ -72,7 +52,12 @@ export class Connection {
 
     if (command != null) {
       debug('server process creating... (execute: "%s")', command);
-      this._proc = spawn(command);
+      this._proc = execa.command(command);
+      this._proc.stdout!.on('data', (d) => debug(d.toString()));
+      this._proc.stderr!.on('data', (d) => debug(d.toString()));
+      process.on('SIGINT', () => {
+        this._proc?.kill();
+      });
       debug('server process created!');
     }
 
@@ -89,22 +74,18 @@ export class Connection {
     this._status = 'CONNECTED';
   }
 
-  public async disconnect(): Promise<void> {
-    if (this._proc == null) {
+  public disconnect(): void {
+    if (this._status === 'DISCONNECTED') {
       return;
     }
 
-    try {
-      debug('disconnect server connection... (pid: "%f")', this._proc.pid);
-
-      const result = this._proc.kill('SIGKILL');
-
-      debug('kill=%s', result);
-    } catch (e) {
-      debug(e);
+    if (this._proc == null) {
+      debug('disconnect server connection');
+      return;
     }
 
+    debug('disconnect server connection... (pid: "%f")', this._proc.pid);
+    this._proc.kill();
     this._proc = null;
-    this._status = 'DISCONNECTED';
   }
 }

@@ -42,9 +42,10 @@ export class BrowserPool {
     };
 
     // require flags
-    this._config.launchOptions.args!.push(
-      '--enable-accessibility-object-model',
-    );
+    const enableAOM = '--enable-accessibility-object-model';
+    if (!this._config.launchOptions.args!.includes(enableAOM)) {
+      this._config.launchOptions.args!.push(enableAOM);
+    }
   }
 
   public async bootstrap(parallel: number): Promise<void> {

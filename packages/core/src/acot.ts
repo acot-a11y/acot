@@ -9,14 +9,20 @@ import type {
   TestDescriptor,
   TestResult,
 } from '@acot/types';
-import _ from 'lodash';
-import type { LaunchOptions, Viewport } from 'puppeteer-core';
 import Emittery from 'emittery';
+import _ from 'lodash';
+import type AllSettled from 'promise.allsettled';
+import type { LaunchOptions, Viewport } from 'puppeteer-core';
 import { BrowserPool } from './browser-pool';
+import { debug } from './logging';
 import { RuleStore } from './rule-store';
 import { Tester } from './tester';
 import { TimingTracker } from './timing-tracker';
-import { debug } from './logging';
+/**
+ * This is a workaround for bugs that occur in combination with tsc.
+ * @see https://github.com/es-shims/Promise.allSettled/issues/5
+ */
+const allSettled: typeof AllSettled = require('promise.allsettled') as any;
 
 export type AcotConfig = {
   cwd: string;
@@ -115,32 +121,43 @@ export class Acot implements Core {
 
     await this._emitter.emit('launch:complete', [urls]);
 
+    // audit
+    await this._emitter.emit('audit:start', []);
+
     const results: TestResult[] = [];
-    let summary: Summary;
 
-    try {
-      // audit
-      await this._emitter.emit('audit:start', []);
+    const context = {
+      pool,
+      tracker,
+    };
 
-      const context = {
-        pool,
-        tracker,
-      };
+    const list = await allSettled(
+      this._testers.map(async (tester) => {
+        results.push(await tester.test(context));
+      }),
+    );
 
-      await Promise.all(
-        this._testers.map(async (tester) => {
-          results.push(await tester.test(context));
-        }),
+    const summary = this._summarize(results, tracker);
+
+    await this._emitter.emit('audit:complete', [summary]);
+
+    // close
+    await this._emitter.emit('terminate:start', []);
+    await pool.terminate();
+    await this._emitter.emit('terminate:complete', []);
+
+    let error = false;
+    for (const item of list) {
+      if (item.status === 'rejected') {
+        error = true;
+        debug(item.reason);
+      }
+    }
+
+    if (error) {
+      throw new Error(
+        'An error occurred during audit. Please see the debug information for details.',
       );
-
-      summary = this._summarize(results, tracker);
-
-      await this._emitter.emit('audit:complete', [summary]);
-    } finally {
-      // close
-      await this._emitter.emit('terminate:start', []);
-      await pool.terminate();
-      await this._emitter.emit('terminate:complete', []);
     }
 
     debug('time: %O', tracker);

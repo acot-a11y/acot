@@ -45,7 +45,8 @@ export class CLI {
       .fail((msg, err) => {
         throw err != null ? err : new Error(msg);
       })
-      .options(globalOptions);
+      .options(globalOptions)
+      .exitProcess(false);
 
     let parsed = parser.parse(argv);
 

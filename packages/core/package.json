@@ -37,10 +37,12 @@
     "@acot/schema-validator": "0.0.2-canary.0",
     "@acot/types": "0.0.2-canary.0",
     "@acot/utils": "0.0.2-canary.1",
+    "@types/promise.allsettled": "^1.0.3",
     "debug": "^4.2.0",
     "emittery": "^0.7.1",
     "filenamify": "^4.1.0",
     "lodash": "^4.17.19",
+    "promise.allsettled": "^1.0.2",
     "puppeteer-core": "^5.4.1",
     "puppeteer-element2selector": "^0.0.1"
   },
