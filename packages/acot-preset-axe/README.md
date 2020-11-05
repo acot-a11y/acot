@@ -35,7 +35,7 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 
 <!-- acot-rules:start -->
 
-| Name                                                       | Description                                                | :heavy_check_mark: |
+| Name                                                       | Summary                                                    | :heavy_check_mark: |
 | :--------------------------------------------------------- | :--------------------------------------------------------- | :----------------- |
 | [`@acot/axe/best-practice`](./docs/rules/best-practice.md) | Run the rules specified in the "best-practice" tag of Axe. | :heavy_check_mark: |
 | [`@acot/axe/experimental`](./docs/rules/experimental.md)   | Run the rules specified in the "experimental" tag of Axe.  | :heavy_check_mark: |

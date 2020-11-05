@@ -1,8 +1,6 @@
 # best-practice
 
-> Run the rules specified in the "best-practice" tag of Axe.
-
-_T.B.A_
+Run the rules specified in the "best-practice" tag of Axe.
 
 https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#best-practices-rules
 

@@ -1,8 +1,6 @@
 # interactive-has-enough-size
 
-> _T.B.A_
-
-_T.B.A_
+The size of the target for pointer inputs is at least 44 by 44 CSS pixels.
 
 ## :white_check_mark: Correct
 

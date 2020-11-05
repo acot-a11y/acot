@@ -1,8 +1,6 @@
 # wcag21a
 
-> Run the rules specified in the "wcag21a" tag of Axe.
-
-_T.B.A_
+Run the rules specified in the "wcag21a" tag of Axe.
 
 https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules
 

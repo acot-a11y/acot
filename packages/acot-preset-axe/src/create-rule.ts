@@ -66,13 +66,10 @@ export type CreateRuleConfig = {
 };
 
 export const createRule = (config: CreateRuleConfig): Rule<Options> => {
-  const description = `Run the rules specified in the "${config.tag}" tag of Axe.`;
-
   return createAcotRule<Options>({
     type: 'global',
 
     meta: {
-      description,
       recommended: true,
     },
 

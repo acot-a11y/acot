@@ -7,11 +7,10 @@ import { createDocCode } from '../__mocks__/doc-code';
 describe('DocGenerator', () => {
   let generator: DocGenerator;
 
-  const factory = (description: string, recommended: boolean): Rule =>
+  const factory = (recommended: boolean): Rule =>
     createRule({
       type: 'global',
       meta: {
-        description,
         recommended,
       },
       test: async () => {},
@@ -29,12 +28,9 @@ describe('DocGenerator', () => {
         preset: {
           id: 'test',
           rules: new Map([
-            ['test/rule1', factory('rule1 desc', false)],
-            ['test/rule2', factory('rule2 desc', true)],
-            [
-              'test/rule3-long-rule-identity',
-              factory('test/rule3-long-rule-identity desc', true),
-            ],
+            ['test/rule1', factory(false)],
+            ['test/rule2', factory(true)],
+            ['test/rule3-long-rule-identity', factory(true)],
           ]),
           configs: new Map(),
         },
@@ -42,14 +38,23 @@ describe('DocGenerator', () => {
           createDocCode({
             path: '/root/docs/rules/rule1.md',
             rule: 'rule1',
+            summary: {
+              markdown: 'rule1 desc',
+            },
           }),
           createDocCode({
             path: '/root/docs/rules/rule2.md',
             rule: 'rule2',
+            summary: {
+              markdown: 'rule2 desc',
+            },
           }),
           createDocCode({
             path: '/root/docs/rules/rule3-long-rule-identity.md',
             rule: 'rule3-long-rule-identity',
+            summary: {
+              markdown: 'test/rule3-long-rule-identity desc',
+            },
           }),
         ],
       }),
@@ -66,8 +71,8 @@ describe('DocGenerator', () => {
         preset: {
           id: '@scope',
           rules: new Map([
-            ['@scope/rule1', factory('rule1 desc', false)],
-            ['@scope/rule2', factory('rule2 desc', true)],
+            ['@scope/rule1', factory(false)],
+            ['@scope/rule2', factory(true)],
           ]),
           configs: new Map(),
         },
@@ -75,10 +80,16 @@ describe('DocGenerator', () => {
           createDocCode({
             path: '/root/docs/rules/rule1.md',
             rule: 'rule1',
+            summary: {
+              markdown: 'rule1 desc',
+            },
           }),
           createDocCode({
             path: '/root/docs/rules/rule2.md',
             rule: 'rule2',
+            summary: {
+              markdown: 'rule2 desc',
+            },
           }),
         ],
       }),

@@ -6,8 +6,6 @@ type Options = {};
 export default createRule<Options>({
   type: 'global',
   meta: {
-    description:
-      'Web pages have titles that describe topic or purpose. WCAG 2.1 - 2.4.2',
     tags: ['wcag2.1', 'wcag2.4.2'],
     recommended: true,
   },

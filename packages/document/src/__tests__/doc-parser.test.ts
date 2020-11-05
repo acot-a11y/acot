@@ -17,7 +17,7 @@ describe('DocParser', () => {
       content: `
 # Rule title
 
-> summary [link](#to) \`code\` text.
+summary [link](#to) \`code\` text.
 
 description.
 
@@ -65,10 +65,16 @@ $ no-html "foo bar baz"
 `,
     });
 
+    const summary = {
+      markdown: 'summary [link](#to) `code` text.',
+      text: 'summary link code text.',
+    };
+
     expect(codes).toEqual([
       createDocCode({
         path,
         rule,
+        summary,
         type: 'correct',
         id: '1',
         meta: {},
@@ -77,6 +83,7 @@ $ no-html "foo bar baz"
       createDocCode({
         path,
         rule,
+        summary,
         type: 'correct',
         id: '2',
         meta: {
@@ -89,6 +96,7 @@ $ no-html "foo bar baz"
       createDocCode({
         path,
         rule,
+        summary,
         type: 'correct',
         id: '3',
         meta: {
@@ -99,6 +107,7 @@ $ no-html "foo bar baz"
       createDocCode({
         path,
         rule,
+        summary,
         type: 'incorrect',
         id: '4',
         meta: {
@@ -114,6 +123,7 @@ $ no-html "foo bar baz"
       createDocCode({
         path,
         rule,
+        summary,
         type: 'incorrect',
         id: '5',
         meta: {

@@ -27,7 +27,6 @@ const SELECTOR = [
 export default createRule<Options>({
   type: 'global',
   meta: {
-    description: 'TBA',
     recommended: true,
   },
 

@@ -15,7 +15,7 @@ export class DocGenerator {
     }
 
     const codes = Array.from(map.values());
-    const table = [['Name', 'Description', ':heavy_check_mark:']];
+    const table = [['Name', 'Summary', ':heavy_check_mark:']];
     const prefix = pkg2shorthand(project.name, 'preset');
 
     for (const code of codes) {
@@ -25,7 +25,7 @@ export class DocGenerator {
 
       table.push([
         `[\`${prefix}/${code.rule}\`](./${relative})`,
-        rule?.meta?.description ?? '',
+        code.summary.markdown,
         rule?.meta?.recommended ? ':heavy_check_mark:' : '',
       ]);
     }

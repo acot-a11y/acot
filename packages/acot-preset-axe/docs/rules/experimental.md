@@ -1,8 +1,6 @@
 # experimental
 
-> Run the rules specified in the "experimental" tag of Axe.
-
-_T.B.A_
+Run the rules specified in the "experimental" tag of Axe.
 
 https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#experimental-rules
 

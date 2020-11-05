@@ -41,8 +41,6 @@ export default createRule<Options>({
   schema: {},
   meta: {
     tags: ['wcag21aaa', '2.5.5 Target Size'],
-    description:
-      'The size of the target for pointer inputs is at least 44 by 44 CSS pixels.',
     recommended: true,
   },
 

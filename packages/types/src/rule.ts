@@ -17,7 +17,6 @@ export type RuleContext<T = RuleOptions> = {
 };
 
 export type RuleMeta = {
-  description?: string;
   tags?: string[];
   recommended?: boolean;
   [key: string]: any;

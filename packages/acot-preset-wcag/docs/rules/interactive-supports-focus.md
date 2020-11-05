@@ -1,7 +1,5 @@
 # interactive-supports-focus
 
-> _T.B.A_
-
 _T.B.A_
 
 ## :white_check_mark: Correct

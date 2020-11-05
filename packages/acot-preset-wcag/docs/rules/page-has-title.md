@@ -1,6 +1,6 @@
 # page-has-title
 
-> Web pages have titles that describe topic or purpose.
+Web pages have titles that describe topic or purpose. WCAG 2.1 - 2.4.2.
 
 ## :white_check_mark: Correct
 

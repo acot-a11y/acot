@@ -7,9 +7,15 @@ export type DocCodeMeta = {
   [key: string]: string | number | boolean | null | undefined;
 };
 
+export type DocCodeSummary = {
+  markdown: string;
+  text: string;
+};
+
 export type DocCode = {
   path: string;
   rule: string;
+  summary: DocCodeSummary;
   type: DocCodeType;
   id: string;
   meta: DocCodeMeta;
