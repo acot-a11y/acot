@@ -21,28 +21,28 @@ describe('parseExternalPath', () => {
       },
     ],
     [
-      'plugin:pkg/recommended',
+      'preset:pkg/recommended',
       {
-        resource: 'plugin',
-        id: 'acot-plugin-pkg',
+        resource: 'preset',
+        id: 'acot-preset-pkg',
         path: null,
         name: 'recommended',
       },
     ],
     [
-      'plugin:@scope/recommended',
+      'preset:@scope/recommended',
       {
-        resource: 'plugin',
-        id: '@scope/acot-plugin',
+        resource: 'preset',
+        id: '@scope/acot-preset',
         path: null,
         name: 'recommended',
       },
     ],
     [
-      'plugin:@scope/pkg/recommended',
+      'preset:@scope/pkg/recommended',
       {
-        resource: 'plugin',
-        id: '@scope/acot-plugin-pkg',
+        resource: 'preset',
+        id: '@scope/acot-preset-pkg',
         path: null,
         name: 'recommended',
       },
@@ -142,7 +142,7 @@ describe('parseExternalPath', () => {
   });
 
   test.each([
-    'plugin:pkg',
+    'preset:pkg',
     'pkg:recommended',
     'pkg/path/to:recommended',
     'acot-config-pkg:recommended',

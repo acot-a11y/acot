@@ -115,7 +115,7 @@ export class DocServer {
     const { port } = this._config;
 
     const rules: DocRule[] = [];
-    const pluginId = path.parse(path.normalize(project.main)).name;
+    const presetId = path.parse(path.normalize(project.main)).name;
 
     const groups = project.codes.reduce<DocRuleGroup[]>((acc, cur) => {
       const rule = {
@@ -130,7 +130,7 @@ export class DocServer {
       if (group != null) {
         group.rules.push(rule);
       } else {
-        const meta = project.plugin.rules.get(`${pluginId}/${cur.rule}`)?.meta;
+        const meta = project.preset.rules.get(`${presetId}/${cur.rule}`)?.meta;
 
         acc.push({
           rule: cur.rule,

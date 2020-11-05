@@ -8,7 +8,7 @@
     "test:server": "acot run"
   },
   "devDependencies": {
-    "@acot/acot-plugin-wcag": "0.0.2-canary.2",
+    "@acot/acot-preset-wcag": "0.0.2-canary.2",
     "@acot/acot-runner-storybook": "0.0.2-canary.2",
     "@acot/cli": "0.0.2-canary.2",
     "@babel/core": "^7.10.5",
@@ -22,16 +22,12 @@
   },
   "acot": {
     "origin": "http://localhost:6006",
-    "runner": {
-      "uses": "@acot/storybook"
-    },
-    "plugins": [
+    "runner": "@acot/storybook",
+    "presets": [
       "@acot/wcag"
     ],
-    "rules": {
-      "@acot/wcag/button-has-name": "error",
-      "@acot/wcag/interactive-supports-focus": "error",
-      "@acot/wcag/table-has-valid-role": "error"
-    }
+    "extends": [
+      "preset:@acot/wcag/recommended"
+    ]
   }
 }

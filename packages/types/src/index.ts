@@ -2,7 +2,7 @@ export * from './config';
 export * from './core';
 export * from './event';
 export * from './json';
-export * from './plugin';
+export * from './preset';
 export * from './reporter';
 export * from './result';
 export * from './rule';

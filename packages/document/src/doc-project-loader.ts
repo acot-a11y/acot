@@ -2,9 +2,9 @@ import { promisify } from 'util';
 import fs from 'fs';
 import path from 'path';
 import { resolveModule } from '@acot/utils';
-import { PluginLoader } from '@acot/core';
+import { PresetLoader } from '@acot/core';
 import type { PackageJson } from 'type-fest';
-import type { Plugin } from '@acot/types';
+import type { Preset } from '@acot/types';
 import glob from 'fast-glob';
 import type { DocProject } from './doc-project';
 import type { DocCode } from './doc-code';
@@ -38,8 +38,8 @@ export class DocProjectLoader {
     // package.json
     const { name, main } = this._loadPackageJson(project);
 
-    // plugin
-    const plugin = this._loadPlugin(project, main);
+    // preset
+    const preset = this._loadPreset(project, main);
 
     // codes
     const codes = await this._loadCodes(project, docs);
@@ -48,7 +48,7 @@ export class DocProjectLoader {
       root: project,
       name,
       main,
-      plugin,
+      preset,
       codes,
     };
   }
@@ -68,12 +68,12 @@ export class DocProjectLoader {
     };
   }
 
-  private _loadPlugin(project: string, main: string): Plugin {
-    const plugin = new PluginLoader(project).load(main);
+  private _loadPreset(project: string, main: string): Preset {
+    const preset = new PresetLoader(project).load(main);
 
-    debug('loaded plugin: %O', plugin);
+    debug('loaded preset: %O', preset);
 
-    return plugin;
+    return preset;
   }
 
   private async _loadCodes(project: string, docs: string): Promise<DocCode[]> {

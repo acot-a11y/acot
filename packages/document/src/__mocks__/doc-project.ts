@@ -6,7 +6,7 @@ export const createDocProject = (
   root: '',
   name: '',
   main: '',
-  plugin: {
+  preset: {
     id: '',
     rules: new Map(),
     configs: new Map(),

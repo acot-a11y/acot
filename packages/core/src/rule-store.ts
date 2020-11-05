@@ -1,4 +1,4 @@
-import type { RuleMap, RuleId, Rule, Plugin } from '@acot/types';
+import type { RuleMap, RuleId, Rule, Preset } from '@acot/types';
 
 export class RuleStore {
   private _rules: RuleMap = new Map();
@@ -7,9 +7,9 @@ export class RuleStore {
     this._rules.set(id, rule);
   }
 
-  public import(plugins: Plugin[]): void {
-    for (const plugin of plugins) {
-      for (const [id, rule] of plugin.rules) {
+  public import(presets: Preset[]): void {
+    for (const preset of presets) {
+      for (const [id, rule] of preset.rules) {
         this.define(id, rule);
       }
     }

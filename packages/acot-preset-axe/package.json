@@ -1,15 +1,15 @@
 {
-  "name": "@acot/acot-plugin-wcag",
+  "name": "@acot/acot-preset-axe",
   "version": "0.0.2-canary.2",
-  "description": "A WCAG-based rule set for acot.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-plugin-wcag",
+  "description": "An axe rule set for acot.",
+  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-preset-axe",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/acot-a11y/acot.git",
-    "directory": "packages/acot-wcag"
+    "directory": "packages/acot-preset-axe"
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
@@ -20,14 +20,14 @@
   ],
   "scripts": {
     "build": "tsc",
-    "docgen": "acot plugin docgen README.md -vvv",
-    "scaffold": "scaffdog generate",
-    "serve": "acot plugin serve --watch -vvv",
-    "test": "acot plugin test --port 1234"
+    "docgen": "acot preset docgen README.md -vvv",
+    "serve": "acot preset serve --watch -vvv",
+    "test": "acot preset test --port 1235"
   },
   "dependencies": {
     "@acot/cli": "0.0.2-canary.2",
-    "@acot/core": "0.0.2-canary.2"
+    "@acot/core": "0.0.2-canary.2",
+    "axe-core": "^4.0.1"
   },
   "publishConfig": {
     "access": "public"

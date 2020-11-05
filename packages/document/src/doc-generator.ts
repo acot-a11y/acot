@@ -16,11 +16,11 @@ export class DocGenerator {
 
     const codes = Array.from(map.values());
     const table = [['Name', 'Description', ':heavy_check_mark:']];
-    const prefix = pkg2shorthand(project.name, 'plugin');
+    const prefix = pkg2shorthand(project.name, 'preset');
 
     for (const code of codes) {
-      const ruleId = `${project.plugin.id}/${code.rule}`;
-      const rule = project.plugin.rules.get(ruleId);
+      const ruleId = `${project.preset.id}/${code.rule}`;
+      const rule = project.preset.rules.get(ruleId);
       const relative = path.relative(project.root, code.path);
 
       table.push([

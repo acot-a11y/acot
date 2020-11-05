@@ -1,7 +1,7 @@
 import type { ChromeChannel } from '@acot/find-chrome';
 import type { LaunchOptions, Viewport } from 'puppeteer-core';
 import type { Merge } from 'type-fest';
-import type { Plugin } from './plugin';
+import type { Preset } from './preset';
 import type { ReporterFactory } from './reporter';
 import type { ReportType, RuleId, RuleOptions } from './rule';
 import type { RunnerFactory } from './runner';
@@ -52,7 +52,7 @@ export type ResolvedReporterUses = Merge<
 // config
 type BaseConfig = {
   extends?: string[];
-  plugins?: string[];
+  presets?: string[];
   headers?: Record<string, string>;
   paths?: string[];
   rules?: RuleConfig;
@@ -79,7 +79,7 @@ export type ResolvedConfigEntry = Merge<
   ConfigEntry,
   {
     rules: NormalizedRuleConfig;
-    plugins?: Plugin[];
+    presets?: Preset[];
   }
 >;
 
@@ -89,7 +89,7 @@ export type ResolvedConfig = Merge<
     runner?: ResolvedRunnerUses;
     reporter?: ResolvedReporterUses;
     rules: NormalizedRuleConfig; // FIXME Delays normalization to the execution phase (because of poor usability as an API)
-    plugins?: Plugin[];
+    presets?: Preset[];
     overrides?: ResolvedConfigEntry[];
     viewport?: Viewport;
   }

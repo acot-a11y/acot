@@ -1,4 +1,4 @@
-import type { Plugin } from '@acot/types';
+import type { Preset } from '@acot/types';
 import { RuleStore } from '../rule-store';
 import { createRule } from '../rule';
 
@@ -22,33 +22,33 @@ describe('RuleStore', () => {
     expect(store.get('bar')).toBe(bar);
   });
 
-  test('import from plugin', () => {
+  test('import from preset', () => {
     const mock = async () => {};
 
-    const plugin1: Plugin = {
-      id: 'plugin1',
+    const preset1: Preset = {
+      id: 'preset1',
       rules: new Map([
-        ['plugin1-1', createRule({ type: 'global', test: mock })],
-        ['plugin1-2', createRule({ type: 'global', test: mock })],
+        ['preset1-1', createRule({ type: 'global', test: mock })],
+        ['preset1-2', createRule({ type: 'global', test: mock })],
       ]),
       configs: new Map(),
     };
 
-    const plugin2: Plugin = {
-      id: 'plugin2',
+    const preset2: Preset = {
+      id: 'preset2',
       rules: new Map([
-        ['plugin2-1', createRule({ type: 'global', test: mock })],
-        ['plugin2-2', createRule({ type: 'global', test: mock })],
+        ['preset2-1', createRule({ type: 'global', test: mock })],
+        ['preset2-2', createRule({ type: 'global', test: mock })],
       ]),
       configs: new Map(),
     };
 
-    store.import([plugin1, plugin2]);
+    store.import([preset1, preset2]);
 
-    expect(store.get('plugin1-1')).toBe(plugin1.rules.get('plugin1-1'));
-    expect(store.get('plugin1-2')).toBe(plugin1.rules.get('plugin1-2'));
-    expect(store.get('plugin2-1')).toBe(plugin2.rules.get('plugin2-1'));
-    expect(store.get('plugin2-2')).toBe(plugin2.rules.get('plugin2-2'));
+    expect(store.get('preset1-1')).toBe(preset1.rules.get('preset1-1'));
+    expect(store.get('preset1-2')).toBe(preset1.rules.get('preset1-2'));
+    expect(store.get('preset2-1')).toBe(preset2.rules.get('preset2-1'));
+    expect(store.get('preset2-2')).toBe(preset2.rules.get('preset2-2'));
   });
 
   test('extends store', () => {

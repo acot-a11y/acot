@@ -14,7 +14,7 @@ const debug = require('debug')('acot:cli');
 export default createCommand({
   name: 'test',
   summary:
-    'Test the rules provided by the plugin according to the documentation.',
+    'Test the rules provided by the preset according to the documentation.',
   args: {},
   options: {
     project: {

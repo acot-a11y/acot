@@ -1,12 +1,12 @@
 import type { Summary } from './summary';
 import type { NormalizedRuleConfig } from './config';
-import type { Plugin } from './plugin';
+import type { Preset } from './preset';
 import type { EventMethodFactory } from './event';
 import type { TestResult } from './result';
 
 export type TestDescriptor = {
   headers?: Record<string, string>;
-  plugins?: Plugin[];
+  presets?: Preset[];
   rules: NormalizedRuleConfig;
 };
 

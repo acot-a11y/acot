@@ -25,8 +25,8 @@ describe('DocGenerator', () => {
     const output = await generator.generate(
       createDocProject({
         root: '/root',
-        name: 'acot-plugin-test',
-        plugin: {
+        name: 'acot-preset-test',
+        preset: {
           id: 'test',
           rules: new Map([
             ['test/rule1', factory('rule1 desc', false)],
@@ -62,8 +62,8 @@ describe('DocGenerator', () => {
     const output = await generator.generate(
       createDocProject({
         root: '/root',
-        name: '@scope/acot-plugin',
-        plugin: {
+        name: '@scope/acot-preset',
+        preset: {
           id: '@scope',
           rules: new Map([
             ['@scope/rule1', factory('rule1 desc', false)],
@@ -91,8 +91,8 @@ describe('DocGenerator', () => {
     const output = await generator.generate(
       createDocProject({
         root: '/root',
-        name: 'acot-plugin-test',
-        plugin: {
+        name: 'acot-preset-test',
+        preset: {
           id: 'test',
           rules: new Map(),
           configs: new Map(),

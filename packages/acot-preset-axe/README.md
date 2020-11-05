@@ -1,4 +1,4 @@
-# @acot/acot-plugin-axe
+# @acot/acot-preset-axe
 
 > An axe rule set for acot.
 
@@ -7,27 +7,27 @@
 Install via npm:
 
 ```bash
-$ npm install --save-dev @acot/acot-plugin-axe
+$ npm install --save-dev @acot/acot-preset-axe
 ```
 
 ## Usage
 
-Add `@acot/axe` to the `plugins` field of the acot config file. then configure the rules you want to use under the rules section.
+Add `@acot/axe` to the `presets` field of the acot config file. then configure the rules you want to use under the rules section.
 
 ```json
 {
-  "plugins": ["@acot/axe"],
+  "presets": ["@acot/axe"],
   "rules": {
     "@acot/axe/wcag2a": "error"
   }
 }
 ```
 
-You can also enable all the recommended rules for our plugin. Add `plugin:@acot/axe/recommended` in `extends`:
+You can also enable all the recommended rules for our preset. Add `preset:@acot/axe/recommended` in `extends`:
 
 ```json
 {
-  "extends": ["plugin:@acot/axe/recommended"]
+  "extends": ["preset:@acot/axe/recommended"]
 }
 ```
 

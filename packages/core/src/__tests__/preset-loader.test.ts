@@ -1,18 +1,18 @@
 import path from 'path';
-import { PluginLoader } from '../plugin-loader';
+import { PresetLoader } from '../preset-loader';
 
-describe('PluginLoader', () => {
-  let loader: PluginLoader;
+describe('PresetLoader', () => {
+  let loader: PresetLoader;
 
   beforeEach(() => {
-    loader = new PluginLoader(path.resolve(__dirname, 'fixtures'));
+    loader = new PresetLoader(path.resolve(__dirname, 'fixtures'));
   });
 
   test('load - file', () => {
-    const plugin = loader.load('./plugin');
+    const preset = loader.load('./preset');
 
-    expect(plugin).toEqual({
-      id: 'plugin',
+    expect(preset).toEqual({
+      id: 'preset',
       configs: new Map([
         [
           'a',
@@ -28,27 +28,27 @@ describe('PluginLoader', () => {
         ],
       ]),
       rules: new Map([
-        ['plugin/rule1', 'rule1'],
-        ['plugin/rule2', 'rule2'],
-        ['plugin/rule3', 'rule3'],
+        ['preset/rule1', 'rule1'],
+        ['preset/rule2', 'rule2'],
+        ['preset/rule3', 'rule3'],
       ]),
     });
   });
 
   test('load - nest file', () => {
-    const plugin = loader.load('./deep/plugin-name');
+    const preset = loader.load('./deep/preset-name');
 
-    expect(plugin).toEqual({
-      id: 'plugin-name',
+    expect(preset).toEqual({
+      id: 'preset-name',
       configs: new Map(),
-      rules: new Map([['plugin-name/rule1', 'rule1']]),
+      rules: new Map([['preset-name/rule1', 'rule1']]),
     });
   });
 
   test('load - package', () => {
-    const plugin = loader.load('example');
+    const preset = loader.load('example');
 
-    expect(plugin).toEqual({
+    expect(preset).toEqual({
       id: 'example',
       configs: new Map(),
       rules: new Map([
@@ -60,9 +60,9 @@ describe('PluginLoader', () => {
   });
 
   test('load - scope package', () => {
-    const plugin = loader.load('@scope/example');
+    const preset = loader.load('@scope/example');
 
-    expect(plugin).toEqual({
+    expect(preset).toEqual({
       id: '@scope/example',
       configs: new Map(),
       rules: new Map([['@scope/example/scope1', 'scope1']]),
@@ -76,9 +76,9 @@ describe('PluginLoader', () => {
   });
 
   test('cache', () => {
-    const name = './plugin';
-    const plugin1 = loader.load(name);
-    const plugin2 = loader.load(name);
-    expect(plugin1).toBe(plugin2);
+    const name = './preset';
+    const preset1 = loader.load(name);
+    const preset2 = loader.load(name);
+    expect(preset1).toBe(preset2);
   });
 });

@@ -95,12 +95,12 @@ export default createRunnerFactory('storybook', ({ config, options }) => {
             deepmerge(
               {
                 rules: entry.rules,
-                plugins: entry.plugins,
+                presets: entry.presets,
                 headers: entry.headers,
               },
               {
                 rules: cfg.rules,
-                plugins: cfg.plugins,
+                presets: cfg.presets,
                 headers: cfg.headers,
               },
               {

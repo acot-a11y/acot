@@ -81,13 +81,13 @@ _T.B.A_
 | [@acot/cli](./packages/cli/)       | [![npm](https://img.shields.io/npm/v/@acot/cli?style=flat-square)](https://www.npmjs.com/package/@acot/cli)       | acot command line tool.                 |
 | [@acot/config](./packages/config/) | [![npm](https://img.shields.io/npm/v/@acot/config?style=flat-square)](https://www.npmjs.com/package/@acot/config) | A module to manipulate configs of acot. |
 
-### Configs / Plugins
+### Configs / Presets
 
 | Package                                                | Version                                                                                                                               | Description                     |
 | :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------ |
 | [@acot/acot-config](./packages/acot-config/)           | [![npm](https://img.shields.io/npm/v/@acot/acot-config?style=flat-square)](https://www.npmjs.com/package/@acot/acot-config)           | A basic acot rule set.          |
-| [@acot/acot-plugin-wcag](./packages/acot-plugin-wcag/) | [![npm](https://img.shields.io/npm/v/@acot/acot-plugin-wcag?style=flat-square)](https://www.npmjs.com/package/@acot/acot-plugin-wcag) | A WCAG-based rule set for acot. |
-| [@acot/acot-plugin-axe](./packages/acot-plugin-axe/)   | [![npm](https://img.shields.io/npm/v/@acot/acot-plugin-axe?style=flat-square)](https://www.npmjs.com/package/@acot/acot-plugin-axe)   | An axe rule set for acot.       |
+| [@acot/acot-preset-wcag](./packages/acot-preset-wcag/) | [![npm](https://img.shields.io/npm/v/@acot/acot-preset-wcag?style=flat-square)](https://www.npmjs.com/package/@acot/acot-preset-wcag) | A WCAG-based rule set for acot. |
+| [@acot/acot-preset-axe](./packages/acot-preset-axe/)   | [![npm](https://img.shields.io/npm/v/@acot/acot-preset-axe?style=flat-square)](https://www.npmjs.com/package/@acot/acot-preset-axe)   | An axe rule set for acot.       |
 
 ### Runners
 

@@ -31,14 +31,14 @@ export class DocTester {
         executablePath: chromium?.executablePath,
       },
       parallel: 1, // TODO Handle parameters
-      plugins: [project.plugin],
+      presets: [project.preset],
       origin: `http://localhost:${port}`,
     });
 
     project.codes.forEach((code) => {
       acot.add(generateDocPath(code), {
         rules: {
-          [`${project.plugin.id}/${code.rule}`]: [
+          [`${project.preset.id}/${code.rule}`]: [
             'error',
             extractCodeMeta(code),
           ],

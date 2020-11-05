@@ -8,7 +8,7 @@ import { DEFAULT_PORT } from '../constants';
 export default createCommand({
   name: 'serve',
   summary:
-    'Launch a server that delivers the documentation created for the rules provided by the plugin as HTML.',
+    'Launch a server that delivers the documentation created for the rules provided by the preset as HTML.',
   args: {},
   options: {
     project: {

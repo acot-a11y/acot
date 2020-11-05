@@ -4,7 +4,7 @@ import type {
   Core,
   CoreEventMap,
   EventListener,
-  Plugin,
+  Preset,
   Summary,
   TestDescriptor,
   TestResult,
@@ -31,7 +31,7 @@ export type AcotConfig = {
   viewport: Viewport | null;
   origin: string;
   parallel: number;
-  plugins: Plugin[];
+  presets: Preset[];
   browserTimeout: number;
   readyTimeout: number;
 };
@@ -54,28 +54,28 @@ export class Acot implements Core {
       workingDir: path.resolve(cwd, config.workingDir || '.acot'),
       origin: config.origin ?? '',
       parallel: Math.max(config.parallel ?? 1, 1),
-      plugins: config.plugins ?? [],
+      presets: config.presets ?? [],
       browserTimeout: config.browserTimeout ?? 1000 * 30,
       readyTimeout: config.readyTimeout ?? 1000 * 30,
     };
 
     this._store = new RuleStore();
-    this._store.import(this._config.plugins);
+    this._store.import(this._config.presets);
     this._emitter = new Emittery.Typed<CoreEventMap>();
   }
 
-  private _getStore(plugins: Plugin[]): RuleStore {
-    if (plugins.length === 0) {
+  private _getStore(presets: Preset[]): RuleStore {
+    if (presets.length === 0) {
       return this._store;
     }
 
-    const key = plugins.map(({ id }) => id).join('.');
+    const key = presets.map(({ id }) => id).join('.');
     if (this._storeMap.has(key)) {
       return this._storeMap.get(key)!;
     }
 
     const store = this._store.extends();
-    store.import(plugins);
+    store.import(presets);
 
     this._storeMap.set(key, store);
 
@@ -86,7 +86,7 @@ export class Acot implements Core {
     const { origin, readyTimeout } = this._config;
 
     const url = [_.trimEnd(origin, '/'), _.trimStart(path, '/')].join('/');
-    const store = this._getStore(descriptor.plugins ?? []);
+    const store = this._getStore(descriptor.presets ?? []);
 
     this._testers.push(
       new Tester({

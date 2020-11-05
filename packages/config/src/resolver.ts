@@ -1,12 +1,12 @@
 import path from 'path';
-import { PluginLoader, PluginLoadError } from '@acot/core';
+import { PresetLoader, PresetLoadError } from '@acot/core';
 import { RunnerLoader } from '@acot/runner';
 import { ReporterLoader } from '@acot/reporter';
 import { ModuleLoader } from '@acot/module-loader';
 import type {
   ConfigEntry,
   NormalizedRuleConfig,
-  Plugin,
+  Preset,
   ReporterUses,
   ResolvedConfig,
   ResolvedConfigEntry,
@@ -90,23 +90,23 @@ export const resolveConfig = async (
     cwd: options.cwd ?? process.cwd(),
   };
 
-  const failurePlugins: string[] = [];
+  const failurePresets: string[] = [];
 
-  const loadPlugins = (list: string[], cwd: string): Plugin[] => {
-    const loader = new PluginLoader(cwd);
-    const plugins: Plugin[] = [];
+  const loadPresets = (list: string[], cwd: string): Preset[] => {
+    const loader = new PresetLoader(cwd);
+    const presets: Preset[] = [];
 
     for (const name of list) {
       try {
-        const plugin = loader.load(name);
-        plugins.push(plugin);
+        const preset = loader.load(name);
+        presets.push(preset);
       } catch (e) {
-        failurePlugins.push(name);
-        debug('plugin load error: ', e);
+        failurePresets.push(name);
+        debug('preset load error: ', e);
       }
     }
 
-    return plugins;
+    return presets;
   };
 
   const loadConfigEntries = async (
@@ -114,14 +114,14 @@ export const resolveConfig = async (
     cwd: string,
   ): Promise<ResolvedConfigEntry[]> => {
     return await Promise.all(
-      sources.map(async ({ plugins, ...entry }) => {
+      sources.map(async ({ presets, ...entry }) => {
         let next: ResolvedConfigEntry = {
           ...entry,
           rules: normalizeRuleConfig(entry.rules ?? {}),
         };
 
-        if (plugins != null) {
-          next.plugins = loadPlugins(plugins, cwd);
+        if (presets != null) {
+          next.presets = loadPresets(presets, cwd);
         }
 
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -167,10 +167,10 @@ export const resolveConfig = async (
             const result = await load(module, base);
             return cleanup(result);
           }
-          case 'plugin': {
+          case 'preset': {
             const base = path.dirname(resolveFrom(cwd, extend.id));
-            const plugin = new PluginLoader(base).load(extend.id);
-            const result = await load(plugin.configs.get(extend.name!), base);
+            const preset = new PresetLoader(base).load(extend.id);
+            const result = await load(preset.configs.get(extend.name!), base);
             return cleanup(result);
           }
         }
@@ -187,7 +187,7 @@ export const resolveConfig = async (
 
     debug('valid config: %O', config);
 
-    const { runner, reporter, plugins, overrides, viewport, ...rest } = config;
+    const { runner, reporter, presets, overrides, viewport, ...rest } = config;
     let resolved: ResolvedConfig = {
       ...rest,
       rules: normalizeRuleConfig(config.rules ?? {}),
@@ -207,8 +207,8 @@ export const resolveConfig = async (
       );
     }
 
-    if (plugins != null) {
-      resolved.plugins = loadPlugins(plugins, cwd);
+    if (presets != null) {
+      resolved.presets = loadPresets(presets, cwd);
     }
 
     if (overrides != null) {
@@ -230,8 +230,8 @@ export const resolveConfig = async (
 
   const config = load(maybeConfig, opts.cwd);
 
-  if (failurePlugins.length > 0) {
-    throw new PluginLoadError(failurePlugins);
+  if (failurePresets.length > 0) {
+    throw new PresetLoadError(failurePresets);
   }
 
   debug('loaded config: %O', config);

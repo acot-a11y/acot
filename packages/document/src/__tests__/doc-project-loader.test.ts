@@ -20,9 +20,9 @@ describe('DocProjectLoader', () => {
     expect(project).toEqual(
       createDocProject({
         root,
-        name: 'acot-plugin-test',
+        name: 'acot-preset-test',
         main: 'index.js',
-        plugin: {
+        preset: {
           id: 'index',
           rules: new Map<string, any>([
             ['index/rule1', {}],
@@ -105,9 +105,9 @@ describe('DocProjectLoader', () => {
     expect(project).toEqual(
       createDocProject({
         root,
-        name: 'acot-plugin-test',
+        name: 'acot-preset-test',
         main: 'index.js',
-        plugin: {
+        preset: {
           id: 'index',
           rules: new Map(),
           configs: new Map(),

@@ -8,8 +8,8 @@
   },
   "devDependencies": {
     "@acot/acot-config": "0.0.2-canary.2",
-    "@acot/acot-plugin-axe": "0.0.2-canary.2",
-    "@acot/acot-plugin-wcag": "0.0.2-canary.2",
+    "@acot/acot-preset-axe": "0.0.2-canary.2",
+    "@acot/acot-preset-wcag": "0.0.2-canary.2",
     "@acot/cli": "0.0.2-canary.2",
     "puppeteer": "^5.4.1",
     "serve": "^11.3.0",

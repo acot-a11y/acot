@@ -4,12 +4,12 @@ import { createCommand } from '../../command';
 import { createMockLogger } from '../../__mocks__/logger';
 import { CommandContainer } from '../../command-container';
 
-describe('command/plugin', () => {
+describe('command/preset', () => {
   let run: CommandRunner<any>;
   let logger: MockLogger;
 
   beforeEach(async () => {
-    run = (await import('../plugin')).default.run;
+    run = (await import('../preset')).default.run;
     logger = createMockLogger();
   });
 
@@ -36,7 +36,7 @@ describe('command/plugin', () => {
     expect(mock).toBeCalledWith({
       ...context,
       args: {
-        command: ['plugin'],
+        command: ['preset'],
       },
     });
   });

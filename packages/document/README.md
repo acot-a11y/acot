@@ -1,6 +1,6 @@
 # @acot/document
 
-> A set of tools for working with documentation for acot plugins.
+> A set of tools for working with documentation for acot presets.
 
 ## Installation
 

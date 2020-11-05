@@ -113,8 +113,8 @@ describe('resolveConfig', () => {
     const resolved = await resolveConfig(
       {
         extends: [
-          'plugin:pkg-name/recommended',
-          'plugin:@scope/pkg-name/recommended',
+          'preset:pkg-name/recommended',
+          'preset:@scope/pkg-name/recommended',
           'cfg-name',
           '@scope',
         ],

@@ -1,15 +1,15 @@
 import type { RuleMap, RuleRecord } from './rule';
 import type { Config } from './config';
 
-export type PluginId = string;
+export type PresetId = string;
 
-export type PluginModule = {
+export type PresetModule = {
   rules?: RuleRecord;
   configs?: Record<string, Config>;
 };
 
-export type Plugin = {
-  id: PluginId;
+export type Preset = {
+  id: PresetId;
   rules: RuleMap;
   configs: Map<string, Config>;
 };

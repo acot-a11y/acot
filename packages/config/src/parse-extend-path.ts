@@ -1,9 +1,9 @@
 import { shorthand2pkg, isFilepath } from '@acot/utils';
 
-const PLUGIN_PREFIX = 'plugin:';
+const PRESET_PREFIX = 'preset:';
 
 export type ExtendPath = {
-  resource: 'file' | 'plugin' | 'config';
+  resource: 'file' | 'preset' | 'config';
   id: string;
   path: string | null;
   name: string | null;
@@ -20,21 +20,21 @@ export const parseExtendPath = (input: string): ExtendPath => {
     };
   }
 
-  // for plugin
-  if (input.startsWith(PLUGIN_PREFIX)) {
+  // for preset
+  if (input.startsWith(PRESET_PREFIX)) {
     const last = input.lastIndexOf('/');
     if (last < 0) {
       throw new Error(
-        `Configuration name is required to refer to the plugin's configs. (expect "${PLUGIN_PREFIX}{id}/{configname}", but actual "${input}")`,
+        `Configuration name is required to refer to the preset's configs. (expect "${PRESET_PREFIX}{id}/{configname}", but actual "${input}")`,
       );
     }
 
-    const id = input.substring(PLUGIN_PREFIX.length, last);
+    const id = input.substring(PRESET_PREFIX.length, last);
     const name = input.substring(last + 1);
 
     return {
-      resource: 'plugin',
-      id: shorthand2pkg(id, 'plugin'),
+      resource: 'preset',
+      id: shorthand2pkg(id, 'preset'),
       path: null,
       name,
     };

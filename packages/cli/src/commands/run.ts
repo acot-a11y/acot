@@ -188,7 +188,7 @@ export default createCommand({
   const acot = new Acot({
     launchOptions: config.launchOptions,
     parallel: args.parallel,
-    plugins: config.plugins,
+    presets: config.presets,
     origin: config.origin!,
     workingDir: config.workingDir!,
     viewport: config.viewport,

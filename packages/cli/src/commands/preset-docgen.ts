@@ -6,7 +6,7 @@ const debug = require('debug')('acot:cli');
 
 export default createCommand({
   name: 'docgen',
-  summary: 'Document generation of the list of rules provided by the plugin.',
+  summary: 'Document generation of the list of rules provided by the preset.',
   args: {
     target: {
       type: 'string',

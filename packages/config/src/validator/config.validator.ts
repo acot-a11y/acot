@@ -36,7 +36,7 @@ export const ConfigSchema = {
           },
           type: 'array',
         },
-        plugins: {
+        presets: {
           items: {
             type: 'string',
           },
@@ -82,7 +82,7 @@ export const ConfigSchema = {
                     },
                     type: 'array',
                   },
-                  plugins: {
+                  presets: {
                     items: {
                       type: 'string',
                     },

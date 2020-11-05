@@ -13,7 +13,7 @@ export const createDefaultRunner = createRunnerFactory<{}>(
         const entry = router.resolve(p);
         const descriptor = {
           rules: entry.rules,
-          plugins: entry.plugins,
+          presets: entry.presets,
           headers: entry.headers,
         };
 

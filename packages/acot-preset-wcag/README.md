@@ -1,4 +1,4 @@
-# @acot/acot-plugin-wcag
+# @acot/acot-preset-wcag
 
 > A WCAG-based rule set for acot.
 
@@ -7,27 +7,27 @@
 Install via npm:
 
 ```bash
-$ npm install --save-dev @acot/acot-plugin-wcag
+$ npm install --save-dev @acot/acot-preset-wcag
 ```
 
 ## Usage
 
-Add `@acot/wcag` to the `plugins` field of the acot config file. then configure the rules you want to use under the rules section.
+Add `@acot/wcag` to the `presets` field of the acot config file. then configure the rules you want to use under the rules section.
 
 ```json
 {
-  "plugins": ["@acot/wcag"],
+  "presets": ["@acot/wcag"],
   "rules": {
     "@acot/wcag/button-has-name": "error"
   }
 }
 ```
 
-You can also enable all the recommended rules for our plugin. Add `plugin:@acot/wcag/recommended` in `extends`:
+You can also enable all the recommended rules for our preset. Add `preset:@acot/wcag/recommended` in `extends`:
 
 ```json
 {
-  "extends": ["plugin:@acot/wcag/recommended"]
+  "extends": ["preset:@acot/wcag/recommended"]
 }
 ```
 

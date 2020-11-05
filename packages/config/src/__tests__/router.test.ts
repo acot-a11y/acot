@@ -19,7 +19,7 @@ describe('ConfigRouter', () => {
     rules: {
       root: ['error', null],
     },
-    plugins: [],
+    presets: [],
     overrides: [
       {
         include: ['/dir1/**/*'],
@@ -27,7 +27,7 @@ describe('ConfigRouter', () => {
           root: ['warn', null],
           childA: ['error', null],
         },
-        plugins: [],
+        presets: [],
       },
       {
         include: ['/dir2/file1'],
@@ -35,7 +35,7 @@ describe('ConfigRouter', () => {
           root: ['off', null],
           childB: ['warn', null],
         },
-        plugins: [],
+        presets: [],
       },
       {
         include: ['/dir3/*/file1'],
@@ -43,7 +43,7 @@ describe('ConfigRouter', () => {
           root: ['warn', null],
           chlidC: ['error', null],
         },
-        plugins: [],
+        presets: [],
       },
       {
         include: ['/dir3/nest3/*'],
@@ -52,7 +52,7 @@ describe('ConfigRouter', () => {
           root: ['warn', null],
           childD: ['warn', null],
         },
-        plugins: [],
+        presets: [],
       },
     ],
   };

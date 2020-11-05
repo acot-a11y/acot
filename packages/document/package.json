@@ -1,7 +1,7 @@
 {
   "name": "@acot/document",
   "version": "0.0.2-canary.2",
-  "description": "A set of tools for working with documentation for acot plugins.",
+  "description": "A set of tools for working with documentation for acot presets.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/document",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"

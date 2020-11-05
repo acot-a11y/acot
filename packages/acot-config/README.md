@@ -20,7 +20,7 @@ Add `@acot` to the `extends` field of the acot config file.
 }
 ```
 
-## Supported Plugins
+## Supported Presets
 
-- [@acot/acot-plugin-wcag](../acot-plugin-wcag/)
-- [@acot/acot-plugin-axe](../acot-plugin-axe/)
+- [@acot/acot-preset-wcag](../acot-preset-wcag/)
+- [@acot/acot-preset-axe](../acot-preset-axe/)
