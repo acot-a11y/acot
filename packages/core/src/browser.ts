@@ -48,7 +48,10 @@ export class Browser {
 
   public async close(): Promise<Browser> {
     try {
-      await this._page?.close();
+      const page = this._page;
+      if (page != null && !page.isClosed()) {
+        await page.close();
+      }
     } catch (e) {
       debug(e);
     }

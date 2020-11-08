@@ -70,26 +70,36 @@ export class Tester {
         ? pool.execute(priority, async (browser) => {
             const page = await this._createPage(browser);
 
-            await series(
-              immutable.map((args) => async () => {
-                await tracker.track(args[0], async () => {
-                  await this._execute(browser, page, args);
-                });
-              }),
-            );
+            try {
+              await series(
+                immutable.map((args) => async () => {
+                  await tracker.track(args[0], async () => {
+                    await this._execute(browser, page, args);
+                  });
+                }),
+              );
+            } catch (e) {
+              this._debug(e);
+            } finally {
+              await page.close();
+            }
           })
         : Promise.resolve(),
       ...mutable.map(async (loop) => {
         await pool.execute(
           priority,
           async (browser, args) => {
-            await tracker.track(args[0], async () => {
-              await this._execute(
-                browser,
-                await this._createPage(browser),
-                args,
-              );
-            });
+            const page = await this._createPage(browser);
+
+            try {
+              await tracker.track(args[0], async () => {
+                await this._execute(browser, page, args);
+              });
+            } catch (e) {
+              this._debug(e);
+            } finally {
+              await page.close();
+            }
           },
           loop,
         );
@@ -298,16 +308,21 @@ export class Tester {
   private async _waitForReady(page: Page): Promise<void> {
     const { readyTimeout: timeout } = this._config;
 
-    await Promise.all([
-      page.goto(this._config.url, {
-        waitUntil: 'networkidle2',
-        timeout,
-      }),
-      page.waitForNavigation({
-        waitUntil: 'domcontentloaded',
-        timeout,
-      }),
-    ]);
+    try {
+      await Promise.all([
+        page.goto(this._config.url, {
+          waitUntil: 'networkidle2',
+          timeout,
+        }),
+        page.waitForNavigation({
+          waitUntil: 'domcontentloaded',
+          timeout,
+        }),
+      ]);
+    } catch (e) {
+      this._debug(e);
+      throw e;
+    }
   }
 
   private _debug(...args: any[]) {

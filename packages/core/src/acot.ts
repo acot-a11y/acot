@@ -138,6 +138,8 @@ export class Acot implements Core {
       }),
     );
 
+    debug('time: %O', tracker);
+
     const summary = this._summarize(results, tracker);
 
     await this._emitter.emit('audit:complete', [summary]);
@@ -160,8 +162,6 @@ export class Acot implements Core {
         'An error occurred during audit. Please see the debug information for details.',
       );
     }
-
-    debug('time: %O', tracker);
 
     fs.writeFileSync(
       path.join(this._config.workingDir, 'manifest.json'),
