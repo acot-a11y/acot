@@ -5,7 +5,7 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "lerna run build",
+    "build": "lerna run build --stream",
     "postbuild": "lerna link",
     "clean": "rimraf \"packages/**/tsconfig.tsbuildinfo\" \"packages/**/lib\" \"**/.acot\"",
     "docgen": "lerna run docgen",
