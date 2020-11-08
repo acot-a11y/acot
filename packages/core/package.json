@@ -42,6 +42,7 @@
     "emittery": "^0.7.1",
     "filenamify": "^4.1.0",
     "lodash": "^4.17.19",
+    "p-series": "^2.1.0",
     "promise.allsettled": "^1.0.2",
     "puppeteer-core": "^5.4.1",
     "puppeteer-element2selector": "^0.0.1"

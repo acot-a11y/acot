@@ -80,7 +80,7 @@ describe('BrowserPool', () => {
     await pool.bootstrap(2);
 
     const mock = jest.fn().mockReturnValue(Promise.resolve());
-    await pool.execute(mock);
+    await pool.execute(1, mock);
     expect(mock).toBeCalled();
   });
 

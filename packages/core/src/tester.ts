@@ -11,6 +11,7 @@ import { validate } from '@acot/schema-validator';
 import { createTestcaseResult } from '@acot/factory';
 import _ from 'lodash';
 import type { Page, Viewport } from 'puppeteer-core';
+import series from 'p-series';
 import type { BrowserPool } from './browser-pool';
 import type { TimingTracker } from './timing-tracker';
 import type { RuleStore } from './rule-store';
@@ -27,6 +28,7 @@ export type TesterContext = {
 };
 
 export type TesterConfig = {
+  priority: number;
   url: string;
   store: RuleStore;
   workingDir: string;
@@ -55,22 +57,44 @@ export class Tester {
   }
 
   public async test({ pool, tracker }: TesterContext): Promise<TestResult> {
-    const rules = this._prepare();
-    const ids = rules.map(([id]) => id);
+    const { priority, url, onTestStart, onTestComplete } = this._config;
+    const { immutable, mutable } = this._prepare();
+    const ids = [...immutable, ...mutable].map(([id]) => id);
 
-    await this._config.onTestStart(this._config.url, ids);
+    await onTestStart(url, ids);
 
-    this._debug(`start ${ids.length} rules`);
+    this._debug(`start ${ids.length} rules (priority=${priority})`);
 
-    await Promise.all(
-      rules.map((loop) =>
-        pool.execute(async (browser, args) => {
-          await tracker.track(args[0], async () => {
-            await this._execute(browser, args);
-          });
-        }, loop),
-      ),
-    );
+    await Promise.all([
+      immutable.length > 0
+        ? pool.execute(priority, async (browser) => {
+            const page = await this._createPage(browser);
+
+            await series(
+              immutable.map((args) => async () => {
+                await tracker.track(args[0], async () => {
+                  await this._execute(browser, page, args);
+                });
+              }),
+            );
+          })
+        : Promise.resolve(),
+      ...mutable.map(async (loop) => {
+        await pool.execute(
+          priority,
+          async (browser, args) => {
+            await tracker.track(args[0], async () => {
+              await this._execute(
+                browser,
+                await this._createPage(browser),
+                args,
+              );
+            });
+          },
+          loop,
+        );
+      }),
+    ]);
 
     const stat = this._results.reduce(
       (acc, cur) => {
@@ -97,16 +121,19 @@ export class Tester {
     const result = {
       ...stat,
       results,
-      url: this._config.url,
+      url,
     };
 
-    await this._config.onTestComplete(this._config.url, ids, result);
+    await onTestComplete(url, ids, result);
 
     return result;
   }
 
-  private _prepare(): TesterRuleGroup[] {
-    return Object.entries(this._config.rules).reduce<TesterRuleGroup[]>(
+  private _prepare(): {
+    immutable: TesterRuleGroup[];
+    mutable: TesterRuleGroup[];
+  } {
+    return Object.entries(this._config.rules).reduce(
       (acc, [id, options]) => {
         const rule = this._config.store.get(id);
         if (rule == null) {
@@ -147,18 +174,24 @@ export class Tester {
           }
         }
 
-        acc.push([id, rule, opts]);
+        const group: TesterRuleGroup = [id, rule, opts];
+
+        if (rule.immutable) {
+          acc.immutable.push(group);
+        } else {
+          acc.mutable.push(group);
+        }
 
         return acc;
       },
-      [],
+      {
+        immutable: [] as TesterRuleGroup[],
+        mutable: [] as TesterRuleGroup[],
+      },
     );
   }
 
-  private async _execute(
-    browser: Browser,
-    [id, rule, options]: TesterRuleGroup,
-  ): Promise<void> {
+  private async _createPage(browser: Browser): Promise<Page> {
     this._debug('creating page...');
     const page = await browser.page();
     this._debug('created page!');
@@ -173,6 +206,14 @@ export class Tester {
     await this._waitForReady(page);
     this._debug('ready!');
 
+    return page;
+  }
+
+  private async _execute(
+    browser: Browser,
+    page: Page,
+    [id, rule, options]: TesterRuleGroup,
+  ): Promise<void> {
     const results: TestcaseResult[] = [];
 
     const context = createRuleContext({
@@ -203,11 +244,7 @@ export class Tester {
 
     switch (rule.type) {
       case 'global': {
-        try {
-          await rule.test(context);
-        } catch (e) {
-          addErrorResult(e);
-        }
+        await rule.test(context).catch((e) => addErrorResult(e));
         break;
       }
 
@@ -216,13 +253,9 @@ export class Tester {
           const nodes = await page.$$(rule.selector);
 
           await Promise.all(
-            nodes.map(async (node) => {
-              try {
-                await rule.test(context, node);
-              } catch (e) {
-                addErrorResult(e);
-              }
-            }),
+            nodes.map((node) =>
+              rule.test(context, node).catch((e) => addErrorResult(e)),
+            ),
           );
         } catch (e) {
           debug(
