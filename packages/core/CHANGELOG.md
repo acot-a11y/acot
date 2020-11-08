@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.5](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.4...@acot/core@0.0.2-canary.5) (2020-11-08)
+
+### Bug Fixes
+
+- **core:** Fix navigation wait logic ([1178dc9](https://github.com/acot-a11y/acot/commit/1178dc9d4ea6582be3f9d93ebf5aa58f7f7f55ce))
+
 ## [0.0.2-canary.4](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.3...@acot/core@0.0.2-canary.4) (2020-11-08)
 
 ### Bug Fixes

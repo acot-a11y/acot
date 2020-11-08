@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner-storybook",
-  "version": "0.0.2-canary.4",
+  "version": "0.0.2-canary.5",
   "description": "An acot custom runner for Storybook.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-runner-storybook",
   "bugs": {
@@ -22,7 +22,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/config": "0.0.2-canary.4",
+    "@acot/config": "0.0.2-canary.5",
     "@acot/runner": "0.0.2-canary.4",
     "@acot/schema-validator": "0.0.2-canary.1",
     "debug": "^4.2.0",

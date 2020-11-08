@@ -1,6 +1,6 @@
 {
   "name": "@acot/cli",
-  "version": "0.0.2-canary.4",
+  "version": "0.0.2-canary.5",
   "description": "More accessible web, all over the world.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/cli",
   "bugs": {
@@ -31,9 +31,9 @@
     ]
   },
   "dependencies": {
-    "@acot/config": "0.0.2-canary.4",
-    "@acot/core": "0.0.2-canary.4",
-    "@acot/document": "0.0.2-canary.4",
+    "@acot/config": "0.0.2-canary.5",
+    "@acot/core": "0.0.2-canary.5",
+    "@acot/document": "0.0.2-canary.5",
     "@acot/find-chrome": "0.0.2-canary.1",
     "@acot/logger": "0.0.2-canary.1",
     "@acot/schema-validator": "0.0.2-canary.1",
