@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.3](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.2-canary.2...@acot/document@0.0.2-canary.3) (2020-11-08)
+
+### Features
+
+- **document:** Change summary extraction logic ([361cd2b](https://github.com/acot-a11y/acot/commit/361cd2b448439fd769c20b757fe86abe67f653ee))
+
 ## [0.0.2-canary.2](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.2-canary.1...@acot/document@0.0.2-canary.2) (2020-11-03)
 
 **Note:** Version bump only for package @acot/document

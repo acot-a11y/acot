@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.3](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.2...@acot/core@0.0.2-canary.3) (2020-11-08)
+
+### Features
+
+- **core:** Performance improvements with immutable rules ([572edef](https://github.com/acot-a11y/acot/commit/572edefca26d1817a46e2f1c74c8d31b6762642d))
+
 ## [0.0.2-canary.2](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.1...@acot/core@0.0.2-canary.2) (2020-11-03)
 
 ### Bug Fixes
