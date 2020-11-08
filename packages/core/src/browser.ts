@@ -33,7 +33,7 @@ export class Browser {
     this._page.on('console', (message) => {
       const args = message.args();
       for (const msg of args) {
-        debug('browser.console: %O', msg);
+        debug('browser.console: %s', msg);
       }
     });
 
