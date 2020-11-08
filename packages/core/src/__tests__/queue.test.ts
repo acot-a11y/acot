@@ -8,17 +8,21 @@ describe('Queue', () => {
 
     queue.enqueue(3, 'data1');
     queue.enqueue(1, 'data2');
-    queue.enqueue(2, 'data3');
+    queue.enqueue(1, 'data3');
+    queue.enqueue(2, 'data4');
 
-    expect(queue.size).toBe(3);
+    expect(queue.size).toBe(4);
 
     expect(queue.dequeue()).toBe('data1');
+    expect(queue.size).toBe(3);
+
+    expect(queue.dequeue()).toBe('data4');
     expect(queue.size).toBe(2);
 
-    expect(queue.dequeue()).toBe('data3');
+    expect(queue.dequeue()).toBe('data2');
     expect(queue.size).toBe(1);
 
-    expect(queue.dequeue()).toBe('data2');
+    expect(queue.dequeue()).toBe('data3');
     expect(queue.size).toBe(0);
 
     expect(queue.dequeue()).toBeNull();

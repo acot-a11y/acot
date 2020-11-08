@@ -63,7 +63,7 @@ export class Tester {
 
     await onTestStart(url, ids);
 
-    this._debug(`start ${ids.length} rules (priority=${priority})`);
+    this._debug(`start ${ids.length} rules`);
 
     await Promise.all([
       immutable.length > 0
@@ -123,6 +123,8 @@ export class Tester {
       results,
       url,
     };
+
+    this._debug(`complete!`);
 
     await onTestComplete(url, ids, result);
 
@@ -316,6 +318,8 @@ export class Tester {
   }
 
   private _debug(...args: any[]) {
-    debug(`${this._config.url}:`, ...args);
+    const { url, priority } = this._config;
+
+    debug(`[${priority}] ${url}:`, ...args);
   }
 }

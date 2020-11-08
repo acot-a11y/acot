@@ -94,6 +94,7 @@ export class BrowserPool {
     const job = this._queue.dequeue()!;
     const browser = [...this._available.values()].shift()!;
 
+    this._available.delete(browser);
     this._busy.add(browser);
 
     try {
