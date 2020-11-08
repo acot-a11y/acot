@@ -69,6 +69,8 @@ export const createRule = (config: CreateRuleConfig): Rule<Options> => {
   return createAcotRule<Options>({
     type: 'global',
 
+    immutable: true,
+
     meta: {
       recommended: true,
     },

@@ -91,6 +91,7 @@ export class Acot implements Core {
     this._testers.push(
       new Tester({
         ...descriptor,
+        priority: (this._testers.length + 1) * -1,
         workingDir: this._config.workingDir,
         viewport: this._config.viewport,
         readyTimeout,

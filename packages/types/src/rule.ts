@@ -25,6 +25,7 @@ export type RuleMeta = {
 export type RuleBase<T extends RuleType> = {
   type: T;
   schema?: Schema;
+  immutable?: boolean;
   meta?: RuleMeta;
 };
 

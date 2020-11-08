@@ -1,5 +1,6 @@
 import type { LaunchOptions } from 'puppeteer-core';
 import { Browser } from './browser';
+import { Queue } from './queue';
 
 const WORK_INTERVAL = 30;
 
@@ -22,7 +23,7 @@ export type BrowserPoolConfig = {
 
 export class BrowserPool {
   private _config: BrowserPoolConfig;
-  private _queue: BrowserJob[] = [];
+  private _queue: Queue<BrowserJob> = new Queue();
   private _available: Set<Browser> = new Set();
   private _busy: Set<Browser> = new Set();
   private _interval: NodeJS.Timeout | null = null;
@@ -71,20 +72,26 @@ export class BrowserPool {
   }
 
   public execute<T extends any[] = any[]>(
+    priority: number,
     fn: BrowserTask<T>,
     ...args: T
-  ): Promise<T> {
+  ): Promise<void> {
     return new Promise((resolve, reject) => {
-      this._queue.push({ fn: fn as BrowserTask, args, resolve, reject });
+      this._queue.enqueue(priority, {
+        fn: fn as BrowserTask,
+        args,
+        resolve,
+        reject,
+      });
     });
   }
 
   private async _work(): Promise<void> {
-    if (this._available.size === 0 || this._queue.length === 0) {
+    if (this._available.size === 0 || this._queue.size === 0) {
       return;
     }
 
-    const job = this._queue.shift()!;
+    const job = this._queue.dequeue()!;
     const browser = [...this._available.values()].shift()!;
 
     this._busy.add(browser);
@@ -99,7 +106,7 @@ export class BrowserPool {
     this._busy.delete(browser);
     this._available.add(browser);
 
-    if (this._queue.length > 0) {
+    if (this._queue.size > 0) {
       this._work();
     }
   }

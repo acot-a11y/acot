@@ -38,6 +38,7 @@ type Options = {};
 export default createRule<Options>({
   type: 'contextual',
   selector: SELECTOR,
+  immutable: true,
   schema: {},
   meta: {
     tags: ['wcag21aaa', '2.5.5 Target Size'],

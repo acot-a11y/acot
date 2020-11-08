@@ -5,6 +5,7 @@ type Options = {};
 
 export default createRule<Options>({
   type: 'global',
+  immutable: true,
   meta: {
     tags: ['wcag2.1', 'wcag2.4.2'],
     recommended: true,
