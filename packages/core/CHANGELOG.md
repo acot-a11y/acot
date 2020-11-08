@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.4](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.3...@acot/core@0.0.2-canary.4) (2020-11-08)
+
+### Bug Fixes
+
+- **core:** Fix a bug in which the queue is executed without waiting ([51ddb83](https://github.com/acot-a11y/acot/commit/51ddb836309f927da27e947ac209662ca6696d5e))
+- **core:** Human readable output log of browser console ([10c6c27](https://github.com/acot-a11y/acot/commit/10c6c277c7f2050cffffa7e8f251fb1056dd7286))
+
 ## [0.0.2-canary.3](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.2...@acot/core@0.0.2-canary.3) (2020-11-08)
 
 ### Features
