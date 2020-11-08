@@ -1,6 +1,6 @@
 {
   "name": "@acot/document",
-  "version": "0.0.2-canary.5",
+  "version": "0.0.2-canary.6",
   "description": "A set of tools for working with documentation for acot presets.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/document",
   "bugs": {
@@ -31,7 +31,7 @@
     ]
   },
   "dependencies": {
-    "@acot/core": "0.0.2-canary.5",
+    "@acot/core": "0.0.2-canary.6",
     "@acot/factory": "0.0.2-canary.2",
     "@acot/find-chrome": "0.0.2-canary.1",
     "@acot/html-pickup": "0.0.2-canary.1",

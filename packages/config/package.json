@@ -1,6 +1,6 @@
 {
   "name": "@acot/config",
-  "version": "0.0.2-canary.5",
+  "version": "0.0.2-canary.6",
   "description": "A module to manipulate configs of acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/config",
   "bugs": {
@@ -32,7 +32,7 @@
     ]
   },
   "dependencies": {
-    "@acot/core": "0.0.2-canary.5",
+    "@acot/core": "0.0.2-canary.6",
     "@acot/module-loader": "0.0.2-canary.3",
     "@acot/reporter": "0.0.2-canary.3",
     "@acot/runner": "0.0.2-canary.4",

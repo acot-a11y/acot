@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.6](https://github.com/acot-a11y/acot/compare/@acot/config@0.0.2-canary.5...@acot/config@0.0.2-canary.6) (2020-11-08)
+
+**Note:** Version bump only for package @acot/config
+
 ## [0.0.2-canary.5](https://github.com/acot-a11y/acot/compare/@acot/config@0.0.2-canary.4...@acot/config@0.0.2-canary.5) (2020-11-08)
 
 **Note:** Version bump only for package @acot/config

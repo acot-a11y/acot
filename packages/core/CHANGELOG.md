@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.6](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.5...@acot/core@0.0.2-canary.6) (2020-11-08)
+
+### Bug Fixes
+
+- **core:** Fix a bug that prevented closing a used page ([fd6e55f](https://github.com/acot-a11y/acot/commit/fd6e55f33d6ef057f1c869345674d3a399285032))
+
 ## [0.0.2-canary.5](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.4...@acot/core@0.0.2-canary.5) (2020-11-08)
 
 ### Bug Fixes
