@@ -296,24 +296,17 @@ export class Tester {
   }
 
   private async _waitForReady(page: Page): Promise<void> {
-    const { readyTimeout } = this._config;
+    const { readyTimeout: timeout } = this._config;
 
     await Promise.all([
       page.goto(this._config.url, {
-        timeout: readyTimeout,
+        waitUntil: 'networkidle2',
+        timeout,
       }),
-      page.waitForFunction(
-        (url: string) => {
-          const { readyState } = window.document;
-          const ready = ['interactive', 'complete'].includes(readyState);
-          return window.location.href === url && ready;
-        },
-        {
-          polling: 'raf',
-          timeout: readyTimeout,
-        },
-        this._config.url,
-      ),
+      page.waitForNavigation({
+        waitUntil: 'domcontentloaded',
+        timeout,
+      }),
     ]);
   }
 
