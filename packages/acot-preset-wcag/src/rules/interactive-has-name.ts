@@ -1,5 +1,6 @@
 import { createRule } from '@acot/core';
 import { getEventListeners } from '@acot/utils';
+import type { ComputedAccessibleNode } from '@acot/types';
 
 type Options = {};
 
@@ -33,7 +34,9 @@ export default createRule<Options>({
       await Promise.all(
         elements.map(async (node) => {
           const name = await node.evaluate(async (el) => {
-            const ax = await (window as any).getComputedAccessibleNode(el);
+            const ax = await ((window as any).getComputedAccessibleNode(
+              el,
+            ) as ComputedAccessibleNode);
             return (ax?.name ?? '').trim();
           });
 
