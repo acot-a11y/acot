@@ -24,9 +24,13 @@ export class MockCore implements Core {
     this.emitter.emit('audit:complete', []);
     this.emitter.emit('test:start', []);
     this.emitter.emit('test:complete', []);
-    this.emitter.emit('terminate:start', []);
-    this.emitter.emit('terminate:complete', []);
+    await this.close();
     return createSummary({});
+  }
+
+  public async close(): Promise<void> {
+    this.emitter.emit('close:start', []);
+    this.emitter.emit('close:complete', []);
   }
 
   public on<T extends keyof CoreEventMap>(

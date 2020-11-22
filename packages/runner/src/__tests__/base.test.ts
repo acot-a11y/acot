@@ -15,8 +15,8 @@ const createListeners = () => ({
   'audit:complete': jest.fn(),
   'test:start': jest.fn(),
   'test:complete': jest.fn(),
-  'terminate:start': jest.fn(),
-  'terminate:complete': jest.fn(),
+  'close:start': jest.fn(),
+  'close:complete': jest.fn(),
   'cleanup:start': jest.fn(),
   'cleanup:complete': jest.fn(),
 });
@@ -37,8 +37,8 @@ const bindListeners = (
   runner.on('audit:complete', listeners['audit:complete']);
   runner.on('test:start', listeners['test:start']);
   runner.on('test:complete', listeners['test:complete']);
-  runner.on('terminate:start', listeners['terminate:start']);
-  runner.on('terminate:complete', listeners['terminate:complete']);
+  runner.on('close:start', listeners['close:start']);
+  runner.on('close:complete', listeners['close:complete']);
   runner.on('cleanup:start', listeners['cleanup:start']);
   runner.on('cleanup:complete', listeners['cleanup:complete']);
 };
@@ -110,8 +110,8 @@ describe('BaseRunner', () => {
     expect(listeners['audit:complete']).not.toBeCalled();
     expect(listeners['test:start']).not.toBeCalled();
     expect(listeners['test:complete']).not.toBeCalled();
-    expect(listeners['terminate:start']).not.toBeCalled();
-    expect(listeners['terminate:complete']).not.toBeCalled();
+    expect(listeners['close:start']).not.toBeCalled();
+    expect(listeners['close:complete']).not.toBeCalled();
     expect(listeners['cleanup:start']).toBeCalled();
     expect(listeners['cleanup:complete']).toBeCalled();
 

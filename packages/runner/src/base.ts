@@ -39,6 +39,10 @@ export class BaseRunner implements Runner {
       self: require('../package.json').version,
       core: this._core.version,
     };
+
+    process.on('SIGINT', this._handleSIGINT);
+    process.on('SIGTERM', this._handleCloseSignal);
+    process.on('SIGINT', this._handleCloseSignal);
   }
 
   public destroy(): void {
@@ -147,8 +151,8 @@ export class BaseRunner implements Runner {
     this._core.on('audit:complete', this._handleAuditComplete);
     this._core.on('test:start', this._handleTestStart);
     this._core.on('test:complete', this._handleTestComplete);
-    this._core.on('terminate:start', this._handleTerminateStart);
-    this._core.on('terminate:complete', this._handleTerminateComplete);
+    this._core.on('close:start', this._handleCloseStart);
+    this._core.on('close:complete', this._handleCloseComplete);
   }
 
   private _unbindEvents() {
@@ -158,9 +162,22 @@ export class BaseRunner implements Runner {
     this._core.on('audit:complete', this._handleAuditComplete);
     this._core.on('test:start', this._handleTestStart);
     this._core.on('test:complete', this._handleTestComplete);
-    this._core.on('terminate:start', this._handleTerminateStart);
-    this._core.on('terminate:complete', this._handleTerminateComplete);
+    this._core.on('close:start', this._handleCloseStart);
+    this._core.on('close:complete', this._handleCloseComplete);
   }
+
+  private async _close(): Promise<void> {
+    await Promise.allSettled([this._core?.close(), this._conn?.disconnect()]);
+  }
+
+  private _handleSIGINT = async () => {
+    await this._close();
+    process.exit(130);
+  };
+
+  private _handleCloseSignal = async () => {
+    await this._close();
+  };
 
   private _handleLaunchStart = async (args: RunnerEventMap['launch:start']) => {
     await this._emitter.emit('launch:start', args);
@@ -192,16 +209,14 @@ export class BaseRunner implements Runner {
     await this._emitter.emit('test:complete', args);
   };
 
-  private _handleTerminateStart = async (
-    args: RunnerEventMap['terminate:start'],
-  ) => {
-    await this._emitter.emit('terminate:start', args);
+  private _handleCloseStart = async (args: RunnerEventMap['close:start']) => {
+    await this._emitter.emit('close:start', args);
   };
 
-  private _handleTerminateComplete = async (
-    args: RunnerEventMap['terminate:complete'],
+  private _handleCloseComplete = async (
+    args: RunnerEventMap['close:complete'],
   ) => {
-    await this._emitter.emit('terminate:complete', args);
+    await this._emitter.emit('close:complete', args);
   };
 
   public on<T extends keyof RunnerEventMap>(

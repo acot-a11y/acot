@@ -11,18 +11,12 @@ import type {
 } from '@acot/types';
 import Emittery from 'emittery';
 import _ from 'lodash';
-import type AllSettled from 'promise.allsettled';
 import type { LaunchOptions, Viewport } from 'puppeteer-core';
 import { BrowserPool } from './browser-pool';
 import { debug } from './logging';
 import { RuleStore } from './rule-store';
 import { Tester } from './tester';
 import { TimingTracker } from './timing-tracker';
-/**
- * This is a workaround for bugs that occur in combination with tsc.
- * @see https://github.com/es-shims/Promise.allSettled/issues/5
- */
-const allSettled: typeof AllSettled = require('promise.allsettled') as any;
 
 export type AcotConfig = {
   cwd: string;
@@ -41,6 +35,7 @@ export class Acot implements Core {
   private _store: RuleStore;
   private _storeMap: Map<string, RuleStore> = new Map();
   private _testers: Tester[] = [];
+  private _pool: BrowserPool | null = null;
   private _emitter: Emittery.Typed<CoreEventMap>;
   public readonly version = require('../package.json').version;
 
@@ -113,12 +108,12 @@ export class Acot implements Core {
     // launch
     await this._emitter.emit('launch:start', [urls]);
 
-    const pool = new BrowserPool({
+    this._pool = new BrowserPool({
       launchOptions: this._config.launchOptions,
       timeout: this._config.browserTimeout,
     });
 
-    await pool.bootstrap(this._config.parallel);
+    await this._pool.bootstrap(this._config.parallel);
 
     await this._emitter.emit('launch:complete', [urls]);
 
@@ -128,11 +123,11 @@ export class Acot implements Core {
     const results: TestResult[] = [];
 
     const context = {
-      pool,
+      pool: this._pool,
       tracker,
     };
 
-    const list = await allSettled(
+    const list = await Promise.allSettled(
       this._testers.map(async (tester) => {
         results.push(await tester.test(context));
       }),
@@ -145,9 +140,7 @@ export class Acot implements Core {
     await this._emitter.emit('audit:complete', [summary]);
 
     // close
-    await this._emitter.emit('terminate:start', []);
-    await pool.terminate();
-    await this._emitter.emit('terminate:complete', []);
+    await this.close();
 
     let error = false;
     for (const item of list) {
@@ -193,15 +186,19 @@ export class Acot implements Core {
     };
   }
 
-  private _handleTestStart = async (...args: CoreEventMap['test:start']) => {
-    await this._emitter.emit('test:start', args);
-  };
+  public async close(): Promise<void> {
+    if (this._pool == null) {
+      return;
+    }
 
-  private _handleTestComplete = async (
-    ...args: CoreEventMap['test:complete']
-  ) => {
-    await this._emitter.emit('test:complete', args);
-  };
+    await this._emitter.emit('close:start', []);
+    await this._pool.terminate();
+    await this._emitter.emit('close:complete', []);
+
+    this._pool = null;
+    this._testers = [];
+    this._emitter.clearListeners();
+  }
 
   public on<T extends keyof CoreEventMap>(
     eventName: T,
@@ -216,4 +213,14 @@ export class Acot implements Core {
   ): void {
     this._emitter.off(eventName as any, listener as any);
   }
+
+  private _handleTestStart = async (...args: CoreEventMap['test:start']) => {
+    await this._emitter.emit('test:start', args);
+  };
+
+  private _handleTestComplete = async (
+    ...args: CoreEventMap['test:complete']
+  ) => {
+    await this._emitter.emit('test:complete', args);
+  };
 }

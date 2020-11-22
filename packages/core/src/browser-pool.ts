@@ -47,6 +47,10 @@ export class BrowserPool {
     if (!this._config.launchOptions.args!.includes(enableAOM)) {
       this._config.launchOptions.args!.push(enableAOM);
     }
+
+    this._config.launchOptions.handleSIGINT = false;
+    this._config.launchOptions.handleSIGTERM = false;
+    this._config.launchOptions.handleSIGHUP = false;
   }
 
   public async bootstrap(parallel: number): Promise<void> {
@@ -66,9 +70,14 @@ export class BrowserPool {
       clearInterval(this._interval);
     }
 
-    await Promise.all(
+    await Promise.allSettled(
       [...this._available, ...this._busy].map((browser) => browser.close()),
     );
+
+    this._available.clear();
+    this._busy.clear();
+    this._queue.clear();
+    this._interval = null;
   }
 
   public execute<T extends any[] = any[]>(

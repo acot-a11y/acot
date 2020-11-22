@@ -17,12 +17,13 @@ export type CoreEventMap = {
   'audit:complete': [summary: Summary];
   'test:start': [url: string, ids: string[]];
   'test:complete': [url: string, ids: string[], result: TestResult];
-  'terminate:start': [];
-  'terminate:complete': [];
+  'close:start': [];
+  'close:complete': [];
 };
 
 export type Core = {
   readonly version: string;
   add: (path: string, descriptor: TestDescriptor) => void;
   audit: () => Promise<Summary>;
+  close: () => Promise<void>;
 } & EventMethodFactory<CoreEventMap>;
