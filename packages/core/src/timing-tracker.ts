@@ -10,13 +10,13 @@ export class TimingTracker {
     return data;
   }
 
-  public track<R, A extends any[] = any[]>(
+  public async track<R, A extends any[] = any[]>(
     id: string,
-    fn: (...args: A) => R,
+    fn: (...args: A) => Promise<R>,
     ...args: A
-  ): R {
+  ): Promise<R> {
     const now = performance.now();
-    const result = fn(...args);
+    const result = await fn(...args);
     const ms = performance.now() - now;
     this._data[id] = (this._data[id] ?? 0) + ms;
     return result;
