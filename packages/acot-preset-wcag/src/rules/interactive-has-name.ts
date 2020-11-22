@@ -23,6 +23,7 @@ const SELECTOR = [
 
 export default createRule<Options>({
   type: 'global',
+  immutable: true,
   meta: {
     recommended: true,
   },

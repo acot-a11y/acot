@@ -5,6 +5,7 @@ type Options = {};
 export default createRule<Options>({
   type: 'contextual',
   selector: 'aria/[role="img"]',
+  immutable: true,
   meta: {
     tags: ['wcag21a', '1.1.1 Non-text Content'],
     description: 'img element or img role MUST has name.',
