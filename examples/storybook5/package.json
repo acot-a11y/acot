@@ -22,7 +22,14 @@
   },
   "acot": {
     "origin": "http://localhost:6006",
-    "runner": "@acot/storybook",
+    "runner": {
+      "uses": "@acot/storybook",
+      "with": {
+        "exclude": [
+          "exclude/**"
+        ]
+      }
+    },
     "presets": [
       "@acot/wcag"
     ],
