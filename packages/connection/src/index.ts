@@ -55,9 +55,6 @@ export class Connection {
       this._proc = execa.command(command);
       this._proc.stdout!.on('data', (d) => debug(d.toString()));
       this._proc.stderr!.on('data', (d) => debug(d.toString()));
-      process.on('SIGINT', () => {
-        this._proc?.kill();
-      });
       debug('server process created!');
     }
 

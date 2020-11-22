@@ -65,7 +65,7 @@ export class Tester {
 
     this._debug(`start ${ids.length} rules`);
 
-    await Promise.all([
+    await Promise.allSettled([
       immutable.length > 0
         ? pool.execute(priority, async (browser) => {
             const page = await this._createPage(browser);
@@ -73,9 +73,7 @@ export class Tester {
             try {
               await series(
                 immutable.map((args) => async () => {
-                  await tracker.track(args[0], async () => {
-                    await this._execute(browser, page, args);
-                  });
+                  await this._execute(browser, page, tracker, args);
                 }),
               );
             } catch (e) {
@@ -92,9 +90,7 @@ export class Tester {
             const page = await this._createPage(browser);
 
             try {
-              await tracker.track(args[0], async () => {
-                await this._execute(browser, page, args);
-              });
+              await this._execute(browser, page, tracker, args);
             } catch (e) {
               this._debug(e);
             } finally {
@@ -224,85 +220,90 @@ export class Tester {
   private async _execute(
     browser: Browser,
     page: Page,
+    tracker: TimingTracker,
     [id, rule, options]: TesterRuleGroup,
   ): Promise<void> {
-    const results: TestcaseResult[] = [];
+    await tracker.track(id, async () => {
+      const results: TestcaseResult[] = [];
 
-    const context = createRuleContext({
-      process: browser.id(),
-      status: options[0] as Exclude<Status, 'off'>,
-      rule: id,
-      url: this._config.url,
-      tags: rule.meta?.tags ?? [],
-      workingDir: this._config.workingDir,
-      results,
-      page,
-      options,
-    });
+      const context = createRuleContext({
+        process: browser.id(),
+        status: options[0] as Exclude<Status, 'off'>,
+        rule: id,
+        url: this._config.url,
+        tags: rule.meta?.tags ?? [],
+        workingDir: this._config.workingDir,
+        results,
+        page,
+        options,
+      });
 
-    const addErrorResult = (e: unknown) => {
-      debug('Unexpected error occurred:', e);
+      const addErrorResult = (e: unknown) => {
+        debug('Unexpected error occurred:', e);
 
-      results.push(
-        createTestcaseResult({
-          process: browser.id(),
-          status: 'error',
-          rule: id,
-          message:
-            e instanceof Error ? e.message : `Unexpected error occurred: ${e}`,
-        }),
-      );
-    };
-
-    switch (rule.type) {
-      case 'global': {
-        await rule.test(context).catch((e) => addErrorResult(e));
-        break;
-      }
-
-      case 'contextual': {
-        try {
-          const nodes = await page.$$(rule.selector);
-
-          await Promise.all(
-            nodes.map((node) =>
-              rule.test(context, node).catch((e) => addErrorResult(e)),
-            ),
-          );
-        } catch (e) {
-          debug(
-            'Not found elements (rule="%s", url="%s")',
-            id,
-            this._config.url,
-            e,
-          );
-        }
-        break;
-      }
-
-      default:
         results.push(
           createTestcaseResult({
             process: browser.id(),
             status: 'error',
-            message: `The rule type "${(rule as any).type}" is invalid.`,
+            rule: id,
+            message:
+              e instanceof Error
+                ? e.message
+                : `Unexpected error occurred: ${e}`,
           }),
         );
-        break;
-    }
+      };
 
-    // pass
-    if (results.length === 0) {
-      results.push(
-        createTestcaseResult({
-          process: browser.id(),
-          status: 'pass',
-          rule: id,
-        }),
-      );
-    }
+      switch (rule.type) {
+        case 'global': {
+          await rule.test(context).catch((e) => addErrorResult(e));
+          break;
+        }
 
-    this._results.push(...results);
+        case 'contextual': {
+          try {
+            const nodes = await page.$$(rule.selector);
+
+            await Promise.all(
+              nodes.map((node) =>
+                rule.test(context, node).catch((e) => addErrorResult(e)),
+              ),
+            );
+          } catch (e) {
+            debug(
+              'Not found elements (rule="%s", url="%s")',
+              id,
+              this._config.url,
+              e,
+            );
+          }
+          break;
+        }
+
+        default:
+          results.push(
+            createTestcaseResult({
+              process: browser.id(),
+              status: 'error',
+              message: `The rule type "${(rule as any).type}" is invalid.`,
+            }),
+          );
+          break;
+      }
+
+      // pass
+      if (results.length === 0) {
+        results.push(
+          createTestcaseResult({
+            process: browser.id(),
+            status: 'pass',
+            rule: id,
+          }),
+        );
+      }
+
+      this._results.push(...results);
+    });
   }
 
   private async _waitForReady(page: Page): Promise<void> {

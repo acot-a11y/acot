@@ -91,6 +91,11 @@ export class Queue<T> {
     return result;
   }
 
+  public clear(): void {
+    this._root = null;
+    this._size = 0;
+  }
+
   public get size(): number {
     return this._size;
   }

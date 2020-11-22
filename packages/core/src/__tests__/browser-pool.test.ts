@@ -50,6 +50,9 @@ describe('BrowserPool', () => {
         dumpio: true,
         args: ['--no-sandbox', '--enable-accessibility-object-model'],
         headless: true,
+        handleSIGINT: false,
+        handleSIGTERM: false,
+        handleSIGHUP: false,
       },
       timeout: 1000,
     });
@@ -91,9 +94,8 @@ describe('BrowserPool', () => {
     });
 
     await pool.bootstrap(2);
-    await pool.terminate();
-
     const browsers = [...(pool as any)._available];
+    await pool.terminate();
 
     expect(browsers[0].close).toBeCalled();
     expect(browsers[1].close).toBeCalled();
