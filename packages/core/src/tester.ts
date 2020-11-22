@@ -74,6 +74,9 @@ export class Tester {
               await series(
                 immutable.map((args) => async () => {
                   await this._execute(browser, page, tracker, args);
+
+                  // Cleanup the page state.
+                  await page.focus('body');
                 }),
               );
             } catch (e) {
