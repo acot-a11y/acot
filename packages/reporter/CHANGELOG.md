@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.4](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.2-canary.3...@acot/reporter@0.0.2-canary.4) (2020-11-23)
+
+**Note:** Version bump only for package @acot/reporter
+
 ## [0.0.2-canary.3](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.2-canary.2...@acot/reporter@0.0.2-canary.3) (2020-11-08)
 
 **Note:** Version bump only for package @acot/reporter

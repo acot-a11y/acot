@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.7](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-storybook@0.0.2-canary.6...@acot/acot-runner-storybook@0.0.2-canary.7) (2020-11-23)
+
+### Features
+
+- **runner-storybook:** Add filter options for storybook runner ([c77d6bf](https://github.com/acot-a11y/acot/commit/c77d6bf50a1bddbbd1021c7b71d00e1652376b11))
+
 ## [0.0.2-canary.6](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-storybook@0.0.2-canary.5...@acot/acot-runner-storybook@0.0.2-canary.6) (2020-11-08)
 
 **Note:** Version bump only for package @acot/acot-runner-storybook

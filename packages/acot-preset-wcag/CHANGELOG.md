@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.7](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.2-canary.6...@acot/acot-preset-wcag@0.0.2-canary.7) (2020-11-23)
+
+### Bug Fixes
+
+- **preset-wcag:** Fix immutable flags on WCAG rules ([f383f44](https://github.com/acot-a11y/acot/commit/f383f44e8e66918b609199fdcbb70c1c7221d7e4))
+
+### Features
+
+- **preset:** add dialog-focus rule ([29ec6ba](https://github.com/acot-a11y/acot/commit/29ec6ba8466bf95678669a84cd14d278ded01821))
+- **types:** add ComputedAccessibleNode type ([bcd4322](https://github.com/acot-a11y/acot/commit/bcd4322b02cfdd9c264523f4b49d029b0ed92868))
+- add img-has-name rule ([1e72566](https://github.com/acot-a11y/acot/commit/1e72566f3bd67422652e0f855c4673be259df41d))
+
 ## [0.0.2-canary.6](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.2-canary.5...@acot/acot-preset-wcag@0.0.2-canary.6) (2020-11-08)
 
 **Note:** Version bump only for package @acot/acot-preset-wcag

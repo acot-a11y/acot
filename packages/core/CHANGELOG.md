@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.7](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.6...@acot/core@0.0.2-canary.7) (2020-11-23)
+
+### Bug Fixes
+
+- Fix a bug in the rule performance tracker ([07e8f36](https://github.com/acot-a11y/acot/commit/07e8f36bfabfed8650fc8949409d94f48bca2677))
+
+### Features
+
+- **cli:** Add filter logic to debug flag ([738c35d](https://github.com/acot-a11y/acot/commit/738c35d0c318036b09faff6588671f054c7508bb))
+- **core:** Add cleanup process for the page before perform immutable rule ([c4e4820](https://github.com/acot-a11y/acot/commit/c4e48203bd9af0289f310b0e155409cfacc1002d))
+
 ## [0.0.2-canary.6](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.5...@acot/core@0.0.2-canary.6) (2020-11-08)
 
 ### Bug Fixes

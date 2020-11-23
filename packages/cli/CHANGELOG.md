@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.7](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.2-canary.6...@acot/cli@0.0.2-canary.7) (2020-11-23)
+
+### Features
+
+- **cli:** Add filter logic to debug flag ([738c35d](https://github.com/acot-a11y/acot/commit/738c35d0c318036b09faff6588671f054c7508bb))
+
 ## [0.0.2-canary.6](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.2-canary.5...@acot/cli@0.0.2-canary.6) (2020-11-08)
 
 **Note:** Version bump only for package @acot/cli

@@ -1,16 +1,16 @@
 {
   "name": "@example/html",
-  "version": "0.0.2-canary.6",
+  "version": "0.0.2-canary.7",
   "private": true,
   "scripts": {
     "serve": "serve src",
     "test": "acot run"
   },
   "devDependencies": {
-    "@acot/acot-config": "0.0.2-canary.6",
-    "@acot/acot-preset-axe": "0.0.2-canary.6",
-    "@acot/acot-preset-wcag": "0.0.2-canary.6",
-    "@acot/cli": "0.0.2-canary.6",
+    "@acot/acot-config": "0.0.2-canary.7",
+    "@acot/acot-preset-axe": "0.0.2-canary.7",
+    "@acot/acot-preset-wcag": "0.0.2-canary.7",
+    "@acot/cli": "0.0.2-canary.7",
     "puppeteer": "^5.4.1",
     "serve": "^11.3.0",
     "typescript": "^4.0.5"
