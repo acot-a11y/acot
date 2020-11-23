@@ -11,7 +11,7 @@ export default createCommand({
     target: {
       type: 'string',
       default: 'README.md',
-      description: '...',
+      description: 'File path to inject the document.',
     },
   },
   options: {
@@ -19,18 +19,19 @@ export default createCommand({
       type: 'string',
       alias: 'p',
       default: '.',
-      description: '...',
+      description:
+        'Directory path that contains the package.json that makes up the preset.',
     },
     docs: {
       type: 'string',
       alias: 'd',
       default: path.join('docs', 'rules'),
-      description: '...',
+      description: 'Directory path that contains the rule documentation.',
     },
     'dry-run': {
       type: 'boolean',
       default: false,
-      description: '...',
+      description: 'Writes the document to standard output instead of a file.',
     },
   },
 })(async ({ cwd, logger, args }) => {

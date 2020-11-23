@@ -15,22 +15,23 @@ export default createCommand({
       type: 'string',
       alias: 'p',
       default: '.',
-      description: '...',
+      description:
+        'Directory path that contains the package.json that makes up the preset.',
     },
     docs: {
       type: 'string',
       alias: 'd',
       default: path.join('docs', 'rules'),
-      description: '...',
+      description: 'Directory path that contains the rule documentation.',
     },
     port: {
       type: 'number',
-      description: '...',
+      description: 'Port number for preview server.',
     },
     watch: {
       type: 'boolean',
       alias: 'w',
-      description: '...',
+      description: 'Watch document files.',
     },
   },
 })(
