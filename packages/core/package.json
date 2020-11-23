@@ -43,7 +43,7 @@
     "lodash": "^4.17.19",
     "p-series": "^2.1.0",
     "puppeteer-core": "^5.4.1",
-    "puppeteer-element2selector": "^0.0.1"
+    "puppeteer-element2selector": "^0.0.2"
   },
   "devDependencies": {
     "@acot/find-chrome": "0.0.2-canary.1",
