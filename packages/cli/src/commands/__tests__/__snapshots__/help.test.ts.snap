@@ -16,7 +16,7 @@ COMMAND OPTIONS
 GLOBAL OPTIONS
   -q, --quiet                              Disable stdout/stderr
   -v, --verbose                            Enable logging.
-      --debug                              Dump debug infomation for acot modules.
+      --debug                              Dump debug information for acot modules. Can filter output by specifying the module name. (e.g. --debug \\"core\\")
       --no-color                           Force disabling of color
       --help                               Show help
       --version                            Output the version number"
@@ -36,7 +36,7 @@ COMMAND OPTIONS
 GLOBAL OPTIONS
   -q, --quiet     Disable stdout/stderr
   -v, --verbose   Enable logging.
-      --debug     Dump debug infomation for acot modules.
+      --debug     Dump debug information for acot modules. Can filter output by specifying the module name. (e.g. --debug \\"core\\")
       --no-color  Force disabling of color
       --help      Show help
       --version   Output the version number"
@@ -51,7 +51,7 @@ USAGE
 GLOBAL OPTIONS
   -q, --quiet     Disable stdout/stderr
   -v, --verbose   Enable logging.
-      --debug     Dump debug infomation for acot modules.
+      --debug     Dump debug information for acot modules. Can filter output by specifying the module name. (e.g. --debug \\"core\\")
       --no-color  Force disabling of color
       --help      Show help
       --version   Output the version number"
@@ -71,7 +71,7 @@ AVAILABLE COMMANDS
 GLOBAL OPTIONS
   -q, --quiet      Disable stdout/stderr
   -v, --verbose    Enable logging.
-      --debug      Dump debug infomation for acot modules.
+      --debug      Dump debug information for acot modules. Can filter output by specifying the module name. (e.g. --debug \\"core\\")
       --no-color   Force disabling of color
       --help       Show help
       --version    Output the version number
@@ -93,7 +93,7 @@ COMMAND OPTIONS
 GLOBAL OPTIONS
   -q, --quiet     Disable stdout/stderr
   -v, --verbose   Enable logging.
-      --debug     Dump debug infomation for acot modules.
+      --debug     Dump debug information for acot modules. Can filter output by specifying the module name. (e.g. --debug \\"core\\")
       --no-color  Force disabling of color
       --help      Show help
       --version   Output the version number"

@@ -50,9 +50,9 @@ export class CLI {
 
     let parsed = parser.parse(argv);
 
-    if (parsed.debug) {
+    if (parsed.debug != null) {
       const debug = require('debug');
-      debug.enable('acot:*');
+      debug.enable(`acot:${parsed.debug || '*'}`);
     }
 
     if (parsed.quiet) {
