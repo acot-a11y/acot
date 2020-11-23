@@ -10,8 +10,9 @@ export const globalOptions = {
     description: 'Enable logging.',
   },
   debug: {
-    type: 'boolean',
-    description: 'Dump debug infomation for acot modules.',
+    type: 'string',
+    description:
+      'Dump debug information for acot modules. Can filter output by specifying the module name. (e.g. --debug "core")',
   },
   'no-color': {
     type: 'boolean',

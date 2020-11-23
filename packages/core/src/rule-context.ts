@@ -14,6 +14,7 @@ import { element2selector } from 'puppeteer-element2selector';
 import filenamify from 'filenamify';
 import { createTestcaseResult } from '@acot/factory';
 import { debug } from './logging';
+const rootDebug = require('debug')('acot');
 
 const writeFile = promisify(fs.writeFile);
 
@@ -64,55 +65,59 @@ export const createRuleContext = ({
   page,
   options,
   results,
-}: CreateRuleContextParams): RuleContext => ({
-  page,
+}: CreateRuleContextParams): RuleContext => {
+  const log = rootDebug.extend(rule);
 
-  report: async ({ message, tags: reportTags, node }) => {
-    try {
-      const basename = buildFilename(url, rule, `${process}`);
-      const htmlpath = path.resolve(workingDir, `${basename}.html`);
-      const imagepath = path.resolve(workingDir, `${basename}.png`);
+  return {
+    page,
 
-      const [selector, image] = await Promise.all([
-        node ? element2selector(node) : null,
-        screenshotIfNeeded(node, imagepath),
-        writeFile(htmlpath, await page.content(), 'utf8'),
-      ]);
+    report: async ({ message, tags: reportTags, node }) => {
+      try {
+        const basename = buildFilename(url, rule, `${process}`);
+        const htmlpath = path.resolve(workingDir, `${basename}.html`);
+        const imagepath = path.resolve(workingDir, `${basename}.png`);
 
-      results.push(
-        createTestcaseResult({
-          process,
-          status,
-          rule,
-          message,
-          tags: [...ruleTags, ...(reportTags ?? [])],
-          selector,
-          htmlpath: path.relative(workingDir, htmlpath),
-          imagepath: image ? path.relative(workingDir, imagepath) : null,
-        }),
-      );
-    } catch (e) {
-      debug(e);
-      results.push(
-        createTestcaseResult({
-          process,
-          status: 'error',
-          rule,
-          message: e.message,
-        }),
-      );
-    }
-  },
+        const [selector, image] = await Promise.all([
+          node ? element2selector(node) : null,
+          screenshotIfNeeded(node, imagepath),
+          writeFile(htmlpath, await page.content(), 'utf8'),
+        ]);
 
-  debug: (format, ...args) => {
-    const prefix = `[${rule}] ${url} -`;
+        results.push(
+          createTestcaseResult({
+            process,
+            status,
+            rule,
+            message,
+            tags: [...ruleTags, ...(reportTags ?? [])],
+            selector,
+            htmlpath: path.relative(workingDir, htmlpath),
+            imagepath: image ? path.relative(workingDir, imagepath) : null,
+          }),
+        );
+      } catch (e) {
+        debug(e);
+        results.push(
+          createTestcaseResult({
+            process,
+            status: 'error',
+            rule,
+            message: e.message,
+          }),
+        );
+      }
+    },
 
-    if (typeof format === 'string') {
-      debug(`${prefix} ${format}`, ...args);
-    } else {
-      debug(prefix, format, ...args);
-    }
-  },
+    debug: (format, ...args) => {
+      const prefix = `${url} -`;
 
-  options: options[1] ?? {},
-});
+      if (typeof format === 'string') {
+        log(`${prefix} ${format}`, ...args);
+      } else {
+        log(prefix, format, ...args);
+      }
+    },
+
+    options: options[1] ?? {},
+  };
+};
