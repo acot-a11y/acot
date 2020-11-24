@@ -49,11 +49,11 @@
     "node-emoji": "^1.10.0",
     "pkg-up": "^3.1.0",
     "portfinder": "^1.0.27",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.0",
     "strip-ansi": "^6.0.0",
-    "type-fest": "^0.18.0",
+    "type-fest": "^0.19.0",
     "validator": "^13.1.17",
-    "yargs": "^16.0.3"
+    "yargs": "^16.1.1"
   },
   "devDependencies": {
     "@acot/mock-logger": "0.0.2-canary.1",
@@ -62,7 +62,7 @@
     "@types/node-emoji": "^1.8.1",
     "@types/prettier": "^2.1.5",
     "@types/validator": "^13.1.0",
-    "@types/yargs": "^15.0.4"
+    "@types/yargs": "^15.0.10"
   },
   "publishConfig": {
     "access": "public"

@@ -27,7 +27,7 @@
   "dependencies": {
     "@acot/cli": "0.0.2-canary.7",
     "@acot/core": "0.0.2-canary.7",
-    "axe-core": "^4.0.1"
+    "axe-core": "^4.1.1"
   },
   "publishConfig": {
     "access": "public"

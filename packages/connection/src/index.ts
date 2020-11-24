@@ -3,7 +3,7 @@ import waitOn from 'wait-on';
 const debug = require('debug')('acot:connection');
 
 const waitForServer = (url: string, timeout: number) =>
-  new Promise((resolve, reject) => {
+  new Promise<void>((resolve, reject) => {
     if (!url.startsWith('http')) {
       reject(new TypeError('Invalid connection url'));
       return;

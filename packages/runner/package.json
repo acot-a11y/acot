@@ -32,7 +32,7 @@
   "dependencies": {
     "@acot/connection": "0.0.2-canary.4",
     "@acot/module-loader": "0.0.2-canary.3",
-    "debug": "^4.2.0",
+    "debug": "^4.3.1",
     "emittery": "^0.7.1"
   },
   "devDependencies": {

@@ -63,7 +63,8 @@ See the [CLI documentation](packages/cli) for details.
 
 ## Requirements
 
-- Node.js 12.0.0+
+- Node.js 12.10.0+ (require [Promise.allSettled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled))
+- Puppeteer 5.4.0+ (require [aria handler](https://github.com/puppeteer/puppeteer/releases/tag/v5.4.0))
 
 ## How does it work?
 

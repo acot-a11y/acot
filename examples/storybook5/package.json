@@ -11,13 +11,13 @@
     "@acot/acot-preset-wcag": "0.0.2-canary.7",
     "@acot/acot-runner-storybook": "0.0.2-canary.7",
     "@acot/cli": "0.0.2-canary.7",
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.12.8",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.1",
     "eslint-plugin-react": "^7.20.0",
-    "puppeteer": "^5.4.1",
+    "puppeteer": "^5.5.0",
     "styled-components": "^5.2.1"
   },
   "acot": {
