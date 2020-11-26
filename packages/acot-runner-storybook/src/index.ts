@@ -33,6 +33,9 @@ declare global {
   interface Window {
     __STORYBOOK_CLIENT_API__: {
       raw: () => Story[];
+      store: () => {
+        _configuring?: boolean; // This parameter is enabled with SB v6 or later
+      };
     };
   }
 }
@@ -111,6 +114,12 @@ export default createRunnerFactory<Options>(
         try {
           await page.goto(`${config.origin}/iframe.html?id=__ACOTSTORYBOOK__`);
           await page.waitForFunction(() => window.__STORYBOOK_CLIENT_API__);
+
+          // SB(v6 or later) api's `raw()` can return empty array til SB store gets configured.
+          // See https://github.com/storybookjs/storybook/pull/9914 .
+          await page.waitForFunction(
+            () => window.__STORYBOOK_CLIENT_API__.store()._configuring !== true,
+          );
 
           const raw = await page.evaluate(() => {
             return window.__STORYBOOK_CLIENT_API__.raw().map((o) => ({
