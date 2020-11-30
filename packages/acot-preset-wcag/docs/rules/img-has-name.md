@@ -1,6 +1,6 @@
 # img-has-name
 
-img element or img role MUST has name.
+The `img` element or img role MUST has name.
 
 > All non-text content that is presented to the user has a text alternative that serves the equivalent purpose
 
