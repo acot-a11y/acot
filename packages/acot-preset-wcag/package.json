@@ -27,7 +27,11 @@
   },
   "dependencies": {
     "@acot/cli": "0.0.2-canary.7",
-    "@acot/core": "0.0.2-canary.7"
+    "@acot/core": "0.0.2-canary.7",
+    "language-tags": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/language-tags": "^1.0.0"
   },
   "publishConfig": {
     "access": "public"
