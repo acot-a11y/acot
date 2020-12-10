@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [master, canary]
+    branches: [canary]
   pull_request:
     types: [opened, synchronize]
 
@@ -56,10 +56,9 @@ jobs:
     steps:
       - run: exit 0
 
-  publish_canary:
+  publish:
     runs-on: ubuntu-latest
     needs: [pass]
-    if: github.ref == 'refs/heads/canary'
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
@@ -71,21 +70,4 @@ jobs:
         with:
           path: ./*
           key: ${{ github.sha }}
-      - run: ./scripts/publish.sh canary
-
-  publish_stable:
-    runs-on: ubuntu-latest
-    needs: [pass]
-    if: github.ref == 'refs/heads/master'
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - uses: actions/cache@v2
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-      - run: ./scripts/publish.sh stable
+      - run: ./scripts/publish.sh

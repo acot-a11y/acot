@@ -1,6 +1,11 @@
 #!/bin/bash
 
-PUBLISH_TYPE=$1
+git describe --exact-match
+
+if [[ ! $? -eq 0 ]];then
+  echo "Nothing to publish, exiting.."
+  exit 0;
+fi
 
 if [[ -z "$NPM_TOKEN" ]];then
   echo "No NPM_TOKEN, exiting.."
@@ -9,9 +14,8 @@ fi
 
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 
-echo "Publishing ${PUBLISH_TYPE}"
-
-if [[ $PUBLISH_TYPE = "canary" ]]; then
+if [[ $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
+  echo "Publishing canary"
   yarn release:canary --yes
   if [[ ! $? -eq 0 ]]; then
     exit 1
@@ -20,7 +24,8 @@ if [[ $PUBLISH_TYPE = "canary" ]]; then
   fi
 fi
 
-if [[ $PUBLISH_TYPE = "stable" ]]; then
+if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
+  echo "Publishing stable"
   yarn release --yes
   if [[ ! $? -eq 0 ]]; then
     exit 1
