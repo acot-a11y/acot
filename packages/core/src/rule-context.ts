@@ -26,6 +26,19 @@ const buildFilename = (...args: string[]) => {
     .join('-');
 };
 
+const element2selectorIfNeeded = async (node: ElementHandle | undefined) => {
+  if (node == null) {
+    return null;
+  }
+
+  try {
+    return await element2selector(node);
+  } catch (e) {
+    debug('Element to Selector Error:', e);
+    return null;
+  }
+};
+
 const screenshotIfNeeded = async (
   node: ElementHandle | undefined,
   to: string,
@@ -38,7 +51,7 @@ const screenshotIfNeeded = async (
     await node.screenshot({ path: to });
     return true;
   } catch (e) {
-    debug('Screenshot error:', e);
+    debug('Screenshot Error:', e);
     return false;
   }
 };
@@ -78,7 +91,7 @@ export const createRuleContext = ({
         const imagepath = path.resolve(workingDir, `${basename}.png`);
 
         const [selector, image] = await Promise.all([
-          node ? element2selector(node) : null,
+          element2selectorIfNeeded(node),
           screenshotIfNeeded(node, imagepath),
           writeFile(htmlpath, await page.content(), 'utf8'),
         ]);
