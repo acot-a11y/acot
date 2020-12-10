@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-storybook@0.0.2-canary.7...@acot/acot-runner-storybook@0.0.2) (2020-12-10)
+
+### Bug Fixes
+
+- **runner-storybook:** Wait for configuring store ([9daccd0](https://github.com/acot-a11y/acot/commit/9daccd0ca48ea1f7ab0a7b543e45fa685925dafa))
+
 ## [0.0.2-canary.7](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-storybook@0.0.2-canary.6...@acot/acot-runner-storybook@0.0.2-canary.7) (2020-11-23)
 
 ### Features

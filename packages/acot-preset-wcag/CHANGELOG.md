@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.2-canary.7...@acot/acot-preset-wcag@0.0.2) (2020-12-10)
+
+### Features
+
+- **preset-wcag:** Add `page-has-valid-lang` rule ([8ee766c](https://github.com/acot-a11y/acot/commit/8ee766c3974c735553a830185bf098d0d427aacb))
+
 ## [0.0.2-canary.7](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.2-canary.6...@acot/acot-preset-wcag@0.0.2-canary.7) (2020-11-23)
 
 ### Bug Fixes

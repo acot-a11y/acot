@@ -1,6 +1,6 @@
 {
   "name": "@acot/types",
-  "version": "0.0.2-canary.3",
+  "version": "0.0.2",
   "description": "acot's underlying type declarations.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/types",
   "bugs": {
@@ -22,8 +22,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/find-chrome": "0.0.2-canary.1",
-    "@acot/schema-validator": "0.0.2-canary.1",
+    "@acot/find-chrome": "0.0.2",
+    "@acot/schema-validator": "0.0.2",
     "puppeteer-core": "^5.5.0",
     "type-fest": "^0.19.0"
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.7...@acot/core@0.0.2) (2020-12-10)
+
+### Bug Fixes
+
+- **core:** Add element2selector error handling ([4f1a9e5](https://github.com/acot-a11y/acot/commit/4f1a9e5cae66211cd8825028284e81077c8b745e))
+
 ## [0.0.2-canary.7](https://github.com/acot-a11y/acot/compare/@acot/core@0.0.2-canary.6...@acot/core@0.0.2-canary.7) (2020-11-23)
 
 ### Bug Fixes
