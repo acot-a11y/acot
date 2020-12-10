@@ -15,7 +15,7 @@
 
 > More accessible web, all over the world.
 
-`acot` is an open-source Accessibility Testing Framework that uses headless Chrome ([puppeteer](https://github.com/puppeteer/puppeteer)) to provide a means of testing any website or web app. It support for making the Web accessible with a flexible, highly reliable rule set that leverages browser-native APIs such as the AOM and DOM.
+`acot` is an open-source Accessibility Testing Framework that uses headless Chrome ([puppeteer](https://github.com/puppeteer/puppeteer)) to provide means of testing any website or web app. It supports for making the Web accessible with a flexible, highly reliable rule set that leverages browser-native APIs such as the AOM and DOM.
 
 ### Reliability
 
@@ -24,7 +24,7 @@
 
 ### Extensibility
 
-- You can use the rules published in the [ESLint](https://eslint.org/) Like plugin system.
+- You can use the rules published in the [ESLint](https://eslint.org/) like plugin system.
 - It's easy to implement and publish the rule sets you need for your team.
 - The divided packages allow you to assemble a custom workflow that works best for your team.
 
@@ -53,7 +53,7 @@ $ npx acot init
 
 ![Running acot init command](./docs/assets/acot-init.gif)
 
-And then, The `run` subcommand performs an audit based on the configuration file.
+And then, the `run` subcommand performs an audit based on the configuration file.
 
 ```bash
 $ npx acot run
