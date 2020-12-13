@@ -1,8 +1,5 @@
-import type {
-  Browser as PuppeteerBrowser,
-  Page,
-  LaunchOptions,
-} from 'puppeteer-core';
+import type { Browser as PuppeteerBrowser, Page } from 'puppeteer-core';
+import type { LaunchOptions } from '@acot/types';
 import { launch } from 'puppeteer-core';
 const debug = require('debug')('acot:core');
 

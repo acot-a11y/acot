@@ -8,10 +8,11 @@ import type {
   Summary,
   TestDescriptor,
   TestResult,
+  LaunchOptions,
 } from '@acot/types';
 import Emittery from 'emittery';
 import _ from 'lodash';
-import type { LaunchOptions, Viewport } from 'puppeteer-core';
+import type { Viewport } from 'puppeteer-core';
 import { BrowserPool } from './browser-pool';
 import { debug } from './logging';
 import { RuleStore } from './rule-store';
