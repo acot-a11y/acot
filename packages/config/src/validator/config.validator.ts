@@ -189,6 +189,84 @@ export const ConfigSchema = {
       $ref: '#/definitions/__type_2',
     },
     LaunchOptions: {
+      $ref: '#/definitions/__type_4',
+    },
+    'Pick<{with?:Record<string,any>;},"with">': {
+      properties: {
+        with: {
+          $ref: '#/definitions/T',
+        },
+      },
+      type: 'object',
+    },
+    Record: {
+      $ref: '#/definitions/__type',
+    },
+    RuleConfig: {
+      $ref: '#/definitions/__type_1',
+    },
+    T: {
+      $ref: '#/definitions/__type_3',
+    },
+    U: {
+      type: 'string',
+    },
+    Viewport: {
+      properties: {
+        deviceScaleFactor: {
+          default: 1,
+          description:
+            'Specify device scale factor (can be thought of as dpr).',
+          type: 'number',
+        },
+        hasTouch: {
+          default: false,
+          description: 'Specifies if viewport supports touch events.',
+          type: 'boolean',
+        },
+        height: {
+          description: 'The page height in pixels.',
+          type: 'number',
+        },
+        isLandscape: {
+          default: false,
+          description: 'Specifies if viewport is in landscape mode.',
+          type: 'boolean',
+        },
+        isMobile: {
+          default: false,
+          description: 'Whether the `meta viewport` tag is taken into account.',
+          type: 'boolean',
+        },
+        width: {
+          description: 'The page width in pixels.',
+          type: 'number',
+        },
+      },
+      required: ['height', 'width'],
+      type: 'object',
+    },
+    __type: {
+      type: 'object',
+    },
+    __type_1: {
+      type: 'object',
+    },
+    __type_2: {
+      properties: {
+        command: {
+          type: 'string',
+        },
+        timeout: {
+          type: 'number',
+        },
+      },
+      type: 'object',
+    },
+    __type_3: {
+      type: 'object',
+    },
+    __type_4: {
       properties: {
         args: {
           description:
@@ -307,12 +385,6 @@ export const ConfigSchema = {
             'Connects to the browser over a pipe instead of a WebSocket.',
           type: 'boolean',
         },
-        product: {
-          $ref: '#/definitions/Product',
-          default: "'chrome'",
-          description:
-            'Which browser to launch.\nAt this time, this is either `chrome` or `firefox`. See also `PUPPETEER_PRODUCT`.',
-        },
         slowMo: {
           description:
             'Slows down Puppeteer operations by the specified amount of milliseconds.\nUseful so that you can see what is going on.',
@@ -329,85 +401,6 @@ export const ConfigSchema = {
           type: 'string',
         },
       },
-      type: 'object',
-    },
-    'Pick<{with?:Record<string,any>;},"with">': {
-      properties: {
-        with: {
-          $ref: '#/definitions/T',
-        },
-      },
-      type: 'object',
-    },
-    Product: {
-      enum: ['chrome', 'firefox'],
-      type: 'string',
-    },
-    Record: {
-      $ref: '#/definitions/__type',
-    },
-    RuleConfig: {
-      $ref: '#/definitions/__type_1',
-    },
-    T: {
-      $ref: '#/definitions/__type_3',
-    },
-    U: {
-      type: 'string',
-    },
-    Viewport: {
-      properties: {
-        deviceScaleFactor: {
-          default: 1,
-          description:
-            'Specify device scale factor (can be thought of as dpr).',
-          type: 'number',
-        },
-        hasTouch: {
-          default: false,
-          description: 'Specifies if viewport supports touch events.',
-          type: 'boolean',
-        },
-        height: {
-          description: 'The page height in pixels.',
-          type: 'number',
-        },
-        isLandscape: {
-          default: false,
-          description: 'Specifies if viewport is in landscape mode.',
-          type: 'boolean',
-        },
-        isMobile: {
-          default: false,
-          description: 'Whether the `meta viewport` tag is taken into account.',
-          type: 'boolean',
-        },
-        width: {
-          description: 'The page width in pixels.',
-          type: 'number',
-        },
-      },
-      required: ['height', 'width'],
-      type: 'object',
-    },
-    __type: {
-      type: 'object',
-    },
-    __type_1: {
-      type: 'object',
-    },
-    __type_2: {
-      properties: {
-        command: {
-          type: 'string',
-        },
-        timeout: {
-          type: 'number',
-        },
-      },
-      type: 'object',
-    },
-    __type_3: {
       type: 'object',
     },
   },

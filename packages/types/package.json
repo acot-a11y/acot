@@ -25,7 +25,7 @@
     "@acot/find-chrome": "0.0.2",
     "@acot/schema-validator": "0.0.2",
     "puppeteer-core": "^5.5.0",
-    "type-fest": "^0.19.0"
+    "type-fest": "^0.20.2"
   },
   "devDependencies": {
     "@types/puppeteer-core": "^2.0.0"

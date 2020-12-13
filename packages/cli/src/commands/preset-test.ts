@@ -59,7 +59,7 @@ export default createCommand({
     port,
   });
 
-  const tester = new DocTester(server);
+  const tester = new DocTester(server, {});
   const reporter = new DocResultReporter({
     origin: `http://localhost:${port}`,
   });

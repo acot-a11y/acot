@@ -1,5 +1,5 @@
 import { findChrome } from '@acot/find-chrome';
-import type { LaunchOptions } from 'puppeteer-core';
+import type { LaunchOptions } from '@acot/types';
 import { Browser } from '../browser';
 
 describe('Browser', () => {

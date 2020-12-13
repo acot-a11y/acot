@@ -1,4 +1,4 @@
-import type { LaunchOptions } from 'puppeteer-core';
+import type { LaunchOptions } from '@acot/types';
 import { Browser } from './browser';
 import { Queue } from './queue';
 
