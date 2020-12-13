@@ -15,12 +15,12 @@
 
 > More accessible web, all over the world.
 
-`acot` is an open-source Accessibility Testing Framework that uses headless Chrome ([puppeteer](https://github.com/puppeteer/puppeteer)) to provide means of testing any website or web app. It supports for making the Web accessible with a flexible, highly reliable rule set that leverages browser-native APIs such as the AOM and DOM.
+acot is an open-source Accessibility Testing Framework that uses headless Chrome ([puppeteer](https://github.com/puppeteer/puppeteer)) to provide means of testing any website or web app. It supports for making the Web accessible with a flexible, highly reliable rule set that leverages browser-native APIs such as the AOM and DOM.
 
 ### Reliability
 
 - By using the results rendered by the browser, a highly reliable audit is possible.
-- `acot` provides original rules. In addition, it offers rules based on the proven [axe](https://github.com/dequelabs/axe-core).
+- acot provides original rules. In addition, it offers rules based on the proven [axe](https://github.com/dequelabs/axe-core).
 
 ### Extensibility
 
@@ -59,20 +59,56 @@ And then, the `run` subcommand performs an audit based on the configuration file
 $ npx acot run
 ```
 
-See the [CLI documentation](packages/cli) for details.
+![Running acot run command](./docs/assets/acot-run.gif)
+
+See the [CLI documentation](./packages/cli) for details.
+
+## Configuration
+
+If you use acot as the CLI, you can configure the audit via configuration file.  
+Usually, when you create a configuration file called `acot.config.js`, acot will automatically use that configuration file.
+
+**The simple configuration is as follows (`acot.config.js`):**
+
+```javascript
+module.exports = {
+  presets: ['@acot/wcag'],
+  extends: ['preset:@acot/wcag/recommended'],
+  origin: 'http://localhost:8000',
+  connection: {
+    command: 'npm run serve',
+  },
+  paths: ['/', '/path', '/path/to', '/path/to/dir'],
+  rules: {
+    '@acot/wcag/interactive-has-enough-size': 'warn',
+    '@acot/wcag/page-has-valid-lang': 'off',
+    '@example/foo/bar': [
+      'error',
+      {
+        /* options */
+      },
+    ],
+  },
+};
+```
+
+See the [Configuration](./docs/configuration.md) for details.
 
 ## Requirements
 
 - Node.js 12.10.0+ (require [Promise.allSettled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled))
 - Puppeteer 5.4.0+ (require [aria handler](https://github.com/puppeteer/puppeteer/releases/tag/v5.4.0))
 
-## How does it work?
+## Documentation
 
-_T.B.A_
+- [Configuration](./docs/configuration.md)
+- [Command Line Interface](./packages/cli)
+- [Core API](./packages/core)
+- [Develoepr Guide](./docs/developer-guide.md)
 
 ## Packages
 
-`acot` has a feature which is divided into several packages.
+acot has a feature which is divided into several packages.
 
 ### Foundations
 

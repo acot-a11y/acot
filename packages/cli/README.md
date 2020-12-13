@@ -20,10 +20,10 @@ You can build the configuration file and install the dependent packages with the
 $ npx acot init
 ```
 
-And then, The `run` subcommand performs an audit based on the configuration file.
+And then, the `run` subcommand performs an audit based on the configuration file.
 
 ```bash
 $ npx acot run
 ```
 
-_T.B.A_
+## Configure
