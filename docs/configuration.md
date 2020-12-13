@@ -3,6 +3,18 @@
 If you use acot as the CLI, you can configure the audit via configuration file.  
 This documentation describes how to build a configuration file to take advantage of acot.
 
+## Table of Contents
+
+- [Overview](#overview)
+  - [Configuration File Formats](#configuration-file-formats)
+  - [Configuring rules](#configuring-rules)
+  - [Configuring presets](#configuring-presets)
+  - [Extending configuration](#extending-configuration)
+  - [Overrides configuration per URL paths](#overrides-configuration-per-url-paths)
+- [Reference](#reference)
+  - [Basic Options](#basic-options)
+  - [Browser Options](#browser-options)
+
 ## Overview
 
 First, you need to understand an overview of the configuration file.
