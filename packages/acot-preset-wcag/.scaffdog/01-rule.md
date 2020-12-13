@@ -12,7 +12,7 @@ ignore: ['**/*']
 ````markdown
 # {{ input }}
 
-> **TODO:**Short summary.
+**TODO:**Short summary.
 
 **TODO:** Description.
 
