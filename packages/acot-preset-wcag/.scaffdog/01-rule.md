@@ -39,7 +39,6 @@ type Options = {};
 export default createRule<Options>({
   type: '...',
   meta: {
-    description: '...',
     recommended: false,
   },
 

@@ -7,7 +7,6 @@ export default createRule<Options>({
   type: 'contextual',
   selector: '[aria-haspopup="dialog"]',
   meta: {
-    description: 'Move focus to inside dialog or set dialog after trigger.',
     tags: ['wcag2.1a', '2.4.3 Focus Order'],
     recommended: true,
   },
