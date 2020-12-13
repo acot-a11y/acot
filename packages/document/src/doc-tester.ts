@@ -1,3 +1,4 @@
+import os from 'os';
 import type { TestcaseResult } from '@acot/types';
 import { Acot } from '@acot/core';
 import plur from 'plur';
@@ -8,11 +9,20 @@ import type { DocProject } from './doc-project';
 import type { DocResult } from './doc-result';
 import { debug } from './logging';
 
+export type DocTesterConfig = {
+  parallel: number;
+};
+
 export class DocTester {
   private _server: DocServer;
+  private _config: DocTesterConfig;
 
-  public constructor(server: DocServer) {
+  public constructor(server: DocServer, config: Partial<DocTesterConfig> = {}) {
     this._server = server;
+    this._config = {
+      parallel: os.cpus().length,
+      ...config,
+    };
   }
 
   public async test(project: DocProject): Promise<DocResult> {
@@ -30,7 +40,7 @@ export class DocTester {
       launchOptions: {
         executablePath: chromium?.executablePath,
       },
-      parallel: 1, // TODO Handle parameters
+      parallel: this._config.parallel,
       presets: [project.preset],
       origin: `http://localhost:${port}`,
     });
@@ -106,7 +116,6 @@ export class DocTester {
         }
       });
     } catch (e) {
-      // TODO logging
       debug('Unexpected doc-test error:', e);
     }
 
