@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.0](https://github.com/acot-a11y/acot/compare/@example/storybook5@0.0.2...@example/storybook5@0.0.3-canary.0) (2020-12-14)
+
+**Note:** Version bump only for package @example/storybook5
+
 ## [0.0.2](https://github.com/acot-a11y/acot/compare/@example/storybook5@0.0.2-canary.7...@example/storybook5@0.0.2) (2020-12-10)
 
 **Note:** Version bump only for package @example/storybook5

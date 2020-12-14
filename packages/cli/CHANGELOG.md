@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.0](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.2...@acot/cli@0.0.3-canary.0) (2020-12-14)
+
+### Bug Fixes
+
+- Fix omission of version specification in `debug` package ([85f8ea4](https://github.com/acot-a11y/acot/commit/85f8ea44c7b029301dbcd6bceef427fda35972b6))
+
+### Performance Improvements
+
+- **document:** Improve preset test performance ([51aa3d2](https://github.com/acot-a11y/acot/commit/51aa3d2f6dc6f609c179f5410c12d9ad431706f3))
+
 ## [0.0.2](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.2-canary.7...@acot/cli@0.0.2) (2020-12-10)
 
 **Note:** Version bump only for package @acot/cli

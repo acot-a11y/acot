@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.2...@acot/acot-preset-wcag@0.0.3-canary.0) (2020-12-14)
+
+### Features
+
+- **preset-wcag:** add rule focusable-has-indicator ([3bdc1fe](https://github.com/acot-a11y/acot/commit/3bdc1fe8687066dcd0f1d79dfcc5f07f8a43a882))
+- **preset-wcag:** Add some rules to recommended set ([6bafccc](https://github.com/acot-a11y/acot/commit/6bafcccdf3cb0974cd1a27b21e163ae7f1104783))
+
 ## [0.0.2](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.2-canary.7...@acot/acot-preset-wcag@0.0.2) (2020-12-10)
 
 ### Features

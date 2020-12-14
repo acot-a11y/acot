@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.0](https://github.com/acot-a11y/acot/compare/@acot/types@0.0.2...@acot/types@0.0.3-canary.0) (2020-12-14)
+
+### Bug Fixes
+
+- Fix omission of version specification in `debug` package ([85f8ea4](https://github.com/acot-a11y/acot/commit/85f8ea44c7b029301dbcd6bceef427fda35972b6))
+
 ## [0.0.2](https://github.com/acot-a11y/acot/compare/@acot/types@0.0.2-canary.3...@acot/types@0.0.2) (2020-12-10)
 
 **Note:** Version bump only for package @acot/types

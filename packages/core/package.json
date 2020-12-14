@@ -1,6 +1,6 @@
 {
   "name": "@acot/core",
-  "version": "0.0.2",
+  "version": "0.0.3-canary.0",
   "description": "More accessible web, all over the world.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/core",
   "bugs": {
@@ -30,12 +30,12 @@
     ]
   },
   "dependencies": {
-    "@acot/factory": "0.0.2",
+    "@acot/factory": "0.0.3-canary.0",
     "@acot/html-pickup": "0.0.2",
     "@acot/logger": "0.0.2",
     "@acot/module-loader": "0.0.2",
     "@acot/schema-validator": "0.0.2",
-    "@acot/types": "0.0.2",
+    "@acot/types": "0.0.3-canary.0",
     "@acot/utils": "0.0.2",
     "debug": "^4.3.1",
     "emittery": "^0.7.1",
