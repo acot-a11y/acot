@@ -37,10 +37,14 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 
 | Name                                                                                    | Summary                                                                    | :heavy_check_mark: |
 | :-------------------------------------------------------------------------------------- | :------------------------------------------------------------------------- | :----------------- |
+| [`@acot/wcag/dialog-focus`](./docs/rules/dialog-focus.md)                               | Move focus to inside dialog or set dialog after trigger.                   | :heavy_check_mark: |
+| [`@acot/wcag/focusable-has-indicator`](./docs/rules/focusable-has-indicator.md)         | Focusable elemenet has a focus indicator.                                  | :heavy_check_mark: |
+| [`@acot/wcag/img-has-name`](./docs/rules/img-has-name.md)                               | The `img` element or img role MUST has name.                               | :heavy_check_mark: |
 | [`@acot/wcag/interactive-has-enough-size`](./docs/rules/interactive-has-enough-size.md) | The size of the target for pointer inputs is at least 44 by 44 CSS pixels. | :heavy_check_mark: |
 | [`@acot/wcag/interactive-has-name`](./docs/rules/interactive-has-name.md)               | Interactive elements MUST has name.                                        | :heavy_check_mark: |
 | [`@acot/wcag/interactive-supports-focus`](./docs/rules/interactive-supports-focus.md)   | _T.B.A_                                                                    | :heavy_check_mark: |
 | [`@acot/wcag/page-has-title`](./docs/rules/page-has-title.md)                           | Web pages have titles that describe topic or purpose. WCAG 2.1 - 2.4.2.    | :heavy_check_mark: |
+| [`@acot/wcag/page-has-valid-lang`](./docs/rules/page-has-valid-lang.md)                 | The `html` element MUST has a valid lang attribute.                        | :heavy_check_mark: |
 
 <!-- acot-rules:end -->
 
