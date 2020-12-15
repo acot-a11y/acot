@@ -9,6 +9,7 @@ import Listr from 'listr';
 import { emojify } from 'node-emoji';
 import prettier from 'prettier';
 import isURL from 'validator/lib/isURL';
+import { findChrome } from '@acot/find-chrome';
 import { createCommand } from '../command';
 import { debug } from '../logging';
 
@@ -92,13 +93,8 @@ const validateNpmClient: Validator = (value) => {
   return true;
 };
 
-const isPuppeteerInstalled = (): boolean => {
-  try {
-    require('puppeteer');
-    return true;
-  } catch {
-    return false;
-  }
+const isPuppeteerInstalled = async (): Promise<boolean> => {
+  return (await findChrome({ channel: 'puppeteer' })) !== null;
 };
 
 const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
@@ -219,7 +215,7 @@ const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
   if (defaults.installPuppeteer !== undefined) {
     result.installPuppeteer = defaults.installPuppeteer;
   } else {
-    if (isPuppeteerInstalled()) {
+    if (await isPuppeteerInstalled()) {
       result.installPuppeteer = false;
     } else {
       result.installPuppeteer = await prompt({
