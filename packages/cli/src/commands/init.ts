@@ -94,7 +94,7 @@ const validateNpmClient: Validator = (value) => {
 
 const isPuppeteerInstalled = (): boolean => {
   try {
-    const puppeteer = require('puppeteer');
+    require('puppeteer');
     return true;
   } catch {
     return false;
