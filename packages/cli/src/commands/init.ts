@@ -92,6 +92,15 @@ const validateNpmClient: Validator = (value) => {
   return true;
 };
 
+const isPuppeteerInstalled = (): boolean => {
+  try {
+    const puppeteer = require('puppeteer');
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
   const result: PromptResult = {
     origin: '',
@@ -210,12 +219,16 @@ const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
   if (defaults.installPuppeteer !== undefined) {
     result.installPuppeteer = defaults.installPuppeteer;
   } else {
-    result.installPuppeteer = await prompt({
-      type: 'toggle',
-      name: 'installPuppeteer',
-      message: 'Do you want to install Puppeteer as a dependency?',
-      initial: 1,
-    });
+    if (isPuppeteerInstalled()) {
+      result.installPuppeteer = false;
+    } else {
+      result.installPuppeteer = await prompt({
+        type: 'toggle',
+        name: 'installPuppeteer',
+        message: 'Do you want to install Puppeteer as a dependency?',
+        initial: 1,
+      });
+    }
   }
 
   if (defaults.npmClient !== undefined) {
