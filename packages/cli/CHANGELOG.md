@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.1](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.3-canary.0...@acot/cli@0.0.3-canary.1) (2020-12-16)
+
+### Features
+
+- **cli:** Improve UX for init sub-command ([04e9aed](https://github.com/acot-a11y/acot/commit/04e9aedb05e8be8d07ef0ffa2d804ab89e8ccd56))
+- **cli:** Skip ask about puppeteer if installed ([350dc09](https://github.com/acot-a11y/acot/commit/350dc09ced8e7c17c77edc75b879f18471b7d488))
+
 ## [0.0.3-canary.0](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.2...@acot/cli@0.0.3-canary.0) (2020-12-14)
 
 ### Bug Fixes
