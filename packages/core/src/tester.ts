@@ -38,6 +38,10 @@ export type TesterConfig = {
   readyTimeout: number;
   onTestStart: (...args: CoreEventMap['test:start']) => Promise<void>;
   onTestComplete: (...args: CoreEventMap['test:complete']) => Promise<void>;
+  onTestcaseStart: (...args: CoreEventMap['testcase:start']) => Promise<void>;
+  onTestcaseComplete: (
+    ...args: CoreEventMap['testcase:complete']
+  ) => Promise<void>;
 };
 
 export class Tester {
@@ -74,9 +78,7 @@ export class Tester {
               await series(
                 immutable.map((args) => async () => {
                   await this._execute(browser, page, tracker, args);
-
-                  // Cleanup the page state.
-                  await page.focus('body');
+                  await this._cleanupPage(page);
                 }),
               );
             } catch (e) {
@@ -220,12 +222,25 @@ export class Tester {
     return page;
   }
 
+  private async _cleanupPage(page: Page): Promise<void> {
+    await page.focus('body');
+  }
+
   private async _execute(
     browser: Browser,
     page: Page,
     tracker: TimingTracker,
     [id, rule, options]: TesterRuleGroup,
   ): Promise<void> {
+    const {
+      url,
+      workingDir,
+      onTestcaseStart,
+      onTestcaseComplete,
+    } = this._config;
+
+    await onTestcaseStart(url, id);
+
     await tracker.track(id, async () => {
       const results: TestcaseResult[] = [];
 
@@ -233,15 +248,15 @@ export class Tester {
         process: browser.id(),
         status: options[0] as Exclude<Status, 'off'>,
         rule: id,
-        url: this._config.url,
+        url,
         tags: rule.meta?.tags ?? [],
-        workingDir: this._config.workingDir,
+        workingDir,
         results,
         page,
         options,
       });
 
-      const addErrorResult = (e: unknown) => {
+      const handleUnexpectedError = (e: unknown) => {
         debug('Unexpected error occurred:', e);
 
         results.push(
@@ -259,7 +274,7 @@ export class Tester {
 
       switch (rule.type) {
         case 'global': {
-          await rule.test(context).catch((e) => addErrorResult(e));
+          await rule.test(context).catch(handleUnexpectedError);
           break;
         }
 
@@ -269,16 +284,11 @@ export class Tester {
 
             await Promise.all(
               nodes.map((node) =>
-                rule.test(context, node).catch((e) => addErrorResult(e)),
+                rule.test(context, node).catch(handleUnexpectedError),
               ),
             );
           } catch (e) {
-            debug(
-              'Not found elements (rule="%s", url="%s")',
-              id,
-              this._config.url,
-              e,
-            );
+            debug('Not found elements (rule="%s", url="%s")', id, url, e);
           }
           break;
         }
@@ -305,16 +315,18 @@ export class Tester {
         );
       }
 
+      await onTestcaseComplete(url, id, results);
+
       this._results.push(...results);
     });
   }
 
   private async _waitForReady(page: Page): Promise<void> {
-    const { readyTimeout: timeout } = this._config;
+    const { url, readyTimeout: timeout } = this._config;
 
     try {
       await Promise.all([
-        page.goto(this._config.url, {
+        page.goto(url, {
           waitUntil: 'networkidle2',
           timeout,
         }),

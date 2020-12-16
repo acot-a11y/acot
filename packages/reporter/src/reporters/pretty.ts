@@ -6,7 +6,7 @@ import boxen from 'boxen';
 import table from 'text-table';
 import ora from 'ora';
 import indent from 'indent-string';
-import type { TestResult } from '@acot/types';
+import type { RuleId, TestcaseResult } from '@acot/types';
 import logUpdate from 'log-update';
 import logSymbols from 'log-symbols';
 import plur from 'plur';
@@ -16,13 +16,42 @@ import { createReporterFactory } from '../factory';
 
 const readFile = promisify(fs.readFile);
 
-const count = (s: string, n: number) => `${n} ${plur(s, n)}`;
+const setCount = (arr: string[], s: string, n: number) => {
+  if (n > 0) {
+    arr.push(`${n} ${plur(s, n)}`);
+  }
+};
+
+const summarize = (results: TestcaseResult[]) => {
+  const stat = results.reduce(
+    (acc, cur) => {
+      acc.pass += cur.status === 'pass' ? 1 : 0;
+      acc.pass += cur.status === 'error' ? 1 : 0;
+      acc.pass += cur.status === 'warn' ? 1 : 0;
+      return acc;
+    },
+    {
+      pass: 0,
+      error: 0,
+      warn: 0,
+    },
+  );
+
+  const msg: string[] = [];
+
+  setCount(msg, 'pass', stat.pass);
+  setCount(msg, 'error', stat.error);
+  setCount(msg, 'warning', stat.warn);
+
+  return msg.join(', ');
+};
 
 const stringLength = (s: string) => stripAnsi(s).length;
 
 class AuditProgress {
-  protected _current = 0;
   protected _urls: string[];
+  protected _current = 0;
+  protected _total = 0;
   protected _stream: NodeJS.WritableStream;
   protected _timer: NodeJS.Timeout | null = null;
   protected _spinner: ora.Ora;
@@ -37,23 +66,20 @@ class AuditProgress {
   }
 
   public isComplete() {
-    return this._current >= this._urls.length;
+    return this._current >= this._total;
   }
 
   public start() {
     this._loop();
   }
 
-  public increment(result: TestResult) {
-    const summary = [
-      count('error', result.errorCount),
-      count('warning', result.warningCount),
-      count('pass', result.passCount),
-    ].join(', ');
+  public add(total: number) {
+    this._total += total;
+  }
 
-    this._text = `${result.url} (${summary})`;
-
+  public increment(url: string, id: RuleId, results: TestcaseResult[]) {
     this._current++;
+    this._text = `${url} - ${id} (${summarize(results)})`;
 
     if (this.isComplete()) {
       this.done();
@@ -74,8 +100,7 @@ class AuditProgress {
   }
 
   private _render() {
-    const total = this._urls.length;
-    const progress = this._current / total;
+    const progress = this._current / this._total;
     const percent = `${Math.floor(progress * 100)}`.padStart(3);
     const format = {
       size: 30,
@@ -92,7 +117,7 @@ class AuditProgress {
     const spinner = this.isComplete() ? '' : `${this._spinner.frame()}`;
 
     let output = [
-      chalk.bold(`Running on ${total} URLs:`),
+      chalk.bold(`Running on ${this._urls.length} URLs:`),
       chalk`{cyan ${percent}%} ${bar} ${spinner}{gray ${this._text}}`,
     ].join('\n');
 
@@ -111,22 +136,17 @@ class AuditProgress {
 }
 
 class AuditLinearProgress extends AuditProgress {
-  public increment(result: TestResult) {
+  public increment(url: string, id: RuleId, results: TestcaseResult[]) {
     this._current++;
 
-    const total = this._urls.length;
-    const current = this._current.toString().padStart(`${total}`.length, '0');
-
-    const summary = [
-      count('error', result.errorCount),
-      count('warning', result.warningCount),
-      count('pass', result.passCount),
-    ].join(', ');
+    const current = this._current
+      .toString()
+      .padStart(`${this._total}`.length, '0');
 
     const output = [
-      `[${current}/${total}]`,
-      chalk.bold(result.url),
-      chalk`{gray (${summary})}`,
+      chalk.gray(`[${current}/${this._total}]`),
+      chalk.bold(url),
+      chalk.gray(`${id} (${summarize(results)})`),
     ].join(' ');
 
     this._stream.write(`${output}\n`);
@@ -215,8 +235,12 @@ export default createReporterFactory(
       progress!.start();
     });
 
-    runner.on('test:complete', ([, , result]) => {
-      progress!.increment(result);
+    runner.on('test:start', ([, ids]) => {
+      progress!.add(ids.length);
+    });
+
+    runner.on('testcase:complete', ([url, id, results]) => {
+      progress!.increment(url, id, results);
     });
 
     runner.on('audit:complete', async ([summary]) => {

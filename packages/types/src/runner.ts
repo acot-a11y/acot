@@ -16,6 +16,8 @@ export type RunnerEventMap = {
   'audit:complete': CoreEventMap['audit:complete'];
   'test:start': CoreEventMap['test:start'];
   'test:complete': CoreEventMap['test:complete'];
+  'testcase:start': CoreEventMap['testcase:start'];
+  'testcase:complete': CoreEventMap['testcase:complete'];
   'close:start': CoreEventMap['close:start'];
   'close:complete': CoreEventMap['close:complete'];
   'cleanup:start': [];
