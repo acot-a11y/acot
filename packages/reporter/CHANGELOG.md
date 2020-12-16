@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.1](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.3-canary.0...@acot/reporter@0.0.3-canary.1) (2020-12-16)
+
+### Features
+
+- Improve progress display (pretty reporter) ([dc4e9e1](https://github.com/acot-a11y/acot/commit/dc4e9e1655408a499619a690798e06ef439844be))
+
 ## [0.0.3-canary.0](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.2...@acot/reporter@0.0.3-canary.0) (2020-12-14)
 
 **Note:** Version bump only for package @acot/reporter

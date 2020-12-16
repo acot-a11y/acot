@@ -1,6 +1,6 @@
 {
   "name": "@acot/reporter",
-  "version": "0.0.3-canary.0",
+  "version": "0.0.3-canary.1",
   "description": "A reporter toolset and built-in reporters for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/reporter",
   "bugs": {
@@ -45,7 +45,7 @@
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.3-canary.0",
+    "@acot/types": "0.0.3-canary.1",
     "@types/text-table": "^0.2.1"
   },
   "publishConfig": {
