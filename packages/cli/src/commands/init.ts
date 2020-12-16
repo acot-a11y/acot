@@ -93,8 +93,17 @@ const validateNpmClient: Validator = (value) => {
   return true;
 };
 
-const isPuppeteerInstalled = async (): Promise<boolean> => {
+const isPuppeteerInstalled = async () => {
   return (await findChrome({ channel: 'puppeteer' })) !== null;
+};
+
+const isYarnExists = async () => {
+  try {
+    await execa.command('yarn --version', { stdio: 'ignore' });
+    return true;
+  } catch (e) {
+    return false;
+  }
 };
 
 const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
@@ -133,13 +142,13 @@ const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
       choices: [
         {
           name: 'exiting',
-          message: 'Running server',
-          hint: '(e.g. https://example.com)',
+          message: 'Existing server',
+          hint: '(e.g. "https://example.com")',
         },
         {
           name: 'command',
-          message: 'Local server',
-          hint: '(e.g. http://localhost:8000)',
+          message: 'Launch server via command',
+          hint: '(e.g. "npm start")',
         },
       ],
     });
@@ -215,7 +224,9 @@ const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
   if (defaults.installPuppeteer !== undefined) {
     result.installPuppeteer = defaults.installPuppeteer;
   } else {
-    if (await isPuppeteerInstalled()) {
+    const puppeteerInstalled = await isPuppeteerInstalled();
+
+    if (puppeteerInstalled) {
       result.installPuppeteer = false;
     } else {
       result.installPuppeteer = await prompt({
@@ -230,15 +241,26 @@ const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
   if (defaults.npmClient !== undefined) {
     result.npmClient = defaults.npmClient!.trim();
   } else {
-    result.npmClient = await prompt({
-      type: 'select',
-      name: 'npmClient',
-      message:
-        'Which is the npm client used to install the dependent packages?',
-      choices: NPM_CLIENTS,
-      initial: 0,
-      validate: validateNpmClient,
-    });
+    const shoudPackageInstall =
+      result.useConfig || result.runner !== '' || result.installPuppeteer;
+
+    const yarnExists = await isYarnExists();
+
+    if (shoudPackageInstall) {
+      if (yarnExists) {
+        result.npmClient = await prompt({
+          type: 'select',
+          name: 'npmClient',
+          message:
+            'Which is the npm client used to install the dependent packages?',
+          choices: NPM_CLIENTS,
+          initial: 0,
+          validate: validateNpmClient,
+        });
+      } else {
+        result.npmClient = NPM_CLIENTS[0];
+      }
+    }
   }
 
   return result;
