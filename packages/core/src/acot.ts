@@ -95,6 +95,8 @@ export class Acot implements Core {
         store,
         onTestStart: this._handleTestStart,
         onTestComplete: this._handleTestComplete,
+        onTestcaseStart: this._handleTestcaseStart,
+        onTestcaseComplete: this._handleTestcaseComplete,
       }),
     );
   }
@@ -223,5 +225,17 @@ export class Acot implements Core {
     ...args: CoreEventMap['test:complete']
   ) => {
     await this._emitter.emit('test:complete', args);
+  };
+
+  private _handleTestcaseStart = async (
+    ...args: CoreEventMap['testcase:start']
+  ) => {
+    await this._emitter.emit('testcase:start', args);
+  };
+
+  private _handleTestcaseComplete = async (
+    ...args: CoreEventMap['testcase:complete']
+  ) => {
+    await this._emitter.emit('testcase:complete', args);
   };
 }

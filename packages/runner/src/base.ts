@@ -151,19 +151,23 @@ export class BaseRunner implements Runner {
     this._core.on('audit:complete', this._handleAuditComplete);
     this._core.on('test:start', this._handleTestStart);
     this._core.on('test:complete', this._handleTestComplete);
+    this._core.on('testcase:start', this._handleTestcaseStart);
+    this._core.on('testcase:complete', this._handleTestcaseComplete);
     this._core.on('close:start', this._handleCloseStart);
     this._core.on('close:complete', this._handleCloseComplete);
   }
 
   private _unbindEvents() {
-    this._core.on('launch:start', this._handleLaunchStart);
-    this._core.on('launch:complete', this._handleLaunchComplete);
-    this._core.on('audit:start', this._handleAuditStart);
-    this._core.on('audit:complete', this._handleAuditComplete);
-    this._core.on('test:start', this._handleTestStart);
-    this._core.on('test:complete', this._handleTestComplete);
-    this._core.on('close:start', this._handleCloseStart);
-    this._core.on('close:complete', this._handleCloseComplete);
+    this._core.off('launch:start', this._handleLaunchStart);
+    this._core.off('launch:complete', this._handleLaunchComplete);
+    this._core.off('audit:start', this._handleAuditStart);
+    this._core.off('audit:complete', this._handleAuditComplete);
+    this._core.off('test:start', this._handleTestStart);
+    this._core.off('test:complete', this._handleTestComplete);
+    this._core.off('testcase:start', this._handleTestcaseStart);
+    this._core.off('testcase:complete', this._handleTestcaseComplete);
+    this._core.off('close:start', this._handleCloseStart);
+    this._core.off('close:complete', this._handleCloseComplete);
   }
 
   private async _close(): Promise<void> {
@@ -207,6 +211,18 @@ export class BaseRunner implements Runner {
     args: RunnerEventMap['test:complete'],
   ) => {
     await this._emitter.emit('test:complete', args);
+  };
+
+  private _handleTestcaseStart = async (
+    args: RunnerEventMap['testcase:start'],
+  ) => {
+    await this._emitter.emit('testcase:start', args);
+  };
+
+  private _handleTestcaseComplete = async (
+    args: RunnerEventMap['testcase:complete'],
+  ) => {
+    await this._emitter.emit('testcase:complete', args);
   };
 
   private _handleCloseStart = async (args: RunnerEventMap['close:start']) => {
