@@ -17,7 +17,9 @@
     "acot": "lib/bin.js"
   },
   "files": [
-    "lib"
+    "lib",
+    "!__mocks__",
+    "!__tests__"
   ],
   "scripts": {
     "build": "tsc",

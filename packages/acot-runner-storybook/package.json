@@ -16,7 +16,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "!__mocks__",
+    "!__tests__"
   ],
   "scripts": {
     "build": "tsc"
