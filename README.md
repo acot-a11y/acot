@@ -1,7 +1,13 @@
-![acot - Accessibility Testing Framework](docs/assets/repository-header.png)
+![acot](docs/assets/repository-header.png)
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/acot-a11y/acot/CI?logo=github&style=flat-square)](https://github.com/acot-a11y/acot/actions?workflow=CI)
-[![MIT LICENSE](https://img.shields.io/github/license/acot-a11y/acot?label=license&style=flat-square)](./LICENSE)
+<p align="center">
+  Accessibility Testing Framework
+</p>
+
+<p align="center">
+  <a href="https://github.com/acot-a11y/acot/actions?workflow=CI"><img src="https://img.shields.io/github/workflow/status/acot-a11y/acot/CI?logo=github&style=flat-square" alt="GitHub Workflow Status" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/acot-a11y/acot?label=license&style=flat-square" alt="MIT LICENSE" /></a>
+</p>
 
 ---
 
