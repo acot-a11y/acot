@@ -4,9 +4,12 @@ import type { Stat } from './stat';
 
 export type Status = Exclude<ReportType, 'off'> | 'pass';
 
+export type RuleResult = Record<RuleId, Stat>;
+
 export type BaseTestcaseResult = {
   process: number;
   rule: RuleId;
+  duration: number;
   message: string;
   tags: string[];
   selector: string | null;
@@ -29,5 +32,6 @@ export type TestcaseResult = FailureTestcaseResult | PassTestcaseResult;
 
 export type TestResult = Stat & {
   url: string;
+  rules: RuleResult;
   results: TestcaseResult[];
 };

@@ -4,7 +4,9 @@ import { promisify } from 'util';
 import chalk from 'chalk';
 import boxen from 'boxen';
 import table from 'text-table';
+import CLITable from 'cli-table';
 import ora from 'ora';
+import ms from 'pretty-ms';
 import indent from 'indent-string';
 import type { RuleId, TestcaseResult } from '@acot/types';
 import logUpdate from 'log-update';
@@ -171,25 +173,27 @@ export default createReporterFactory(
 
     let spinner: ora.Ora;
 
+    stdout.write('\n');
     stdout.write(
       boxen(
         [
           chalk.bold.green('Audit by acot'),
           table(
             [
-              [chalk.bold('acot core:'), `v${runner.version.core}`],
+              [chalk.gray('acot core:'), `v${runner.version.core}`],
               [
-                chalk.bold('runner:'),
+                chalk.gray('runner:'),
                 `${runner.name} (v${runner.version.self})`,
               ],
-              [chalk.bold('origin:'), chalk.underline(`${config.origin}`)],
+              [chalk.gray('origin:'), chalk.underline(`${config.origin}`)],
             ],
             { stringLength },
           ),
         ].join('\n\n'),
         { borderColor: 'gray', padding: 1 },
-      ) + '\n\n',
+      ),
     );
+    stdout.write('\n\n');
 
     let progress: AuditProgress | AuditLinearProgress | null = null;
 
@@ -333,33 +337,61 @@ export default createReporterFactory(
         }),
       );
 
-      if (summary.errorCount > 0) {
-        stdout.write(
-          chalk.red(
-            `${summary.errorCount} ${plur('error', summary.errorCount)}\n`,
-          ),
-        );
-      }
+      stdout.write(heading('(Summary)') + '\n');
 
-      if (summary.warningCount > 0) {
-        stdout.write(
-          chalk.yellow(
-            `${summary.warningCount} ${plur(
-              'warning',
-              summary.warningCount,
-            )}\n`,
-          ),
-        );
-      }
+      const cliTable = new CLITable({
+        head: ['', 'Rule', '', 'Pass', 'Error', 'Warning'],
+        colAligns: ['middle', 'left', 'right', 'right', 'right', 'right'],
+        chars: {
+          'top-mid': '─',
+          'bottom-mid': '─',
+          'mid-mid': '─',
+          middle: ' ',
+        },
+        style: {
+          head: ['gray', 'bold'],
+          border: ['gray'],
+          compact: true,
+        },
+      });
 
-      if (summary.passCount > 0) {
-        stdout.write(
-          chalk.green(
-            `${summary.passCount} ${plur('pass', summary.passCount)}\n`,
-          ),
-        );
-      }
+      const passCount = (n: number) =>
+        n > 0 ? chalk.green(n) : chalk.gray('-');
 
+      const errorCount = (n: number) =>
+        n > 0 ? chalk.red(n) : chalk.gray('-');
+
+      const warningCount = (n: number) =>
+        n > 0 ? chalk.yellow(n) : chalk.gray('-');
+
+      Object.entries(summary.rules).forEach(([rule, result]) => {
+        let status = logSymbols.success;
+        if (result.errorCount > 0) {
+          status = logSymbols.error;
+        } else if (result.warningCount > 0) {
+          status = logSymbols.warning;
+        }
+
+        cliTable.push([
+          status,
+          rule,
+          chalk.gray(ms(result.duration)),
+          passCount(result.passCount),
+          errorCount(result.errorCount),
+          warningCount(result.warningCount),
+        ]);
+      });
+
+      cliTable.push([
+        '',
+        '',
+        ms(summary.duration),
+        passCount(summary.passCount),
+        errorCount(summary.errorCount),
+        warningCount(summary.warningCount),
+      ]);
+
+      stdout.write(`${cliTable.toString()}\n`);
       stdout.write('\n');
     });
   },

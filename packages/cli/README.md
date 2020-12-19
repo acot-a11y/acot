@@ -160,7 +160,6 @@ acot run <paths..> [flags]
     --connection-timeout      Timeout ms for connecting to the host server.
     --browser-timeout         Timeout ms to wait for pooled browsers.
     --ready-timeout           Timeout ms waiting for page load.
-    --performance             Dump the execution time per rule.
     --chrome-channel          Channel to search local Chromium. One of "puppeteer", "canary", "stable", "*". (default: "*")
     --chrome-executable-path  Executable Chromium path.
     --launch-options          JSON string of launch config for Puppeteer.

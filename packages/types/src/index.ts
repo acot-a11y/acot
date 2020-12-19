@@ -11,4 +11,3 @@ export * from './runner';
 export * from './schema';
 export * from './stat';
 export * from './summary';
-export * from './timing';

@@ -6,25 +6,25 @@ import type {
   TestcaseResult,
   TestResult,
   CoreEventMap,
+  Stat,
 } from '@acot/types';
 import { validate } from '@acot/schema-validator';
-import { createTestcaseResult } from '@acot/factory';
+import { createStat, createTestcaseResult } from '@acot/factory';
 import _ from 'lodash';
 import type { Page, Viewport } from 'puppeteer-core';
 import series from 'p-series';
 import type { BrowserPool } from './browser-pool';
-import type { TimingTracker } from './timing-tracker';
 import type { RuleStore } from './rule-store';
 import { createRuleContext } from './rule-context';
 import type { Browser } from './browser';
 import { debug } from './logging';
+import { mark } from './timing';
 
 type TesterRuleOptions = NormalizedRuleConfig[RuleId];
 type TesterRuleGroup = [RuleId, Rule, TesterRuleOptions];
 
 export type TesterContext = {
   pool: BrowserPool;
-  tracker: TimingTracker;
 };
 
 export type TesterConfig = {
@@ -60,12 +60,14 @@ export class Tester {
     return this._config.rules;
   }
 
-  public async test({ pool, tracker }: TesterContext): Promise<TestResult> {
+  public async test({ pool }: TesterContext): Promise<TestResult> {
     const { priority, url, onTestStart, onTestComplete } = this._config;
     const { immutable, mutable } = this._prepare();
     const ids = [...immutable, ...mutable].map(([id]) => id);
 
     await onTestStart(url, ids);
+
+    const measure = mark();
 
     this._debug(`start ${ids.length} rules`);
 
@@ -77,7 +79,7 @@ export class Tester {
             try {
               await series(
                 immutable.map((args) => async () => {
-                  await this._execute(browser, page, tracker, args);
+                  await this._execute(browser, page, args);
                   await this._cleanupPage(page);
                 }),
               );
@@ -95,7 +97,7 @@ export class Tester {
             const page = await this._createPage(browser);
 
             try {
-              await this._execute(browser, page, tracker, args);
+              await this._execute(browser, page, args);
             } catch (e) {
               this._debug(e);
             } finally {
@@ -107,17 +109,40 @@ export class Tester {
       }),
     ]);
 
-    const stat = this._results.reduce(
+    const rulesAndStat = this._results.reduce<
+      Pick<TestResult, keyof Stat | 'rules'>
+    >(
       (acc, cur) => {
+        const rules = acc.rules;
+
+        if (rules[cur.rule] == null) {
+          rules[cur.rule] = createStat();
+        }
+
+        switch (cur.status) {
+          case 'pass':
+            rules[cur.rule].passCount++;
+            break;
+          case 'error':
+            rules[cur.rule].errorCount++;
+            break;
+          case 'warn':
+            rules[cur.rule].warningCount++;
+            break;
+        }
+
+        rules[cur.rule].duration = cur.duration;
+
+        acc.duration += cur.duration;
         acc.passCount += cur.status === 'pass' ? 1 : 0;
         acc.errorCount += cur.status === 'error' ? 1 : 0;
         acc.warningCount += cur.status === 'warn' ? 1 : 0;
+
         return acc;
       },
       {
-        passCount: 0,
-        errorCount: 0,
-        warningCount: 0,
+        ...createStat(),
+        rules: {},
       },
     );
 
@@ -130,9 +155,10 @@ export class Tester {
     this._results = [];
 
     const result = {
-      ...stat,
-      results,
+      ...rulesAndStat,
+      duration: measure(),
       url,
+      results,
     };
 
     this._debug(`complete!`);
@@ -229,7 +255,6 @@ export class Tester {
   private async _execute(
     browser: Browser,
     page: Page,
-    tracker: TimingTracker,
     [id, rule, options]: TesterRuleGroup,
   ): Promise<void> {
     const {
@@ -241,84 +266,86 @@ export class Tester {
 
     await onTestcaseStart(url, id);
 
-    await tracker.track(id, async () => {
-      const results: TestcaseResult[] = [];
+    const results: TestcaseResult[] = [];
+    const measure = mark();
 
-      const context = createRuleContext({
-        process: browser.id(),
-        status: options[0] as Exclude<Status, 'off'>,
-        rule: id,
-        url,
-        tags: rule.meta?.tags ?? [],
-        workingDir,
-        results,
-        page,
-        options,
-      });
+    const context = createRuleContext({
+      process: browser.id(),
+      status: options[0] as Exclude<Status, 'off'>,
+      rule: id,
+      url,
+      tags: rule.meta?.tags ?? [],
+      workingDir,
+      results,
+      page,
+      options,
+      measure,
+    });
 
-      const handleUnexpectedError = (e: unknown) => {
-        debug('Unexpected error occurred:', e);
+    const handleUnexpectedError = (e: unknown) => {
+      debug('Unexpected error occurred:', e);
 
+      results.push(
+        createTestcaseResult({
+          process: browser.id(),
+          status: 'error',
+          rule: id,
+          duration: measure(),
+          message:
+            e instanceof Error ? e.message : `Unexpected error occurred: ${e}`,
+        }),
+      );
+    };
+
+    switch (rule.type) {
+      case 'global': {
+        await rule.test(context).catch(handleUnexpectedError);
+        break;
+      }
+
+      case 'contextual': {
+        try {
+          const nodes = await page.$$(rule.selector);
+
+          await Promise.all(
+            nodes.map((node) =>
+              rule.test(context, node).catch(handleUnexpectedError),
+            ),
+          );
+        } catch (e) {
+          debug('Not found elements (rule="%s", url="%s")', id, url, e);
+        }
+        break;
+      }
+
+      default:
         results.push(
           createTestcaseResult({
             process: browser.id(),
             status: 'error',
             rule: id,
-            message:
-              e instanceof Error
-                ? e.message
-                : `Unexpected error occurred: ${e}`,
+            message: `The rule type "${(rule as any).type}" is invalid.`,
+            duration: measure(),
           }),
         );
-      };
+        break;
+    }
 
-      switch (rule.type) {
-        case 'global': {
-          await rule.test(context).catch(handleUnexpectedError);
-          break;
-        }
+    // pass
+    if (results.length === 0) {
+      results.push(
+        createTestcaseResult({
+          process: browser.id(),
+          status: 'pass',
+          rule: id,
+          duration: measure(),
+        }),
+      );
+    }
 
-        case 'contextual': {
-          try {
-            const nodes = await page.$$(rule.selector);
+    await onTestcaseComplete(url, id, results);
 
-            await Promise.all(
-              nodes.map((node) =>
-                rule.test(context, node).catch(handleUnexpectedError),
-              ),
-            );
-          } catch (e) {
-            debug('Not found elements (rule="%s", url="%s")', id, url, e);
-          }
-          break;
-        }
-
-        default:
-          results.push(
-            createTestcaseResult({
-              process: browser.id(),
-              status: 'error',
-              message: `The rule type "${(rule as any).type}" is invalid.`,
-            }),
-          );
-          break;
-      }
-
-      // pass
-      if (results.length === 0) {
-        results.push(
-          createTestcaseResult({
-            process: browser.id(),
-            status: 'pass',
-            rule: id,
-          }),
-        );
-      }
-
-      await onTestcaseComplete(url, id, results);
-
-      this._results.push(...results);
-    });
+    this._results.push(...results);
   }
 
   private async _waitForReady(page: Page): Promise<void> {

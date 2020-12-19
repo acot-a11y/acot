@@ -5,6 +5,7 @@ import { merge } from './merge';
 export const createStat = (values: PartialDeep<Stat> = {}): Stat =>
   merge<Stat>(
     {
+      duration: 0,
       passCount: 0,
       errorCount: 0,
       warningCount: 0,

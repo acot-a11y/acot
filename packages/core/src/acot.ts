@@ -9,15 +9,16 @@ import type {
   TestDescriptor,
   TestResult,
   LaunchOptions,
+  Stat,
 } from '@acot/types';
 import Emittery from 'emittery';
 import _ from 'lodash';
 import type { Viewport } from 'puppeteer-core';
+import { createStat } from '@acot/factory';
 import { BrowserPool } from './browser-pool';
 import { debug } from './logging';
 import { RuleStore } from './rule-store';
 import { Tester } from './tester';
-import { TimingTracker } from './timing-tracker';
 
 export type AcotConfig = {
   cwd: string;
@@ -102,7 +103,6 @@ export class Acot implements Core {
   }
 
   public async audit(): Promise<Summary> {
-    const tracker = new TimingTracker();
     const urls = this._testers.map((tester) => tester.url());
 
     // working directory
@@ -127,7 +127,6 @@ export class Acot implements Core {
 
     const context = {
       pool: this._pool,
-      tracker,
     };
 
     const list = await Promise.allSettled(
@@ -136,9 +135,7 @@ export class Acot implements Core {
       }),
     );
 
-    debug('time: %O', tracker);
-
-    const summary = this._summarize(results, tracker);
+    const summary = this._summarize(results);
 
     await this._emitter.emit('audit:complete', [summary]);
 
@@ -168,24 +165,36 @@ export class Acot implements Core {
     return summary;
   }
 
-  private _summarize(results: TestResult[], tracker: TimingTracker): Summary {
-    const stat = results.reduce(
-      (acc, cur) => ({
-        passCount: acc.passCount + cur.passCount,
-        errorCount: acc.errorCount + cur.errorCount,
-        warningCount: acc.warningCount + cur.warningCount,
-      }),
+  private _summarize(results: TestResult[]): Summary {
+    const rulesAndStat = results.reduce<Pick<Summary, keyof Stat | 'rules'>>(
+      (acc, cur) => {
+        acc.duration += cur.duration;
+        acc.passCount += cur.passCount;
+        acc.errorCount += cur.errorCount;
+        acc.warningCount += cur.warningCount;
+
+        Object.keys(cur.rules).forEach((rule) => {
+          if (acc.rules[rule] == null) {
+            acc.rules[rule] = createStat();
+          }
+
+          acc.rules[rule].duration += cur.rules[rule].duration;
+          acc.rules[rule].passCount += cur.rules[rule].passCount;
+          acc.rules[rule].errorCount += cur.rules[rule].errorCount;
+          acc.rules[rule].warningCount += cur.rules[rule].warningCount;
+        });
+
+        return acc;
+      },
       {
-        passCount: 0,
-        errorCount: 0,
-        warningCount: 0,
+        ...createStat(),
+        rules: {},
       },
     );
 
     return {
-      timing: tracker.flush(),
+      ...rulesAndStat,
       results: _.orderBy(results, [(res) => res.url], ['asc']),
-      ...stat,
     };
   }
 
