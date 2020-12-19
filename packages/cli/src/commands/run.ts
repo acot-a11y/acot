@@ -11,33 +11,12 @@ import type {
   ResolvedConfig,
   Runner,
   RunnerFactoryConfig,
-  Timing,
 } from '@acot/types';
 import { parseViewport } from '@acot/utils';
 import isCI from 'is-ci';
-import table from 'markdown-table';
 import { createCommand } from '../command';
 import { debug } from '../logging';
 import { createDefaultRunner } from '../runner';
-
-const generateTimingTable = (timing: Timing) => {
-  const entries = Object.entries(timing);
-  const total = entries.reduce((acc, cur) => acc + cur[1], 0);
-
-  const rows = entries
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 20)
-    .map((row) => {
-      const ms = row[1];
-      return [row[0], ms.toFixed(3), `${((ms / total) * 100).toFixed(1)}%`];
-    });
-
-  rows.unshift(['Rule', 'Time (ms)', 'Relative']);
-
-  return table(rows, {
-    align: ['l', 'r', 'r'],
-  });
-};
 
 export default createCommand({
   name: 'run',
@@ -106,11 +85,6 @@ export default createCommand({
       type: 'number',
       default: 1000 * 30,
       description: 'Timeout ms waiting for page load.',
-    },
-    performance: {
-      type: 'boolean',
-      default: false,
-      description: 'Dump the execution time per rule.',
     },
     'chrome-channel': {
       type: 'string',
@@ -250,11 +224,6 @@ export default createCommand({
     report(runner);
 
     const summary = await runner.run();
-
-    if (args.performance) {
-      logger.print(generateTimingTable(summary.timing));
-      logger.print('');
-    }
 
     const maxWarnings = args['max-warnings'];
     let code = summary.errorCount > 0 ? 1 : 0;

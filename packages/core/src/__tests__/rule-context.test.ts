@@ -17,6 +17,7 @@ describe('rule-context', () => {
     page: page as any,
     options: ['error' as const, null],
     results: [],
+    measure: () => 0,
   };
 
   const factory = async (partial: Partial<CreateRuleContextParams> = {}) => {
@@ -95,6 +96,7 @@ describe('rule-context', () => {
 
     expect(results).toEqual([
       {
+        duration: 0,
         htmlpath,
         imagepath,
         process: defaults.process,
@@ -141,6 +143,7 @@ describe('rule-context', () => {
 
     expect(results).toEqual([
       {
+        duration: 0,
         htmlpath,
         imagepath: null,
         process: defaults.process,
@@ -176,6 +179,7 @@ describe('rule-context', () => {
 
     expect(results).toEqual([
       {
+        duration: 0,
         htmlpath,
         imagepath: null,
         process: defaults.process,

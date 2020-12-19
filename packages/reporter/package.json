@@ -35,17 +35,20 @@
     "@acot/utils": "0.0.2",
     "boxen": "^4.2.0",
     "chalk": "^4.0.0",
+    "cli-table": "^0.3.4",
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-symbols": "^4.0.0",
     "log-update": "^4.0.0",
     "ora": "^5.1.0",
     "plur": "^4.0.0",
+    "pretty-ms": "^7.0.1",
     "strip-ansi": "^6.0.0",
     "text-table": "^0.2.0"
   },
   "devDependencies": {
     "@acot/types": "0.0.3-canary.1",
+    "@types/cli-table": "^0.3.0",
     "@types/text-table": "^0.2.1"
   },
   "publishConfig": {

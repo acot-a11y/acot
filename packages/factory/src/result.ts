@@ -1,7 +1,18 @@
-import type { TestcaseResult, TestResult } from '@acot/types';
+import type { RuleResult, TestcaseResult, TestResult } from '@acot/types';
 import type { PartialDeep } from 'type-fest';
 import { merge } from './merge';
 import { createStat } from './stat';
+
+export const createRuleResult = (
+  values: PartialDeep<RuleResult> = {},
+): RuleResult =>
+  merge<RuleResult>(
+    Object.keys(values).reduce<RuleResult>((acc, cur) => {
+      acc[cur] = createStat();
+      return acc;
+    }, {}),
+    values,
+  );
 
 export const createTestcaseResult = (
   values: PartialDeep<TestcaseResult> = {},
@@ -11,6 +22,7 @@ export const createTestcaseResult = (
       {
         process: 0,
         status: 'pass',
+        duration: 0,
         rule: '',
         tags: [],
       },
@@ -22,6 +34,7 @@ export const createTestcaseResult = (
     {
       process: 0,
       status: 'error',
+      duration: 0,
       rule: '',
       message: '',
       tags: [],
@@ -40,7 +53,8 @@ export const createTestResult = (
     {
       ...createStat(),
       url: '',
-      results: [],
+      rules: createRuleResult(values.rules ?? {}),
+      results: values.results?.map(() => createTestcaseResult()) ?? [],
     },
     values,
   );

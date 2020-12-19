@@ -14,6 +14,7 @@ import { element2selector } from 'puppeteer-element2selector';
 import filenamify from 'filenamify';
 import { createTestcaseResult } from '@acot/factory';
 import { debug } from './logging';
+import type { TimingMeasure } from './timing';
 const rootDebug = require('debug')('acot');
 
 const writeFile = promisify(fs.writeFile);
@@ -66,6 +67,7 @@ export type CreateRuleContextParams = {
   page: Page;
   options: [ReportType, RuleOptions | null];
   results: TestcaseResult[];
+  measure: TimingMeasure;
 };
 
 export const createRuleContext = ({
@@ -78,6 +80,7 @@ export const createRuleContext = ({
   page,
   options,
   results,
+  measure,
 }: CreateRuleContextParams): RuleContext => {
   const log = rootDebug.extend(rule);
 
@@ -101,6 +104,7 @@ export const createRuleContext = ({
             process,
             status,
             rule,
+            duration: measure(),
             message,
             tags: [...ruleTags, ...(reportTags ?? [])],
             selector,
@@ -115,6 +119,7 @@ export const createRuleContext = ({
             process,
             status: 'error',
             rule,
+            duration: measure(),
             message: e.message,
           }),
         );
