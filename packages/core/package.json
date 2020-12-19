@@ -1,6 +1,6 @@
 {
   "name": "@acot/core",
-  "version": "0.0.3-canary.1",
+  "version": "0.0.3-canary.2",
   "description": "More accessible web, all over the world.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/core",
   "bugs": {
@@ -32,13 +32,13 @@
     ]
   },
   "dependencies": {
-    "@acot/factory": "0.0.3-canary.1",
-    "@acot/html-pickup": "0.0.2",
-    "@acot/logger": "0.0.2",
-    "@acot/module-loader": "0.0.2",
-    "@acot/schema-validator": "0.0.2",
-    "@acot/types": "0.0.3-canary.1",
-    "@acot/utils": "0.0.2",
+    "@acot/factory": "0.0.3-canary.2",
+    "@acot/html-pickup": "0.0.3-canary.0",
+    "@acot/logger": "0.0.3-canary.0",
+    "@acot/module-loader": "0.0.3-canary.0",
+    "@acot/schema-validator": "0.0.3-canary.0",
+    "@acot/types": "0.0.3-canary.2",
+    "@acot/utils": "0.0.3-canary.0",
     "debug": "^4.3.1",
     "emittery": "^0.7.1",
     "filenamify": "^4.1.0",
@@ -48,8 +48,8 @@
     "puppeteer-element2selector": "^0.0.3"
   },
   "devDependencies": {
-    "@acot/find-chrome": "0.0.2",
-    "@acot/mock-logger": "0.0.2",
+    "@acot/find-chrome": "0.0.3-canary.0",
+    "@acot/mock-logger": "0.0.3-canary.0",
     "@types/lodash": "^4.14.165",
     "@types/puppeteer-core": "^2.0.0",
     "puppeteer": "^5.5.0"

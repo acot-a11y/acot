@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.3](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.3-canary.2...@acot/cli@0.0.3-canary.3) (2020-12-19)
+
+### Features
+
+- Add rule result for pretty reporter ([f668f8a](https://github.com/acot-a11y/acot/commit/f668f8a56e730ea31ece53f23d7fd2629e456211))
+
 ## [0.0.3-canary.2](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.3-canary.1...@acot/cli@0.0.3-canary.2) (2020-12-16)
 
 **Note:** Version bump only for package @acot/cli

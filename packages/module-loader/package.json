@@ -1,6 +1,6 @@
 {
   "name": "@acot/module-loader",
-  "version": "0.0.2",
+  "version": "0.0.3-canary.0",
   "description": "Load the module according to the naming rule of acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/module-loader",
   "bugs": {
@@ -32,7 +32,7 @@
     ]
   },
   "dependencies": {
-    "@acot/utils": "0.0.2",
+    "@acot/utils": "0.0.3-canary.0",
     "debug": "^4.3.1"
   },
   "publishConfig": {
