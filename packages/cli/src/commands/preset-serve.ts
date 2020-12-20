@@ -1,7 +1,10 @@
 import path from 'path';
 import { DocProjectLoader, DocServer } from '@acot/document';
+import boxen from 'boxen';
 import chokidar from 'chokidar';
 import { getPortPromise } from 'portfinder';
+import chalk from 'chalk';
+import opener from 'opener';
 import { createCommand } from '../command';
 import { DEFAULT_PORT } from '../constants';
 
@@ -33,6 +36,11 @@ export default createCommand({
       alias: 'w',
       description: 'Watch document files.',
     },
+    'no-open': {
+      type: 'boolean',
+      default: false,
+      description: 'Does not open the browser automatically.',
+    },
   },
 })(
   ({ cwd, logger, args }) =>
@@ -62,25 +70,47 @@ export default createCommand({
           };
 
           const bootstrap = async () => {
-            logger.print('startup documentation server...');
             const project = await load();
             if (project == null) {
               return resolve(1);
             }
 
             await server.bootstrap(project);
-            logger.print(`http://localhost:${port}`);
+
+            const url = `http://localhost:${port}`;
+
+            logger.print('');
+            logger.print(
+              boxen(
+                [
+                  chalk`Serving {green.bold ${project.name}}`,
+                  watcher == null
+                    ? chalk`Watch mode is {gray.bold disabled}`
+                    : chalk`Watch mode is {green.bold enabled}`,
+                  '',
+                  chalk`Listening on: {blue.underline ${url}}`,
+                ].join('\n'),
+                { borderColor: 'gray', padding: 1 },
+              ),
+            );
+            logger.print('');
+
+            if (args['no-open'] !== true) {
+              opener(url);
+            }
           };
 
           const handleChange = async () => {
-            logger.print('reloading documentation server...');
+            logger.print(chalk.gray('Reloading server...'));
+
             const project = await load();
             if (project == null) {
               return resolve(1);
             }
 
             server.update(project);
-            logger.print('restarted!');
+
+            logger.print(chalk.bold.green('Restarted!'));
           };
 
           process.on('SIGINT', async () => {
