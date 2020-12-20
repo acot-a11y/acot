@@ -2,13 +2,18 @@
 
 git describe --exact-match
 
-if [[ ! $? -eq 0 ]];then
+if [[ ! $? -eq 0 ]]; then
   echo "Nothing to publish, exiting.."
   exit 0;
 fi
 
-if [[ -z "$NPM_TOKEN" ]];then
+if [[ -z "$NPM_TOKEN" ]]; then
   echo "No NPM_TOKEN, exiting.."
+  exit 0;
+fi
+
+if [[ -z "$GIT_USER_EMAIL" ]]; then
+  echo "No GIT_USER_EMAIL, exiting.."
   exit 0;
 fi
 
@@ -19,9 +24,9 @@ if [[ $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
   yarn release:canary --yes
   if [[ ! $? -eq 0 ]]; then
     exit 1
-  else
-    echo "Did not publish canary"
   fi
+else
+  echo "Did not publish canary"
 fi
 
 if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
@@ -29,7 +34,31 @@ if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
   yarn release --yes
   if [[ ! $? -eq 0 ]]; then
     exit 1
-  else
-    echo "Did not publish stable"
   fi
+
+  echo "Sync the main branch with the canary branch"
+  git config --local user.email "$GIT_USER_EMAIL"
+  git config --local user.name "wadackel"
+
+  git fetch --depth=1 origin main
+  if [[ ! $? -eq 0 ]]; then
+    exit 1
+  fi
+
+  git switch main
+  if [[ ! $? -eq 0 ]]; then
+    exit 1
+  fi
+
+  git reset --hard canary
+  if [[ ! $? -eq 0 ]]; then
+    exit 1
+  fi
+
+  git push origin main -f
+  if [[ ! $? -eq 0 ]]; then
+    exit 1
+  fi
+else
+  echo "Did not publish stable"
 fi
