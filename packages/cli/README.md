@@ -215,6 +215,7 @@ acot preset serve [flags]
 -d, --docs      Directory path that contains the rule documentation.
     --port      Port number for preview server.
 -w, --watch     Watch document files.
+    --no-open   Does not open the browser automatically.
 ```
 
 **Example:**

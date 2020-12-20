@@ -5,199 +5,113 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,address=no,email=no" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="icon" href="/assets/favicon.ico" />
     <title>{{ name }} - acot preset</title>
-    <style>
-      :root {
-        --space-8: calc(8 / 16 * 1rem);
-        --space-16: 1rem;
-        --space-24: calc(24 / 16 * 1rem);
-        --space-32: calc(32 / 16 * 1rem);
-        --space-40: calc(40 / 16 * 1rem);
-        --space-48: calc(48 / 16 * 1rem);
-        --space-56: calc(56 / 16 * 1rem);
-        --space-64: calc(64 / 16 * 1rem);
-        --space-72: calc(72 / 16 * 1rem);
-        --space-80: calc(80 / 16 * 1rem);
-
-        --font-sans-serif: sans-serif;
-        --font-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo,
-          monospace;
-        --font-size-40: calc(40 / 16 * 1rem);
-        --font-size-32: calc(32 / 16 * 1rem);
-        --font-size-24: calc(24 / 16 * 1rem);
-        --font-size-18: calc(18 / 16 * 1rem);
-        --font-size-16: 1rem;
-        --font-size-14: calc(14 / 16 * 1rem);
-
-        --color-black: #090909;
-        --color-white: #fff;
-        --color-border: #c0c0c0;
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: inherit;
-      }
-
-      :root {
-        color: var(--color-black);
-        font-family: var(--font-sans-serif);
-        line-height: 1.6;
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        padding: 0 var(--space-16);
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        line-height: 1.2;
-      }
-
-      header {
-        margin: var(--space-80) 0;
-      }
-
-      h1 {
-        margin: 0;
-        font-size: var(--font-size-40);
-      }
-
-      h1 + p {
-        margin: var(--space-8) 0 0;
-      }
-
-      h2 {
-        margin: 0;
-      }
-
-      h2 + p {
-        margin: var(--space-8) 0 0;
-      }
-
-      section + section {
-        margin: var(--space-80) 0;
-      }
-
-      ul {
-        display: grid;
-        grid-template-columns: 100%;
-        grid-gap: var(--space-24);
-        margin: var(--space-24) 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .case {
-        display: block;
-        border: 1px solid var(--color-border);
-        border-radius: 4px;
-        color: inherit;
-        text-decoration: none;
-        transition: all 125ms ease-out;
-      }
-
-      .case:hover {
-        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1),
-          0px 2px 3px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.14);
-        transform: translateY(-1px);
-      }
-
-      .case__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: var(--space-8);
-        border-bottom: 1px solid var(--color-border);
-      }
-
-      .case__type {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 var(--space-16);
-        width: 8em;
-        height: var(--font-size-32);
-        border-radius: var(--font-size-16);
-        background: var(--color-black);
-        color: var(--color-white);
-        font-weight: bold;
-        font-size: var(--font-size-14);
-      }
-
-      .case__id {
-        padding-left: var(--space-8);
-        font-weight: bold;
-        font-size: var(--font-size-16);
-      }
-
-      .case__code {
-        overflow: auto;
-        margin: 0;
-        padding: var(--space-16);
-        height: calc(3em * 1.6 + var(--space-16) * 2);
-        background: #f9f9f9;
-        border-radius: 0 0 4px 4px;
-        line-height: 1.6;
-        font-family: var(--font-monospace);
-        font-size: var(--font-size-14);
-      }
-
-      footer {
-        margin: var(--space-80) 0;
-      }
-
-      @media (min-width: 768px) {
-        body {
-          padding-right: 12%;
-          padding-left: 12%;
-        }
-
-        ul {
-          grid-template-columns: repeat(2, 50%);
-        }
-      }
-    </style>
   </head>
   <body>
-    <header>
-      <h1>Rule List</h1>
-      <p>
-        {{ name }}, {{ groups.length }} rules, {{ rules.length }} test cases.
-      </p>
+    <header class="my-32">
+      <div class="container">
+        <div class="flex items-end">
+          <svg
+            aria-label="acot"
+            class="mr-3"
+            width="44"
+            height="44"
+            viewBox="0 0 44 44"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18.5137 40.0256H24.9376C25.7724 40.0256 26.5557 39.6184 27.0409 38.9324L39.1913 21.7523H32.7673C31.9326 21.7523 31.1492 22.1595 30.664 22.8455L18.5137 40.0256Z"
+              fill="#2051CD"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M35.873 19.348H32.1184C31.0119 19.348 29.9735 19.8837 29.3304 20.7864L15.7265 39.8794C6.85643 38.7471 0 31.1706 0 21.9928C0 12.0335 8.07355 3.95997 18.0328 3.95997C27.0936 3.95997 34.5936 10.6426 35.873 19.348Z"
+              fill="#2051CD"
+            />
+            <path
+              d="M29.0929 40.0256H33.7241C34.3259 40.0256 34.8906 39.7363 35.2404 39.2488L44 27.042H39.3688C38.767 27.042 38.2022 27.3312 37.8525 27.8187L29.0929 40.0256Z"
+              fill="#2051CD"
+            />
+          </svg>
+
+          <h1 class="text-5xl font-semibold leading-none">Rule List</h1>
+        </div>
+
+        <p class="mt-5">
+          {{ name }}, {{ groups.length }} rules, {{ rules.length }} test cases.
+        </p>
+      </div>
     </header>
 
     <main>
-      {{# groups }}
-      <section>
-        <h2 id="{{ rule }}"><a href="#{{ rule }}">{{ rule }}</a></h2>
-        <p>{{ summary }}</p>
-        <ul>
-          {{# rules }}
-          <li>
-            <a class="case" href="{{ url }}" rel="noopener noreferrer">
-              <div class="case__header">
-                <span class="case__id">Code {{ id }}</span>
-                <span class="case__type">{{ type }}</span>
-              </div>
-              <pre class="case__code"><code>{{ html }}</code></pre>
-            </a>
-          </li>
-          {{/ rules }}
-        </ul>
-      </section>
-      {{/ groups }}
+      <div class="container">
+        {{# groups }}
+        <section class="mt-24">
+          <h2
+            id="{{ rule }}"
+            class="group flex text-3xl font-semibold leading-8 whitespace-pre-wrap"
+          >
+            <a
+              class="absolute -ml-6 pr-2 text-indigo-300 leading-8 after:hash opacity-0 group-hover:opacity-100 focus:opacity-100 hover:text-indigo-600"
+              href="#{{ rule }}"
+              >#</a
+            >
+            <span>{{ rule }}</span>
+          </h2>
+          <p class="mt-4 leading-6">{{ summary }}</p>
+          <ul class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {{# rules }}
+            <li>
+              <a
+                class="overflow-hidden block border border-gray-300 rounded-md bg-white text-black transition-shadow transform hover:shadow-md"
+                href="{{ url }}"
+              >
+                <div
+                  class="flex justify-between items-center p-3 border-b border-gray-300"
+                >
+                  <span class="font-semibold">Code Block {{ id }}</span>
+                  <span
+                    class="type-{{ type }} py-2 px-4 rounded-full font-semibold text-sm leading-none"
+                    >{{ type }}</span
+                  >
+                </div>
+                <pre
+                  class="overflow-auto overscroll-y-auto overscroll-x-contain h-40 p-5 bg-gray-800 text-gray-300 text-sm leading-6"
+                ><code>{{ html }}</code></pre>
+              </a>
+            </li>
+            {{/ rules }}
+          </ul>
+        </section>
+        {{/ groups }}
+      </div>
     </main>
 
-    <footer>
-      <p>TODO: Document links.</p>
+    <footer class="my-32">
+      <div class="container">
+        <p class="text-center">
+          <a
+            class="inline-block text-gray-400 hover:text-gray-500 transition-colors duration-200"
+            href="https://github.com/acot-a11y/acot"
+          >
+            <svg
+              aria-label="acot on GitHub"
+              width="32"
+              height="32"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+              ></path></svg
+          ></a>
+        </p>
+      </div>
     </footer>
   </body>
 </html>

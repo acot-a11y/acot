@@ -41,6 +41,7 @@ export class CLI {
       .detectLocale(false)
       .parserConfiguration({
         'set-placeholder-key': true,
+        'boolean-negation': false,
       })
       .fail((msg, err) => {
         throw err != null ? err : new Error(msg);

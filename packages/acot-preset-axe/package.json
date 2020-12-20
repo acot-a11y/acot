@@ -22,8 +22,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "docgen": "acot preset docgen README.md -vvv",
-    "serve": "acot preset serve --watch -vvv",
+    "docgen": "acot preset docgen README.md",
+    "serve": "acot preset serve --watch",
     "test": "acot preset test --port 1235"
   },
   "dependencies": {
