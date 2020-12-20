@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.4](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-axe@0.0.3-canary.3...@acot/acot-preset-axe@0.0.3-canary.4) (2020-12-20)
+
+### Features
+
+- **document:** Upgrade design of preset preview server ([21d555b](https://github.com/acot-a11y/acot/commit/21d555bf191af82a4781f64ab5a0bab5bcc5232f))
+
 ## [0.0.3-canary.3](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-axe@0.0.3-canary.2...@acot/acot-preset-axe@0.0.3-canary.3) (2020-12-19)
 
 **Note:** Version bump only for package @acot/acot-preset-axe

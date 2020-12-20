@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-canary.4](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.3-canary.3...@acot/cli@0.0.3-canary.4) (2020-12-20)
+
+### Features
+
+- **cli:** Add `--no-open` options for `preset serve` sub-command ([0a43e58](https://github.com/acot-a11y/acot/commit/0a43e58bcb5b8e8f3bb1fe639989570eef6c5815))
+
 ## [0.0.3-canary.3](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.3-canary.2...@acot/cli@0.0.3-canary.3) (2020-12-19)
 
 ### Features
