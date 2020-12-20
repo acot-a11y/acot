@@ -9,7 +9,7 @@
     "postbuild": "lerna link",
     "clean": "rimraf \"packages/**/tsconfig.tsbuildinfo\" \"packages/**/lib\" \"**/.acot\"",
     "docgen": "lerna run docgen",
-    "format": "npm-s format:prettier format:script",
+    "format": "run-s format:prettier format:script",
     "format:prettier": "prettier --write .",
     "format:script": "yarn lint:script --fix",
     "lint": "run-p lint:*",
