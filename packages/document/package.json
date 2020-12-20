@@ -22,8 +22,14 @@
     "!__tests__"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "jest"
+    "build": "run-p build:*",
+    "build:script": "tsc",
+    "build:style": "cross-env NODE_ENV=production yarn postcss",
+    "postcss": "postcss styles/styles.css -o templates/assets/styles.css",
+    "test": "jest",
+    "watch": "run-p watch:*",
+    "watch:script": "yarn build:script -w",
+    "watch:style": "yarn postcss -w"
   },
   "jest": {
     "preset": "ts-jest",
@@ -60,7 +66,13 @@
   "devDependencies": {
     "@types/mustache": "^4.0.1",
     "@types/puppeteer-core": "^2.0.0",
-    "@types/unist": "^2.0.3"
+    "@types/unist": "^2.0.3",
+    "fastify-static": "^3.3.0",
+    "postcss": "^8.2.1",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.0",
+    "postcss-nested": "^5.0.3",
+    "tailwindcss": "^2.0.2"
   },
   "publishConfig": {
     "access": "public"

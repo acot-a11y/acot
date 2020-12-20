@@ -22,9 +22,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "docgen": "acot preset docgen README.md -vvv",
+    "docgen": "acot preset docgen README.md",
     "scaffold": "scaffdog generate",
-    "serve": "acot preset serve --watch -vvv",
+    "serve": "acot preset serve --watch",
     "test": "acot preset test --port 1234"
   },
   "dependencies": {

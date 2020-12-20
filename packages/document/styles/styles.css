@@ -1,0 +1,25 @@
+@tailwind base;
+
+@layer base {
+  h2 {
+    scroll-margin-top: 3rem;
+  }
+
+  a {
+    @apply text-indigo-600;
+  }
+}
+
+@tailwind components;
+
+@tailwind utilities;
+
+@tailwind screens;
+
+.type-correct {
+  @apply bg-green-700 text-white;
+}
+
+.type-incorrect {
+  @apply bg-yellow-400 text-black;
+}

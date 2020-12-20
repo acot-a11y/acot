@@ -6,8 +6,10 @@ import type {
   FastifyRequest,
   FastifyReply,
   FastifyError,
+  FastifyLoggerInstance,
 } from 'fastify';
 import fastify from 'fastify';
+import fastifyStatic from 'fastify-static';
 import mustache from 'mustache';
 import type { DocCode } from './doc-code';
 import { generateDocUrl } from './doc-code';
@@ -16,11 +18,24 @@ import type { DocProject } from './doc-project';
 import { debug } from './logging';
 
 const TEMPLATES_DIR = path.resolve(__dirname, '..', 'templates');
+const ASSETS_DIR = path.resolve(TEMPLATES_DIR, 'assets');
 
 const readFile = promisify(fs.readFile);
 
 const readTemplate = (name: string) =>
   readFile(path.resolve(TEMPLATES_DIR, name), 'utf8');
+
+const createLogger = (): FastifyLoggerInstance => ({
+  info: debug.extend('info'),
+  warn: debug.extend('warn'),
+  error: debug.extend('error'),
+  fatal: debug.extend('fatal'),
+  trace: debug.extend('trace'),
+  debug: debug.extend('debug'),
+  child: () => createLogger(),
+});
+
+const logger = createLogger();
 
 type Template = {
   default: string;
@@ -51,7 +66,7 @@ export class DocServer {
 
   public constructor(config: DocServerConfig) {
     this._config = config;
-    this._server = fastify();
+    this._server = fastify({ logger: logger });
     this._loader = new DocTemplateLoader();
     this._template = {
       default: '',
@@ -67,6 +82,11 @@ export class DocServer {
     const { port } = this._config;
 
     this.update(project);
+
+    this._server.register(fastifyStatic, {
+      root: ASSETS_DIR,
+      prefix: '/assets/',
+    });
 
     this._server
       .get('/', this._handleIndex)
@@ -115,8 +135,6 @@ export class DocServer {
     const { port } = this._config;
 
     const rules: DocRule[] = [];
-    const presetId = path.parse(path.normalize(project.main)).name;
-
     const groups = project.codes.reduce<DocRuleGroup[]>((acc, cur) => {
       const rule = {
         ...cur,
@@ -130,11 +148,9 @@ export class DocServer {
       if (group != null) {
         group.rules.push(rule);
       } else {
-        const meta = project.preset.rules.get(`${presetId}/${cur.rule}`)?.meta;
-
         acc.push({
           rule: cur.rule,
-          summary: meta?.description ?? '(empty)',
+          summary: cur.summary.text || '(empty)',
           rules: [rule],
         });
       }
@@ -187,8 +203,7 @@ export class DocServer {
           path.resolve(path.dirname(code.path), code.meta['acot-template']),
         );
       } catch (e) {
-        // TODO logging
-        debug('not found template: %O', e);
+        debug('Not found template: %O', e);
       }
     }
 
@@ -223,7 +238,9 @@ export class DocServer {
   };
 
   private _handleNotFound = (request: FastifyRequest, reply: FastifyReply) => {
-    debug('handleNotFound: %s', request.raw.url);
+    if (request.url !== '/favicon.ico') {
+      debug('handleNotFound: %s', request.url);
+    }
     reply.status(404).send('404 Not found');
   };
 }
