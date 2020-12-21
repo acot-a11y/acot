@@ -59,6 +59,6 @@ module.exports = {
   runner: 'baz',
 
   // @example/acot-reporter-qux
-  runner: '@example/qux',
+  reporter: '@example/qux',
 };
 ```
