@@ -17,6 +17,11 @@ if [[ -z "$GIT_USER_EMAIL" ]]; then
   exit 0;
 fi
 
+if [[ -z "$GIT_USER_NAME" ]]; then
+  echo "No GIT_USER_NAME, exiting.."
+  exit 0;
+fi
+
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 
 if [[ $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
@@ -38,9 +43,14 @@ if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
 
   echo "Sync the main branch with the canary branch"
   git config --local user.email "$GIT_USER_EMAIL"
-  git config --local user.name "wadackel"
+  git config --local user.name "$GIT_USER_NAME"
 
   git fetch --depth=1 origin main
+  if [[ ! $? -eq 0 ]]; then
+    exit 1
+  fi
+
+  git fetch --depth=300 origin canary
   if [[ ! $? -eq 0 ]]; then
     exit 1
   fi
