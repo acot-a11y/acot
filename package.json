@@ -28,7 +28,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
@@ -38,6 +39,9 @@
   },
   "devDependencies": {
     "@acot/tsconfig": "0.0.2",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/config-lerna-scopes": "^11.0.0",
     "@types/jest": "^26.0.5",
     "@types/markdown-table": "^2.0.0",
     "@types/mock-fs": "^4.10.0",
