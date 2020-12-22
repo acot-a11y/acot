@@ -10,7 +10,7 @@
     "publish": {
       "npmClient": "npm",
       "registry": "https://registry.npmjs.org/",
-      "message": "chore(release): publish",
+      "message": "chore: publish",
       "allowBranch": ["master", "canary"]
     }
   }
