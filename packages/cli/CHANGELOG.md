@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.3-canary.4...@acot/cli@0.0.3) (2020-12-22)
+
+### Features
+
+- **cli:** add update-notifier ([84fe911](https://github.com/acot-a11y/acot/commit/84fe91119ff4862cb82d00da2d0949965ec221c5))
+
 ## [0.0.3-canary.4](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.3-canary.3...@acot/cli@0.0.3-canary.4) (2020-12-20)
 
 ### Features

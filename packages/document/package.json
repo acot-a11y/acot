@@ -1,6 +1,6 @@
 {
   "name": "@acot/document",
-  "version": "0.0.3-canary.3",
+  "version": "0.0.3",
   "description": "A set of tools for working with documentation for acot presets.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/document",
   "bugs": {
@@ -39,11 +39,11 @@
     ]
   },
   "dependencies": {
-    "@acot/core": "0.0.3-canary.2",
-    "@acot/factory": "0.0.3-canary.2",
-    "@acot/find-chrome": "0.0.3-canary.0",
-    "@acot/html-pickup": "0.0.3-canary.0",
-    "@acot/logger": "0.0.3-canary.0",
+    "@acot/core": "0.0.3",
+    "@acot/factory": "0.0.3",
+    "@acot/find-chrome": "0.0.3",
+    "@acot/html-pickup": "0.0.3",
+    "@acot/logger": "0.0.3",
     "debug": "^4.3.1",
     "deepmerge": "^4.2.2",
     "fast-glob": "^3.2.2",

@@ -1,6 +1,6 @@
 {
   "name": "@acot/mock-logger",
-  "version": "0.0.3-canary.0",
+  "version": "0.0.3",
   "description": "Mock logger for acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/mock-logger",
   "bugs": {
@@ -32,7 +32,7 @@
     ]
   },
   "dependencies": {
-    "@acot/logger": "0.0.3-canary.0"
+    "@acot/logger": "0.0.3"
   },
   "publishConfig": {
     "access": "public"

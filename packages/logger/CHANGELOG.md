@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://github.com/acot-a11y/acot/compare/@acot/logger@0.0.3-canary.0...@acot/logger@0.0.3) (2020-12-22)
+
+**Note:** Version bump only for package @acot/logger
+
 ## [0.0.3-canary.0](https://github.com/acot-a11y/acot/compare/@acot/logger@0.0.2...@acot/logger@0.0.3-canary.0) (2020-12-19)
 
 **Note:** Version bump only for package @acot/logger

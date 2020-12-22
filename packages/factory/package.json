@@ -1,6 +1,6 @@
 {
   "name": "@acot/factory",
-  "version": "0.0.3-canary.2",
+  "version": "0.0.3",
   "description": "A factory toolset for various acot objects.",
   "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/factory",
   "bugs": {
@@ -24,7 +24,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/types": "0.0.3-canary.2",
+    "@acot/types": "0.0.3",
     "deepmerge": "^4.2.2",
     "is-plain-object": "^5.0.0",
     "type-fest": "^0.20.2"
