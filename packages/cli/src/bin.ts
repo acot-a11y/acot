@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Logger } from '@acot/logger';
 import type { PackageJson } from 'type-fest';
+import updateNotifier from 'update-notifier';
 import { CLI } from './cli';
 import { CommandContainer } from './command-container';
 import { commands } from './commands';
@@ -10,8 +11,14 @@ import { commands } from './commands';
 
   try {
     const pkg = require('../package.json') as PackageJson;
-    const container = new CommandContainer(commands);
-    const cli = new CLI(pkg, logger, container);
+
+    updateNotifier({
+      pkg: pkg as any,
+      distTag: pkg.version?.includes('canary') ? 'canary' : 'latest',
+    }).notify();
+
+    const cli = new CLI(pkg, logger, new CommandContainer(commands));
+
     process.exit(await cli.run(process.argv.slice(2)));
   } catch (e) {
     logger.error(e);
