@@ -54,9 +54,9 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 
 #### 1.1 Text Alternatives
 
-| Success criteria       | acot rules                                        |
-| ---------------------- | ------------------------------------------------- |
-| 1.1.1 Non-text Content | [@acot/wcag/img-has-name](./docs/img-has-name.md) |
+| Success criteria       | acot rules                                              |
+| ---------------------- | ------------------------------------------------------- |
+| 1.1.1 Non-text Content | [@acot/wcag/img-has-name](./docs/rules/img-has-name.md) |
 
 #### 1.2 Time-based Media
 
@@ -105,12 +105,12 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 
 #### 2.1 Keyboard Accessible
 
-| Success criteria              | acot rules                                                                    |
-| ----------------------------- | ----------------------------------------------------------------------------- |
-| 2.1.1 Keyboard                | [@acot/wcag/interactive-supports-focus](./docs/interactive-supports-focus.md) |
-| 2.1.2 No Keyboard Trap        | -                                                                             |
-| 2.1.3 Keyboard (No Exception) | -                                                                             |
-| 2.1.4 Character Key Shortcuts | -                                                                             |
+| Success criteria              | acot rules                                                                          |
+| ----------------------------- | ----------------------------------------------------------------------------------- |
+| 2.1.1 Keyboard                | [@acot/wcag/interactive-supports-focus](./docs/rules/interactive-supports-focus.md) |
+| 2.1.2 No Keyboard Trap        | -                                                                                   |
+| 2.1.3 Keyboard (No Exception) | -                                                                                   |
+| 2.1.4 Character Key Shortcuts | -                                                                                   |
 
 #### 2.2 Enough Time
 
@@ -133,42 +133,42 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 
 #### 2.4 Navigable
 
-| Success criteria                | acot rules                                                              |
-| ------------------------------- | ----------------------------------------------------------------------- |
-| 2.4.1 Bypass Blocks             | -                                                                       |
-| 2.4.2 Page Titled               | [@acot/wcag/page-has-title](./docs/page-has-title.md)                   |
-| 2.4.3 Focus Order               | [@acot/wcag/dialog-focus](./docs/dialog-focus.md)                       |
-| 2.4.4 Link Purpose (In Context) | -                                                                       |
-| 2.4.5 Multiple Ways             | -                                                                       |
-| 2.4.6 Headings and Labels       | -                                                                       |
-| 2.4.7 Focus Visible             | [@acot/wcag/focusable-has-indicator](./docs/focusable-has-indicator.md) |
-| 2.4.8 Location                  | -                                                                       |
-| 2.4.9 Link Purpose (Link Only)  | -                                                                       |
-| 2.4.10 Section Headings         | -                                                                       |
+| Success criteria                | acot rules                                                                    |
+| ------------------------------- | ----------------------------------------------------------------------------- |
+| 2.4.1 Bypass Blocks             | -                                                                             |
+| 2.4.2 Page Titled               | [@acot/wcag/page-has-title](./docs/rules/page-has-title.md)                   |
+| 2.4.3 Focus Order               | [@acot/wcag/dialog-focus](./docs/rules/dialog-focus.md)                       |
+| 2.4.4 Link Purpose (In Context) | -                                                                             |
+| 2.4.5 Multiple Ways             | -                                                                             |
+| 2.4.6 Headings and Labels       | -                                                                             |
+| 2.4.7 Focus Visible             | [@acot/wcag/focusable-has-indicator](./docs/rules/focusable-has-indicator.md) |
+| 2.4.8 Location                  | -                                                                             |
+| 2.4.9 Link Purpose (Link Only)  | -                                                                             |
+| 2.4.10 Section Headings         | -                                                                             |
 
 #### 2.5 Input Modalities
 
-| Success criteria                  | acot rules                                                                      |
-| --------------------------------- | ------------------------------------------------------------------------------- |
-| 2.5.1 Pointer Gestures            | -                                                                               |
-| 2.5.2 Pointer Cancellation        | -                                                                               |
-| 2.5.3 Label in Name               | -                                                                               |
-| 2.5.4 Motion Actuation            | -                                                                               |
-| 2.5.5 Target Size                 | [@acot/wcag/interactive-has-enough-size](./docs/interactive-has-enough-size.md) |
-| 2.5.6 Concurrent Input Mechanisms | -                                                                               |
+| Success criteria                  | acot rules                                                                            |
+| --------------------------------- | ------------------------------------------------------------------------------------- |
+| 2.5.1 Pointer Gestures            | -                                                                                     |
+| 2.5.2 Pointer Cancellation        | -                                                                                     |
+| 2.5.3 Label in Name               | -                                                                                     |
+| 2.5.4 Motion Actuation            | -                                                                                     |
+| 2.5.5 Target Size                 | [@acot/wcag/interactive-has-enough-size](./docs/rules/interactive-has-enough-size.md) |
+| 2.5.6 Concurrent Input Mechanisms | -                                                                                     |
 
 ### 3. Understandable
 
 #### 3.1 Readable
 
-| Success criteria        | acot rules                                                      |
-| ----------------------- | --------------------------------------------------------------- |
-| 3.1.1 Language of Page  | [@acot/wcag/page-has-valid-lang](./docs/page-has-valid-lang.md) |
-| 3.1.2 Language of Parts | -                                                               |
-| 3.1.3 Unusual Words     | -                                                               |
-| 3.1.4 Abbreviations     | -                                                               |
-| 3.1.5 Reading Level     | -                                                               |
-| 3.1.6 Pronunciation     | -                                                               |
+| Success criteria        | acot rules                                                            |
+| ----------------------- | --------------------------------------------------------------------- |
+| 3.1.1 Language of Page  | [@acot/wcag/page-has-valid-lang](./docs/rules/page-has-valid-lang.md) |
+| 3.1.2 Language of Parts | -                                                                     |
+| 3.1.3 Unusual Words     | -                                                                     |
+| 3.1.4 Abbreviations     | -                                                                     |
+| 3.1.5 Reading Level     | -                                                                     |
+| 3.1.6 Pronunciation     | -                                                                     |
 
 #### 3.2 Predictable
 
