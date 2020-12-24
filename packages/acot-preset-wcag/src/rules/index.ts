@@ -7,6 +7,7 @@ import imgHasName from './img-has-name';
 import dialogFocus from './dialog-focus';
 import pageHasValidLang from './page-has-valid-lang';
 import focusableHasIndicator from './focusable-has-indicator';
+import linkHasName from './link-has-name';
 
 export const rules: RuleRecord = {
   'interactive-has-enough-size': interactiveHasEnoughSize,
@@ -17,4 +18,5 @@ export const rules: RuleRecord = {
   'img-has-name': imgHasName,
   'dialog-focus': dialogFocus,
   'focusable-has-indicator': focusableHasIndicator,
+  'link-has-name': linkHasName,
 };

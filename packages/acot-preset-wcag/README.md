@@ -38,11 +38,12 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 | Name                                                                                    | Summary                                                                    | :heavy_check_mark: |
 | :-------------------------------------------------------------------------------------- | :------------------------------------------------------------------------- | :----------------- |
 | [`@acot/wcag/dialog-focus`](./docs/rules/dialog-focus.md)                               | Move focus to inside dialog or set dialog after trigger.                   | :heavy_check_mark: |
-| [`@acot/wcag/focusable-has-indicator`](./docs/rules/focusable-has-indicator.md)         | Focusable elemenet has a focus indicator.                                  | :heavy_check_mark: |
+| [`@acot/wcag/focusable-has-indicator`](./docs/rules/focusable-has-indicator.md)         | Focusable element has a focus indicator.                                   | :heavy_check_mark: |
 | [`@acot/wcag/img-has-name`](./docs/rules/img-has-name.md)                               | The `img` element or img role MUST has name.                               | :heavy_check_mark: |
 | [`@acot/wcag/interactive-has-enough-size`](./docs/rules/interactive-has-enough-size.md) | The size of the target for pointer inputs is at least 44 by 44 CSS pixels. | :heavy_check_mark: |
 | [`@acot/wcag/interactive-has-name`](./docs/rules/interactive-has-name.md)               | Interactive elements MUST has name.                                        | :heavy_check_mark: |
 | [`@acot/wcag/interactive-supports-focus`](./docs/rules/interactive-supports-focus.md)   | _T.B.A_                                                                    | :heavy_check_mark: |
+| [`@acot/wcag/link-has-name`](./docs/rules/link-has-name.md)                             | Link MUST has name.                                                        | :heavy_check_mark: |
 | [`@acot/wcag/page-has-title`](./docs/rules/page-has-title.md)                           | Web pages have titles that describe topic or purpose. WCAG 2.1 - 2.4.2.    | :heavy_check_mark: |
 | [`@acot/wcag/page-has-valid-lang`](./docs/rules/page-has-valid-lang.md)                 | The `html` element MUST has a valid lang attribute.                        | :heavy_check_mark: |
 
@@ -138,7 +139,7 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 | 2.4.1 Bypass Blocks             | -                                                                             |
 | 2.4.2 Page Titled               | [@acot/wcag/page-has-title](./docs/rules/page-has-title.md)                   |
 | 2.4.3 Focus Order               | [@acot/wcag/dialog-focus](./docs/rules/dialog-focus.md)                       |
-| 2.4.4 Link Purpose (In Context) | -                                                                             |
+| 2.4.4 Link Purpose (In Context) | [@acot/wcag/link-has-name](./docs/rules/link-has-name.md)-                    |
 | 2.4.5 Multiple Ways             | -                                                                             |
 | 2.4.6 Headings and Labels       | -                                                                             |
 | 2.4.7 Focus Visible             | [@acot/wcag/focusable-has-indicator](./docs/rules/focusable-has-indicator.md) |
@@ -195,11 +196,11 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 
 #### 4.1 Compatible
 
-| Success criteria        | acot rules |
-| ----------------------- | ---------- |
-| 4.1.1 Parsing           | -          |
-| 4.1.2 Name, Role, Value | -          |
-| 4.1.3 Status Messages   | -          |
+| Success criteria        | acot rules                                                |
+| ----------------------- | --------------------------------------------------------- |
+| 4.1.1 Parsing           | -                                                         |
+| 4.1.2 Name, Role, Value | [@acot/wcag/link-has-name](./docs/rules/link-has-name.md) |
+| 4.1.3 Status Messages   | -                                                         |
 
 ## Concept
 

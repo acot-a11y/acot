@@ -1,6 +1,6 @@
 # focusable-has-indicator
 
-Focusable elemenet has a focus indicator.
+Focusable element has a focus indicator.
 
 > Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible. [WCAG 2.1 - 2.4.7: Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)
 
