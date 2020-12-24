@@ -38,7 +38,7 @@ You can also enable all the recommended rules for our preset. Add `preset:@acot/
 | Name                                                                                    | Summary                                                                    | :heavy_check_mark: |
 | :-------------------------------------------------------------------------------------- | :------------------------------------------------------------------------- | :----------------- |
 | [`@acot/wcag/dialog-focus`](./docs/rules/dialog-focus.md)                               | Move focus to inside dialog or set dialog after trigger.                   | :heavy_check_mark: |
-| [`@acot/wcag/focusable-has-indicator`](./docs/rules/focusable-has-indicator.md)         | Focusable elemenet has a focus indicator.                                  | :heavy_check_mark: |
+| [`@acot/wcag/focusable-has-indicator`](./docs/rules/focusable-has-indicator.md)         | Focusable element has a focus indicator.                                   | :heavy_check_mark: |
 | [`@acot/wcag/img-has-name`](./docs/rules/img-has-name.md)                               | The `img` element or img role MUST has name.                               | :heavy_check_mark: |
 | [`@acot/wcag/interactive-has-enough-size`](./docs/rules/interactive-has-enough-size.md) | The size of the target for pointer inputs is at least 44 by 44 CSS pixels. | :heavy_check_mark: |
 | [`@acot/wcag/interactive-has-name`](./docs/rules/interactive-has-name.md)               | Interactive elements MUST has name.                                        | :heavy_check_mark: |
