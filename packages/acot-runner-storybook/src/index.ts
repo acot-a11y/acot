@@ -174,7 +174,7 @@ export class StorybookRunner extends AcotRunner<Options> {
 
 export default createRunnerFactory<Options>((config) => {
   validate(schema, config.options, {
-    name: 'Storybook runner',
+    name: 'StorybookRunner',
     base: 'options',
   });
 

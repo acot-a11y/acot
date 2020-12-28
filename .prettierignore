@@ -1,3 +1,4 @@
 lib
 .acot
 packages/document/templates/assets/styles.css
+packages/acot-runner-sitemap/src/__tests__/fixtures/sitemap_invalid.xml

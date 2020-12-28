@@ -31,9 +31,9 @@
     ]
   },
   "dependencies": {
-    "@acot/reporter": "0.0.3",
     "@acot/html-pickup": "0.0.3",
     "@acot/module-loader": "0.0.3",
+    "@acot/reporter": "0.0.3",
     "boxen": "^4.2.0",
     "chalk": "^4.0.0",
     "figures": "^3.2.0",

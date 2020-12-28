@@ -33,6 +33,7 @@
     ]
   },
   "dependencies": {
+    "@acot/acot-reporter-pretty": "0.0.1",
     "@acot/acot-runner": "0.0.1",
     "@acot/config": "0.0.3",
     "@acot/core": "0.0.3",
@@ -40,7 +41,6 @@
     "@acot/find-chrome": "0.0.3",
     "@acot/logger": "0.0.3",
     "@acot/schema-validator": "0.0.3",
-    "@acot/acot-reporter-pretty": "0.0.1",
     "@acot/utils": "0.0.3",
     "boxen": "^4.2.0",
     "chalk": "^4.0.0",
