@@ -30,12 +30,6 @@ export const ConfigSchema = {
         headers: {
           $ref: '#/definitions/Record',
         },
-        paths: {
-          items: {
-            type: 'string',
-          },
-          type: 'array',
-        },
         presets: {
           items: {
             type: 'string',
@@ -76,12 +70,6 @@ export const ConfigSchema = {
                   headers: {
                     $ref: '#/definitions/Record',
                   },
-                  paths: {
-                    items: {
-                      type: 'string',
-                    },
-                    type: 'array',
-                  },
                   presets: {
                     items: {
                       type: 'string',
@@ -112,6 +100,12 @@ export const ConfigSchema = {
                 type: 'object',
               },
             ],
+          },
+          type: 'array',
+        },
+        paths: {
+          items: {
+            type: 'string',
           },
           type: 'array',
         },

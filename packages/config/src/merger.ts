@@ -2,8 +2,7 @@ import deepmerge from 'deepmerge';
 import type { ResolvedConfig, ResolvedConfigEntry } from '@acot/types';
 import { isPlainObject } from 'is-plain-object';
 
-const isMergeableObject = (v: any): boolean =>
-  Array.isArray(v) || (isPlainObject(v) as any);
+const isMergeableObject = (v: any) => Array.isArray(v) || isPlainObject(v);
 
 export const mergeConfig = <T extends ResolvedConfig | ResolvedConfigEntry>(
   ...configs: T[]

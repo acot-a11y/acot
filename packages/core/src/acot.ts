@@ -39,7 +39,7 @@ export class Acot implements Core {
   private _testers: Tester[] = [];
   private _pool: BrowserPool | null = null;
   private _emitter: Emittery.Typed<CoreEventMap>;
-  public readonly version = require('../package.json').version;
+  public version = require('../package.json').version;
 
   public constructor(config: Partial<AcotConfig> = {}) {
     const cwd = config.cwd || process.cwd();

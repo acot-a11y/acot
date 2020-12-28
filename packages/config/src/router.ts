@@ -1,5 +1,6 @@
 import type { ResolvedConfig, ResolvedConfigEntry } from '@acot/types';
 import glob2regexp from 'glob-to-regexp';
+import { mergeConfig } from './merger';
 
 const globOptions: glob2regexp.Options = {
   globstar: true,
@@ -18,10 +19,10 @@ export class ConfigRouter {
       glob2regexp(pattern, globOptions).test(path);
 
     const entry = this._config.overrides?.find((config) => {
-      let found = (config.paths ?? []).includes(path);
+      let found = false;
 
       // include
-      if (!found && config.include != null) {
+      if (config.include != null) {
         found = config.include.some((pattern) => test(pattern, path));
       }
 
@@ -34,7 +35,14 @@ export class ConfigRouter {
     });
 
     if (entry != null) {
-      return entry;
+      return mergeConfig(
+        {
+          rules: this._config.rules,
+          presets: this._config.presets,
+          headers: this._config.headers,
+        },
+        entry,
+      );
     }
 
     return this._config;

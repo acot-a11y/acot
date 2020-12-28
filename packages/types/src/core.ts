@@ -25,7 +25,7 @@ export type CoreEventMap = {
 };
 
 export type Core = {
-  readonly version: string;
+  version: string;
   add: (path: string, descriptor: TestDescriptor) => void;
   audit: () => Promise<Summary>;
   close: () => Promise<void>;

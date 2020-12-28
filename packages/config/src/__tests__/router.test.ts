@@ -32,7 +32,6 @@ describe('ConfigRouter', () => {
       {
         include: ['/dir2/file1'],
         rules: {
-          root: ['off', null],
           childB: ['warn', null],
         },
         presets: [],
@@ -61,7 +60,16 @@ describe('ConfigRouter', () => {
     ['/', config],
     ['/dir1/file1', config.overrides![0]],
     ['/dir1/file1?query=value', config.overrides![0]],
-    ['/dir2/file1', config.overrides![1]],
+    [
+      '/dir2/file1',
+      {
+        ...config.overrides![1],
+        rules: {
+          ...config.rules,
+          ...config.overrides![1].rules,
+        },
+      },
+    ],
     ['/dir3/nest2/file1', config.overrides![2]],
     ['/dir3/nest3/file3', config.overrides![3]],
     ['/dir3/nest3/file2', config],

@@ -24,6 +24,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@acot/acot-runner": "0.0.1",
     "@acot/config": "0.0.3",
     "@acot/runner": "0.0.3",
     "@acot/schema-validator": "0.0.3",

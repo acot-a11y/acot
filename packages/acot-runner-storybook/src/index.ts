@@ -3,11 +3,12 @@ import type { Schema } from '@acot/schema-validator';
 import { validate } from '@acot/schema-validator';
 import { ConfigRouter, resolveConfig } from '@acot/config';
 import type { ResolvedConfig, ConfigEntry } from '@acot/types';
-import type { RunCollectResult } from '@acot/runner';
 import { createRunnerFactory } from '@acot/runner';
 import deepmerge from 'deepmerge';
 import { isPlainObject } from 'is-plain-object';
 import micromatch from 'micromatch';
+import type { AcotRunnerCollectResult } from '@acot/acot-runner';
+import { AcotRunner } from '@acot/acot-runner';
 const debug = require('debug')('acot:runner:storybook');
 
 type StoryParams = Omit<ConfigEntry, 'include' | 'exclude'>;
@@ -70,8 +71,8 @@ const filterStories = (
 };
 
 type Options = {
-  include: string[];
-  exclude: string[];
+  include?: string[];
+  exclude?: string[];
 };
 
 const schema: Schema = {
@@ -93,92 +94,95 @@ const schema: Schema = {
   additionalProperties: false,
 };
 
-export default createRunnerFactory<Options>(
-  'storybook',
-  ({ config, options }) => {
-    validate(schema, options, {
-      name: 'Storybook runner',
-      base: 'options',
-    });
+export class StorybookRunner extends AcotRunner<Options> {
+  protected async collect(): AcotRunnerCollectResult {
+    // get stories
+    const browser = await puppeteer.launch(this.config.launchOptions);
+    const page = await browser.newPage();
 
-    debug('received valid options: ', options);
+    let stories: AcotStory[] = [];
 
-    return {
-      collect: async () => {
-        // get stories
-        const browser = await puppeteer.launch(config.launchOptions);
-        const page = await browser.newPage();
+    try {
+      await page.goto(`${this.config.origin}/iframe.html?id=__ACOTSTORYBOOK__`);
+      await page.waitForFunction(() => window.__STORYBOOK_CLIENT_API__);
 
-        let stories: AcotStory[] = [];
+      // SB (v6 or later) api's `raw()` can return empty array til SB store gets configured.
+      // See https://github.com/storybookjs/storybook/pull/9914 .
+      await page.waitForFunction(
+        () => window.__STORYBOOK_CLIENT_API__.store()._configuring !== true,
+      );
 
-        try {
-          await page.goto(`${config.origin}/iframe.html?id=__ACOTSTORYBOOK__`);
-          await page.waitForFunction(() => window.__STORYBOOK_CLIENT_API__);
+      const raw = await page.evaluate(() => {
+        return window.__STORYBOOK_CLIENT_API__.raw().map((o) => ({
+          id: o.id,
+          kind: o.kind,
+          name: o.name,
+          params: o.parameters?.acot ?? {},
+        }));
+      });
 
-          // SB(v6 or later) api's `raw()` can return empty array til SB store gets configured.
-          // See https://github.com/storybookjs/storybook/pull/9914 .
-          await page.waitForFunction(
-            () => window.__STORYBOOK_CLIENT_API__.store()._configuring !== true,
-          );
+      debug('raw stories: %O', raw);
 
-          const raw = await page.evaluate(() => {
-            return window.__STORYBOOK_CLIENT_API__.raw().map((o) => ({
-              id: o.id,
-              kind: o.kind,
-              name: o.name,
-              params: o.parameters?.acot ?? {},
-            }));
-          });
+      stories = filterStories(
+        raw,
+        this.options.include ?? [],
+        this.options.exclude ?? [],
+      );
 
-          debug('raw stories: %O', raw);
+      debug('filtered stories: %O', stories);
+    } finally {
+      await page.close();
+      await browser.close();
+    }
 
-          stories = filterStories(
-            raw,
-            options.include ?? [],
-            options.exclude ?? [],
-          );
+    // collect results
+    const sources = new Map();
+    const router = new ConfigRouter(this.config);
 
-          debug('filtered stories: %O', stories);
-        } finally {
-          await page.close();
-          await browser.close();
-        }
+    await Promise.all(
+      stories.map(async (story) => {
+        const path = `/iframe.html?id=${story.id}`;
+        const entry = router.resolve(path);
+        const cfg: ResolvedConfig = await resolveConfig(story.params);
 
-        // collect results
-        const results: RunCollectResult = [];
-        const router = new ConfigRouter(config);
+        debug('path: %s, %O', path, entry, cfg);
 
-        await Promise.all(
-          stories.map(async (story) => {
-            const path = `/iframe.html?id=${story.id}`;
-            const entry = router.resolve(path);
-            const cfg: ResolvedConfig = await resolveConfig(story.params);
-
-            debug('path: %s, %O', path, entry, cfg);
-
-            results.push([
-              path,
-              deepmerge(
-                {
-                  rules: entry.rules,
-                  presets: entry.presets,
-                  headers: entry.headers,
-                },
-                {
-                  rules: cfg.rules,
-                  presets: cfg.presets,
-                  headers: cfg.headers,
-                },
-                {
-                  isMergeableObject,
-                },
-              ),
-            ]);
-          }),
+        sources.set(
+          path,
+          deepmerge(
+            {
+              rules: entry.rules,
+              presets: entry.presets,
+              headers: entry.headers,
+            },
+            {
+              rules: cfg.rules,
+              presets: cfg.presets,
+              headers: cfg.headers,
+            },
+            {
+              isMergeableObject,
+            },
+          ),
         );
+      }),
+    );
 
-        return results;
-      },
-    };
-  },
-);
+    return sources;
+  }
+}
+
+export default createRunnerFactory<Options>((config) => {
+  validate(schema, config.options, {
+    name: 'Storybook runner',
+    base: 'options',
+  });
+
+  debug('received valid options: ', config.options);
+
+  return new StorybookRunner({
+    ...config,
+    name: 'storybook',
+    version: require('../package.json').version,
+  });
+});

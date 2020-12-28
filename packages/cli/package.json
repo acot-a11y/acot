@@ -33,6 +33,7 @@
     ]
   },
   "dependencies": {
+    "@acot/acot-runner": "0.0.1",
     "@acot/config": "0.0.3",
     "@acot/core": "0.0.3",
     "@acot/document": "0.0.3",

@@ -1,15 +1,15 @@
 {
-  "name": "@acot/connection",
-  "version": "0.0.3",
-  "description": "Manage the connection to the server.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/connection",
+  "name": "@acot/acot-runner",
+  "version": "0.0.1",
+  "description": "A default runner module of acot.",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-runner",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/acot-a11y/acot.git",
-    "directory": "packages/connection"
+    "directory": "packages/acot-runner"
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
@@ -24,13 +24,13 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@acot/config": "0.0.3",
+    "@acot/runner": "0.0.3",
     "debug": "^4.3.1",
-    "execa": "^4.1.0",
-    "wait-on": "^5.2.0"
+    "emittery": "^0.7.1"
   },
   "devDependencies": {
-    "@acot/types": "0.0.3",
-    "@types/wait-on": "^5.2.0"
+    "@acot/types": "0.0.3"
   },
   "publishConfig": {
     "access": "public"
