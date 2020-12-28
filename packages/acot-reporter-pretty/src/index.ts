@@ -14,7 +14,7 @@ import logSymbols from 'log-symbols';
 import plur from 'plur';
 import stripAnsi from 'strip-ansi';
 import { pickup } from '@acot/html-pickup';
-import { createReporterFactory } from '../factory';
+import { createReporterFactory } from '@acot/reporter';
 
 const readFile = promisify(fs.readFile);
 

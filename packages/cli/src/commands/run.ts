@@ -41,7 +41,7 @@ export default createCommand({
     reporter: {
       type: 'string',
       alias: 'r',
-      description: 'Name of the reporter. (default: "pretty")',
+      description: 'Name of the reporter. (default: "@acot/pretty")',
     },
     parallel: {
       type: 'number',
@@ -188,7 +188,7 @@ export default createCommand({
       });
     } else {
       const loader = new ReporterLoader(cwd);
-      const factory = loader.load(args.reporter || 'pretty');
+      const factory = loader.load(args.reporter || '@acot/pretty');
       report = factory(cfg);
     }
   } catch (e) {

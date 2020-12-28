@@ -1,15 +1,15 @@
 {
-  "name": "@acot/reporter",
-  "version": "0.0.3",
-  "description": "A reporter toolset for @acot/cli.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/reporter",
+  "name": "@acot/acot-reporter-dot",
+  "version": "0.0.1",
+  "description": "A dot reporter for @acot/cli.",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-dot",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/acot-a11y/acot.git",
-    "directory": "packages/reporter"
+    "directory": "packages/acot-reporter-dot"
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
@@ -21,8 +21,7 @@
     "!__tests__"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "jest"
+    "build": "tsc"
   },
   "jest": {
     "preset": "ts-jest",
@@ -32,25 +31,20 @@
     ]
   },
   "dependencies": {
+    "@acot/reporter": "0.0.3",
     "@acot/html-pickup": "0.0.3",
     "@acot/module-loader": "0.0.3",
     "boxen": "^4.2.0",
     "chalk": "^4.0.0",
-    "cli-table": "^0.3.4",
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-symbols": "^4.0.0",
     "log-update": "^4.0.0",
-    "ora": "^5.1.0",
     "plur": "^4.0.0",
-    "pretty-ms": "^7.0.1",
-    "strip-ansi": "^6.0.0",
-    "text-table": "^0.2.0"
+    "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.3",
-    "@types/cli-table": "^0.3.0",
-    "@types/text-table": "^0.2.1"
+    "@acot/types": "0.0.3"
   },
   "publishConfig": {
     "access": "public"

@@ -340,7 +340,7 @@ You can specify the Reporter to use for the report. See [reporter/src/reporters]
 ```javascript
 module.exports = {
   runner: {
-    uses: 'pretty',
+    uses: '@acot/pretty',
     with: {},
   },
 };
@@ -352,7 +352,7 @@ If you do not need to specify options, you can specify only the name of Reporter
 
 ```javascript
 module.exports = {
-  reporter: 'pretty',
+  reporter: '@acot/pretty',
 };
 ```
 
