@@ -2,7 +2,7 @@
   "name": "@acot/types",
   "version": "0.0.3",
   "description": "acot's underlying type declarations.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/types",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/types",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

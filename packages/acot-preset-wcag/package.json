@@ -2,7 +2,7 @@
   "name": "@acot/acot-preset-wcag",
   "version": "0.0.3",
   "description": "A WCAG-based rule set for acot.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-preset-wcag",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-preset-wcag",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

@@ -2,7 +2,7 @@
   "name": "@acot/mock-logger",
   "version": "0.0.3",
   "description": "Mock logger for acot.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/mock-logger",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/mock-logger",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

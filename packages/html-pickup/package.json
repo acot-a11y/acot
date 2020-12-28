@@ -2,7 +2,7 @@
   "name": "@acot/html-pickup",
   "version": "0.0.3",
   "description": "Use the CSS Selector to pick up the elements from the HTML string.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/html-pickup",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/html-pickup",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

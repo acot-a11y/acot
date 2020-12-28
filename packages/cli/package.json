@@ -2,7 +2,7 @@
   "name": "@acot/cli",
   "version": "0.0.3",
   "description": "More accessible web, all over the world.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/cli",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/cli",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
