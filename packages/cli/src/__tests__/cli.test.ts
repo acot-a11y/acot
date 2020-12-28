@@ -1,4 +1,4 @@
-import { MockLogger } from '@acot/mock-logger';
+import { MockLogger } from '@acot/mock';
 import type { CommandModule } from '../command';
 import type { CLI } from '../cli';
 import { createCommand } from '../command';
