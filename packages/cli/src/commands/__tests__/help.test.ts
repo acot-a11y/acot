@@ -1,5 +1,5 @@
 import stripAnsi from 'strip-ansi';
-import type { MockLogger } from '@acot/mock-logger';
+import type { MockLogger } from '@acot/mock';
 import type { CommandRunner, CommandDefinition } from '../../command';
 import { createCommand } from '../../command';
 import { createMockLogger } from '../../__mocks__/logger';

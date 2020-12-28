@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@acot/find-chrome": "0.0.3",
-    "@acot/mock-logger": "0.0.3",
+    "@acot/mock": "0.0.1",
     "@types/lodash": "^4.14.165",
     "@types/puppeteer-core": "^2.0.0",
     "puppeteer": "^5.5.0"
