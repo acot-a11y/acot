@@ -3,6 +3,8 @@ import { Browser } from '../browser';
 import type { BrowserPool } from '../browser-pool';
 
 describe('BrowserPool', () => {
+  let pool: BrowserPool;
+
   const factory = async (
     ...args: ConstructorParameters<typeof BrowserPool>
   ) => {
@@ -32,12 +34,13 @@ describe('BrowserPool', () => {
     }));
   });
 
-  afterEach(() => {
+  afterEach(async () => {
+    await pool.terminate();
     jest.resetModules();
   });
 
   test('constructor', async () => {
-    const pool = await factory({
+    pool = await factory({
       launchOptions: {
         dumpio: true,
         args: ['--no-sandbox'],
@@ -45,7 +48,7 @@ describe('BrowserPool', () => {
       timeout: 1000,
     });
 
-    expect((pool as any)._config).toEqual({
+    expect(pool['_config']).toEqual({
       launchOptions: {
         dumpio: true,
         args: ['--no-sandbox', '--enable-accessibility-object-model'],
@@ -59,14 +62,14 @@ describe('BrowserPool', () => {
   });
 
   test('bootstrap', async () => {
-    const pool = await factory({
+    pool = await factory({
       launchOptions: {},
       timeout: 1000,
     });
 
     await pool.bootstrap(4);
 
-    expect((pool as any)._available.size).toBe(4);
+    expect(pool['_available'].size).toBe(4);
   });
 
   /**
@@ -75,7 +78,7 @@ describe('BrowserPool', () => {
    *   - timeout
    */
   test('execute', async () => {
-    const pool = await factory({
+    pool = await factory({
       launchOptions: {},
       timeout: 1000,
     });
@@ -88,7 +91,7 @@ describe('BrowserPool', () => {
   });
 
   test('terminate', async () => {
-    const pool = await factory({
+    pool = await factory({
       launchOptions: {},
       timeout: 1000,
     });

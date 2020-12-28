@@ -57,7 +57,6 @@ type BaseConfig = {
   extends?: string[];
   presets?: string[];
   headers?: Record<string, string>;
-  paths?: string[];
   rules?: RuleConfig;
 };
 
@@ -70,6 +69,7 @@ export type LaunchOptions = Omit<PuppeteerLaunchOptions, 'product'>;
 
 export type Config = BaseConfig & {
   origin?: string;
+  paths?: string[];
   connection?: ConnectionOptions;
   runner?: string | RunnerUses;
   reporter?: string | ReporterUses;

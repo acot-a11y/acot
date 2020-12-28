@@ -2,7 +2,7 @@
   "name": "@acot/runner",
   "version": "0.0.3",
   "description": "A runner toolset for @acot/cli.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/runner",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/runner",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
@@ -27,12 +27,12 @@
   "jest": {
     "preset": "ts-jest",
     "rootDir": "src",
+    "testEnvironment": "node",
     "testMatch": [
       "**/__tests__/**/*.test.ts?(x)"
     ]
   },
   "dependencies": {
-    "@acot/connection": "0.0.3",
     "@acot/module-loader": "0.0.3",
     "debug": "^4.3.1",
     "emittery": "^0.7.1"

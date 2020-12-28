@@ -2,7 +2,7 @@
   "name": "@acot/cli",
   "version": "0.0.3",
   "description": "More accessible web, all over the world.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/cli",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/cli",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
@@ -28,11 +28,14 @@
   "jest": {
     "preset": "ts-jest",
     "rootDir": "src",
+    "testEnvironment": "node",
     "testMatch": [
       "**/__tests__/**/*.test.ts?(x)"
     ]
   },
   "dependencies": {
+    "@acot/acot-reporter-pretty": "0.0.1",
+    "@acot/acot-runner": "0.0.1",
     "@acot/config": "0.0.3",
     "@acot/core": "0.0.3",
     "@acot/document": "0.0.3",

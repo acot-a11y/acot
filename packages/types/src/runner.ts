@@ -9,7 +9,7 @@ export type RunnerEventMap = {
   'connect:start': [];
   'connect:complete': [];
   'collect:start': [];
-  'collect:complete': [[path: string, descriptor: TestDescriptor][]];
+  'collect:complete': [Map<string, TestDescriptor>];
   'launch:start': CoreEventMap['launch:start'];
   'launch:complete': CoreEventMap['launch:complete'];
   'audit:start': CoreEventMap['audit:start'];
@@ -25,13 +25,13 @@ export type RunnerEventMap = {
 };
 
 export type RunnerVersion = {
-  readonly self: string;
-  readonly core: string;
+  self: string;
+  core: string;
 };
 
 export type Runner = {
-  readonly version: RunnerVersion;
-  readonly name: string;
+  version: RunnerVersion;
+  name: string;
   run: () => Promise<Summary>;
 } & EventMethodFactory<RunnerEventMap>;
 

@@ -2,7 +2,7 @@
   "name": "@acot/module-loader",
   "version": "0.0.3",
   "description": "Load the module according to the naming rule of acot.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/module-loader",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/module-loader",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
@@ -27,6 +27,7 @@
   "jest": {
     "preset": "ts-jest",
     "rootDir": "src",
+    "testEnvironment": "node",
     "testMatch": [
       "**/__tests__/**/*.test.ts?(x)"
     ]

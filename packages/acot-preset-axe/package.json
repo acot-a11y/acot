@@ -2,7 +2,7 @@
   "name": "@acot/acot-preset-axe",
   "version": "0.0.3",
   "description": "An axe rule set for acot.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/acot-preset-axe",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-preset-axe",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },

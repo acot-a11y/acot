@@ -17,6 +17,7 @@
     "lint:script": "eslint . --ext \".js,.jsx,.ts,.tsx\"",
     "release": "lerna publish from-package",
     "release:canary": "yarn release --dist-tag canary",
+    "scaffold": "yarn scaffdog generate",
     "test": "lerna run --no-bail --stream --scope \"@acot/*\" test",
     "test:ci": "yarn test --parallel",
     "versionup": "lerna version",

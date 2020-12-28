@@ -9,8 +9,9 @@ import { createSummary } from '@acot/factory';
 import Emittery from 'emittery';
 
 export class MockCore implements Core {
-  public readonly version = 'mock';
+  public version = 'mock';
   public cases: [path: string, descriptor: TestDescriptor][] = [];
+  public summary: Summary = createSummary();
   public emitter = new Emittery();
 
   public add(path: string, descriptor: TestDescriptor): void {
@@ -25,7 +26,7 @@ export class MockCore implements Core {
     this.emitter.emit('test:start', []);
     this.emitter.emit('test:complete', []);
     await this.close();
-    return createSummary({});
+    return this.summary;
   }
 
   public async close(): Promise<void> {

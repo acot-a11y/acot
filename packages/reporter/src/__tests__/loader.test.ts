@@ -8,10 +8,6 @@ describe('ReporterLoader', () => {
     loader = new ReporterLoader(path.resolve(__dirname, 'fixtures'));
   });
 
-  test('load - built-in', () => {
-    expect(loader.load('pretty')).toBe(require('../reporters/pretty').default);
-  });
-
   test('load - local file', () => {
     expect(loader.load('./local')).toBe(require('./fixtures/local'));
     expect(loader.load('./local.js')).toBe(require('./fixtures/local'));

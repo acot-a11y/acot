@@ -9,14 +9,13 @@ import type {
   Reporter,
   ReporterFactoryConfig,
   ResolvedConfig,
-  Runner,
   RunnerFactoryConfig,
 } from '@acot/types';
 import { parseViewport } from '@acot/utils';
+import createAcotRunner from '@acot/acot-runner';
 import isCI from 'is-ci';
 import { createCommand } from '../command';
 import { debug } from '../logging';
-import { createDefaultRunner } from '../runner';
 
 export default createCommand({
   name: 'run',
@@ -42,7 +41,7 @@ export default createCommand({
     reporter: {
       type: 'string',
       alias: 'r',
-      description: 'Name of the reporter. (default: "pretty")',
+      description: 'Name of the reporter. (default: "@acot/pretty")',
     },
     parallel: {
       type: 'number',
@@ -189,7 +188,7 @@ export default createCommand({
       });
     } else {
       const loader = new ReporterLoader(cwd);
-      const factory = loader.load(args.reporter || 'pretty');
+      const factory = loader.load(args.reporter || '@acot/pretty');
       report = factory(cfg);
     }
   } catch (e) {
@@ -198,8 +197,7 @@ export default createCommand({
   }
 
   // runner
-  let runner: Runner;
-  try {
+  const runner = (() => {
     const cfg: RunnerFactoryConfig = {
       core: acot,
       config,
@@ -207,17 +205,14 @@ export default createCommand({
     };
 
     if (config.runner != null) {
-      runner = config.runner.uses({
+      return config.runner.uses({
         ...cfg,
         options: config.runner.with ?? {},
       });
     } else {
-      runner = createDefaultRunner(cfg);
+      return createAcotRunner(cfg);
     }
-  } catch (e) {
-    logger.error(e);
-    return 1;
-  }
+  })();
 
   // run
   try {

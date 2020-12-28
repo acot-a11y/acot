@@ -150,6 +150,7 @@ export const resolveConfig = async (
           const cfg = config as any;
           delete cfg.origin;
           delete cfg.runner;
+          delete cfg.reporter;
           delete cfg.overrides;
           return config;
         };

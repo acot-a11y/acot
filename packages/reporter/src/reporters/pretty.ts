@@ -219,7 +219,7 @@ export default createReporterFactory(
     });
 
     runner.on('collect:complete', ([results]) => {
-      spinner.succeed(chalk`Collected {gray ({bold ${results.length}} cases)}`);
+      spinner.succeed(chalk`Collected {gray ({bold ${results.size}} cases)}`);
     });
 
     runner.on('launch:start', () => {

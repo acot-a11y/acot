@@ -1,0 +1,53 @@
+{
+  "name": "@acot/acot-reporter-dot",
+  "version": "0.0.1",
+  "description": "A dot reporter for @acot/cli.",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-dot",
+  "bugs": {
+    "url": "https://github.com/acot-a11y/acot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acot-a11y/acot.git",
+    "directory": "packages/acot-reporter-dot"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "!__mocks__",
+    "!__tests__"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts?(x)"
+    ]
+  },
+  "dependencies": {
+    "@acot/html-pickup": "0.0.3",
+    "@acot/module-loader": "0.0.3",
+    "@acot/reporter": "0.0.3",
+    "boxen": "^4.2.0",
+    "chalk": "^4.0.0",
+    "figures": "^3.2.0",
+    "indent-string": "^4.0.0",
+    "log-symbols": "^4.0.0",
+    "log-update": "^4.0.0",
+    "plur": "^4.0.0",
+    "strip-ansi": "^6.0.0"
+  },
+  "devDependencies": {
+    "@acot/types": "0.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -2,7 +2,7 @@
   "name": "@acot/config",
   "version": "0.0.3",
   "description": "A module to manipulate configs of acot.",
-  "homepage": "https://github.com/acot-a11y/acot/tree/master/packages/config",
+  "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/config",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
   },
@@ -29,6 +29,7 @@
   "jest": {
     "preset": "ts-jest",
     "rootDir": "src",
+    "testEnvironment": "node",
     "testMatch": [
       "**/__tests__/**/*.test.ts?(x)"
     ]
