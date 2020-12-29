@@ -37,7 +37,7 @@ export default createRule<Options>({
           const name = await node.evaluate(async (el) => {
             const ax = await ((window as any).getComputedAccessibleNode(
               el,
-            ) as ComputedAccessibleNode);
+            ) as Promise<ComputedAccessibleNode>);
             return (ax?.name ?? '').trim();
           });
 
