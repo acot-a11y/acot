@@ -41,6 +41,8 @@
     "@acot/document": "0.0.4",
     "@acot/find-chrome": "0.0.4",
     "@acot/logger": "0.0.4",
+    "@acot/reporter": "0.0.4",
+    "@acot/runner": "0.0.4",
     "@acot/schema-validator": "0.0.4",
     "@acot/utils": "0.0.4",
     "boxen": "^4.2.0",

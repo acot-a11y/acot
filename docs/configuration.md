@@ -313,9 +313,9 @@ You can specify the Custom Runner to use for the audit.
 ```javascript
 module.exports = {
   runner: {
-    uses: '@acot/storybook',
+    uses: '@acot/sitemap',
     with: {
-      include: ['dir/**/*'],
+      source: 'https://acot.example/sitemap.xml',
     },
   },
 };
@@ -335,7 +335,7 @@ Specify the name of Custom Runner according to the [Naming Convention](./naming-
 
 #### `reporter`
 
-You can specify the Reporter to use for the report. See [reporter/src/reporters](../packages/reporter/src/reporters) for all the built-in Repoters available.
+You can specify the Reporter to use for the report.
 
 ```javascript
 module.exports = {

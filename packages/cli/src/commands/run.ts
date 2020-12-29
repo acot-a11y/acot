@@ -5,17 +5,21 @@ import { Acot } from '@acot/core';
 import type { ChromeChannel } from '@acot/find-chrome';
 import { findChrome } from '@acot/find-chrome';
 import { ReporterLoader } from '@acot/reporter';
+import { RunnerLoader } from '@acot/runner';
 import type {
   Reporter,
   ReporterFactoryConfig,
   ResolvedConfig,
+  Runner,
   RunnerFactoryConfig,
 } from '@acot/types';
 import { parseViewport } from '@acot/utils';
-import createAcotRunner from '@acot/acot-runner';
 import isCI from 'is-ci';
 import { createCommand } from '../command';
 import { debug } from '../logging';
+
+const DEFAULT_REPORTER = '@acot/pretty';
+const DEFAULT_RUNNER = '@acot';
 
 export default createCommand({
   name: 'run',
@@ -40,8 +44,19 @@ export default createCommand({
     },
     reporter: {
       type: 'string',
-      alias: 'r',
-      description: 'Name of the reporter. (default: "@acot/pretty")',
+      description: `Name of the reporter. (default: "${DEFAULT_REPORTER}")`,
+    },
+    'reporter-with': {
+      type: 'string',
+      description: 'Reporter options. Specify the JSON as a string.',
+    },
+    runner: {
+      type: 'string',
+      description: `Name of the runner. (default: "${DEFAULT_RUNNER}")`,
+    },
+    'runner-with': {
+      type: 'string',
+      description: 'Runner options. Specify the JSON as a string.',
     },
     parallel: {
       type: 'number',
@@ -177,19 +192,18 @@ export default createCommand({
       stdout: logger.getStdout(),
       stderr: logger.getStderr(),
       verbose: !!args.verbose || isCI,
-      options: {},
       config,
+      options: {
+        ...(config.reporter?.with ?? {}),
+        ...JSON.parse(args['reporter-with'] ?? '{}'),
+      },
     };
 
     if (args.reporter == null && config.reporter != null) {
-      report = config.reporter.uses({
-        ...cfg,
-        options: config.reporter.with ?? {},
-      });
+      report = config.reporter.uses(cfg);
     } else {
       const loader = new ReporterLoader(cwd);
-      const factory = loader.load(args.reporter || '@acot/pretty');
-      report = factory(cfg);
+      report = loader.load(args.reporter || DEFAULT_REPORTER)(cfg);
     }
   } catch (e) {
     logger.error(e);
@@ -197,22 +211,27 @@ export default createCommand({
   }
 
   // runner
-  const runner = (() => {
+  let runner: Runner;
+  try {
     const cfg: RunnerFactoryConfig = {
       core: acot,
       config,
-      options: {},
+      options: {
+        ...(config.runner?.with ?? {}),
+        ...JSON.parse(args['runner-with'] ?? '{}'),
+      },
     };
 
-    if (config.runner != null) {
-      return config.runner.uses({
-        ...cfg,
-        options: config.runner.with ?? {},
-      });
+    if (args.runner == null && config.runner != null) {
+      runner = config.runner.uses(cfg);
     } else {
-      return createAcotRunner(cfg);
+      const loader = new RunnerLoader(cwd);
+      runner = loader.load(args.runner || DEFAULT_RUNNER)(cfg);
     }
-  })();
+  } catch (e) {
+    logger.error(e);
+    return 1;
+  }
 
   // run
   try {
