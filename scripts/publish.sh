@@ -42,8 +42,6 @@ if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
   fi
 
   echo "Sync the main branch with the canary branch"
-  git config --local user.email "$GIT_USER_EMAIL"
-  git config --local user.name "$GIT_USER_NAME"
 
   git fetch --depth=1 origin main
   if [[ ! $? -eq 0 ]]; then
