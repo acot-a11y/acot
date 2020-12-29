@@ -71,8 +71,30 @@ describe('ConfigRouter', () => {
       },
     ],
     ['/dir3/nest2/file1', config.overrides![2]],
-    ['/dir3/nest3/file3', config.overrides![3]],
+    [
+      '/dir3/nest3/file1',
+      {
+        rules: {
+          ...config.overrides![2].rules,
+          ...config.overrides![3].rules,
+        },
+        presets: [
+          ...config.overrides![2].presets!,
+          ...config.overrides![3].presets!,
+        ],
+        include: [
+          ...(config.overrides![2].include ?? []),
+          ...(config.overrides![3].include ?? []),
+        ],
+        exclude: [
+          ...(config.overrides![2].exclude ?? []),
+          ...(config.overrides![3].exclude ?? []),
+        ],
+        headers: undefined,
+      },
+    ],
     ['/dir3/nest3/file2', config],
+    ['/dir3/nest3/file3', config.overrides![3]],
   ])('resolve("%s")', (input, expected) => {
     const router = new ConfigRouter(config);
 

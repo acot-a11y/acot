@@ -1,11 +1,6 @@
 import type { ResolvedConfig, ResolvedConfigEntry } from '@acot/types';
-import glob2regexp from 'glob-to-regexp';
+import micromatch from 'micromatch';
 import { mergeConfig } from './merger';
-
-const globOptions: glob2regexp.Options = {
-  globstar: true,
-  extended: true,
-};
 
 export class ConfigRouter {
   private _config: ResolvedConfig;
@@ -16,33 +11,30 @@ export class ConfigRouter {
 
   public resolve(path: string): ResolvedConfigEntry {
     const test = (pattern: string, path: string) =>
-      glob2regexp(pattern, globOptions).test(path);
+      micromatch.isMatch(path, pattern);
 
-    const entry = this._config.overrides?.find((config) => {
+    const entries = this._config.overrides?.filter((entry) => {
       let found = false;
 
       // include
-      if (config.include != null) {
-        found = config.include.some((pattern) => test(pattern, path));
+      if (entry.include != null) {
+        found = entry.include.some((pattern) => test(pattern, path));
       }
 
       // exclude
-      if (found && config.exclude != null) {
-        found = config.exclude.every((pattern) => !test(pattern, path));
+      if (found && entry.exclude != null) {
+        found = entry.exclude.every((pattern) => !test(pattern, path));
       }
 
       return found;
     });
 
-    if (entry != null) {
-      return mergeConfig(
-        {
-          rules: this._config.rules,
-          presets: this._config.presets,
-          headers: this._config.headers,
-        },
-        entry,
-      );
+    if (entries != null && entries.length > 0) {
+      return entries.reduce((acc, cur) => mergeConfig(acc, cur), {
+        rules: this._config.rules,
+        presets: this._config.presets,
+        headers: this._config.headers,
+      });
     }
 
     return this._config;
