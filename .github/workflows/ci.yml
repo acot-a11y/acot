@@ -65,6 +65,7 @@ jobs:
       GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
