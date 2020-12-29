@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@acot/config": "0.0.4-canary.0",
+    "@acot/connection": "0.0.4-canary.0",
     "@acot/runner": "0.0.4-canary.0",
     "debug": "^4.3.1",
     "emittery": "^0.7.1"
