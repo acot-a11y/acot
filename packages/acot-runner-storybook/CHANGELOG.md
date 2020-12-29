@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-storybook@0.0.4-canary.1...@acot/acot-runner-storybook@0.0.4) (2020-12-29)
+
+**Note:** Version bump only for package @acot/acot-runner-storybook
+
 ## [0.0.4-canary.1](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-storybook@0.0.4-canary.0...@acot/acot-runner-storybook@0.0.4-canary.1) (2020-12-29)
 
 **Note:** Version bump only for package @acot/acot-runner-storybook

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4](https://github.com/acot-a11y/acot/compare/@example/html@0.0.4-canary.2...@example/html@0.0.4) (2020-12-29)
+
+**Note:** Version bump only for package @example/html
+
 ## [0.0.4-canary.2](https://github.com/acot-a11y/acot/compare/@example/html@0.0.4-canary.1...@example/html@0.0.4-canary.2) (2020-12-29)
 
 **Note:** Version bump only for package @example/html

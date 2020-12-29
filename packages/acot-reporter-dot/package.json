@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-dot",
-  "version": "0.0.2-canary.0",
+  "version": "0.0.2",
   "description": "A dot reporter for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-dot",
   "bugs": {
@@ -32,9 +32,9 @@
     ]
   },
   "dependencies": {
-    "@acot/html-pickup": "0.0.4-canary.0",
-    "@acot/module-loader": "0.0.4-canary.0",
-    "@acot/reporter": "0.0.4-canary.0",
+    "@acot/html-pickup": "0.0.4",
+    "@acot/module-loader": "0.0.4",
+    "@acot/reporter": "0.0.4",
     "boxen": "^4.2.0",
     "chalk": "^4.0.0",
     "figures": "^3.2.0",
@@ -45,7 +45,7 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.4-canary.0"
+    "@acot/types": "0.0.4"
   },
   "publishConfig": {
     "access": "public"
