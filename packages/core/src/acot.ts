@@ -19,6 +19,7 @@ import { BrowserPool } from './browser-pool';
 import { debug } from './logging';
 import { RuleStore } from './rule-store';
 import { Tester } from './tester';
+import { mark } from './timing';
 
 export type AcotConfig = {
   cwd: string;
@@ -103,6 +104,7 @@ export class Acot implements Core {
   }
 
   public async audit(): Promise<Summary> {
+    const measure = mark();
     const urls = this._testers.map((tester) => tester.url());
 
     // working directory
@@ -135,7 +137,7 @@ export class Acot implements Core {
       }),
     );
 
-    const summary = this._summarize(results);
+    const summary = this._summarize(results, measure());
 
     await this._emitter.emit('audit:complete', [summary]);
 
@@ -165,10 +167,9 @@ export class Acot implements Core {
     return summary;
   }
 
-  private _summarize(results: TestResult[]): Summary {
+  private _summarize(results: TestResult[], duration: number): Summary {
     const rulesAndStat = results.reduce<Pick<Summary, keyof Stat | 'rules'>>(
       (acc, cur) => {
-        acc.duration += cur.duration;
         acc.passCount += cur.passCount;
         acc.errorCount += cur.errorCount;
         acc.warningCount += cur.warningCount;
@@ -194,6 +195,7 @@ export class Acot implements Core {
 
     return {
       ...rulesAndStat,
+      duration,
       results: _.orderBy(results, [(res) => res.url], ['asc']),
     };
   }

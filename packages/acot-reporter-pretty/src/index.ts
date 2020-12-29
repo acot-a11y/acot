@@ -385,7 +385,7 @@ export default createReporterFactory(
       cliTable.push([
         '',
         '',
-        ms(summary.duration),
+        '',
         passCount(summary.passCount),
         errorCount(summary.errorCount),
         warningCount(summary.warningCount),

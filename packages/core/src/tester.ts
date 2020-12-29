@@ -282,15 +282,20 @@ export class Tester {
       measure,
     });
 
+    const factory = (...args: Parameters<typeof createTestcaseResult>) =>
+      createTestcaseResult({
+        process: browser.id(),
+        duration: measure(),
+        rule: id,
+        ...args[0],
+      });
+
     const handleUnexpectedError = (e: unknown) => {
-      debug('Unexpected error occurred:', e);
+      this._debug('Unexpected error occurred:', e);
 
       results.push(
-        createTestcaseResult({
-          process: browser.id(),
+        factory({
           status: 'error',
-          rule: id,
-          duration: measure(),
           message:
             e instanceof Error ? e.message : `Unexpected error occurred: ${e}`,
         }),
@@ -313,19 +318,16 @@ export class Tester {
             ),
           );
         } catch (e) {
-          debug('Not found elements (rule="%s", url="%s")', id, url, e);
+          this._debug('Not found elements (rule="%s", url="%s")', id, url, e);
         }
         break;
       }
 
       default:
         results.push(
-          createTestcaseResult({
-            process: browser.id(),
+          factory({
             status: 'error',
-            rule: id,
             message: `The rule type "${(rule as any).type}" is invalid.`,
-            duration: measure(),
           }),
         );
         break;
@@ -334,11 +336,8 @@ export class Tester {
     // pass
     if (results.length === 0) {
       results.push(
-        createTestcaseResult({
-          process: browser.id(),
+        factory({
           status: 'pass',
-          rule: id,
-          duration: measure(),
         }),
       );
     }
