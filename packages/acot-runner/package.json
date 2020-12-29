@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner",
-  "version": "0.0.2-canary.0",
+  "version": "0.0.2-canary.1",
   "description": "A default runner module of acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-runner",
   "bugs": {
