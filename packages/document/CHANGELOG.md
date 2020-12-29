@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4-canary.1](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.4-canary.0...@acot/document@0.0.4-canary.1) (2020-12-29)
+
+### Bug Fixes
+
+- **document:** fix dependencies ([c49533a](https://github.com/acot-a11y/acot/commit/c49533a15e4e066320bd6d7c40a17b4912e3fb83))
+
 ## [0.0.4-canary.0](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.3...@acot/document@0.0.4-canary.0) (2020-12-29)
 
 **Note:** Version bump only for package @acot/document
