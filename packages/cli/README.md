@@ -151,7 +151,8 @@ acot run <paths..> [flags]
 ```bash
 -o, --origin                  Target server URL origin.
 -C, --command                 Command to launch the local server.
--r, --reporter                Name of the reporter. (default: "@acot/pretty")
+    --reporter                Name of the reporter. (default: "@acot/pretty")
+    --reporter-with           Reporter options. Specify the JSON as a string.
 -p, --parallel                Number of parallel audit browsers.
 -c, --config                  Provide path to a acot configuration file (e.g. "./acot.config.js")
 -V, --viewport                Viewport used for browser access. One of JSON string or "<number>x<number>".
