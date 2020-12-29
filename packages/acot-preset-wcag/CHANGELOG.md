@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.3...@acot/acot-preset-wcag@0.0.4-canary.0) (2020-12-29)
+
+### Features
+
+- **acot-preset-wcag:** add link-has-name ([e77f56b](https://github.com/acot-a11y/acot/commit/e77f56b4057619ee941e4b2af1c145cfb27205fd))
+
 ## [0.0.3](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.3-canary.4...@acot/acot-preset-wcag@0.0.3) (2020-12-22)
 
 **Note:** Version bump only for package @acot/acot-preset-wcag

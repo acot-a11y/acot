@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4-canary.0](https://github.com/acot-a11y/acot/compare/@acot/schema-validator@0.0.3...@acot/schema-validator@0.0.4-canary.0) (2020-12-29)
+
+**Note:** Version bump only for package @acot/schema-validator
+
 ## [0.0.3](https://github.com/acot-a11y/acot/compare/@acot/schema-validator@0.0.3-canary.0...@acot/schema-validator@0.0.3) (2020-12-22)
 
 **Note:** Version bump only for package @acot/schema-validator

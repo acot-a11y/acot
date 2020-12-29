@@ -1,6 +1,6 @@
 {
   "name": "@acot/cli",
-  "version": "0.0.3",
+  "version": "0.0.4-canary.0",
   "description": "More accessible web, all over the world.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/cli",
   "bugs": {
@@ -34,15 +34,15 @@
     ]
   },
   "dependencies": {
-    "@acot/acot-reporter-pretty": "0.0.1",
-    "@acot/acot-runner": "0.0.1",
-    "@acot/config": "0.0.3",
-    "@acot/core": "0.0.3",
-    "@acot/document": "0.0.3",
-    "@acot/find-chrome": "0.0.3",
-    "@acot/logger": "0.0.3",
-    "@acot/schema-validator": "0.0.3",
-    "@acot/utils": "0.0.3",
+    "@acot/acot-reporter-pretty": "0.0.2-canary.0",
+    "@acot/acot-runner": "0.0.2-canary.0",
+    "@acot/config": "0.0.4-canary.0",
+    "@acot/core": "0.0.4-canary.0",
+    "@acot/document": "0.0.4-canary.0",
+    "@acot/find-chrome": "0.0.4-canary.0",
+    "@acot/logger": "0.0.4-canary.0",
+    "@acot/schema-validator": "0.0.4-canary.0",
+    "@acot/utils": "0.0.4-canary.0",
     "boxen": "^4.2.0",
     "chalk": "^4.0.0",
     "chokidar": "^3.4.1",
@@ -65,7 +65,7 @@
     "yargs": "^16.1.1"
   },
   "devDependencies": {
-    "@acot/mock": "0.0.1",
+    "@acot/mock": "0.0.2-canary.0",
     "@types/is-ci": "^2.0.0",
     "@types/listr": "^0.14.2",
     "@types/node-emoji": "^1.8.1",
