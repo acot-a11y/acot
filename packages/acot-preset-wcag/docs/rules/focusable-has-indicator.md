@@ -9,11 +9,21 @@ Focusable element has a focus indicator.
 ## :white_check_mark: Correct
 
 ```html
-<p>
-  <a href="https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html"
-    >WCAG 2.1 - 2.4.7: Focus Visible</a
-  >
-</p>
+<a href="https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html"
+  >WCAG 2.1 - 2.4.7: Focus Visible</a
+>
+
+<button type="button">button</button>
+```
+
+```html
+<a href="#">Custom Outline style</a>
+
+<style>
+  *:focus {
+    outline: 3px double black;
+  }
+</style>
 ```
 
 ```html
@@ -30,10 +40,14 @@ Focusable element has a focus indicator.
 ## :warning: Incorrect
 
 ```html
+<!-- correct case -->
+<a href="#">Custom Outline style</a>
+
+<!-- incorrect case -->
 <button type="button">Button styled with outline: none</button>
 
 <style>
-  *:focus {
+  button:focus {
     outline: none;
   }
 </style>

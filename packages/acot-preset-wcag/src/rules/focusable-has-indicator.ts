@@ -17,51 +17,66 @@ const SELECTOR = [
 type Options = {};
 
 export default createRule<Options>({
-  type: 'contextual',
-  selector: SELECTOR,
+  type: 'global',
   immutable: true,
   meta: {
     tags: ['wcag21aa', '2.4.7 Focus visible'],
     recommended: true,
   },
 
-  test: async (context, node) => {
-    const getComputedOutlineStyleAndCssText = (el: Element) => {
-      const CSSStyleDeclaration = window.getComputedStyle(el);
+  test: async (context) => {
+    try {
+      const elements = await context.page.$$(SELECTOR);
 
-      return {
-        outline: {
-          color: CSSStyleDeclaration.outlineColor,
-          style: CSSStyleDeclaration.outlineStyle,
-          width: CSSStyleDeclaration.outlineWidth,
-        },
-        cssText: CSSStyleDeclaration.cssText,
-      };
-    };
+      for (const node of elements) {
+        const getComputedOutlineStyleAndCssText = (el: Element) => {
+          const CSSStyleDeclaration = window.getComputedStyle(el);
 
-    const beforeStyle = await node.evaluate(getComputedOutlineStyleAndCssText);
+          return {
+            outline: {
+              color: CSSStyleDeclaration.outlineColor,
+              style: CSSStyleDeclaration.outlineStyle,
+              width: CSSStyleDeclaration.outlineWidth,
+            },
+            cssText: CSSStyleDeclaration.cssText,
+          };
+        };
 
-    context.debug({ beforeStyle });
+        const beforeStyle = await node.evaluate(
+          getComputedOutlineStyleAndCssText,
+        );
 
-    await node.focus();
+        await node.focus();
 
-    const afterStyle = await node.evaluate(getComputedOutlineStyleAndCssText);
+        const afterStyle = await node.evaluate(
+          getComputedOutlineStyleAndCssText,
+        );
 
-    context.debug({ afterStyle });
+        context.debug('outline: %O', afterStyle.outline);
 
-    if (
-      afterStyle.outline.color !== 'transparent' &&
-      afterStyle.outline.style !== 'none' &&
-      afterStyle.outline.width !== '0px'
-    ) {
-      return;
-    }
+        if (
+          afterStyle.outline.color !== 'transparent' &&
+          afterStyle.outline.style !== 'none' &&
+          afterStyle.outline.width !== '0px'
+        ) {
+          continue;
+        }
 
-    if (beforeStyle.cssText === afterStyle.cssText) {
-      await context.report({
-        node,
-        message: `The focusable element MUST have visible focus indicator when focused.`,
-      });
+        context.debug(
+          `beforeStyle === afterStyle: ${
+            beforeStyle.cssText === afterStyle.cssText
+          }`,
+        );
+
+        if (beforeStyle.cssText === afterStyle.cssText) {
+          await context.report({
+            node,
+            message: `The focusable element MUST have visible focus indicator when focused.`,
+          });
+        }
+      }
+    } catch (e) {
+      context.debug('error: ', e);
     }
   },
 });
