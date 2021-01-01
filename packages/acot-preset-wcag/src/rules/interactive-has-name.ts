@@ -22,18 +22,17 @@ const SELECTOR = [
   .join('');
 
 export default createRule<Options>({
-  type: 'global',
   immutable: true,
   meta: {
     recommended: true,
   },
 
   test: async (context) => {
-    try {
-      const elements = await context.page.$$(SELECTOR);
+    const nodes = await context.page.$$(SELECTOR);
 
-      await Promise.all(
-        elements.map(async (node) => {
+    await Promise.all(
+      nodes.map(async (node) => {
+        try {
           const name = await node.evaluate(async (el) => {
             const ax = await ((window as any).getComputedAccessibleNode(
               el,
@@ -70,20 +69,19 @@ export default createRule<Options>({
           const listeners = await getEventListeners(node);
           const hasClick = listeners.some(({ type }) => type === 'click');
 
-          context.debug('name: %O', name);
-
+          context.debug('name: %s', name);
           context.debug({ hasClick });
 
           if ((hasClick || focusable) && !name) {
             await context.report({
               node,
-              message: 'Interactive element MUST have the name',
+              message: 'Interactive element MUST have the name.',
             });
           }
-        }),
-      );
-    } catch (e) {
-      context.debug('error: ', e);
-    }
+        } catch (e) {
+          context.debug(e);
+        }
+      }),
+    );
   },
 });

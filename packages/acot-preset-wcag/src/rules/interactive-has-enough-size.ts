@@ -36,61 +36,64 @@ const SELECTOR = [
 type Options = {};
 
 export default createRule<Options>({
-  type: 'contextual',
-  selector: SELECTOR,
   immutable: true,
-  schema: {},
   meta: {
     tags: ['wcag21aaa', '2.5.5 Target Size'],
     recommended: true,
   },
 
-  test: async (context, node) => {
-    const styles = await node.evaluate((el) => {
-      const rect = el.getBoundingClientRect();
+  test: async (context) => {
+    const nodes = await context.page.$$(SELECTOR);
 
-      return {
-        display: window.getComputedStyle(el).getPropertyValue('display'),
-        width: rect.width,
-        height: rect.height,
-      };
-    });
+    await Promise.all(
+      nodes.map(async (node) => {
+        const styles = await node.evaluate((el) => {
+          const rect = el.getBoundingClientRect();
 
-    context.debug('styles: %O', styles);
+          return {
+            display: window.getComputedStyle(el).getPropertyValue('display'),
+            width: rect.width,
+            height: rect.height,
+          };
+        });
 
-    if (styles.display === 'inline') {
-      return;
-    }
+        context.debug('styles: %O', styles);
 
-    if (Math.min(styles.width, styles.height) >= SIZE) {
-      return;
-    }
+        if (styles.display === 'inline') {
+          return;
+        }
 
-    const isDefaultStyles = await node.evaluate((el) => {
-      const get = (e: Element) => window.getComputedStyle(e).cssText;
-      const body = document.body;
-      const root = document.createElement('div');
-      const shadow = root.attachShadow({ mode: 'closed' });
-      const dummy = el.cloneNode(true) as Element;
+        if (Math.min(styles.width, styles.height) >= SIZE) {
+          return;
+        }
 
-      dummy.setAttribute('style', '');
-      shadow.appendChild(dummy);
-      body.appendChild(root);
+        const isDefaultStyles = await node.evaluate((el) => {
+          const get = (e: Element) => window.getComputedStyle(e).cssText;
+          const body = document.body;
+          const root = document.createElement('div');
+          const shadow = root.attachShadow({ mode: 'closed' });
+          const dummy = el.cloneNode(true) as Element;
 
-      const result = get(dummy) === get(el);
+          dummy.setAttribute('style', '');
+          shadow.appendChild(dummy);
+          body.appendChild(root);
 
-      body.removeChild(root);
+          const result = get(dummy) === get(el);
 
-      return result;
-    });
+          body.removeChild(root);
 
-    context.debug('isDefaultStyles:', isDefaultStyles);
+          return result;
+        });
 
-    if (!isDefaultStyles) {
-      await context.report({
-        node,
-        message: `The target size must be at least 44 x 44 CSS pixels, but actual: ${styles.width} x ${styles.height} CSS pixels.`,
-      });
-    }
+        context.debug('isDefaultStyles:', isDefaultStyles);
+
+        if (!isDefaultStyles) {
+          await context.report({
+            node,
+            message: `The target size must be at least 44 x 44 CSS pixels, but actual: ${styles.width} x ${styles.height} CSS pixels.`,
+          });
+        }
+      }),
+    );
   },
 });

@@ -9,7 +9,7 @@ export type ReportDescriptor = {
   node?: ElementHandle;
 };
 
-export type RuleContext<T = RuleOptions> = {
+export type RuleContext<T extends RuleOptions = RuleOptions> = {
   page: Page;
   report: (descriptor: ReportDescriptor) => Promise<void>;
   debug: (format?: any, ...args: any[]) => void;
@@ -22,26 +22,14 @@ export type RuleMeta = {
   [key: string]: any;
 };
 
-export type RuleBase<T extends RuleType> = {
-  type: T;
+export type Rule<T extends RuleOptions = RuleOptions> = {
   schema?: Schema;
   immutable?: boolean;
   meta?: RuleMeta;
-};
-
-export type GlobalRule<T> = RuleBase<'global'> & {
   test: (context: RuleContext<T>) => Promise<void>;
 };
 
-export type ContextualRule<T> = RuleBase<'contextual'> & {
-  root?: string;
-  selector: string;
-  test: (context: RuleContext<T>, node: ElementHandle) => Promise<void>;
-};
-
 export type RuleId = string;
-export type RuleType = Rule['type'];
-export type Rule<T = unknown> = GlobalRule<T> | ContextualRule<T>;
 export type RuleOptions = Record<string, any>;
-export type RuleMap = Map<RuleId, Rule<any>>;
-export type RuleRecord = Record<RuleId, Rule<any>>;
+export type RuleMap = Map<RuleId, Rule>;
+export type RuleRecord = Record<RuleId, Rule>;

@@ -5,7 +5,6 @@ import tags from 'language-tags';
 type Options = {};
 
 export default createRule<Options>({
-  type: 'global',
   immutable: true,
   meta: {
     recommended: true,

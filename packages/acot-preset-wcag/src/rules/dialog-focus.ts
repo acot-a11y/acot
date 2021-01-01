@@ -4,65 +4,65 @@ import type { ComputedAccessibleNode } from '@acot/types';
 type Options = {};
 
 export default createRule<Options>({
-  type: 'contextual',
-  selector: '[aria-haspopup="dialog"]',
   meta: {
     tags: ['wcag2.1a', '2.4.3 Focus Order'],
     recommended: true,
   },
 
-  test: async (context, node) => {
-    try {
-      await node.click();
+  test: async (context) => {
+    const nodes = await context.page.$$('[aria-haspopup="dialog"]');
 
-      const activeElementHasParentDialogRole = async () => {
-        if (document.activeElement === null) {
-          return false;
+    const activeElementHasParentDialogRole = async () => {
+      if (document.activeElement === null) {
+        return false;
+      }
+
+      const ax = await ((window as any).getComputedAccessibleNode(
+        document.activeElement,
+      ) as Promise<ComputedAccessibleNode>);
+
+      const closest = (
+        computed: ComputedAccessibleNode,
+      ): ComputedAccessibleNode | null => {
+        if (computed.role === 'dialog') {
+          return computed;
         }
 
-        const ax = (await (window as any).getComputedAccessibleNode(
-          document.activeElement,
-        )) as ComputedAccessibleNode;
-
-        const findParentDialogRoleAXNode = (
-          computedAXNode: ComputedAccessibleNode,
-        ): ComputedAccessibleNode | null => {
-          if (computedAXNode.role === 'dialog') {
-            return computedAXNode;
-          }
-
-          return computedAXNode.parent != undefined
-            ? findParentDialogRoleAXNode(computedAXNode.parent)
-            : null;
-        };
-
-        return findParentDialogRoleAXNode(ax)?.role === 'dialog';
+        return computed.parent != undefined ? closest(computed.parent) : null;
       };
 
-      const hasDialogRoleInParentByClick = await context.page.evaluate(
-        activeElementHasParentDialogRole,
-      );
+      return closest(ax)?.role === 'dialog';
+    };
 
-      context.debug({ hasDialogRoleInParentByClick });
+    for (const node of nodes) {
+      try {
+        await node.click();
 
-      if (!hasDialogRoleInParentByClick) {
-        await context.page.keyboard.press('Tab');
-
-        const hasDialogRoleInParentByPressTab = await context.page.evaluate(
+        const hasDialogRoleInParentByClick = await context.page.evaluate(
           activeElementHasParentDialogRole,
         );
 
-        context.debug({ hasDialogRoleInParentByPressTab });
+        context.debug({ hasDialogRoleInParentByClick });
 
-        if (!hasDialogRoleInParentByPressTab) {
-          await context.report({
-            node,
-            message: `Move focus to inside dialog or set dialog after trigger.`,
-          });
+        if (!hasDialogRoleInParentByClick) {
+          await context.page.keyboard.press('Tab');
+
+          const hasDialogRoleInParentByPressTab = await context.page.evaluate(
+            activeElementHasParentDialogRole,
+          );
+
+          context.debug({ hasDialogRoleInParentByPressTab });
+
+          if (!hasDialogRoleInParentByPressTab) {
+            await context.report({
+              node,
+              message: `Move focus to inside dialog or set dialog after trigger.`,
+            });
+          }
         }
+      } catch (e) {
+        context.debug(e);
       }
-    } catch (e) {
-      context.debug('error: ', e);
     }
   },
 });

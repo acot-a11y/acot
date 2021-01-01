@@ -12,7 +12,7 @@ ignore: ['**/*']
 ````markdown
 # {{ input }}
 
-**TODO:**Short summary.
+**TODO:** Short summary.
 
 **TODO:** Description.
 
@@ -37,7 +37,6 @@ import { createRule } from '@acot/core';
 type Options = {};
 
 export default createRule<Options>({
-  type: '...',
   meta: {
     recommended: false,
   },

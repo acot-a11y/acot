@@ -1,4 +1,5 @@
-import type { Rule } from '@acot/types';
+import type { Rule, RuleOptions } from '@acot/types';
 
-export const createRule = <T = unknown>(descriptor: Rule<T>): Rule<T> =>
-  descriptor;
+export const createRule = <T extends RuleOptions>(
+  descriptor: Rule<T>,
+): Rule<T> => descriptor;

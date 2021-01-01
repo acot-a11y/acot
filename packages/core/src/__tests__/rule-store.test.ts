@@ -12,8 +12,8 @@ describe('RuleStore', () => {
   test('define rule', () => {
     const mock = async () => {};
 
-    const foo = createRule({ type: 'global', test: mock });
-    const bar = createRule({ type: 'global', test: mock });
+    const foo = createRule({ test: mock });
+    const bar = createRule({ test: mock });
 
     store.define('foo', foo);
     store.define('bar', bar);
@@ -28,8 +28,8 @@ describe('RuleStore', () => {
     const preset1: Preset = {
       id: 'preset1',
       rules: new Map([
-        ['preset1-1', createRule({ type: 'global', test: mock })],
-        ['preset1-2', createRule({ type: 'global', test: mock })],
+        ['preset1-1', createRule({ test: mock })],
+        ['preset1-2', createRule({ test: mock })],
       ]),
       configs: new Map(),
     };
@@ -37,8 +37,8 @@ describe('RuleStore', () => {
     const preset2: Preset = {
       id: 'preset2',
       rules: new Map([
-        ['preset2-1', createRule({ type: 'global', test: mock })],
-        ['preset2-2', createRule({ type: 'global', test: mock })],
+        ['preset2-1', createRule({ test: mock })],
+        ['preset2-2', createRule({ test: mock })],
       ]),
       configs: new Map(),
     };
@@ -52,7 +52,7 @@ describe('RuleStore', () => {
   });
 
   test('extends store', () => {
-    const rule = createRule({ type: 'global', test: async () => {} });
+    const rule = createRule({ test: async () => {} });
 
     store.define('rule', rule);
 

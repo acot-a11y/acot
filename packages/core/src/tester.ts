@@ -290,7 +290,9 @@ export class Tester {
         ...args[0],
       });
 
-    const handleUnexpectedError = (e: unknown) => {
+    try {
+      await rule.test(context);
+    } catch (e) {
       this._debug('Unexpected error occurred:', e);
 
       results.push(
@@ -300,37 +302,6 @@ export class Tester {
             e instanceof Error ? e.message : `Unexpected error occurred: ${e}`,
         }),
       );
-    };
-
-    switch (rule.type) {
-      case 'global': {
-        await rule.test(context).catch(handleUnexpectedError);
-        break;
-      }
-
-      case 'contextual': {
-        try {
-          const nodes = await page.$$(rule.selector);
-
-          await Promise.all(
-            nodes.map((node) =>
-              rule.test(context, node).catch(handleUnexpectedError),
-            ),
-          );
-        } catch (e) {
-          this._debug('Not found elements (rule="%s", url="%s")', id, url, e);
-        }
-        break;
-      }
-
-      default:
-        results.push(
-          factory({
-            status: 'error',
-            message: `The rule type "${(rule as any).type}" is invalid.`,
-          }),
-        );
-        break;
     }
 
     // pass

@@ -4,7 +4,6 @@ import { createRule } from '@acot/core';
 type Options = {};
 
 export default createRule<Options>({
-  type: 'global',
   immutable: true,
   meta: {
     tags: ['wcag2.1', 'wcag2.4.2'],

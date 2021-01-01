@@ -9,7 +9,6 @@ describe('DocGenerator', () => {
 
   const factory = (recommended: boolean): Rule =>
     createRule({
-      type: 'global',
       meta: {
         recommended,
       },
