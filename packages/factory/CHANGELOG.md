@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/acot-a11y/acot/compare/@acot/factory@0.0.4...@acot/factory@0.0.5) (2021-01-01)
+
+**Note:** Version bump only for package @acot/factory
+
 ## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/factory@0.0.4-canary.0...@acot/factory@0.0.4) (2020-12-29)
 
 **Note:** Version bump only for package @acot/factory

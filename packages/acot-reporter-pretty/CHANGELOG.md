@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://github.com/acot-a11y/acot/compare/@acot/acot-reporter-pretty@0.0.2...@acot/acot-reporter-pretty@0.0.3) (2021-01-01)
+
+### Bug Fixes
+
+- fix summary duration bug ([a5fb2d3](https://github.com/acot-a11y/acot/commit/a5fb2d34bc30967d284b37b24a0ea54220bf3565))
+
 ## [0.0.2](https://github.com/acot-a11y/acot/compare/@acot/acot-reporter-pretty@0.0.2-canary.0...@acot/acot-reporter-pretty@0.0.2) (2020-12-29)
 
 **Note:** Version bump only for package @acot/acot-reporter-pretty

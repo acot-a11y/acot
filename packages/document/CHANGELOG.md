@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.4...@acot/document@0.0.5) (2021-01-01)
+
+### Features
+
+- **core:** add chromium auto detection for `BrowserPool` ([21f7228](https://github.com/acot-a11y/acot/commit/21f722882efe18605dc3867ddf328f31aede160a))
+
 ## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.4-canary.1...@acot/document@0.0.4) (2020-12-29)
 
 **Note:** Version bump only for package @acot/document

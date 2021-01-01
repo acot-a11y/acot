@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.4...@acot/cli@0.0.5) (2021-01-01)
+
+### Features
+
+- **cli:** add `--(reporter|runner)-with` options ([64944e1](https://github.com/acot-a11y/acot/commit/64944e12c3af8572a84ffb8553ad657d119d2170))
+- **cli:** add `@acot/sitemap` to init sub-command ([336196a](https://github.com/acot-a11y/acot/commit/336196a22223a0ebaeca99aed923b8910851706c))
+
 ## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.4-canary.2...@acot/cli@0.0.4) (2020-12-29)
 
 **Note:** Version bump only for package @acot/cli

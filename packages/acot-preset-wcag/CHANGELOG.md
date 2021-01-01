@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.4...@acot/acot-preset-wcag@0.0.5) (2021-01-01)
+
+### Bug Fixes
+
+- **acot-preset-wcag:** fix focusable-has-indicator bug ([4488ca1](https://github.com/acot-a11y/acot/commit/4488ca13c67f64d2b1d68f75c1c7d01c4d0c0e44))
+
 ## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.4-canary.2...@acot/acot-preset-wcag@0.0.4) (2020-12-29)
 
 ### Bug Fixes

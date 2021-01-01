@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.4...@acot/reporter@0.0.5) (2021-01-01)
+
+### Bug Fixes
+
+- fix summary duration bug ([a5fb2d3](https://github.com/acot-a11y/acot/commit/a5fb2d34bc30967d284b37b24a0ea54220bf3565))
+
 ## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.4-canary.0...@acot/reporter@0.0.4) (2020-12-29)
 
 **Note:** Version bump only for package @acot/reporter
