@@ -25,18 +25,17 @@ const SELECTOR = [
   .join('');
 
 export default createRule<Options>({
-  type: 'global',
   immutable: true,
   meta: {
     recommended: true,
   },
 
   test: async (context) => {
-    try {
-      const elements = await context.page.$$(SELECTOR);
+    const nodes = await context.page.$$(SELECTOR);
 
-      await Promise.all(
-        elements.map(async (node) => {
+    await Promise.all(
+      nodes.map(async (node) => {
+        try {
           // if focusable
           // TODO refactor
           const focusable = await node.evaluate((el) => {
@@ -83,10 +82,10 @@ export default createRule<Options>({
                 'Interactive element MUST have the same handler as the click event.',
             });
           }
-        }),
-      );
-    } catch (e) {
-      context.debug('error: ', e);
-    }
+        } catch (e) {
+          context.debug(e);
+        }
+      }),
+    );
   },
 });

@@ -3,8 +3,6 @@ import { createRule } from '@acot/core';
 type Options = {};
 
 export default createRule<Options>({
-  type: 'contextual',
-  selector: 'aria/[role="link"]',
   immutable: true,
   meta: {
     tags: [
@@ -15,23 +13,29 @@ export default createRule<Options>({
     recommended: true,
   },
 
-  test: async (context, node) => {
-    try {
-      const name = await node.evaluate(async (el) => {
-        const ax = await (window as any).getComputedAccessibleNode(el);
-        return (ax?.name ?? '').trim();
-      });
+  test: async (context) => {
+    const nodes = await context.page.$$('aria/[role="link"]');
 
-      context.debug('name: %s', name);
+    await Promise.all(
+      nodes.map(async (node) => {
+        try {
+          const name = await node.evaluate(async (el) => {
+            const ax = await (window as any).getComputedAccessibleNode(el);
+            return (ax?.name ?? '').trim();
+          });
 
-      if (!name) {
-        await context.report({
-          node,
-          message: 'Link MUST has name.',
-        });
-      }
-    } catch (e) {
-      context.debug('error: ', e);
-    }
+          context.debug('name: %s', name);
+
+          if (!name) {
+            await context.report({
+              node,
+              message: 'Link MUST has name.',
+            });
+          }
+        } catch (e) {
+          context.debug(e);
+        }
+      }),
+    );
   },
 });

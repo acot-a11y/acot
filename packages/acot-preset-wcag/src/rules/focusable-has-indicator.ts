@@ -17,7 +17,6 @@ const SELECTOR = [
 type Options = {};
 
 export default createRule<Options>({
-  type: 'global',
   immutable: true,
   meta: {
     tags: ['wcag21aa', '2.4.7 Focus visible'],
@@ -25,58 +24,52 @@ export default createRule<Options>({
   },
 
   test: async (context) => {
-    try {
-      const elements = await context.page.$$(SELECTOR);
+    const nodes = await context.page.$$(SELECTOR);
 
-      for (const node of elements) {
+    for (const node of nodes) {
+      try {
         const getComputedOutlineStyleAndCssText = (el: Element) => {
-          const CSSStyleDeclaration = window.getComputedStyle(el);
+          const styles = window.getComputedStyle(el);
 
           return {
             outline: {
-              color: CSSStyleDeclaration.outlineColor,
-              style: CSSStyleDeclaration.outlineStyle,
-              width: CSSStyleDeclaration.outlineWidth,
+              color: styles.outlineColor,
+              style: styles.outlineStyle,
+              width: styles.outlineWidth,
             },
-            cssText: CSSStyleDeclaration.cssText,
+            cssText: styles.cssText,
           };
         };
 
-        const beforeStyle = await node.evaluate(
-          getComputedOutlineStyleAndCssText,
-        );
+        const before = await node.evaluate(getComputedOutlineStyleAndCssText);
 
         await node.focus();
 
-        const afterStyle = await node.evaluate(
-          getComputedOutlineStyleAndCssText,
-        );
+        const after = await node.evaluate(getComputedOutlineStyleAndCssText);
 
-        context.debug('outline: %O', afterStyle.outline);
+        context.debug('outline: %O', after.outline);
 
         if (
-          afterStyle.outline.color !== 'transparent' &&
-          afterStyle.outline.style !== 'none' &&
-          afterStyle.outline.width !== '0px'
+          after.outline.color !== 'transparent' &&
+          after.outline.style !== 'none' &&
+          after.outline.width !== '0px'
         ) {
           continue;
         }
 
-        context.debug(
-          `beforeStyle === afterStyle: ${
-            beforeStyle.cssText === afterStyle.cssText
-          }`,
-        );
+        const isSameStyle = before.cssText === after.cssText;
 
-        if (beforeStyle.cssText === afterStyle.cssText) {
+        context.debug(`before === after: ${isSameStyle}`);
+
+        if (isSameStyle) {
           await context.report({
             node,
             message: `The focusable element MUST have visible focus indicator when focused.`,
           });
         }
+      } catch (e) {
+        context.debug(e);
       }
-    } catch (e) {
-      context.debug('error: ', e);
     }
   },
 });
