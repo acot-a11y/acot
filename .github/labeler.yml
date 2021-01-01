@@ -1,5 +1,5 @@
 A-documentation:
-  - '*.md'
+  - '**/*.md'
   - 'docs/**'
 
 A-example:
@@ -13,22 +13,29 @@ A-foundation:
   - 'packages/document/**'
   - 'packages/factory/**'
   - 'packages/logger/**'
-  - 'packages/mock-logger/**'
   - 'packages/module-loader/**'
   - 'packages/reporter/**'
   - 'packages/runner/**'
   - 'packages/types/**'
+
+A-utilities:
+  - 'packages/find-chrome/**'
+  - 'packages/html-pickup/**'
+  - 'packages/mock/**'
+  - 'packages/schema-validator/**'
   - 'packages/utils/**'
 
 A-config:
   - 'packages/acot-config/**'
   - 'packages/acot-config-*/**'
 
-A-plugin:
-  - 'packages/acot-plugin-*/**'
+A-preset:
+  - 'packages/acot-preset-*/**'
 
 A-runner:
+  - 'packages/acot-runner/**'
   - 'packages/acot-runner-*/**'
 
 A-reporter:
+  - 'packages/acot-reporter/**'
   - 'packages/acot-reporter-*/**'
