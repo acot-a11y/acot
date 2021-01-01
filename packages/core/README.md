@@ -16,14 +16,15 @@ The following is an example of using the [@acot/acot-preset-wcag](../acot-preset
 
 ### Simple
 
-In the simple example, the following package is used.
+In the simple example, it depends on the following package.
 
-- [puppeteer](https://github.com/puppeteer/puppeteer)
+```bash
+$ npm install --save puppeteer
+```
 
 The following is an example of specifying all audited pages and their configuration.
 
 ```typescript
-import puppeteer from 'puppeteer';
 import { Acot, PresetLoader } from '@acot/core';
 
 const cwd = process.cwd();
@@ -35,9 +36,6 @@ const cwd = process.cwd();
     parallel: 4,
     origin: 'http://localhost:8000',
     presets: [loader.load('@acot/wcag')],
-    launchOptions: {
-      executablePath: puppeteer.executablePath(),
-    },
     cwd,
   });
 
