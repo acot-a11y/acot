@@ -12,23 +12,26 @@ describe('BrowserPool', () => {
 
     return new BrowserPool(...args);
   };
+  class MockBrowser extends Browser {
+    public launchOptions: LaunchOptions = {} as any;
+
+    async launch(launchOptions: LaunchOptions) {
+      this.launchOptions = launchOptions;
+
+      const closer = {
+        close: async () => {},
+      } as any;
+
+      this._browser = closer;
+      this._page = closer;
+
+      this.close = jest.fn().mockReturnValue(Promise.resolve());
+
+      return this;
+    }
+  }
 
   beforeEach(() => {
-    class MockBrowser extends Browser {
-      async launch(_: LaunchOptions) {
-        const closer = {
-          close: async () => {},
-        } as any;
-
-        this._browser = closer;
-        this._page = closer;
-
-        this.close = jest.fn().mockReturnValue(Promise.resolve());
-
-        return this;
-      }
-    }
-
     jest.doMock('../browser', () => ({
       Browser: MockBrowser,
     }));
@@ -61,7 +64,7 @@ describe('BrowserPool', () => {
     });
   });
 
-  test('bootstrap', async () => {
+  test('bootstrap - chrome auto detection', async () => {
     pool = await factory({
       launchOptions: {},
       timeout: 1000,
@@ -70,6 +73,33 @@ describe('BrowserPool', () => {
     await pool.bootstrap(4);
 
     expect(pool['_available'].size).toBe(4);
+
+    for (const browser of pool['_available']) {
+      expect(
+        (browser as MockBrowser).launchOptions.executablePath,
+      ).not.toBeFalsy();
+    }
+  });
+
+  test('bootstrap - specify chrome executablePath', async () => {
+    const executablePath = '/path/to';
+
+    pool = await factory({
+      launchOptions: {
+        executablePath,
+      },
+      timeout: 1000,
+    });
+
+    await pool.bootstrap(4);
+
+    expect(pool['_available'].size).toBe(4);
+
+    for (const browser of pool['_available']) {
+      expect((browser as MockBrowser).launchOptions.executablePath).toBe(
+        executablePath,
+      );
+    }
   });
 
   /**

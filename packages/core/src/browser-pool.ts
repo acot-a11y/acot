@@ -1,6 +1,8 @@
 import type { LaunchOptions } from '@acot/types';
+import { findChrome } from '@acot/find-chrome';
 import { Browser } from './browser';
 import { Queue } from './queue';
+import { debug } from './logging';
 
 const WORK_INTERVAL = 30;
 
@@ -54,11 +56,27 @@ export class BrowserPool {
   }
 
   public async bootstrap(parallel: number): Promise<void> {
-    const { launchOptions } = this._config;
+    let opts = this._config.launchOptions;
+
+    if (!opts.executablePath) {
+      debug('try chrome auto detection...');
+
+      const chrome = await findChrome();
+      if (chrome == null) {
+        throw new Error('Executable Chromium was not found.');
+      }
+
+      debug('auto detected chrome: %O', chrome);
+
+      opts = {
+        ...opts,
+        executablePath: chrome.executablePath,
+      };
+    }
 
     await Promise.all(
       Array.from(Array(parallel || 1)).map(async (_, i) => {
-        this._available.add(await new Browser(i).launch(launchOptions));
+        this._available.add(await new Browser(i).launch(opts));
       }),
     );
 

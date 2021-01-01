@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@acot/factory": "0.0.4",
+    "@acot/find-chrome": "0.0.4",
     "@acot/html-pickup": "0.0.4",
     "@acot/logger": "0.0.4",
     "@acot/module-loader": "0.0.4",
@@ -49,7 +50,6 @@
     "puppeteer-element2selector": "^0.0.3"
   },
   "devDependencies": {
-    "@acot/find-chrome": "0.0.4",
     "@acot/mock": "0.0.2",
     "@types/lodash": "^4.14.165",
     "@types/puppeteer-core": "^2.0.0",

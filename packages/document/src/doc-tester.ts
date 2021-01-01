@@ -28,7 +28,7 @@ export class DocTester {
   public async test(project: DocProject): Promise<DocResult> {
     const port = this._server.port;
 
-    const chromium = await findChrome({});
+    const chromium = await findChrome();
     debug('found chromium: %O', chromium);
 
     await this._server.bootstrap(project);
