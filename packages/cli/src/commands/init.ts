@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
+import { URL } from 'url';
 import type { Config } from '@acot/types';
 import chalk from 'chalk';
 import enquirer from 'enquirer';
@@ -191,15 +192,19 @@ const promptUserIfNeeded = async (defaults: Partial<PromptResult>) => {
     result.runner = await prompt({
       type: 'select',
       name: 'runner',
-      message: 'Which Runner do you want to use?',
+      message: 'Which runner do you want to use?',
       choices: [
         {
           name: 'default',
-          message: 'Default runner',
+          message: 'Default Runner',
+        },
+        {
+          name: '@acot/sitemap',
+          message: 'Sitemap Runner',
         },
         {
           name: '@acot/storybook',
-          message: 'Storybook runner',
+          message: 'Storybook Runner',
         },
       ],
       result(value) {
@@ -279,13 +284,28 @@ const result2string = (result: PromptResult) => {
     };
   }
 
-  if (result.runner) {
-    config.runner = result.runner;
+  switch (result.runner) {
+    case '@acot/sitemap': {
+      config.runner = {
+        uses: result.runner,
+        with: {
+          source: new URL('/sitemap.xml', result.origin).toString(),
+        },
+      };
+      break;
+    }
+
+    case '@acot/storybook': {
+      config.runner = {
+        uses: result.runner,
+      };
+      break;
+    }
   }
 
   config.origin = result.origin;
 
-  if (result.runner !== '@acot/storybook') {
+  if (result.runner === '') {
     config.paths = ['/'];
   }
 
@@ -444,6 +464,10 @@ export default createCommand({
         }
 
         switch (result.runner) {
+          case '@acot/sitemap':
+            deps.push('@acot/acot-runner-sitemap');
+            break;
+
           case '@acot/storybook':
             deps.push('@acot/acot-runner-storybook');
             break;
