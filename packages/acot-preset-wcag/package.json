@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-preset-wcag",
-  "version": "0.0.5",
+  "version": "0.0.6-canary.0",
   "description": "A WCAG-based rule set for acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-preset-wcag",
   "bugs": {
@@ -28,7 +28,7 @@
     "test": "acot preset test --port 1234"
   },
   "dependencies": {
-    "@acot/cli": "0.0.5",
+    "@acot/cli": "0.0.6-canary.0",
     "@acot/core": "0.0.5",
     "language-tags": "^1.0.5"
   },

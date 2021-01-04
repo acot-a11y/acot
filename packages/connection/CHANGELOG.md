@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6-canary.0](https://github.com/acot-a11y/acot/compare/@acot/connection@0.0.5...@acot/connection@0.0.6-canary.0) (2021-01-04)
+
+### Features
+
+- **connection:** use `GET` request instead of `HEAD` request [#34](https://github.com/acot-a11y/acot/issues/34) ([5a48d8a](https://github.com/acot-a11y/acot/commit/5a48d8ae9bcab53137cdd842f48fb8a17d9edc36))
+
 ## [0.0.5](https://github.com/acot-a11y/acot/compare/@acot/connection@0.0.4...@acot/connection@0.0.5) (2021-01-01)
 
 **Note:** Version bump only for package @acot/connection
