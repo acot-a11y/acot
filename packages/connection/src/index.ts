@@ -9,8 +9,12 @@ const waitForServer = (url: string, timeout: number) =>
       return;
     }
 
+    const resource = url.replace(/^(https?)/, '$1-get');
+
+    debug('connection resource: %s', resource);
+
     waitOn({
-      resources: [url],
+      resources: [resource],
       timeout,
     })
       .then(() => {
