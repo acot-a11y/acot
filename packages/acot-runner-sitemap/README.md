@@ -1,4 +1,4 @@
-# @acot/acot-runner-storybook
+# @acot/acot-runner-sitemap
 
 An acot custom runner reading audit pages from sitemap.
 
