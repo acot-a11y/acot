@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.7-canary.0...@acot/acot-preset-wcag@0.0.7) (2021-01-13)
+
+**Note:** Version bump only for package @acot/acot-preset-wcag
+
 ## [0.0.7-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-wcag@0.0.6...@acot/acot-preset-wcag@0.0.7-canary.0) (2021-01-13)
 
 **Note:** Version bump only for package @acot/acot-preset-wcag
