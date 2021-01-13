@@ -1,6 +1,6 @@
 {
   "name": "@acot/cli",
-  "version": "0.0.6-canary.0",
+  "version": "0.0.6",
   "description": "More accessible web, all over the world.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/cli",
   "bugs": {
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@acot/acot-reporter-pretty": "0.0.3",
-    "@acot/acot-runner": "0.0.4-canary.0",
+    "@acot/acot-runner": "0.0.4",
     "@acot/config": "0.0.5",
     "@acot/core": "0.0.5",
     "@acot/document": "0.0.5",

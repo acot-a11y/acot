@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner",
-  "version": "0.0.4-canary.0",
+  "version": "0.0.4",
   "description": "A default runner module of acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-runner",
   "bugs": {
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@acot/config": "0.0.5",
-    "@acot/connection": "0.0.6-canary.0",
+    "@acot/connection": "0.0.6",
     "@acot/runner": "0.0.5",
     "debug": "^4.3.1",
     "emittery": "^0.7.1"
