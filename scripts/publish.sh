@@ -38,11 +38,6 @@ if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
     exit 1
   fi
 
-  git fetch --depth=300 origin canary
-  if [[ ! $? -eq 0 ]]; then
-    exit 1
-  fi
-
   git switch main
   if [[ ! $? -eq 0 ]]; then
     exit 1
@@ -57,6 +52,8 @@ if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
   if [[ ! $? -eq 0 ]]; then
     exit 1
   fi
+
+  echo "Finish!"
 else
   echo "Did not publish stable"
 fi
