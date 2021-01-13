@@ -23,6 +23,7 @@ jobs:
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             node_modules
             */*/node_modules
+            packages/*/*.tsbuildinfo
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -53,6 +54,7 @@ jobs:
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             node_modules
             */*/node_modules
+            packages/*/*.tsbuildinfo
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -78,12 +80,14 @@ jobs:
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             node_modules
             */*/node_modules
+            packages/*/*.tsbuildinfo
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - uses: actions/download-artifact@v2
         with:
           name: dist
+      - run: yarn lerna link
       - run: yarn test:ci
 
   pass:
@@ -111,6 +115,7 @@ jobs:
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             node_modules
             */*/node_modules
+            packages/*/*.tsbuildinfo
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
