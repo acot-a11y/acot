@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-sitemap@0.0.4...@acot/acot-runner-sitemap@0.0.5-canary.0) (2021-01-13)
+
+**Note:** Version bump only for package @acot/acot-runner-sitemap
+
 ## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-sitemap@0.0.4-canary.0...@acot/acot-runner-sitemap@0.0.4) (2021-01-13)
 
 **Note:** Version bump only for package @acot/acot-runner-sitemap

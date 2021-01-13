@@ -1,6 +1,6 @@
 {
   "name": "@acot/runner",
-  "version": "0.0.5",
+  "version": "0.0.6-canary.0",
   "description": "A runner toolset for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/runner",
   "bugs": {
@@ -33,13 +33,13 @@
     ]
   },
   "dependencies": {
-    "@acot/module-loader": "0.0.4",
+    "@acot/module-loader": "0.0.5-canary.0",
     "debug": "^4.3.1",
     "emittery": "^0.7.1"
   },
   "devDependencies": {
-    "@acot/factory": "0.0.5",
-    "@acot/types": "0.0.5"
+    "@acot/factory": "0.0.6-canary.0",
+    "@acot/types": "0.0.6-canary.0"
   },
   "publishConfig": {
     "access": "public"

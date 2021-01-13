@@ -1,6 +1,6 @@
 {
   "name": "@acot/mock",
-  "version": "0.0.3",
+  "version": "0.0.4-canary.0",
   "description": "acot mock modules.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/mock",
   "bugs": {
@@ -24,11 +24,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/factory": "0.0.5",
+    "@acot/factory": "0.0.6-canary.0",
     "emittery": "^0.7.1"
   },
   "devDependencies": {
-    "@acot/types": "0.0.5"
+    "@acot/types": "0.0.6-canary.0"
   },
   "publishConfig": {
     "access": "public"

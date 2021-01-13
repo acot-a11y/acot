@@ -1,6 +1,6 @@
 {
   "name": "@acot/logger",
-  "version": "0.0.4",
+  "version": "0.0.5-canary.0",
   "description": "A simple logger for acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/logger",
   "bugs": {
