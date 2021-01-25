@@ -274,7 +274,7 @@ export class Tester {
       status: options[0] as Exclude<Status, 'off'>,
       rule: id,
       url,
-      tags: rule.meta?.tags ?? [],
+      help: rule.meta?.help ?? '',
       workingDir,
       results,
       page,

@@ -2,6 +2,8 @@
 
 The size of the target for pointer inputs is at least 44 by 44 CSS pixels.
 
+[Understanding Success Criterion 2.5.5: Target Size](https://www.w3.org/WAI/WCAG21/Understanding/target-size.html)
+
 ## :white_check_mark: Correct
 
 Allow UA default styles.

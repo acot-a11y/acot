@@ -171,7 +171,7 @@ export const createRule = (config: CreateRuleConfig): Rule<Options> => {
               nodeChecks(node).map(async (check) => {
                 await context.report({
                   message: `${result.help}. ${check.message}. (${result.id})`,
-                  tags: result.tags,
+                  help: result.helpUrl,
                   node: el,
                 });
               }),

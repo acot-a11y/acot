@@ -5,7 +5,7 @@ export type ReportType = 'error' | 'warn' | 'off';
 
 export type ReportDescriptor = {
   message: string;
-  tags?: string[];
+  help?: string;
   node?: ElementHandle;
 };
 
@@ -17,7 +17,7 @@ export type RuleContext<T extends RuleOptions = RuleOptions> = {
 };
 
 export type RuleMeta = {
-  tags?: string[];
+  help?: string;
   recommended?: boolean;
   [key: string]: any;
 };

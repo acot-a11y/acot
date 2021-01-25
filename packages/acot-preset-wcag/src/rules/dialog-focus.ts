@@ -5,7 +5,7 @@ type Options = {};
 
 export default createRule<Options>({
   meta: {
-    tags: ['wcag2.1a', '2.4.3 Focus Order'],
+    help: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html',
     recommended: true,
   },
 
