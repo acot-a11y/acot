@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@acot/types": "0.0.6",
-    "@types/wait-on": "^5.2.0"
+    "@types/wait-on": "5.2.0"
   },
   "publishConfig": {
     "access": "public"

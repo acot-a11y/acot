@@ -51,9 +51,9 @@
     "resolve-from": "^5.0.0"
   },
   "devDependencies": {
-    "@types/micromatch": "^4.0.1",
-    "param-case": "^3.0.3",
-    "typescript-json-validator": "^2.4.2"
+    "@types/micromatch": "4.0.1",
+    "param-case": "3.0.4",
+    "typescript-json-validator": "2.4.2"
   },
   "publishConfig": {
     "access": "public"

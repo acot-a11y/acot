@@ -33,7 +33,7 @@
     "language-tags": "^1.0.5"
   },
   "devDependencies": {
-    "@types/language-tags": "^1.0.0"
+    "@types/language-tags": "1.0.0"
   },
   "publishConfig": {
     "access": "public"

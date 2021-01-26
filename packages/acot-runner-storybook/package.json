@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@acot/types": "0.0.6",
-    "@types/micromatch": "^4.0.1"
+    "@types/micromatch": "4.0.1"
   },
   "publishConfig": {
     "access": "public"

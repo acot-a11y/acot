@@ -68,14 +68,14 @@
   },
   "devDependencies": {
     "@acot/mock": "0.0.4",
-    "@types/is-ci": "^2.0.0",
-    "@types/listr": "^0.14.2",
-    "@types/node-emoji": "^1.8.1",
-    "@types/opener": "^1.4.0",
-    "@types/prettier": "^2.1.5",
-    "@types/update-notifier": "^5.0.0",
-    "@types/validator": "^13.1.0",
-    "@types/yargs": "^15.0.10"
+    "@types/is-ci": "2.0.0",
+    "@types/listr": "0.14.2",
+    "@types/node-emoji": "1.8.1",
+    "@types/opener": "1.4.0",
+    "@types/prettier": "2.1.6",
+    "@types/update-notifier": "5.0.0",
+    "@types/validator": "13.1.2",
+    "@types/yargs": "15.0.12"
   },
   "publishConfig": {
     "access": "public"
