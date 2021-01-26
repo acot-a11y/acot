@@ -43,7 +43,7 @@
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@commitlint/config-lerna-scopes": "11.0.0",
-    "@types/jest": "26.0.19",
+    "@types/jest": "26.0.20",
     "@types/markdown-table": "2.0.0",
     "@types/mock-fs": "4.13.0",
     "@types/node": "14.14.16",
