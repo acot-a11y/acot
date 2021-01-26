@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@acot/tsconfig@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@acot/tsconfig/-/tsconfig-0.0.2.tgz#e087216f79b855118166c3b1972e8eb78310994e"
-  integrity sha512-o7JRWrt8HaLDIViCPGbvJxDUrs/MuZ3cipkrgGUNDo39n+pyi1zphAfo4Tiq7MHcK4p8ln3WWTFIPv5C6SomJg==
+"@acot/tsconfig@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@acot/tsconfig/-/tsconfig-0.1.0.tgz#6d4aea2abee0f5ab11440ca79e399cb6a802dd28"
+  integrity sha512-vvOgTnn0UxTuXd/WMK9XW6/S4VnZ0+y3NZU2yELtE5egunIwnuTGAPfNL4MNXp5Q0PvdyC86GD6vZsBZB8+2xw==
 
 "@babel/code-frame@7.5.5":
   version "7.5.5"
