@@ -1,6 +1,6 @@
 # @acot/acot-preset-wcag
 
-> A WCAG-based rule set for acot.
+A WCAG-based rule set for acot.
 
 ## Install
 
@@ -211,7 +211,3 @@ Some rules deal with interactive content. The definition of interactive content 
 1. [3.2.5.2.7 Interactive content](https://html.spec.whatwg.org/multipage/dom.html#interactive-content) compliant elements.
 1. Elements with a role attribute that conforms to the above.
 1. Focusable elements.
-
----
-
-_T.B.A_

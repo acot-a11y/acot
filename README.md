@@ -136,7 +136,6 @@ acot has a feature which is divided into several packages.
 
 | Package                                                          | Version                                                                                                                                         | Description                                                                      |
 | :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
-| [@acot/acot-runner](./packages/acot-runner/)                     | [![npm](https://img.shields.io/npm/v/@acot/acot-runner?style=flat-square)](https://www.npmjs.com/package/@acot/acot-runner)                     | An acot default runner.                                                          |
 | [@acot/acot-runner-sitemap](./packages/acot-runner-sitemap/)     | [![npm](https://img.shields.io/npm/v/@acot/acot-runner-sitemap?style=flat-square)](https://www.npmjs.com/package/@acot/acot-runner-sitemap)     | An acot custom runner reading audit pages from sitemap.                          |
 | [@acot/acot-runner-storybook](./packages/acot-runner-storybook/) | [![npm](https://img.shields.io/npm/v/@acot/acot-runner-storybook?style=flat-square)](https://www.npmjs.com/package/@acot/acot-runner-storybook) | An acot custom runner for [Storybook](https://github.com/storybookjs/storybook). |
 
