@@ -1,6 +1,6 @@
 # @acot/acot-preset-axe
 
-> An axe rule set for acot.
+An axe rule set for acot.
 
 ## Installation
 

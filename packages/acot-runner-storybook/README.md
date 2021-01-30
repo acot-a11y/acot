@@ -1,6 +1,6 @@
 # @acot/acot-runner-storybook
 
-> An acot custom runner for [Storybook](https://github.com/storybookjs/storybook).
+An acot custom runner for [Storybook](https://github.com/storybookjs/storybook).
 
 The `@acot/acot-runner-storybook` crawls all the Stories in Storybook and sets them up for acot to audit.
 
@@ -14,18 +14,12 @@ $ npm install --save-dev @acot/acot-runner-storybook
 
 ## Usage
 
-Add `@acot/storybook` to the `runner` field of the acot config file.
+Add `@acot/storybook` to the `runner` field of the [configuration file](../../docs/configuration.md).
 
 ```json
 {
   "runner": "@acot/storybook"
 }
-```
-
-or the CLI's `--runner` flag with `@acot/storybook`.
-
-```bash
-$ acot run --runner "@acot/storybook"
 ```
 
 ### Custom config for each story
@@ -47,18 +41,53 @@ export default {
 };
 ```
 
+## Options
+
+### `include`
+
+**Type:** `string[]`  
+**Required:** `false`
+
+The Story name pattern to include in the audit target. See the [micromatch][mm] documentation for pattern strings.
+
+```json
+{
+  "runner": {
+    "uses": "@acot/storybook",
+    "with": {
+      "include": ["*", "/atoms/**/*"]
+    }
+  }
+}
+```
+
+### `exclude`
+
+**Type:** `string[]`  
+**Required:** `false`
+
+The Story name pattern to exclude in the audit target. See the [micromatch][mm] documentation for pattern strings.
+
+```json
+{
+  "runner": {
+    "uses": "@acot/storybook",
+    "with": {
+      "exclude": ["/utils/**/*"]
+    }
+  }
+}
+```
+
 ## Storybook compatibility
 
 ### Storybook versions
 
 - [x] Storybook v5
-
-_T.B.A_
+- [ ] Storybook v6 (**TODO**)
 
 ### UI frameworks
 
 Since `@acot/acot-runner-storybook` doesn't rely on UI frameworks like React, Angular, or Vue.js, it can be used in conjunction with any UI framework of your choice!
 
----
-
-_T.B.A_
+[mm]: https://github.com/micromatch/micromatch
