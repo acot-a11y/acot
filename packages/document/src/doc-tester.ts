@@ -1,9 +1,11 @@
 import os from 'os';
 import type { TestcaseResult } from '@acot/types';
 import { Acot } from '@acot/core';
-import plur from 'plur';
 import { findChrome } from '@acot/find-chrome';
+import plur from 'plur';
+import micromatch from 'micromatch';
 import type { DocServer } from './doc-server';
+import type { DocCode } from './doc-code';
 import { generateDocUrl, extractCodeMeta, generateDocPath } from './doc-code';
 import type { DocProject } from './doc-project';
 import type { DocResult } from './doc-result';
@@ -25,7 +27,7 @@ export class DocTester {
     };
   }
 
-  public async test(project: DocProject): Promise<DocResult> {
+  public async test(project: DocProject, pattern?: string): Promise<DocResult> {
     const port = this._server.port;
 
     const chromium = await findChrome();
@@ -45,7 +47,17 @@ export class DocTester {
       origin: `http://localhost:${port}`,
     });
 
+    const skips = new Set<DocCode>();
+
     project.codes.forEach((code) => {
+      if (
+        code.meta['acot-ignore'] === true ||
+        (pattern != null && micromatch.isMatch(code.rule, pattern))
+      ) {
+        skips.add(code);
+        return;
+      }
+
       acot.add(generateDocPath(code), {
         rules: {
           [`${project.preset.id}/${code.rule}`]: [
@@ -57,7 +69,7 @@ export class DocTester {
     });
 
     const result: DocResult = {
-      skips: [],
+      skips: Array.from(skips),
       passes: [],
       errors: [],
     };
@@ -66,8 +78,7 @@ export class DocTester {
       const summary = await acot.audit();
 
       project.codes.forEach((code) => {
-        if (code.meta['acot-ignore'] === true) {
-          result.skips.push(code);
+        if (skips.has(code)) {
           return;
         }
 
