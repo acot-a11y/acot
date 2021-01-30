@@ -35,7 +35,7 @@
     "@acot/html-pickup": "0.0.5",
     "@acot/module-loader": "0.0.6",
     "@acot/reporter": "0.0.7",
-    "boxen": "^4.2.0",
+    "boxen": "^5.0.0",
     "chalk": "^4.0.0",
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
