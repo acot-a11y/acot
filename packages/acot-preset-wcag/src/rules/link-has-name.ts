@@ -5,11 +5,8 @@ type Options = {};
 export default createRule<Options>({
   immutable: true,
   meta: {
-    tags: [
-      'wcag21a',
-      '2.4.4 Link Purpose (In Context)',
-      '4.1.2 Name, Role, Value',
-    ],
+    help:
+      'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html',
     recommended: true,
   },
 

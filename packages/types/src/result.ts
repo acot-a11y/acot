@@ -11,7 +11,7 @@ export type BaseTestcaseResult = {
   rule: RuleId;
   duration: number;
   message: string;
-  tags: string[];
+  help: string;
   selector: string | null;
   htmlpath: string | null;
   imagepath: string | null;

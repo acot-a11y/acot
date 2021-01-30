@@ -5,7 +5,7 @@ type Options = {};
 export default createRule<Options>({
   immutable: true,
   meta: {
-    tags: ['wcag21a', '1.1.1 Non-text Content'],
+    help: 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html',
     recommended: true,
   },
 

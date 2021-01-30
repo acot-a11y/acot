@@ -12,7 +12,7 @@ describe('rule-context', () => {
     status: 'error',
     rule: 'rule',
     url: 'http://localhost:1234/path/to',
-    tags: [],
+    help: '',
     workingDir: __dirname,
     page: page as any,
     options: ['error' as const, null],
@@ -76,7 +76,7 @@ describe('rule-context', () => {
 
     await ctx.report({
       message: 'msg',
-      tags: [],
+      help: '',
       node: node as any,
     });
 
@@ -101,7 +101,7 @@ describe('rule-context', () => {
         imagepath,
         process: defaults.process,
         rule: defaults.rule,
-        tags: defaults.tags,
+        help: defaults.help,
         status: defaults.status,
         message: 'msg',
         selector: '#selector',
@@ -123,7 +123,7 @@ describe('rule-context', () => {
 
     await ctx.report({
       message: 'msg',
-      tags: [],
+      help: '',
       node: node as any,
     });
 
@@ -148,7 +148,7 @@ describe('rule-context', () => {
         imagepath: null,
         process: defaults.process,
         rule: defaults.rule,
-        tags: defaults.tags,
+        help: defaults.help,
         status: defaults.status,
         message: 'msg',
         selector: '#selector',
@@ -165,7 +165,7 @@ describe('rule-context', () => {
 
     await ctx.report({
       message: 'msg',
-      tags: [],
+      help: '',
     });
 
     const htmlpath = 'http-localhost-1234-path-to-rule-1.html';
@@ -184,7 +184,7 @@ describe('rule-context', () => {
         imagepath: null,
         process: defaults.process,
         rule: defaults.rule,
-        tags: defaults.tags,
+        help: defaults.help,
         status: defaults.status,
         selector: null,
         message: 'msg',
@@ -192,22 +192,22 @@ describe('rule-context', () => {
     ]);
   });
 
-  test('report - tags', async () => {
+  test('report - help', async () => {
     const results: any[] = [];
 
     const ctx = await factory({
       results,
-      tags: ['tag1', 'tag2'],
+      help: 'https://acot.example/1',
     });
 
     await ctx.report({
       message: 'msg',
-      tags: ['tag3', 'tag4'],
+      help: 'https://acot.example/2',
     });
 
     expect(results).toEqual([
       expect.objectContaining({
-        tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+        help: 'https://acot.example/2',
       }),
     ]);
   });

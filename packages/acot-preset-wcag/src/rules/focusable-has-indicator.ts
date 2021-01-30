@@ -19,7 +19,7 @@ type Options = {};
 export default createRule<Options>({
   immutable: true,
   meta: {
-    tags: ['wcag21aa', '2.4.7 Focus visible'],
+    help: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html',
     recommended: true,
   },
 

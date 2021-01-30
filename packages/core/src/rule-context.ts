@@ -62,7 +62,7 @@ export type CreateRuleContextParams = {
   status: Status;
   rule: RuleId;
   url: string;
-  tags: string[];
+  help: string;
   workingDir: string;
   page: Page;
   options: [ReportType, RuleOptions | null];
@@ -75,7 +75,7 @@ export const createRuleContext = ({
   status,
   rule,
   url,
-  tags: ruleTags,
+  help: ruleHelp,
   workingDir,
   page,
   options,
@@ -87,7 +87,7 @@ export const createRuleContext = ({
   return {
     page,
 
-    report: async ({ message, tags: reportTags, node }) => {
+    report: async ({ message, help: reportHelp, node }) => {
       try {
         const basename = buildFilename(url, rule, `${process}`);
         const htmlpath = path.resolve(workingDir, `${basename}.html`);
@@ -106,7 +106,7 @@ export const createRuleContext = ({
             rule,
             duration: measure(),
             message,
-            tags: [...ruleTags, ...(reportTags ?? [])],
+            help: reportHelp || ruleHelp,
             selector,
             htmlpath: path.relative(workingDir, htmlpath),
             imagepath: image ? path.relative(workingDir, imagepath) : null,

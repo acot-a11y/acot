@@ -283,10 +283,6 @@ export default createReporterFactory(
               const lines = [[status, msg, rule].join('  ')];
               const meta: string[] = [];
 
-              if (res.tags.length > 0) {
-                meta.push(res.tags.join(', '));
-              }
-
               if (res.htmlpath != null && res.selector) {
                 const html = await readFile(
                   path.resolve(config.workingDir!, res.htmlpath),
@@ -297,6 +293,11 @@ export default createReporterFactory(
                 const code = pickup(html, selector, { color: false });
 
                 meta.push(code, `at "${selector}"`);
+              }
+
+              if (res.help) {
+                const url = chalk.underline(res.help);
+                meta.push(`see ${url}`);
               }
 
               if (meta.length > 0) {

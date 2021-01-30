@@ -24,7 +24,7 @@ export const createTestcaseResult = (
         status: 'pass',
         duration: 0,
         rule: '',
-        tags: [],
+        help: '',
       },
       values,
     );
@@ -37,7 +37,7 @@ export const createTestcaseResult = (
       duration: 0,
       rule: '',
       message: '',
-      tags: [],
+      help: '',
       selector: null,
       htmlpath: null,
       imagepath: null,

@@ -6,7 +6,7 @@ type Options = {};
 export default createRule<Options>({
   immutable: true,
   meta: {
-    tags: ['wcag2.1', 'wcag2.4.2'],
+    help: 'https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html',
     recommended: true,
   },
 

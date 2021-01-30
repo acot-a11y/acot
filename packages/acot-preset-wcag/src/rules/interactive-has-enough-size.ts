@@ -38,7 +38,7 @@ type Options = {};
 export default createRule<Options>({
   immutable: true,
   meta: {
-    tags: ['wcag21aaa', '2.5.5 Target Size'],
+    help: 'https://www.w3.org/WAI/WCAG21/Understanding/target-size.html',
     recommended: true,
   },
 
