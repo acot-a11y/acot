@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/acot-a11y/acot/compare/@acot/acot-reporter-dot@0.0.4...@acot/acot-reporter-dot@0.0.5) (2021-01-30)
+
+### Features
+
+- **core:** switch to `help` from `tags` ([7ac5678](https://github.com/acot-a11y/acot/commit/7ac56780e46c26f94aeda3f0c1d1482f47521acb))
+
 ## [0.0.4](https://github.com/acot-a11y/acot/compare/@acot/acot-reporter-dot@0.0.4-canary.0...@acot/acot-reporter-dot@0.0.4) (2021-01-13)
 
 **Note:** Version bump only for package @acot/acot-reporter-dot

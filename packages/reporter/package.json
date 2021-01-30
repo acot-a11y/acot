@@ -1,6 +1,6 @@
 {
   "name": "@acot/reporter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A reporter toolset for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/reporter",
   "bugs": {
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@acot/html-pickup": "0.0.5",
-    "@acot/module-loader": "0.0.5",
+    "@acot/module-loader": "0.0.6",
     "boxen": "^4.2.0",
     "chalk": "^4.0.0",
     "cli-table": "^0.3.4",
@@ -49,7 +49,7 @@
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.6",
+    "@acot/types": "0.0.7",
     "@types/cli-table": "0.3.0",
     "@types/text-table": "0.2.1"
   },

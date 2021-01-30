@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7](https://github.com/acot-a11y/acot/compare/@acot/factory@0.0.6...@acot/factory@0.0.7) (2021-01-30)
+
+### Features
+
+- **core:** switch to `help` from `tags` ([7ac5678](https://github.com/acot-a11y/acot/commit/7ac56780e46c26f94aeda3f0c1d1482f47521acb))
+
 ## [0.0.6](https://github.com/acot-a11y/acot/compare/@acot/factory@0.0.6-canary.0...@acot/factory@0.0.6) (2021-01-13)
 
 **Note:** Version bump only for package @acot/factory
