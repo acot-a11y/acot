@@ -54,6 +54,7 @@
     "is-plain-object": "^5.0.0",
     "log-symbols": "^4.0.0",
     "mdast-util-to-string": "^2.0.0",
+    "micromatch": "^4.0.2",
     "mustache": "^4.0.1",
     "plur": "^4.0.0",
     "puppeteer-core": "^5.5.0",
@@ -66,6 +67,7 @@
     "unist-util-visit-parents": "^3.1.0"
   },
   "devDependencies": {
+    "@types/micromatch": "4.0.1",
     "@types/mustache": "4.1.1",
     "@types/puppeteer-core": "2.1.0",
     "@types/unist": "2.0.3",

@@ -15,7 +15,12 @@ export default createCommand({
   name: 'test',
   summary:
     'Test the rules provided by the preset according to the documentation.',
-  args: {},
+  args: {
+    pattern: {
+      type: 'string',
+      description: 'Rule name pattern to include in the test target.',
+    },
+  },
   options: {
     project: {
       type: 'string',
@@ -60,12 +65,13 @@ export default createCommand({
   });
 
   const tester = new DocTester(server, {});
+
   const reporter = new DocResultReporter({
     origin: `http://localhost:${port}`,
   });
 
   try {
-    const result = await tester.test(project);
+    const result = await tester.test(project, args.pattern);
     debug('result: %O', result);
     logger.print(reporter.format(result));
     return result.errors.length > 0 ? 1 : 0;
