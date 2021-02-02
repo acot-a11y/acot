@@ -57,7 +57,7 @@
     "micromatch": "^4.0.2",
     "mustache": "^4.0.1",
     "plur": "^4.0.0",
-    "puppeteer-core": "^5.5.0",
+    "puppeteer-core": "^6.0.0",
     "remark-parse": "^9.0.0",
     "remark-stringify": "^9.0.0",
     "strip-ansi": "^6.0.0",

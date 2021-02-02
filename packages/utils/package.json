@@ -33,7 +33,7 @@
     ]
   },
   "dependencies": {
-    "puppeteer-core": "^5.5.0",
+    "puppeteer-core": "^6.0.0",
     "resolve-from": "^5.0.0"
   },
   "devDependencies": {
