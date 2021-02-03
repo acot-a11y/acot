@@ -32,7 +32,7 @@
     "deepmerge": "^4.2.2",
     "is-plain-object": "^5.0.0",
     "micromatch": "^4.0.2",
-    "puppeteer-core": "^5.5.0"
+    "puppeteer-core": "^7.0.0"
   },
   "devDependencies": {
     "@acot/types": "0.0.7",
