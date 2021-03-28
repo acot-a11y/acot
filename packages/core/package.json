@@ -46,7 +46,7 @@
     "filenamify": "^4.1.0",
     "lodash": "^4.17.19",
     "p-series": "^2.1.0",
-    "puppeteer-core": "^5.5.0",
+    "puppeteer-core": "^8.0.0",
     "puppeteer-element2selector": "^0.0.3"
   },
   "devDependencies": {
