@@ -2,7 +2,7 @@
 
 A WCAG-based rule set for acot.
 
-## Install
+## Installation
 
 Install via npm:
 
