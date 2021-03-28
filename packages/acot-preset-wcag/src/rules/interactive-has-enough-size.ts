@@ -68,7 +68,9 @@ export default createRule<Options>({
         }
 
         const isDefaultStyles = await node.evaluate((el) => {
-          const get = (e: Element) => window.getComputedStyle(e).cssText;
+          const get = (e: Element) =>
+            JSON.stringify(window.getComputedStyle(e));
+
           const body = document.body;
           const root = document.createElement('div');
           const shadow = root.attachShadow({ mode: 'closed' });

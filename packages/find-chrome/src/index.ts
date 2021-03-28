@@ -90,7 +90,7 @@ const findChromeExecutables = (folder: string) => {
 const localPuppeteer = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-    const puppeteer = require('puppeteer') as typeof import('puppeteer');
+    const puppeteer = require('puppeteer') as import('puppeteer').PuppeteerNode;
     return puppeteer.executablePath();
   } catch (e) {
     return;

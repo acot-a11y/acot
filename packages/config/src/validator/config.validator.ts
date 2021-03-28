@@ -196,6 +196,9 @@ export const ConfigSchema = {
     Record: {
       $ref: '#/definitions/__type',
     },
+    Record_1: {
+      $ref: '#/definitions/__type_5',
+    },
     RuleConfig: {
       $ref: '#/definitions/__type_1',
     },
@@ -206,16 +209,15 @@ export const ConfigSchema = {
       type: 'string',
     },
     Viewport: {
+      description: 'Sets the viewport of the page.',
       properties: {
         deviceScaleFactor: {
-          default: 1,
           description:
-            'Specify device scale factor (can be thought of as dpr).',
+            'Specify device scale factor.\nSee {@link https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio | devicePixelRatio} for more info.',
           type: 'number',
         },
         hasTouch: {
-          default: false,
-          description: 'Specifies if viewport supports touch events.',
+          description: 'Specify if the viewport supports touch events.',
           type: 'boolean',
         },
         height: {
@@ -223,12 +225,10 @@ export const ConfigSchema = {
           type: 'number',
         },
         isLandscape: {
-          default: false,
-          description: 'Specifies if viewport is in landscape mode.',
+          description: 'Specifies if the viewport is in landscape mode.',
           type: 'boolean',
         },
         isMobile: {
-          default: false,
           description: 'Whether the `meta viewport` tag is taken into account.',
           type: 'boolean',
         },
@@ -264,92 +264,55 @@ export const ConfigSchema = {
       properties: {
         args: {
           description:
-            'Additional arguments to pass to the browser instance.\nThe list of Chromium flags can be found here.',
+            'Additional command line arguments to pass to the browser instance.',
           items: {
             type: 'string',
           },
           type: 'array',
         },
         defaultViewport: {
-          description:
-            'Sets a consistent viewport for each page. Defaults to an 800x600 viewport. null disables the default viewport.',
-          properties: {
-            deviceScaleFactor: {
-              default: 1,
-              description:
-                'Specify device scale factor (can be thought of as dpr).',
-              type: 'number',
-            },
-            hasTouch: {
-              default: false,
-              description: 'Specifies if viewport supports touch events.',
-              type: 'boolean',
-            },
-            height: {
-              description: 'page height in pixels.',
-              type: 'number',
-            },
-            isLandscape: {
-              default: false,
-              description: 'Specifies if viewport is in landscape mode.',
-              type: 'boolean',
-            },
-            isMobile: {
-              default: false,
-              description:
-                'Whether the meta viewport tag is taken into account.',
-              type: 'boolean',
-            },
-            width: {
-              description: 'page width in pixels.',
-              type: 'number',
-            },
-          },
-          type: 'object',
+          $ref: '#/definitions/Viewport',
+          description: 'Sets the viewport for each page.',
         },
         devtools: {
           description:
-            'Whether to auto-open a DevTools panel for each tab.\nIf this option is true, the headless option will be set false.',
+            'Whether to auto-open a DevTools panel for each tab. If this is set to\n`true`, then `headless` will be set to `false` automatically.',
           type: 'boolean',
         },
         dumpio: {
-          default: false,
           description:
-            'Whether to pipe browser process stdout and stderr into process.stdout and\nprocess.stderr.',
+            'If true, pipes the browser process stdout and stderr to `process.stdout`\nand `process.stderr`.',
           type: 'boolean',
         },
         env: {
-          additionalProperties: {
-            type: ['string', 'number', 'boolean'],
-          },
-          default: '`process.env`.',
+          $ref: '#/definitions/Record',
           description:
-            'Specify environment variables that will be visible to Chromium.',
-          type: 'object',
+            'Specify environment variables that will be visible to the browser.',
         },
         executablePath: {
           description:
-            'Path to a Chromium executable to run instead of bundled Chromium. If\nexecutablePath is a relative path, then it is resolved relative to current\nworking directory.',
+            'Path to a browser executable to use instead of the bundled Chromium. Note\nthat Puppeteer is only guaranteed to work with the bundled Chromium, so use\nthis setting at your own risk.',
           type: 'string',
         },
+        extraPrefsFirefox: {
+          $ref: '#/definitions/Record_1',
+          description:
+            '{@link https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference | Additional preferences } that can be passed when launching with Firefox.',
+        },
         handleSIGHUP: {
-          default: true,
-          description: 'Close chrome process on SIGHUP.',
+          description: 'Close the browser process on `SIGHUP`.',
           type: 'boolean',
         },
         handleSIGINT: {
-          default: true,
-          description: 'Close chrome process on Ctrl-C.',
+          description: 'Close the browser process on `Ctrl+C`.',
           type: 'boolean',
         },
         handleSIGTERM: {
-          default: true,
-          description: 'Close chrome process on SIGTERM.',
+          description: 'Close the browser process on `SIGTERM`.',
           type: 'boolean',
         },
         headless: {
-          default: 'true unless the devtools option is true.',
-          description: 'Whether to run browser in headless mode.',
+          description: 'Whether to run the browser in headless mode.',
           type: 'boolean',
         },
         ignoreDefaultArgs: {
@@ -364,37 +327,37 @@ export const ConfigSchema = {
               type: 'boolean',
             },
           ],
-          default: false,
           description:
-            'Do not use `puppeteer.defaultArgs()` for launching Chromium.',
+            'If `true`, do not use `puppeteer.defaultArgs()` when creating a browser. If\nan array is provided, these args will be filtered out. Use this with care -\nyou probably want the default arguments Puppeteer uses.',
         },
         ignoreHTTPSErrors: {
-          default: false,
           description: 'Whether to ignore HTTPS errors during navigation.',
           type: 'boolean',
         },
         pipe: {
-          default: false,
           description:
-            'Connects to the browser over a pipe instead of a WebSocket.',
+            'Connect to a browser over a pipe instead of a WebSocket.',
           type: 'boolean',
         },
         slowMo: {
           description:
-            'Slows down Puppeteer operations by the specified amount of milliseconds.\nUseful so that you can see what is going on.',
+            'Slows down Puppeteer operations by the specified amount of milliseconds to\naid debugging.',
           type: 'number',
         },
         timeout: {
-          default: 30000,
           description:
-            'Maximum navigation time in milliseconds, pass 0 to disable timeout.',
+            'Maximum time in milliseconds to wait for the browser to start.\nPass `0` to disable the timeout.',
           type: 'number',
         },
         userDataDir: {
-          description: 'Path to a User Data Directory.',
+          description:
+            'Path to a user data directory.\n{@link https://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md | see the Chromium docs}\nfor more info.',
           type: 'string',
         },
       },
+      type: 'object',
+    },
+    __type_5: {
       type: 'object',
     },
   },
