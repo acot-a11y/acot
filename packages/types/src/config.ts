@@ -1,8 +1,5 @@
 import type { ChromeChannel } from '@acot/find-chrome';
-import type {
-  LaunchOptions as PuppeteerLaunchOptions,
-  Viewport,
-} from 'puppeteer-core';
+import type { PuppeteerNodeLaunchOptions, Viewport } from 'puppeteer-core';
 import type { Merge } from 'type-fest';
 import type { Preset } from './preset';
 import type { ReporterFactory } from './reporter';
@@ -65,7 +62,7 @@ export type ConfigEntry = BaseConfig & {
   exclude?: string[];
 };
 
-export type LaunchOptions = Omit<PuppeteerLaunchOptions, 'product'>;
+export type LaunchOptions = Omit<PuppeteerNodeLaunchOptions, 'product'>;
 
 export type Config = BaseConfig & {
   origin?: string;

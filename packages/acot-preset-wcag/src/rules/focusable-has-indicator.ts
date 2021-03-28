@@ -37,7 +37,7 @@ export default createRule<Options>({
               style: styles.outlineStyle,
               width: styles.outlineWidth,
             },
-            cssText: styles.cssText,
+            css: JSON.stringify(styles),
           };
         };
 
@@ -57,7 +57,7 @@ export default createRule<Options>({
           continue;
         }
 
-        const isSameStyle = before.cssText === after.cssText;
+        const isSameStyle = before.css === after.css;
 
         context.debug(`before === after: ${isSameStyle}`);
 
