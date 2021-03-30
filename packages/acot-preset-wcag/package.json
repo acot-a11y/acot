@@ -2,6 +2,11 @@
   "name": "@acot/acot-preset-wcag",
   "version": "0.0.9-canary.0",
   "description": "A WCAG-based rule set for acot.",
+  "keywords": [
+    "acot",
+    "acot-preset",
+    "wcag"
+  ],
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-preset-wcag",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
