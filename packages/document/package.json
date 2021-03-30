@@ -69,7 +69,6 @@
   "devDependencies": {
     "@types/micromatch": "4.0.1",
     "@types/mustache": "4.1.1",
-    "@types/puppeteer-core": "5.4.0",
     "@types/unist": "2.0.3",
     "postcss": "8.2.8",
     "postcss-cli": "8.3.1",

@@ -29,9 +29,6 @@
     "puppeteer-core": "^8.0.0",
     "type-fest": "^0.20.2"
   },
-  "devDependencies": {
-    "@types/puppeteer-core": "5.4.0"
-  },
   "publishConfig": {
     "access": "public"
   }
