@@ -52,7 +52,6 @@
   "devDependencies": {
     "@acot/mock": "0.0.5",
     "@types/lodash": "4.14.168",
-    "@types/puppeteer-core": "5.4.0",
     "puppeteer": "8.0.0"
   },
   "publishConfig": {

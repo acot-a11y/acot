@@ -36,9 +36,6 @@
     "puppeteer-core": "^8.0.0",
     "resolve-from": "^5.0.0"
   },
-  "devDependencies": {
-    "@types/puppeteer-core": "5.4.0"
-  },
   "publishConfig": {
     "access": "public"
   }
