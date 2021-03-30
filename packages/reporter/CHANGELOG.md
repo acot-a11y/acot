@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8-canary.0](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.7...@acot/reporter@0.0.8-canary.0) (2021-03-30)
+
+### Bug Fixes
+
+- update dependency boxen to v5 ([271bb1f](https://github.com/acot-a11y/acot/commit/271bb1f87e8d30e6a1c6f6ec1ead59e1b356284c))
+
 ## [0.0.7](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.6...@acot/reporter@0.0.7) (2021-01-30)
 
 **Note:** Version bump only for package @acot/reporter

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8-canary.0](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.7...@acot/document@0.0.8-canary.0) (2021-03-30)
+
+### Bug Fixes
+
+- update dependency fastify-static to v4 ([4d69df7](https://github.com/acot-a11y/acot/commit/4d69df745cc20b7ee21379c0df406c08bf2268e1))
+
+### Features
+
+- **document:** add `pattern` to specify test target ([67c319f](https://github.com/acot-a11y/acot/commit/67c319f911f75817c4685cdfab2112b031c5e3d0))
+
 ## [0.0.7](https://github.com/acot-a11y/acot/compare/@acot/document@0.0.6...@acot/document@0.0.7) (2021-01-30)
 
 **Note:** Version bump only for package @acot/document

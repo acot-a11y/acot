@@ -1,6 +1,6 @@
 {
   "name": "@example/storybook5",
-  "version": "0.0.8",
+  "version": "0.0.9-canary.0",
   "private": true,
   "scripts": {
     "start": "start-storybook -p 6006",
@@ -8,9 +8,9 @@
     "test:server": "acot run"
   },
   "devDependencies": {
-    "@acot/acot-preset-wcag": "0.0.8",
-    "@acot/acot-runner-storybook": "0.0.8",
-    "@acot/cli": "0.0.8",
+    "@acot/acot-preset-wcag": "0.0.9-canary.0",
+    "@acot/acot-runner-storybook": "0.0.9-canary.0",
+    "@acot/cli": "0.0.9-canary.0",
     "@babel/core": "^7.12.8",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addons": "^5.3.18",

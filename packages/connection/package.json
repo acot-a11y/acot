@@ -1,6 +1,6 @@
 {
   "name": "@acot/connection",
-  "version": "0.0.8",
+  "version": "0.0.9-canary.0",
   "description": "Manage the connection to the server.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/connection",
   "bugs": {
@@ -29,7 +29,7 @@
     "wait-on": "^5.2.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.7",
+    "@acot/types": "0.0.8-canary.0",
     "@types/wait-on": "5.2.0"
   },
   "publishConfig": {

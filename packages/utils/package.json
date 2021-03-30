@@ -1,6 +1,6 @@
 {
   "name": "@acot/utils",
-  "version": "0.0.6",
+  "version": "0.0.7-canary.0",
   "description": "Utility functions for acot.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/utils",
   "bugs": {

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-runner@0.0.6...@acot/acot-runner@0.0.7-canary.0) (2021-03-30)
+
+**Note:** Version bump only for package @acot/acot-runner
+
 ## [0.0.6](https://github.com/acot-a11y/acot/compare/@acot/acot-runner@0.0.5...@acot/acot-runner@0.0.6) (2021-01-30)
 
 **Note:** Version bump only for package @acot/acot-runner

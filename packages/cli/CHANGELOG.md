@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.9-canary.0](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.8...@acot/cli@0.0.9-canary.0) (2021-03-30)
+
+### Bug Fixes
+
+- update dependency boxen to v5 ([271bb1f](https://github.com/acot-a11y/acot/commit/271bb1f87e8d30e6a1c6f6ec1ead59e1b356284c))
+- update dependency execa to v5 ([456b0de](https://github.com/acot-a11y/acot/commit/456b0dec9695853acb711a90b676078fb7c45fb9))
+
+### Features
+
+- **document:** add `pattern` to specify test target ([67c319f](https://github.com/acot-a11y/acot/commit/67c319f911f75817c4685cdfab2112b031c5e3d0))
+
 ## [0.0.8](https://github.com/acot-a11y/acot/compare/@acot/cli@0.0.7...@acot/cli@0.0.8) (2021-01-30)
 
 **Note:** Version bump only for package @acot/cli
