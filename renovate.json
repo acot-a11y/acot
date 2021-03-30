@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "config:js-lib",
-    "group:typescript-eslintMonorepo",
-    "group:commitlintMonorepo"
-  ],
+  "extends": ["config:js-lib", "group:monorepos"],
   "labels": ["A-dependencies"],
   "baseBranches": ["canary"],
   "unpublishSafe": true,
