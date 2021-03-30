@@ -2,6 +2,10 @@
   "name": "@acot/acot-config",
   "version": "0.0.9-canary.0",
   "description": "A basic acot rule set.",
+  "keywords": [
+    "acot",
+    "acot-config"
+  ],
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-config",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"

@@ -2,6 +2,10 @@
   "name": "@acot/acot-reporter-pretty",
   "version": "0.0.6-canary.0",
   "description": "A pretty reporter for @acot/cli.",
+  "keywords": [
+    "acot",
+    "acot-reporter"
+  ],
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-pretty",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"

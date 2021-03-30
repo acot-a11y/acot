@@ -2,6 +2,10 @@
   "name": "@acot/acot-reporter-dot",
   "version": "0.0.6-canary.0",
   "description": "A dot reporter for @acot/cli.",
+  "keywords": [
+    "acot",
+    "acot-reporter"
+  ],
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-dot",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"

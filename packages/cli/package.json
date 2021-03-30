@@ -2,6 +2,9 @@
   "name": "@acot/cli",
   "version": "0.0.9-canary.0",
   "description": "More accessible web, all over the world.",
+  "keywords": [
+    "acot"
+  ],
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/cli",
   "bugs": {
     "url": "https://github.com/acot-a11y/acot/issues"
