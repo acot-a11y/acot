@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10-canary.0 (2021-04-04)
+
+### Bug Fixes
+
+- **runner-storybook:** Wait for configuring store ([9daccd0](https://github.com/acot-a11y/acot/commit/9daccd0ca48ea1f7ab0a7b543e45fa685925dafa))
+
+### Features
+
+- add `@acot/acot-runner-sitemap` package ([9a760b7](https://github.com/acot-a11y/acot/commit/9a760b787df44a0febac52ccb254073179786306))
+- Initial implements ([68f46a2](https://github.com/acot-a11y/acot/commit/68f46a250de7793795678ece40d23d927ddd075c))
+- **runner-storybook:** Add filter options for storybook runner ([c77d6bf](https://github.com/acot-a11y/acot/commit/c77d6bf50a1bddbbd1021c7b71d00e1652376b11))
+
 ## [0.0.9-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-storybook@0.0.8...@acot/acot-runner-storybook@0.0.9-canary.0) (2021-03-30)
 
 **Note:** Version bump only for package @acot/acot-runner-storybook

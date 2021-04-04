@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-dot",
-  "version": "0.0.6-canary.0",
+  "version": "0.0.10-canary.0",
   "description": "A dot reporter for @acot/cli.",
   "keywords": [
     "acot",
@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "@acot/html-pickup": "0.0.5",
-    "@acot/module-loader": "0.0.7-canary.0",
-    "@acot/reporter": "0.0.8-canary.0",
+    "@acot/module-loader": "0.0.10-canary.0",
+    "@acot/reporter": "0.0.10-canary.0",
     "boxen": "^5.0.0",
     "chalk": "^4.0.0",
     "figures": "^3.2.0",
@@ -49,7 +49,7 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.8-canary.0"
+    "@acot/types": "0.0.10-canary.0"
   },
   "publishConfig": {
     "access": "public"

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10-canary.0 (2021-04-04)
+
+### Bug Fixes
+
+- fix summary duration bug ([a5fb2d3](https://github.com/acot-a11y/acot/commit/a5fb2d34bc30967d284b37b24a0ea54220bf3565))
+- update dependency boxen to v5 ([271bb1f](https://github.com/acot-a11y/acot/commit/271bb1f87e8d30e6a1c6f6ec1ead59e1b356284c))
+- **reporter:** Fix a bug that PrettyReporter hangs in the case of many URLs ([7248532](https://github.com/acot-a11y/acot/commit/7248532c0380a0483a537c124173f2191027dd54))
+
+### Features
+
+- Add rule result for pretty reporter ([f668f8a](https://github.com/acot-a11y/acot/commit/f668f8a56e730ea31ece53f23d7fd2629e456211))
+- Improve progress display (pretty reporter) ([dc4e9e1](https://github.com/acot-a11y/acot/commit/dc4e9e1655408a499619a690798e06ef439844be))
+- Initial implements ([68f46a2](https://github.com/acot-a11y/acot/commit/68f46a250de7793795678ece40d23d927ddd075c))
+
 ## [0.0.8-canary.0](https://github.com/acot-a11y/acot/compare/@acot/reporter@0.0.7...@acot/reporter@0.0.8-canary.0) (2021-03-30)
 
 ### Bug Fixes

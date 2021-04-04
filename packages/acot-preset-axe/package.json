@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-preset-axe",
-  "version": "0.0.9-canary.0",
+  "version": "0.0.10-canary.0",
   "description": "An axe rule set for acot.",
   "keywords": [
     "acot",
@@ -32,8 +32,8 @@
     "test": "acot preset test --port 1235"
   },
   "dependencies": {
-    "@acot/cli": "0.0.9-canary.0",
-    "@acot/core": "0.0.8-canary.0",
+    "@acot/cli": "0.0.10-canary.0",
+    "@acot/core": "0.0.10-canary.0",
     "axe-core": "^4.1.1"
   },
   "publishConfig": {

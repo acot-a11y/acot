@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10-canary.0 (2021-04-04)
+
+### Bug Fixes
+
+- h1 ([4982414](https://github.com/acot-a11y/acot/commit/498241471b781795da70a54fa59c5b91d9f12bab))
+
+### Features
+
+- add `@acot/acot-runner-sitemap` package ([9a760b7](https://github.com/acot-a11y/acot/commit/9a760b787df44a0febac52ccb254073179786306))
+
 ## [0.0.7-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-runner-sitemap@0.0.6...@acot/acot-runner-sitemap@0.0.7-canary.0) (2021-03-30)
 
 **Note:** Version bump only for package @acot/acot-runner-sitemap

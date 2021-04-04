@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10-canary.0 (2021-04-04)
+
+### Features
+
+- add `@acot/acot-runner-sitemap` package ([9a760b7](https://github.com/acot-a11y/acot/commit/9a760b787df44a0febac52ccb254073179786306))
+- add `@acot/mock` package ([fb6e4ba](https://github.com/acot-a11y/acot/commit/fb6e4bad5a5562260561c5585eb83ba492bdb6a6))
+
 ## [0.0.6-canary.0](https://github.com/acot-a11y/acot/compare/@acot/mock@0.0.5...@acot/mock@0.0.6-canary.0) (2021-03-30)
 
 **Note:** Version bump only for package @acot/mock

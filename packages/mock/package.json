@@ -1,6 +1,6 @@
 {
   "name": "@acot/mock",
-  "version": "0.0.6-canary.0",
+  "version": "0.0.10-canary.0",
   "description": "acot mock modules.",
   "keywords": [
     "acot"
@@ -27,11 +27,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/factory": "0.0.8-canary.0",
+    "@acot/factory": "0.0.10-canary.0",
     "emittery": "^0.7.1"
   },
   "devDependencies": {
-    "@acot/types": "0.0.8-canary.0"
+    "@acot/types": "0.0.10-canary.0"
   },
   "publishConfig": {
     "access": "public"

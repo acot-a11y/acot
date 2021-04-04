@@ -1,6 +1,6 @@
 {
   "name": "@acot/types",
-  "version": "0.0.8-canary.0",
+  "version": "0.0.10-canary.0",
   "description": "acot's underlying type declarations.",
   "keywords": [
     "acot"

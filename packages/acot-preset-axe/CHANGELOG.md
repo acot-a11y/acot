@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10-canary.0 (2021-04-04)
+
+### Features
+
+- **core:** Performance improvements with immutable rules ([572edef](https://github.com/acot-a11y/acot/commit/572edefca26d1817a46e2f1c74c8d31b6762642d))
+- **core:** switch to `help` from `tags` ([7ac5678](https://github.com/acot-a11y/acot/commit/7ac56780e46c26f94aeda3f0c1d1482f47521acb))
+- **document:** Change summary extraction logic ([361cd2b](https://github.com/acot-a11y/acot/commit/361cd2b448439fd769c20b757fe86abe67f653ee))
+- **document:** Upgrade design of preset preview server ([21d555b](https://github.com/acot-a11y/acot/commit/21d555bf191af82a4781f64ab5a0bab5bcc5232f))
+
 ## [0.0.9-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-preset-axe@0.0.8...@acot/acot-preset-axe@0.0.9-canary.0) (2021-03-30)
 
 **Note:** Version bump only for package @acot/acot-preset-axe

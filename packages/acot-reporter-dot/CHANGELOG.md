@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10-canary.0 (2021-04-04)
+
+### Bug Fixes
+
+- update dependency boxen to v5 ([271bb1f](https://github.com/acot-a11y/acot/commit/271bb1f87e8d30e6a1c6f6ec1ead59e1b356284c))
+
+### Features
+
+- **core:** switch to `help` from `tags` ([7ac5678](https://github.com/acot-a11y/acot/commit/7ac56780e46c26f94aeda3f0c1d1482f47521acb))
+- add `@acot/acot-runner-sitemap` package ([9a760b7](https://github.com/acot-a11y/acot/commit/9a760b787df44a0febac52ccb254073179786306))
+
 ## [0.0.6-canary.0](https://github.com/acot-a11y/acot/compare/@acot/acot-reporter-dot@0.0.5...@acot/acot-reporter-dot@0.0.6-canary.0) (2021-03-30)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@acot/utils",
-  "version": "0.0.7-canary.0",
+  "version": "0.0.10-canary.0",
   "description": "Utility functions for acot.",
   "keywords": [
     "acot"

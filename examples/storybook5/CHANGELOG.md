@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10-canary.0 (2021-04-04)
+
+### Bug Fixes
+
+- **reporter:** Fix a bug that PrettyReporter hangs in the case of many URLs ([7248532](https://github.com/acot-a11y/acot/commit/7248532c0380a0483a537c124173f2191027dd54))
+
+### Features
+
+- **runner-storybook:** Add filter options for storybook runner ([c77d6bf](https://github.com/acot-a11y/acot/commit/c77d6bf50a1bddbbd1021c7b71d00e1652376b11))
+
 ## [0.0.9-canary.0](https://github.com/acot-a11y/acot/compare/@example/storybook5@0.0.8...@example/storybook5@0.0.9-canary.0) (2021-03-30)
 
 **Note:** Version bump only for package @example/storybook5
