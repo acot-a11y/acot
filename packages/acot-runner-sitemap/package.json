@@ -54,7 +54,7 @@
     "@acot/types": "0.0.10-canary.0",
     "@types/lodash": "4.14.168",
     "@types/micromatch": "4.0.1",
-    "@types/node-fetch": "2.5.8",
+    "@types/node-fetch": "2.5.10",
     "@types/serve-handler": "6.1.0"
   },
   "publishConfig": {
