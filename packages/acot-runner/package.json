@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner",
-  "version": "0.0.10-canary.0",
+  "version": "0.0.10",
   "description": "A default runner module of acot.",
   "keywords": [
     "acot",
@@ -28,14 +28,14 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/config": "0.0.10-canary.0",
-    "@acot/connection": "0.0.10-canary.0",
-    "@acot/runner": "0.0.10-canary.0",
+    "@acot/config": "0.0.10",
+    "@acot/connection": "0.0.10",
+    "@acot/runner": "0.0.10",
     "debug": "^4.3.1",
     "emittery": "^0.7.1"
   },
   "devDependencies": {
-    "@acot/types": "0.0.10-canary.0"
+    "@acot/types": "0.0.10"
   },
   "publishConfig": {
     "access": "public"

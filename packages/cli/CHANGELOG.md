@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10](https://github.com/acot-a11y/acot/compare/v0.0.10-canary.0...v0.0.10) (2021-04-11)
+
+**Note:** Version bump only for package @acot/cli
+
 ## 0.0.10-canary.0 (2021-04-04)
 
 ### Bug Fixes
