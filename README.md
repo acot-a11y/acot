@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/acot-a11y/acot/actions?workflow=CI"><img src="https://img.shields.io/github/workflow/status/acot-a11y/acot/CI?logo=github&style=flat-square" alt="GitHub Workflow Status" /></a>
+  <a href="https://www.npmjs.com/package/@acot/cli"><img src="https://img.shields.io/npm/v/@acot/cli?style=flat-square" alt="npm" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/acot-a11y/acot?label=license&style=flat-square" alt="MIT LICENSE" /></a>
 </p>
 
@@ -118,41 +119,41 @@ acot has a feature which is divided into several packages.
 
 ### Foundations
 
-| Package                            | Version                                                                                                           | Description                             |
-| :--------------------------------- | :---------------------------------------------------------------------------------------------------------------- | :-------------------------------------- |
-| [@acot/core](./packages/core/)     | [![npm](https://img.shields.io/npm/v/@acot/core?style=flat-square)](https://www.npmjs.com/package/@acot/core)     | acot core API.                          |
-| [@acot/cli](./packages/cli/)       | [![npm](https://img.shields.io/npm/v/@acot/cli?style=flat-square)](https://www.npmjs.com/package/@acot/cli)       | acot command line tool.                 |
-| [@acot/config](./packages/config/) | [![npm](https://img.shields.io/npm/v/@acot/config?style=flat-square)](https://www.npmjs.com/package/@acot/config) | A module to manipulate configs of acot. |
+| Package                            | Description                             |
+| :--------------------------------- | :-------------------------------------- |
+| [@acot/core](./packages/core/)     | acot core API.                          |
+| [@acot/cli](./packages/cli/)       | acot command line tool.                 |
+| [@acot/config](./packages/config/) | A module to manipulate configs of acot. |
 
 ### Configs / Presets
 
-| Package                                                | Version                                                                                                                               | Description                     |
-| :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------ |
-| [@acot/acot-config](./packages/acot-config/)           | [![npm](https://img.shields.io/npm/v/@acot/acot-config?style=flat-square)](https://www.npmjs.com/package/@acot/acot-config)           | A basic acot rule set.          |
-| [@acot/acot-preset-wcag](./packages/acot-preset-wcag/) | [![npm](https://img.shields.io/npm/v/@acot/acot-preset-wcag?style=flat-square)](https://www.npmjs.com/package/@acot/acot-preset-wcag) | A WCAG-based rule set for acot. |
-| [@acot/acot-preset-axe](./packages/acot-preset-axe/)   | [![npm](https://img.shields.io/npm/v/@acot/acot-preset-axe?style=flat-square)](https://www.npmjs.com/package/@acot/acot-preset-axe)   | An axe rule set for acot.       |
+| Package                                                | Description                     |
+| :----------------------------------------------------- | :------------------------------ |
+| [@acot/acot-config](./packages/acot-config/)           | A basic acot rule set.          |
+| [@acot/acot-preset-wcag](./packages/acot-preset-wcag/) | A WCAG-based rule set for acot. |
+| [@acot/acot-preset-axe](./packages/acot-preset-axe/)   | An axe rule set for acot.       |
 
 ### Runners
 
-| Package                                                          | Version                                                                                                                                         | Description                                                                      |
-| :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
-| [@acot/acot-runner-sitemap](./packages/acot-runner-sitemap/)     | [![npm](https://img.shields.io/npm/v/@acot/acot-runner-sitemap?style=flat-square)](https://www.npmjs.com/package/@acot/acot-runner-sitemap)     | An acot custom runner reading audit pages from sitemap.                          |
-| [@acot/acot-runner-storybook](./packages/acot-runner-storybook/) | [![npm](https://img.shields.io/npm/v/@acot/acot-runner-storybook?style=flat-square)](https://www.npmjs.com/package/@acot/acot-runner-storybook) | An acot custom runner for [Storybook](https://github.com/storybookjs/storybook). |
+| Package                                                          | Description                                                                      |
+| :--------------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| [@acot/acot-runner-sitemap](./packages/acot-runner-sitemap/)     | An acot custom runner reading audit pages from sitemap.                          |
+| [@acot/acot-runner-storybook](./packages/acot-runner-storybook/) | An acot custom runner for [Storybook](https://github.com/storybookjs/storybook). |
 
 ### Reporters
 
-| Package                                                        | Version                                                                                                                                       | Description                                      |
-| :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------- |
-| [@acot/acot-reporter-pretty](./packages/acot-reporter-pretty/) | [![npm](https://img.shields.io/npm/v/@acot/acot-reporter-pretty?style=flat-square)](https://www.npmjs.com/package/@acot/acot-reporter-pretty) | An acot default reporter.                        |
-| [@acot/acot-reporter-dot](./packages/acot-reporter-dot/)       | [![npm](https://img.shields.io/npm/v/@acot/acot-reporter-dot?style=flat-square)](https://www.npmjs.com/package/@acot/acot-reporter-dot)       | A dot reporter for [@acot/cli](./packages/cli/). |
+| Package                                                        | Description                                      |
+| :------------------------------------------------------------- | :----------------------------------------------- |
+| [@acot/acot-reporter-pretty](./packages/acot-reporter-pretty/) | An acot default reporter.                        |
+| [@acot/acot-reporter-dot](./packages/acot-reporter-dot/)       | A dot reporter for [@acot/cli](./packages/cli/). |
 
 ### Utilities
 
-| Package                                                | Version                                                                                                                               | Description                                                                          |
-| :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------- |
-| [@acot/find-chrome](./packages/find-chrome/)           | [![npm](https://img.shields.io/npm/v/@acot/find-chrome?style=flat-square)](https://www.npmjs.com/package/@acot/find-chrome)           | Find Chrome available in your runtime environment.                                   |
-| [@acot/html-pickup](./packages/html-pickup/)           | [![npm](https://img.shields.io/npm/v/@acot/html-pickup?style=flat-square)](https://www.npmjs.com/package/@acot/html-pickup)           | Use the CSS Selector to pick up the elements from the HTML string.                   |
-| [@acot/schema-validator](./packages/schema-validator/) | [![npm](https://img.shields.io/npm/v/@acot/schema-validator?style=flat-square)](https://www.npmjs.com/package/@acot/schema-validator) | A simple wrapper module for [schema-utils](https://github.com/webpack/schema-utils). |
+| Package                                                | Description                                                                          |
+| :----------------------------------------------------- | :----------------------------------------------------------------------------------- |
+| [@acot/find-chrome](./packages/find-chrome/)           | Find Chrome available in your runtime environment.                                   |
+| [@acot/html-pickup](./packages/html-pickup/)           | Use the CSS Selector to pick up the elements from the HTML string.                   |
+| [@acot/schema-validator](./packages/schema-validator/) | A simple wrapper module for [schema-utils](https://github.com/webpack/schema-utils). |
 
 ## FAQ
 
