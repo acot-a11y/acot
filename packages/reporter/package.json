@@ -20,8 +20,8 @@
   "types": "lib/index.d.ts",
   "files": [
     "lib",
-    "!__mocks__",
-    "!__tests__"
+    "!**/__mocks__",
+    "!**/__tests__"
   ],
   "scripts": {
     "build": "tsc",
