@@ -21,8 +21,9 @@
   "files": [
     "lib",
     "templates",
-    "!__mocks__",
-    "!__tests__"
+    "templates/assets/styles.css",
+    "!**/__mocks__",
+    "!**/__tests__"
   ],
   "scripts": {
     "build": "run-p build:*",
