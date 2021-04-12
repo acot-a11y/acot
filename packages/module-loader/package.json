@@ -1,6 +1,6 @@
 {
   "name": "@acot/module-loader",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Load the module according to the naming rule of acot.",
   "keywords": [
     "acot"
@@ -36,7 +36,7 @@
     ]
   },
   "dependencies": {
-    "@acot/utils": "0.0.10",
+    "@acot/utils": "0.0.11",
     "debug": "^4.3.1"
   },
   "publishConfig": {
