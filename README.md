@@ -111,7 +111,7 @@ See the [Configuration](./docs/configuration.md) for details.
 - [Configuration](./docs/configuration.md)
 - [Command Line Interface](./packages/cli)
 - [Core API](./packages/core)
-- [Develoepr Guide](./docs/developer-guide.md)
+- [Develoepr Guide](./docs/developer-guide/)
 
 ## Packages
 
