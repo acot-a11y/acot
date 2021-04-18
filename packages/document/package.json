@@ -56,7 +56,7 @@
     "fastify-static": "^4.0.0",
     "indent-string": "^4.0.0",
     "is-plain-object": "^5.0.0",
-    "log-symbols": "^4.0.0",
+    "log-symbols": "^5.0.0",
     "mdast-util-to-string": "^2.0.0",
     "micromatch": "^4.0.2",
     "mustache": "^4.0.1",
