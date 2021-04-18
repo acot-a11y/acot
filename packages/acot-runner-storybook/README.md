@@ -79,6 +79,25 @@ The Story name pattern to exclude in the audit target. See the [micromatch][mm] 
 }
 ```
 
+### `timeout`
+
+**Type:** `number`  
+**Default:** `60000`  
+**Required:** `false`
+
+Maximum time in milliseconds to wait for the browser instance to collect stories.
+
+```json
+{
+  "runner": {
+    "uses": "@acot/storybook",
+    "with": {
+      "timeout": 120000
+    }
+  }
+}
+```
+
 ## Storybook compatibility
 
 ### Storybook versions
