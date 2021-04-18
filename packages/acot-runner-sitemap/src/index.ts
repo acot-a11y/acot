@@ -11,6 +11,8 @@ import { transform } from 'camaro';
 import micromatch from 'micromatch';
 const debug = require('debug')('acot:runner:sitemap');
 
+const DEFAULT_TIMEOUT = 60 * 1000;
+
 type Options = {
   source: string;
   include?: string[];
@@ -21,6 +23,7 @@ type Options = {
     limit: number;
   }[];
   headers?: Record<string, string>;
+  timeout?: number;
 };
 
 const schema: Schema = {
@@ -64,6 +67,10 @@ const schema: Schema = {
     },
     headers: {
       type: 'object',
+    },
+    timeout: {
+      type: 'number',
+      minimum: 0,
     },
   },
   required: ['source'],
@@ -109,8 +116,10 @@ const filterUrls = (urls: string[], options: Options) => {
 };
 
 const fetchSitemap = async (url: string, options: Options) => {
+  const now = Date.now();
   const res = await fetch(url, {
     headers: options.headers,
+    timeout: options.timeout!,
   });
 
   if (res.ok === false) {
@@ -128,7 +137,12 @@ const fetchSitemap = async (url: string, options: Options) => {
 
   if (transformed.maps.length > 0) {
     const children = await Promise.all(
-      transformed.maps.map((child) => fetchSitemap(child, options)),
+      transformed.maps.map((child) =>
+        fetchSitemap(child, {
+          ...options,
+          timeout: Math.max(1, options.timeout! - (Date.now() - now)),
+        }),
+      ),
     );
 
     urls = urls.concat(...children);
@@ -141,7 +155,11 @@ export class SitemapRunner extends AcotRunner<Options> {
   protected async collect(): AcotRunnerCollectResult {
     const router = new ConfigRouter(this.config);
     const sources = new Map();
-    let entries = await fetchSitemap(this.options.source, this.options);
+
+    let entries = await fetchSitemap(this.options.source, {
+      timeout: DEFAULT_TIMEOUT,
+      ...this.options,
+    });
 
     entries =
       this.options.limit != null

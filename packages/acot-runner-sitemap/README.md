@@ -51,7 +51,7 @@ The URL of `sitemap.xml`
 }
 ```
 
-## `include`
+### `include`
 
 **Type:** `string[]`  
 **Required:** `false`
@@ -70,7 +70,7 @@ Page path pattern to include in audit target. See the [micromatch][mm] documenta
 }
 ```
 
-## `exclude`
+### `exclude`
 
 **Type:** `string[]`  
 **Required:** `false`
@@ -89,7 +89,7 @@ Page path pattern to exclude in audit target. See the [micromatch][mm] documenta
 }
 ```
 
-## `limit`
+### `limit`
 
 **Type:** `number`  
 **Required:** `false`
@@ -108,7 +108,7 @@ Maximum number of pages to include in the audit target. If no value is specified
 }
 ```
 
-## `random`
+### `random`
 
 **Type:** `{ pattern: string; limit: number }[]`  
 **Required:** `false`
@@ -136,7 +136,7 @@ Randomly include the number of `limit`s in the audit target from the page list t
 }
 ```
 
-## `headers`
+### `headers`
 
 **Type:** `Record<string, string>`  
 **Required:** `false`
@@ -153,6 +153,24 @@ The key-value of the header used when fetching the `sitemap.xml` specified in [s
         "X-KEY": "value"
       }
     }
+  }
+}
+```
+
+### `timeout`
+
+**Type:** `number`  
+**Default:** `60000`  
+**Required:** `false`
+
+Maximum time in milliseconds to wait for collecting sitemaps.
+
+```json
+{
+  "runner": "@acot/sitemap",
+  "with": {
+    "source": "https://acot.example/sitemap.xml",
+    "timeout": 120000
   }
 }
 ```
