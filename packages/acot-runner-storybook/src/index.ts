@@ -11,6 +11,8 @@ import type { AcotRunnerCollectResult } from '@acot/acot-runner';
 import { AcotRunner } from '@acot/acot-runner';
 const debug = require('debug')('acot:runner:storybook');
 
+const DEFAULT_TIMEOUT = 60 * 1000;
+
 type StoryParams = Omit<ConfigEntry, 'include' | 'exclude'>;
 
 type Story = {
@@ -73,6 +75,7 @@ const filterStories = (
 type Options = {
   include?: string[];
   exclude?: string[];
+  timeout?: number;
 };
 
 const schema: Schema = {
@@ -89,6 +92,10 @@ const schema: Schema = {
         type: 'string',
       },
     },
+    timeout: {
+      type: 'number',
+      minimum: 0,
+    },
   },
   required: [],
   additionalProperties: false,
@@ -99,6 +106,8 @@ export class StorybookRunner extends AcotRunner<Options> {
     // get stories
     const browser = await puppeteer.launch(this.config.launchOptions);
     const page = await browser.newPage();
+
+    page.setDefaultTimeout(this.options.timeout ?? DEFAULT_TIMEOUT);
 
     let stories: AcotStory[] = [];
 
