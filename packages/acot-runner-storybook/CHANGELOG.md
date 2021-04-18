@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.12](https://github.com/acot-a11y/acot/compare/v0.0.11...v0.0.12) (2021-04-18)
+
+### Features
+
+- **acot-runner-storybook:** add `timeout` options ([41b06f9](https://github.com/acot-a11y/acot/commit/41b06f98d7f920acc6a67a1912d32a856b357c48))
+
 ## [0.0.11](https://github.com/acot-a11y/acot/compare/v0.0.10...v0.0.11) (2021-04-12)
 
 **Note:** Version bump only for package @acot/acot-runner-storybook

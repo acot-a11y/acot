@@ -1,6 +1,6 @@
 {
   "name": "@acot/document",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A set of tools for working with documentation for acot presets.",
   "keywords": [
     "acot"
@@ -44,11 +44,11 @@
     ]
   },
   "dependencies": {
-    "@acot/core": "0.0.11",
-    "@acot/factory": "0.0.11",
-    "@acot/find-chrome": "0.0.11",
-    "@acot/html-pickup": "0.0.11",
-    "@acot/logger": "0.0.11",
+    "@acot/core": "0.0.12",
+    "@acot/factory": "0.0.12",
+    "@acot/find-chrome": "0.0.12",
+    "@acot/html-pickup": "0.0.12",
+    "@acot/logger": "0.0.12",
     "debug": "^4.3.1",
     "deepmerge": "^4.2.2",
     "fast-glob": "^3.2.2",

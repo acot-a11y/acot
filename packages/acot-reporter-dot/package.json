@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-dot",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A dot reporter for @acot/cli.",
   "keywords": [
     "acot",
@@ -36,9 +36,9 @@
     ]
   },
   "dependencies": {
-    "@acot/html-pickup": "0.0.11",
-    "@acot/module-loader": "0.0.11",
-    "@acot/reporter": "0.0.11",
+    "@acot/html-pickup": "0.0.12",
+    "@acot/module-loader": "0.0.12",
+    "@acot/reporter": "0.0.12",
     "boxen": "^5.0.0",
     "chalk": "^4.0.0",
     "figures": "^3.2.0",
@@ -49,7 +49,7 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.11"
+    "@acot/types": "0.0.12"
   },
   "publishConfig": {
     "access": "public"
