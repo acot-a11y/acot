@@ -67,6 +67,6 @@
     "ts-jest": "26.5.4",
     "ts-node": "9.1.1",
     "type-fest": "0.20.2",
-    "typescript": "4.2.3"
+    "typescript": "4.2.4"
   }
 }
