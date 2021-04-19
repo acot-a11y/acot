@@ -33,7 +33,7 @@
     ]
   },
   "dependencies": {
-    "@types/json-schema": "^7.0.5",
+    "@types/json-schema": "^7.0.6",
     "schema-utils": "^3.0.0"
   },
   "publishConfig": {
