@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@acot/tsconfig/-/tsconfig-0.1.0.tgz#6d4aea2abee0f5ab11440ca79e399cb6a802dd28"
   integrity sha512-vvOgTnn0UxTuXd/WMK9XW6/S4VnZ0+y3NZU2yELtE5egunIwnuTGAPfNL4MNXp5Q0PvdyC86GD6vZsBZB8+2xw==
 
+"@assemblyscript/loader@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@assemblyscript/loader/-/loader-0.10.1.tgz#70e45678f06c72fa2e350e8553ec4a4d72b92e06"
+  integrity sha512-H71nDOOL8Y7kWRLqf6Sums+01Q5msqBW2KhDUTemh1tvY04eSkSXrK0uj/4mmY0Xr16/3zyZmsrxN7CKuRbNRg==
+
 "@babel/code-frame@7.12.11", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -4954,12 +4959,12 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-camaro@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/camaro/-/camaro-6.0.4.tgz#9ace279ca8b6c076d96844cc0ffae5c1e5d4427f"
-  integrity sha512-A8kkwqbg5nw0KErrr3yDuLD2+C7WIP7a1TfklRdYbmb6ss5rxlvzyLXKbBNtC3EJaOXYPEFr4SXYp74jcfULIw==
+camaro@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/camaro/-/camaro-6.1.0.tgz#d56694a19b54c257f3e020d3c1ee4822c8d11e97"
+  integrity sha512-Aa9q2fxR+9i90Z8BOH3JBt2TCa+JZbhaqj0Mmx4zsTUe8G1UyA4djLXjQimcp2+WByZWTYVEK7TPPzmdi7MObw==
   dependencies:
-    piscina "^1.6.3"
+    piscina "^2.1.0"
 
 camel-case@^4.1.1, camel-case@^4.1.2:
   version "4.1.2"
@@ -8447,20 +8452,19 @@ hastscript@^5.0.0:
     property-information "^5.0.0"
     space-separated-tokens "^1.0.0"
 
-hdr-histogram-js@^1.0.0, hdr-histogram-js@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/hdr-histogram-js/-/hdr-histogram-js-1.2.0.tgz#1213c0b317f39b9c05bc4f208cb7931dbbc192ae"
-  integrity sha512-h0YToJ3ewqsaZ3nFTTa6dLOD7sqx+EgdC4+OcJ9Ou7zZDlT0sXSPHHr3cyenQsPqqbVHGn/oFY6zjfEKXGvzmQ==
+hdr-histogram-js@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/hdr-histogram-js/-/hdr-histogram-js-2.0.1.tgz#ecb1ff2bcb6181c3e93ff4af9472c28c7e97284e"
+  integrity sha512-uPZxl1dAFnjUFHWLZmt93vUUvtHeaBay9nVNHu38SdOjMSF/4KqJUqa1Seuj08ptU1rEb6AHvB41X8n/zFZ74Q==
   dependencies:
+    "@assemblyscript/loader" "^0.10.1"
     base64-js "^1.2.0"
     pako "^1.0.3"
 
-hdr-histogram-percentiles-obj@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/hdr-histogram-percentiles-obj/-/hdr-histogram-percentiles-obj-2.0.1.tgz#7a4d52fa02087118c66469e6b66b74f9fbb44d82"
-  integrity sha512-QBvbTxPlGwHj36IRF16XLoYEbUv5YEyO385kiS0IS3831fcSTNXTR785VtFFZ2ahY733z0ky8Jv4d6In+Ss+wQ==
-  dependencies:
-    hdr-histogram-js "^1.0.0"
+hdr-histogram-percentiles-obj@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hdr-histogram-percentiles-obj/-/hdr-histogram-percentiles-obj-3.0.0.tgz#9409f4de0c2dda78e61de2d9d78b1e9f3cba283c"
+  integrity sha512-7kIufnBqdsBGcSZLPJwqHT3yhk1QTsSlFsVD3kx5ixH/AlgBs9yM1q6DPhXZ8f8gtdqgh7N7/5btRLpQsS2gHw==
 
 he@^1.2.0:
   version "1.2.0"
@@ -12395,14 +12399,14 @@ pirates@^4.0.1:
   dependencies:
     node-modules-regexp "^1.0.0"
 
-piscina@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/piscina/-/piscina-1.6.3.tgz#1adfc09a835108561a8cdc7acfd2ab3119141155"
-  integrity sha512-I8aoBroMD6cRGYFsW1oN3X5YfJAyuT4pn+P2Tnk8ZYQ134ZqaQ0mjUztm9+NmKKawd0XlTY8wvz6bMxckrJX6g==
+piscina@^2.1.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/piscina/-/piscina-2.2.0.tgz#8fd5236f07aaa9676c4100a3e4d90b6b7aaabf4c"
+  integrity sha512-CQb0DfyTdC9FBIMYkVV/00fXRLKDjmWKA8S0N1zDg2JGEc5z3P9qHXtoq8OkJQ+vjCfXySkVonTNMqskMFOW/w==
   dependencies:
     eventemitter-asyncresource "^1.0.0"
-    hdr-histogram-js "^1.2.0"
-    hdr-histogram-percentiles-obj "^2.0.1"
+    hdr-histogram-js "^2.0.1"
+    hdr-histogram-percentiles-obj "^3.0.0"
   optionalDependencies:
     nice-napi "^1.0.2"
 
