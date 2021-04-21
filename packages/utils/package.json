@@ -36,7 +36,7 @@
     ]
   },
   "dependencies": {
-    "puppeteer-core": "^8.0.0",
+    "puppeteer-core": "^9.0.0",
     "resolve-from": "^5.0.0"
   },
   "publishConfig": {
