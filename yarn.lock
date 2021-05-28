@@ -6664,6 +6664,11 @@ emittery@^0.7.1:
   resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.7.2.tgz#25595908e13af0f5674ab419396e2fb394cdfa82"
   integrity sha512-A8OG5SR/ij3SsJdWDJdkkSYUjQdCUx6APQXem0SaEePBSRg4eymGYwBkKo1Y6DU+af/Jn2dBQqDBvjnr9Vi8nQ==
 
+emittery@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.9.0.tgz#32b76a690f4c9fcd14dd8be1123b45fc7500cf7e"
+  integrity sha512-sr3pHyhtKervRVWa0ESMma8tjKxkyo95ICdtQWv5HGPZdoFqypE2eL2fRmy7K41zsJu2Fc94QESxAzEz3t1GEg==
+
 emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"

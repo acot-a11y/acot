@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@acot/factory": "0.0.12",
-    "emittery": "^0.7.1"
+    "emittery": "^0.9.0"
   },
   "devDependencies": {
     "@acot/types": "0.0.12"
