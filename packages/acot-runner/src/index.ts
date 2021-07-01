@@ -91,9 +91,11 @@ export class AcotRunner<T extends RunnerOptions = {}> implements Runner {
   }
 
   protected async connect(): AcotRunnerConnectResult {
-    const { origin, connection } = this.config;
+    const { origin, paths, connection } = this.config;
+    const url =
+      paths != null && paths.length > 0 ? `${origin}${paths[0]}` : origin!;
 
-    this.conn = new Connection(origin!, {
+    this.conn = new Connection(url, {
       timeout: connection?.timeout,
       command: connection?.command,
     });
