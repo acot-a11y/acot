@@ -53,7 +53,7 @@
     "@acot/mock": "0.0.12",
     "@acot/types": "0.0.12",
     "@types/lodash": "4.14.172",
-    "@types/micromatch": "4.0.1",
+    "@types/micromatch": "4.0.2",
     "@types/node-fetch": "2.5.10",
     "@types/serve-handler": "6.1.0"
   },

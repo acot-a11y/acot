@@ -71,7 +71,7 @@
     "unist-util-visit-parents": "^3.1.0"
   },
   "devDependencies": {
-    "@types/micromatch": "4.0.1",
+    "@types/micromatch": "4.0.2",
     "@types/mustache": "4.1.2",
     "@types/unist": "2.0.3",
     "postcss": "8.3.6",

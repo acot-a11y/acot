@@ -54,7 +54,7 @@
     "resolve-from": "^5.0.0"
   },
   "devDependencies": {
-    "@types/micromatch": "4.0.1",
+    "@types/micromatch": "4.0.2",
     "param-case": "3.0.4",
     "typescript-json-validator": "2.4.2"
   },
