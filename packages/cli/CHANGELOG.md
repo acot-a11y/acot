@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.12...v0.0.13-canary.0) (2021-08-17)
+
+### Bug Fixes
+
+- update dependency is-ci to v3 ([4282333](https://github.com/acot-a11y/acot/commit/42823334b0a4ce569ed4b608cda5f2b9abe1123c))
+
 ## [0.0.12](https://github.com/acot-a11y/acot/compare/v0.0.11...v0.0.12) (2021-04-18)
 
 **Note:** Version bump only for package @acot/cli

@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner-storybook",
-  "version": "0.0.12",
+  "version": "0.0.13-canary.0",
   "description": "An acot custom runner for Storybook.",
   "keywords": [
     "acot",
@@ -28,7 +28,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/acot-runner": "0.0.12",
+    "@acot/acot-runner": "0.0.13-canary.0",
     "@acot/config": "0.0.12",
     "@acot/runner": "0.0.12",
     "@acot/schema-validator": "0.0.12",

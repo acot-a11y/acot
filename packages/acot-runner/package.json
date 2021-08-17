@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner",
-  "version": "0.0.12",
+  "version": "0.0.13-canary.0",
   "description": "A default runner module of acot.",
   "keywords": [
     "acot",

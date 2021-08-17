@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.12...v0.0.13-canary.0) (2021-08-17)
+
+### Features
+
+- connection url includes path ([652b3ae](https://github.com/acot-a11y/acot/commit/652b3ae572de2d7a4033c0c509dbdfe5c01b8e6d))
+
 ## [0.0.12](https://github.com/acot-a11y/acot/compare/v0.0.11...v0.0.12) (2021-04-18)
 
 **Note:** Version bump only for package @acot/acot-runner
