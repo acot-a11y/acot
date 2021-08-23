@@ -188,7 +188,7 @@ export const resolveConfig = async (
 
     debug('valid config: %O', config);
 
-    const { runner, reporter, presets, overrides, viewport, ...rest } = config;
+    const { runner, reporters, presets, overrides, viewport, ...rest } = config;
     let resolved: ResolvedConfig = {
       ...rest,
       rules: normalizeRuleConfig(config.rules ?? {}),
@@ -196,15 +196,27 @@ export const resolveConfig = async (
 
     if (runner != null) {
       resolved.runner = loadRunner(
-        typeof runner === 'string' ? { uses: runner, with: {} } : runner,
+        typeof runner === 'string'
+          ? {
+              uses: runner,
+              with: {},
+            }
+          : runner,
         cwd,
       );
     }
 
-    if (reporter != null) {
-      resolved.reporter = loadReporter(
-        typeof reporter === 'string' ? { uses: reporter, with: {} } : reporter,
-        cwd,
+    if (reporters != null) {
+      resolved.reporters = reporters.map((reporter) =>
+        loadReporter(
+          typeof reporter === 'string'
+            ? {
+                uses: reporter,
+                with: {},
+              }
+            : reporter,
+          cwd,
+        ),
       );
     }
 

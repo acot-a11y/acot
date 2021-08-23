@@ -69,7 +69,7 @@ export type Config = BaseConfig & {
   paths?: string[];
   connection?: ConnectionOptions;
   runner?: string | RunnerUses;
-  reporter?: string | ReporterUses;
+  reporters?: (string | ReporterUses)[];
   chromeChannel?: ChromeChannel;
   launchOptions?: LaunchOptions;
   viewport?: Viewport | string;
@@ -89,7 +89,7 @@ export type ResolvedConfig = Merge<
   Config,
   {
     runner?: ResolvedRunnerUses;
-    reporter?: ResolvedReporterUses;
+    reporters?: ResolvedReporterUses[];
     rules: NormalizedRuleConfig; // FIXME Delays normalization to the execution phase (because of poor usability as an API)
     presets?: Preset[];
     overrides?: ResolvedConfigEntry[];

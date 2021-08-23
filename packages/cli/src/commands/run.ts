@@ -42,13 +42,9 @@ export default createCommand({
       alias: 'C',
       description: 'Command to launch the local server.',
     },
-    reporter: {
-      type: 'string',
-      description: `Name of the reporter. (default: "${DEFAULT_REPORTER}")`,
-    },
-    'reporter-with': {
-      type: 'string',
-      description: 'Reporter options. Specify the JSON as a string.',
+    reporters: {
+      type: 'array',
+      description: `List of the reporter names. (default: "${DEFAULT_REPORTER}")`,
     },
     runner: {
       type: 'string',
@@ -186,24 +182,32 @@ export default createCommand({
   });
 
   // reporter
-  let report: Reporter;
+  const reporters: Reporter[] = [];
   try {
     const cfg: ReporterFactoryConfig<any> = {
       stdout: logger.getStdout(),
       stderr: logger.getStderr(),
       verbose: !!args.verbose || isCI,
       config,
-      options: {
-        ...(config.reporter?.with ?? {}),
-        ...JSON.parse(args['reporter-with'] ?? '{}'),
-      },
+      options: {},
     };
 
-    if (args.reporter == null && config.reporter != null) {
-      report = config.reporter.uses(cfg);
+    if (args.reporters == null && config.reporters != null) {
+      config.reporters.forEach((reporter) => {
+        reporters.push(
+          reporter.uses({
+            ...cfg,
+            options: reporter.with ?? {},
+          }),
+        );
+      });
     } else {
       const loader = new ReporterLoader(cwd);
-      report = loader.load(args.reporter || DEFAULT_REPORTER)(cfg);
+      (args.reporters ?? [DEFAULT_REPORTER]).forEach((reporter) => {
+        if (typeof reporter === 'string') {
+          reporters.push(loader.load(reporter)(cfg));
+        }
+      });
     }
   } catch (e) {
     logger.error(e);
@@ -235,7 +239,7 @@ export default createCommand({
 
   // run
   try {
-    report(runner);
+    reporters.forEach((report) => report(runner));
 
     const summary = await runner.run();
 
