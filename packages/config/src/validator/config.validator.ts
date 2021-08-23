@@ -109,29 +109,32 @@ export const ConfigSchema = {
           },
           type: 'array',
         },
-        reporter: {
-          anyOf: [
-            {
-              allOf: [
-                {
-                  $ref:
-                    '#/definitions/Pick<{with?:Record<string,any>;},"with">',
-                },
-                {
-                  properties: {
-                    uses: {
-                      $ref: '#/definitions/U',
-                    },
+        reporters: {
+          items: {
+            anyOf: [
+              {
+                allOf: [
+                  {
+                    $ref:
+                      '#/definitions/Pick<{with?:Record<string,any>;},"with">',
                   },
-                  required: ['uses'],
-                  type: 'object',
-                },
-              ],
-            },
-            {
-              type: 'string',
-            },
-          ],
+                  {
+                    properties: {
+                      uses: {
+                        $ref: '#/definitions/U',
+                      },
+                    },
+                    required: ['uses'],
+                    type: 'object',
+                  },
+                ],
+              },
+              {
+                type: 'string',
+              },
+            ],
+          },
+          type: 'array',
         },
         runner: {
           anyOf: [
