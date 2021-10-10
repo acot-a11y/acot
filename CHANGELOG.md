@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13](https://github.com/acot-a11y/acot/compare/v0.0.13-canary.0...v0.0.13) (2021-10-10)
+
+### Features
+
+- allow multiple reporters ([437022c](https://github.com/acot-a11y/acot/commit/437022c73270e94f80e3c337c4d4459967f66e9d))
+
 ## [0.0.13-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.12...v0.0.13-canary.0) (2021-08-17)
 
 ### Bug Fixes

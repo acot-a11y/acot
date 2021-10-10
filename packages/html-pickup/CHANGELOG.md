@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13](https://github.com/acot-a11y/acot/compare/v0.0.13-canary.0...v0.0.13) (2021-10-10)
+
+**Note:** Version bump only for package @acot/html-pickup
+
 ## [0.0.12](https://github.com/acot-a11y/acot/compare/v0.0.11...v0.0.12) (2021-04-18)
 
 **Note:** Version bump only for package @acot/html-pickup

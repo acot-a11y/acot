@@ -1,6 +1,6 @@
 {
   "name": "@acot/logger",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A simple logger for acot.",
   "keywords": [
     "acot"

@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner-storybook",
-  "version": "0.0.13-canary.0",
+  "version": "0.0.13",
   "description": "An acot custom runner for Storybook.",
   "keywords": [
     "acot",
@@ -28,10 +28,10 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/acot-runner": "0.0.13-canary.0",
-    "@acot/config": "0.0.12",
-    "@acot/runner": "0.0.12",
-    "@acot/schema-validator": "0.0.12",
+    "@acot/acot-runner": "0.0.13",
+    "@acot/config": "0.0.13",
+    "@acot/runner": "0.0.13",
+    "@acot/schema-validator": "0.0.13",
     "debug": "^4.3.1",
     "deepmerge": "^4.2.2",
     "is-plain-object": "^5.0.0",
@@ -39,7 +39,7 @@
     "puppeteer-core": "^8.0.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.12",
+    "@acot/types": "0.0.13",
     "@types/micromatch": "4.0.2"
   },
   "publishConfig": {
