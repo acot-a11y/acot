@@ -29,6 +29,7 @@ const schema = Type.Strict(
           format: 'uri',
         }),
       ),
+      debug: Type.Optional(Type.Boolean()),
     },
     {
       additionalProperties: false,
@@ -39,8 +40,8 @@ const schema = Type.Strict(
 export type GitHubReporterOptions = Static<typeof schema>;
 
 export default createReporterFactory<GitHubReporterOptions>(
-  ({ config, verbose, stderr, options }) => {
-    if (verbose) {
+  ({ config, stderr, options }) => {
+    if (options.debug) {
       debug.enabled = true;
     }
 
