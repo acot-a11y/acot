@@ -1,81 +1,49 @@
 import { URL } from 'url';
-import _ from 'lodash';
-import type { Schema } from '@acot/schema-validator';
-import { validate } from '@acot/schema-validator';
-import { ConfigRouter } from '@acot/config';
-import { createRunnerFactory } from '@acot/runner';
 import type { AcotRunnerCollectResult } from '@acot/acot-runner';
 import { AcotRunner } from '@acot/acot-runner';
-import fetch from 'node-fetch';
+import { ConfigRouter } from '@acot/config';
+import { createRunnerFactory } from '@acot/runner';
+import { validate } from '@acot/schema-validator';
+import type { Static } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
 import { transform } from 'camaro';
+import _ from 'lodash';
 import micromatch from 'micromatch';
+import fetch from 'node-fetch';
 const debug = require('debug')('acot:runner:sitemap');
 
 const DEFAULT_TIMEOUT = 60 * 1000;
 
-type Options = {
-  source: string;
-  include?: string[];
-  exclude?: string[];
-  limit?: number;
-  random?: {
-    pattern: string;
-    limit: number;
-  }[];
-  headers?: Record<string, string>;
-  timeout?: number;
-};
+const schema = Type.Strict(
+  Type.Object(
+    {
+      source: Type.String({ format: 'uri' }),
+      include: Type.Optional(Type.Array(Type.String())),
+      exclude: Type.Optional(Type.Array(Type.String())),
+      limit: Type.Optional(Type.Number({ minimum: 0 })),
+      random: Type.Optional(
+        Type.Array(
+          Type.Object(
+            {
+              pattern: Type.String(),
+              limit: Type.Number({ minimum: 0 }),
+            },
+            {
+              additionalProperties: false,
+            },
+          ),
+        ),
+      ),
+      headers: Type.Optional(Type.Record(Type.String(), Type.String())),
+      timeout: Type.Optional(Type.Number({ minimum: 0 })),
+    },
+    {
+      additionalProperties: false,
+    },
+  ),
+);
 
-const schema: Schema = {
-  properties: {
-    source: {
-      type: 'string',
-      format: 'uri',
-    },
-    include: {
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-    exclude: {
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-    limit: {
-      type: 'number',
-      minimum: 0,
-    },
-    random: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          pattern: {
-            type: 'string',
-          },
-          limit: {
-            type: 'number',
-            minimum: 0,
-          },
-        },
-        required: ['pattern', 'limit'],
-        additionalProperties: false,
-      },
-    },
-    headers: {
-      type: 'object',
-    },
-    timeout: {
-      type: 'number',
-      minimum: 0,
-    },
-  },
-  required: ['source'],
-  additionalProperties: false,
-};
+type Options = Static<typeof schema>;
 
 const url2path = (url: string) => {
   const o = new URL(url);

@@ -1,14 +1,15 @@
-import puppeteer from 'puppeteer-core';
-import type { Schema } from '@acot/schema-validator';
-import { validate } from '@acot/schema-validator';
+import type { AcotRunnerCollectResult } from '@acot/acot-runner';
+import { AcotRunner } from '@acot/acot-runner';
 import { ConfigRouter, resolveConfig } from '@acot/config';
-import type { ResolvedConfig, ConfigEntry } from '@acot/types';
 import { createRunnerFactory } from '@acot/runner';
+import { validate } from '@acot/schema-validator';
+import type { ConfigEntry, ResolvedConfig } from '@acot/types';
+import type { Static } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
 import deepmerge from 'deepmerge';
 import { isPlainObject } from 'is-plain-object';
 import micromatch from 'micromatch';
-import type { AcotRunnerCollectResult } from '@acot/acot-runner';
-import { AcotRunner } from '@acot/acot-runner';
+import puppeteer from 'puppeteer-core';
 const debug = require('debug')('acot:runner:storybook');
 
 const DEFAULT_TIMEOUT = 60 * 1000;
@@ -72,34 +73,20 @@ const filterStories = (
   return results;
 };
 
-type Options = {
-  include?: string[];
-  exclude?: string[];
-  timeout?: number;
-};
+const schema = Type.Strict(
+  Type.Object(
+    {
+      include: Type.Optional(Type.Array(Type.String())),
+      exclude: Type.Optional(Type.Array(Type.String())),
+      timeout: Type.Optional(Type.Number()),
+    },
+    {
+      additionalProperties: false,
+    },
+  ),
+);
 
-const schema: Schema = {
-  properties: {
-    include: {
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-    exclude: {
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-    timeout: {
-      type: 'number',
-      minimum: 0,
-    },
-  },
-  required: [],
-  additionalProperties: false,
-};
+type Options = Static<typeof schema>;
 
 export class StorybookRunner extends AcotRunner<Options> {
   protected async collect(): AcotRunnerCollectResult {
