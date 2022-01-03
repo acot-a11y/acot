@@ -142,10 +142,11 @@ acot has a feature which is divided into several packages.
 
 ### Reporters
 
-| Package                                                        | Description                                      |
-| :------------------------------------------------------------- | :----------------------------------------------- |
-| [@acot/acot-reporter-pretty](./packages/acot-reporter-pretty/) | An acot default reporter.                        |
-| [@acot/acot-reporter-dot](./packages/acot-reporter-dot/)       | A dot reporter for [@acot/cli](./packages/cli/). |
+| Package                                                        | Description                                       |
+| :------------------------------------------------------------- | :------------------------------------------------ |
+| [@acot/acot-reporter-pretty](./packages/acot-reporter-pretty/) | An acot default reporter.                         |
+| [@acot/acot-reporter-dot](./packages/acot-reporter-dot/)       | A dot reporter for [@acot/cli](./packages/cli/).  |
+| [@acot/acot-reporter-github](./packages/acot-reporter-github/) | GitHub reporter for [@acot/cli](./packages/cli/). |
 
 ### Utilities
 

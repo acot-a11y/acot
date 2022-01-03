@@ -9,9 +9,9 @@ import { createSummary } from '@acot/factory';
 import Emittery from 'emittery';
 
 export class MockCore implements Core {
-  public version = 'mock';
+  public version = '0.0.0';
   public cases: [path: string, descriptor: TestDescriptor][] = [];
-  public summary: Summary = createSummary();
+  public summary = createSummary();
   public emitter = new Emittery();
 
   public add(path: string, descriptor: TestDescriptor): void {
