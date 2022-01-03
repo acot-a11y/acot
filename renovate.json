@@ -1,9 +1,12 @@
 {
-  "extends": ["config:js-lib", "group:monorepos"],
+  "extends": [
+    "config:js-lib",
+    "group:monorepos",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(update)",
+    ":semanticCommitScopeDisabled"
+  ],
   "labels": ["A-dependencies"],
   "baseBranches": ["canary"],
-  "unpublishSafe": true,
-  "semanticCommits": "auto",
-  "semanticCommitType": "chore",
-  "semanticCommitScope": null
+  "stabilityDays": 3
 }
