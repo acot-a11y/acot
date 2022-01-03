@@ -41,6 +41,7 @@
     "@acot/config": "0.0.13",
     "@acot/runner": "0.0.13",
     "@acot/schema-validator": "0.0.13",
+    "@sinclair/typebox": "^0.23.2",
     "camaro": "^6.0.4",
     "debug": "^4.3.1",
     "lodash": "^4.17.19",

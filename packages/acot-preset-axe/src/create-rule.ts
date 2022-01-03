@@ -1,12 +1,8 @@
 import { createRule as createAcotRule } from '@acot/core';
 import type { Rule } from '@acot/types';
-import type {
-  NodeResult,
-  Result,
-  RuleObject,
-  RunOptions,
-  Spec,
-} from 'axe-core';
+import type { Static } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
+import type { NodeResult, Result, RunOptions, Spec } from 'axe-core';
 import type { ElementHandle, Page } from 'puppeteer-core';
 
 const injectAxe = async (page: Page) => {
@@ -50,12 +46,33 @@ const nodeChecks = (node: NodeResult) => [
   ...node.none,
 ];
 
-type Options = {
-  context?: string;
-  iframes?: boolean;
-  frameWaitTime?: number;
-  rules?: RuleObject;
-};
+const schema = Type.Strict(
+  Type.Object(
+    {
+      context: Type.Optional(Type.String()),
+      iframes: Type.Optional(Type.Boolean()),
+      frameWaitTime: Type.Optional(Type.Number({ minimum: 0 })),
+      rules: Type.Optional(
+        Type.Record(
+          Type.String(),
+          Type.Object(
+            {
+              enabled: Type.Boolean(),
+            },
+            {
+              additionalProperties: false,
+            },
+          ),
+        ),
+      ),
+    },
+    {
+      additionalProperties: false,
+    },
+  ),
+);
+
+type Options = Static<typeof schema>;
 
 type SerializableOptions = {
   [P in keyof Options]-?: Options[P] | null;
@@ -72,33 +89,7 @@ export const createRule = (config: CreateRuleConfig): Rule<Options> => {
       recommended: true,
     },
 
-    schema: {
-      properties: {
-        context: {
-          type: 'string',
-        },
-        iframes: {
-          type: 'boolean',
-        },
-        frameWaitTime: {
-          type: 'integer',
-          minimum: 0,
-        },
-        rules: {
-          type: 'object',
-          additionalProperties: {
-            type: 'object',
-            properties: {
-              enabled: {
-                type: 'boolean',
-              },
-            },
-            required: ['enabled'],
-          },
-        },
-      },
-      additionalProperties: false,
-    },
+    schema,
 
     test: async (context) => {
       const cleanup = await injectAxe(context.page);
