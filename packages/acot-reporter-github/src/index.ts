@@ -41,7 +41,7 @@ export type GitHubReporterOptions = Static<typeof schema>;
 export default createReporterFactory<GitHubReporterOptions>(
   ({ config, verbose, stderr, options }) => {
     if (verbose) {
-      debug.enable();
+      debug.enabled = true;
     }
 
     validate(schema, options, {
