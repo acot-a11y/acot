@@ -41,3 +41,20 @@ module.exports = {
   reporters: ['@acot/github'],
 };
 ```
+
+### Enabling debug logging
+
+If you need logging other than errors, enabling the `debug` option will help.
+
+```javascript
+module.exports = {
+  reporters: [
+    {
+      use: '@acot/github',
+      with: {
+        debug: true,
+      },
+    },
+  ],
+};
+```
