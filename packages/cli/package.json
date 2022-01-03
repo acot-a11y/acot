@@ -76,7 +76,7 @@
     "@types/node-emoji": "1.8.1",
     "@types/opener": "1.4.0",
     "@types/prettier": "2.2.3",
-    "@types/update-notifier": "5.0.0",
+    "@types/update-notifier": "5.1.0",
     "@types/validator": "13.1.3",
     "@types/yargs": "16.0.4"
   },
