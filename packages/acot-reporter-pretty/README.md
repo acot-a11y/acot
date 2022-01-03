@@ -14,6 +14,6 @@ $ npm install --save @acot/acot-reporter-pretty
 
 ```javascript
 module.exports = {
-  reporter: '@acot/pretty',
+  reporters: ['@acot/pretty'],
 };
 ```

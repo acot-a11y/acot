@@ -21,12 +21,14 @@ There are a few necessary setups for integrating acot with GitHub.
 
 ```javascript
 module.exports = {
-  reporter: {
-    use: '@acot/github',
-    with: {
-      token: '...',
+  reporters: [
+    {
+      use: '@acot/github',
+      with: {
+        token: '...',
+      },
     },
-  },
+  ],
 };
 ```
 
@@ -36,6 +38,6 @@ If you pass a token to the `ACOT_GITHUB_APP_TOKEN` environment variable, the Git
 
 ```javascript
 module.exports = {
-  reporter: '@acot/github',
+  reporters: ['@acot/github'],
 };
 ```

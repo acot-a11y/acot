@@ -14,6 +14,6 @@ $ npm install --save @acot/acot-reporter-dot
 
 ```javascript
 module.exports = {
-  reporter: '@acot/dot',
+  reporters: ['@acot/dot'],
 };
 ```

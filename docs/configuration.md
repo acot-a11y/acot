@@ -333,26 +333,28 @@ module.exports = {
 
 Specify the name of Custom Runner according to the [Naming Convention](./naming-convention.md).
 
-#### `reporter`
+#### `reporters`
 
 You can specify the Reporter to use for the report.
 
 ```javascript
 module.exports = {
-  runner: {
-    uses: '@acot/pretty',
-    with: {},
-  },
+  reporters: [
+    {
+      uses: '@acot/pretty',
+      with: {},
+    },
+  ],
 };
 ```
 
-`reporter.uses` is the name of the Runner, and `reporter.with` is the option to pass to the Reporter.
+`reporters[].uses` is the name of the Runner, and `reporters[].with` is the option to pass to the Reporter.
 
 If you do not need to specify options, you can specify only the name of Reporter.
 
 ```javascript
 module.exports = {
-  reporter: '@acot/pretty',
+  reporters: ['@acot/pretty'],
 };
 ```
 
