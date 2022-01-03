@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.14-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.13...v0.0.14-canary.0) (2022-01-03)
+
+### Features
+
+- **mock:** add runner mock ([c9f71c3](https://github.com/acot-a11y/acot/commit/c9f71c369c2ede7514884b2e0187f0a4e841c218))
+
 ## [0.0.13](https://github.com/acot-a11y/acot/compare/v0.0.13-canary.0...v0.0.13) (2021-10-10)
 
 **Note:** Version bump only for package @acot/mock

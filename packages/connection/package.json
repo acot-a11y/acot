@@ -1,6 +1,6 @@
 {
   "name": "@acot/connection",
-  "version": "0.0.13",
+  "version": "0.0.14-canary.0",
   "description": "Manage the connection to the server.",
   "keywords": [
     "acot"
