@@ -2,6 +2,12 @@
 
 GitHub reporter for `@acot/cli`.
 
+![Screenshot](./screenshot.png)
+
+## Examples
+
+- [acot-a11y/example-github-reporter](https://github.com/acot-a11y/example-github-reporter)
+
 ## Installation
 
 Install via npm:
