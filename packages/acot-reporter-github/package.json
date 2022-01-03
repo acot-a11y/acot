@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-github",
-  "version": "0.0.14-canary.0",
+  "version": "0.0.14-canary.1",
   "description": "GitHub reporter for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-github",
   "bugs": {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.14-canary.1](https://github.com/acot-a11y/acot/compare/v0.0.14-canary.0...v0.0.14-canary.1) (2022-01-03)
+
+### Bug Fixes
+
+- **acot-reporter-github:** fix verbose log ([fb19a81](https://github.com/acot-a11y/acot/commit/fb19a81a3c6dd56529a890b93f227bb5d770fda3))
+
 ## [0.0.14-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.13...v0.0.14-canary.0) (2022-01-03)
 
 ### Features

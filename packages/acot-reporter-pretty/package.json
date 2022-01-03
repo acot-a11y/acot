@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-pretty",
-  "version": "0.0.13",
+  "version": "0.0.14-canary.1",
   "description": "A pretty reporter for @acot/cli.",
   "keywords": [
     "acot",

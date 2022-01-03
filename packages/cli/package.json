@@ -1,6 +1,6 @@
 {
   "name": "@acot/cli",
-  "version": "0.0.14-canary.0",
+  "version": "0.0.14-canary.1",
   "description": "More accessible web, all over the world.",
   "keywords": [
     "acot"
@@ -37,7 +37,7 @@
     ]
   },
   "dependencies": {
-    "@acot/acot-reporter-pretty": "0.0.13",
+    "@acot/acot-reporter-pretty": "0.0.14-canary.1",
     "@acot/acot-runner": "0.0.14-canary.0",
     "@acot/config": "0.0.14-canary.0",
     "@acot/core": "0.0.14-canary.0",
