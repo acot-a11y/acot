@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-pretty",
-  "version": "0.0.14-canary.1",
+  "version": "0.0.14",
   "description": "A pretty reporter for @acot/cli.",
   "keywords": [
     "acot",
@@ -36,9 +36,9 @@
     ]
   },
   "dependencies": {
-    "@acot/html-pickup": "0.0.13",
-    "@acot/module-loader": "0.0.13",
-    "@acot/reporter": "0.0.13",
+    "@acot/html-pickup": "0.0.14",
+    "@acot/module-loader": "0.0.14",
+    "@acot/reporter": "0.0.14",
     "boxen": "^5.0.0",
     "chalk": "^4.0.0",
     "cli-table": "^0.3.4",
@@ -53,7 +53,7 @@
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.13",
+    "@acot/types": "0.0.14",
     "@types/cli-table": "0.3.0",
     "@types/text-table": "0.2.2"
   },

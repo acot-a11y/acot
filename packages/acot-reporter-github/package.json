@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-github",
-  "version": "0.0.14-canary.2",
+  "version": "0.0.14",
   "description": "GitHub reporter for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-github",
   "bugs": {
@@ -33,8 +33,8 @@
     ]
   },
   "dependencies": {
-    "@acot/reporter": "0.0.13",
-    "@acot/schema-validator": "0.0.13",
+    "@acot/reporter": "0.0.14",
+    "@acot/schema-validator": "0.0.14",
     "@sinclair/typebox": "^0.23.2",
     "chalk": "^4.0.0",
     "debug": "^4.3.1",
@@ -42,9 +42,9 @@
     "got": "11.8.3"
   },
   "devDependencies": {
-    "@acot/factory": "0.0.13",
-    "@acot/mock": "0.0.14-canary.0",
-    "@acot/types": "0.0.13",
+    "@acot/factory": "0.0.14",
+    "@acot/mock": "0.0.14",
+    "@acot/types": "0.0.14",
     "@types/env-ci": "3.1.1",
     "nock": "13.2.1"
   },
