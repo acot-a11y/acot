@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.14-canary.2](https://github.com/acot-a11y/acot/compare/v0.0.14-canary.1...v0.0.14-canary.2) (2022-01-03)
+
+### Bug Fixes
+
+- **core:** fix validation logic of rule options ([ae9fdbd](https://github.com/acot-a11y/acot/commit/ae9fdbdb43f586541b17fc678663065a21b4bf2a))
+
+### Features
+
+- **acot-reporter-github:** add debug options ([e492e54](https://github.com/acot-a11y/acot/commit/e492e54d9d56a5f0424376fbd5392bc28253d11f))
+
 ## [0.0.14-canary.1](https://github.com/acot-a11y/acot/compare/v0.0.14-canary.0...v0.0.14-canary.1) (2022-01-03)
 
 ### Bug Fixes
