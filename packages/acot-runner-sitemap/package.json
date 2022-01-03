@@ -55,7 +55,7 @@
     "@acot/types": "0.0.13",
     "@types/lodash": "4.14.172",
     "@types/micromatch": "4.0.2",
-    "@types/node-fetch": "2.5.10",
+    "@types/node-fetch": "2.5.12",
     "@types/serve-handler": "6.1.1"
   },
   "publishConfig": {
