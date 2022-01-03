@@ -3,7 +3,7 @@
     "config:js-lib",
     "group:monorepos",
     ":semanticCommits",
-    ":semanticCommitTypeAll(update)",
+    ":semanticCommitTypeAll(chore)",
     ":semanticCommitScopeDisabled"
   ],
   "labels": ["A-dependencies"],
