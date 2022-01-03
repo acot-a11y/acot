@@ -194,7 +194,7 @@ export class Tester {
 
         if (rule.schema != null) {
           try {
-            validate(rule.schema, opts[1], {
+            validate(rule.schema, opts[1] ?? {}, {
               name: 'Rule options',
               base: 'options',
             });
