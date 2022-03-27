@@ -49,13 +49,13 @@
     "filenamify": "^4.1.0",
     "lodash": "^4.17.19",
     "p-series": "^2.1.0",
-    "puppeteer-core": "^8.0.0",
+    "puppeteer-core": "^13.5.1",
     "puppeteer-element2selector": "^0.0.3"
   },
   "devDependencies": {
     "@acot/mock": "0.0.14",
     "@types/lodash": "4.14.172",
-    "puppeteer": "8.0.0"
+    "puppeteer": "13.5.1"
   },
   "publishConfig": {
     "access": "public"
