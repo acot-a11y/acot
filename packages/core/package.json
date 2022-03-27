@@ -45,7 +45,7 @@
     "@acot/types": "0.0.15",
     "@acot/utils": "0.0.15",
     "debug": "^4.3.1",
-    "emittery": "^0.7.1",
+    "emittery": "^0.10.0",
     "filenamify": "^4.1.0",
     "lodash": "^4.17.19",
     "p-series": "^2.1.0",
