@@ -182,6 +182,10 @@ export const ConfigSchema = {
       enum: ['*', 'canary', 'puppeteer', 'stable'],
       type: 'string',
     },
+    ChromeReleaseChannel: {
+      enum: ['chrome', 'chrome-beta', 'chrome-canary', 'chrome-dev'],
+      type: 'string',
+    },
     ConnectionOptions: {
       $ref: '#/definitions/__type_2',
     },
@@ -207,6 +211,9 @@ export const ConfigSchema = {
     },
     T: {
       $ref: '#/definitions/__type_3',
+    },
+    TargetFilterCallback: {
+      $ref: '#/definitions/__type_6',
     },
     U: {
       type: 'string',
@@ -273,13 +280,20 @@ export const ConfigSchema = {
           },
           type: 'array',
         },
+        channel: {
+          $ref: '#/definitions/ChromeReleaseChannel',
+          description: 'Chrome Release Channel',
+        },
+        debuggingPort: {
+          type: 'number',
+        },
         defaultViewport: {
           $ref: '#/definitions/Viewport',
           description: 'Sets the viewport for each page.',
         },
         devtools: {
           description:
-            'Whether to auto-open a DevTools panel for each tab. If this is set to\n`true`, then `headless` will be set to `false` automatically.',
+            'Whether to auto-open a DevTools panel for each tab. If this is set to\n`true`, then `headless` will be forced to `false`.',
           type: 'boolean',
         },
         dumpio: {
@@ -300,7 +314,7 @@ export const ConfigSchema = {
         extraPrefsFirefox: {
           $ref: '#/definitions/Record_1',
           description:
-            '{@link https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference | Additional preferences } that can be passed when launching with Firefox.',
+            '{@link https://searchfox.org/mozilla-release/source/modules/libpref/init/all.js | Additional preferences } that can be passed when launching with Firefox.',
         },
         handleSIGHUP: {
           description: 'Close the browser process on `SIGHUP`.',
@@ -347,6 +361,11 @@ export const ConfigSchema = {
             'Slows down Puppeteer operations by the specified amount of milliseconds to\naid debugging.',
           type: 'number',
         },
+        targetFilter: {
+          $ref: '#/definitions/TargetFilterCallback',
+          description:
+            'Callback to decide if Puppeteer should connect to a given target or not.',
+        },
         timeout: {
           description:
             'Maximum time in milliseconds to wait for the browser to start.\nPass `0` to disable the timeout.',
@@ -354,13 +373,21 @@ export const ConfigSchema = {
         },
         userDataDir: {
           description:
-            'Path to a user data directory.\n{@link https://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md | see the Chromium docs}\nfor more info.',
+            'Path to a user data directory.\n{@link https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/user_data_dir.md | see the Chromium docs}\nfor more info.',
           type: 'string',
+        },
+        waitForInitialPage: {
+          description:
+            'Whether to wait for the initial page to be ready.\nUseful when a user explicitly disables that (e.g. `--no-startup-window` for Chrome).',
+          type: 'boolean',
         },
       },
       type: 'object',
     },
     __type_5: {
+      type: 'object',
+    },
+    __type_6: {
       type: 'object',
     },
   },

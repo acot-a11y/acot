@@ -54,7 +54,10 @@ describe('BrowserPool', () => {
     expect(pool['_config']).toEqual({
       launchOptions: {
         dumpio: true,
-        args: ['--no-sandbox', '--enable-accessibility-object-model'],
+        args: [
+          '--no-sandbox',
+          '--enable-blink-features=AccessibilityObjectModel',
+        ],
         headless: true,
         handleSIGINT: false,
         handleSIGTERM: false,

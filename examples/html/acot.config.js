@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['@acot'],
-  origin: 'http://localhost:5000',
+  origin: 'http://localhost:6005',
   connection: {
     command: 'yarn serve',
   },

@@ -45,7 +45,7 @@ export class BrowserPool {
     };
 
     // require flags
-    const enableAOM = '--enable-accessibility-object-model';
+    const enableAOM = '--enable-blink-features=AccessibilityObjectModel';
     if (!this._config.launchOptions.args!.includes(enableAOM)) {
       this._config.launchOptions.args!.push(enableAOM);
     }
