@@ -25,7 +25,7 @@ Link MUST has name.
 
 <style>
   a::after {
-    content: 'WCAG 2.1 - 4.1.2 Name, Role, Value';
+    content: 'WCAG 2.1 - 4.1.2 Name, Role, Value'/'';
   }
 </style>
 ```
