@@ -1,6 +1,6 @@
 {
   "name": "@acot/find-chrome",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Find Chrome available in your runtime environment.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/find-chrome",
   "bugs": {

@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-config",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A basic acot rule set.",
   "keywords": [
     "acot",
@@ -27,8 +27,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/acot-preset-axe": "0.0.14",
-    "@acot/acot-preset-wcag": "0.0.14"
+    "@acot/acot-preset-axe": "0.0.15",
+    "@acot/acot-preset-wcag": "0.0.15"
   },
   "publishConfig": {
     "access": "public"

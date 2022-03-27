@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.15](https://github.com/acot-a11y/acot/compare/v0.0.14...v0.0.15) (2022-03-27)
+
+### Bug Fixes
+
+- update aom feature flag ([040a321](https://github.com/acot-a11y/acot/commit/040a321b83360f9f0b670e327d0876e9e297fa5a))
+
+### Features
+
+- upgrade puppeteer to v13 ([6598c99](https://github.com/acot-a11y/acot/commit/6598c99ead6734cdc6f71a184a75cf4577cfa17d))
+
 ## [0.0.14](https://github.com/acot-a11y/acot/compare/v0.0.14-canary.2...v0.0.14) (2022-01-03)
 
 **Note:** Version bump only for package @acot/core
