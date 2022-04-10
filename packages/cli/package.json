@@ -75,7 +75,7 @@
     "@types/listr": "0.14.4",
     "@types/node-emoji": "1.8.1",
     "@types/opener": "1.4.0",
-    "@types/prettier": "2.2.3",
+    "@types/prettier": "2.6.0",
     "@types/update-notifier": "5.1.0",
     "@types/validator": "13.7.1",
     "@types/yargs": "16.0.4"
