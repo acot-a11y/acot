@@ -38,7 +38,7 @@
   "dependencies": {
     "@acot/module-loader": "0.0.15",
     "debug": "^4.3.1",
-    "emittery": "^0.7.1"
+    "emittery": "^0.10.0"
   },
   "devDependencies": {
     "@acot/factory": "0.0.15",

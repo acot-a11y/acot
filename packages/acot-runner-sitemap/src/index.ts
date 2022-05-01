@@ -84,6 +84,8 @@ const filterUrls = (urls: string[], options: Options) => {
 };
 
 const fetchSitemap = async (url: string, options: Options) => {
+  debug('fetch sitemap: %s', url);
+
   const now = Date.now();
   const res = await fetch(url, {
     headers: options.headers,

@@ -13,7 +13,7 @@ export class MockRunner implements Runner {
   };
 
   public name = 'mock';
-  public emitter = new Emittery();
+  public emitter: Emittery = new Emittery();
 
   public constructor(public impl: (emitter: Emittery) => Promise<Summary>) {}
 

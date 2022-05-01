@@ -32,7 +32,7 @@
     "@acot/connection": "0.0.15",
     "@acot/runner": "0.0.15",
     "debug": "^4.3.1",
-    "emittery": "^0.7.1"
+    "emittery": "^0.10.0"
   },
   "devDependencies": {
     "@acot/types": "0.0.15"

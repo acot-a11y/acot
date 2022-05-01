@@ -1,30 +1,30 @@
+import { createSummary, createTestResult } from '@acot/factory';
 import type {
   Core,
   CoreEventMap,
-  TestDescriptor,
   EventListener,
   Summary,
+  TestDescriptor,
 } from '@acot/types';
-import { createSummary } from '@acot/factory';
 import Emittery from 'emittery';
 
 export class MockCore implements Core {
   public version = '0.0.0';
   public cases: [path: string, descriptor: TestDescriptor][] = [];
   public summary = createSummary();
-  public emitter = new Emittery();
+  public emitter: Emittery<CoreEventMap> = new Emittery();
 
   public add(path: string, descriptor: TestDescriptor): void {
     this.cases.push([path, descriptor]);
   }
 
   public async audit(): Promise<Summary> {
-    this.emitter.emit('launch:start', []);
-    this.emitter.emit('launch:complete', []);
+    this.emitter.emit('launch:start', [[]]);
+    this.emitter.emit('launch:complete', [[]]);
     this.emitter.emit('audit:start', []);
-    this.emitter.emit('audit:complete', []);
-    this.emitter.emit('test:start', []);
-    this.emitter.emit('test:complete', []);
+    this.emitter.emit('audit:complete', [createSummary()]);
+    this.emitter.emit('test:start', ['', []]);
+    this.emitter.emit('test:complete', ['', [], createTestResult()]);
     await this.close();
     return this.summary;
   }
