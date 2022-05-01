@@ -73,7 +73,7 @@
   "devDependencies": {
     "@types/micromatch": "4.0.2",
     "@types/mustache": "4.1.2",
-    "@types/unist": "2.0.3",
+    "@types/unist": "2.0.6",
     "postcss": "8.4.13",
     "postcss-cli": "8.3.1",
     "postcss-import": "14.1.0",
