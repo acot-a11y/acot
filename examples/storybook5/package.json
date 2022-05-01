@@ -12,7 +12,6 @@
     "@acot/acot-runner-storybook": "0.0.15",
     "@acot/cli": "0.0.15",
     "@babel/core": "^7.12.8",
-    "@storybook/addon-actions": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "babel-loader": "^8.2.1",

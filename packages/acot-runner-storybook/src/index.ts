@@ -37,7 +37,7 @@ declare global {
   interface Window {
     __STORYBOOK_CLIENT_API__: {
       raw: () => Story[];
-      store: () => {
+      store?: () => {
         _configuring?: boolean; // This parameter is enabled with SB v6 or later
       };
     };
@@ -102,25 +102,57 @@ export class StorybookRunner extends AcotRunner<Options> {
       await page.goto(`${this.config.origin}/iframe.html?id=__ACOTSTORYBOOK__`);
       await page.waitForFunction(() => window.__STORYBOOK_CLIENT_API__);
 
+      /**
+       * Heavy inspired by:
+       * @see https://github.com/reg-viz/storycap/blob/077ee4ba894baefe43fc74b26d73964dbf042815/packages/storycrawler/src/browser/stories-browser.ts#L63-L95
+       */
+
       // SB (v6 or later) api's `raw()` can return empty array til SB store gets configured.
       // See https://github.com/storybookjs/storybook/pull/9914 .
-      await page.waitForFunction(
-        () => window.__STORYBOOK_CLIENT_API__.store()._configuring !== true,
-      );
-
-      const raw = await page.evaluate(() => {
-        return window.__STORYBOOK_CLIENT_API__.raw().map((o) => ({
-          id: o.id,
-          kind: o.kind,
-          name: o.name,
-          params: o.parameters?.acot ?? {},
-        }));
+      await page.waitForFunction(() => window.__STORYBOOK_CLIENT_API__, {
+        timeout: 60_000,
       });
 
-      debug('raw stories: %O', raw);
+      const raw = await page.evaluate(
+        () =>
+          new Promise<{
+            stories: AcotStory[];
+            timeout: boolean;
+          }>((resolve) => {
+            const MAX_CONFIGURE_WAIT_COUNT = 4_000;
+
+            (function getStories(count = 0) {
+              const api = window.__STORYBOOK_CLIENT_API__;
+
+              // for Storybook v6
+              const configuring = api.store?.()?._configuring;
+              if (configuring) {
+                if (count < MAX_CONFIGURE_WAIT_COUNT) {
+                  setTimeout(() => getStories(++count), 16);
+                } else {
+                  resolve({ stories: [], timeout: true });
+                }
+                return;
+              }
+
+              // for Storybook v5
+              resolve({
+                stories: api.raw().map((o) => ({
+                  id: o.id,
+                  kind: o.kind,
+                  name: o.name,
+                  params: o.parameters?.acot ?? {},
+                })),
+                timeout: false,
+              });
+            })();
+          }),
+      );
+
+      debug('get stories: %O', raw);
 
       stories = filterStories(
-        raw,
+        raw.stories,
         this.options.include ?? [],
         this.options.exclude ?? [],
       );
