@@ -151,6 +151,12 @@ export class StorybookRunner extends AcotRunner<Options> {
 
       debug('get stories: %O', raw);
 
+      if (raw.timeout) {
+        throw new Error(
+          'Failed to get stories. Make sure the Storybook is running.',
+        );
+      }
+
       stories = filterStories(
         raw.stories,
         this.options.include ?? [],
