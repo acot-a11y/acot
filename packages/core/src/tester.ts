@@ -205,7 +205,9 @@ export class Tester {
               createTestcaseResult({
                 status: 'error',
                 rule: id,
-                message: `${id} validation error: ${e.message}`,
+                message: `${id} validation error: ${
+                  e instanceof Error ? e.message : String(e)
+                }`,
               }),
             );
 

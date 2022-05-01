@@ -7,6 +7,6 @@ export const tryResolveModule = <T = unknown>(
   try {
     return [resolveModule<T>(id, from), null];
   } catch (e) {
-    return [null, e];
+    return [null, e as Error];
   }
 };

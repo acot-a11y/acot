@@ -120,7 +120,7 @@ export const createRuleContext = ({
             status: 'error',
             rule,
             duration: measure(),
-            message: e.message,
+            message: e instanceof Error ? e.message : String(e),
           }),
         );
       }
