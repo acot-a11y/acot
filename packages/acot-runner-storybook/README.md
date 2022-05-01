@@ -103,7 +103,7 @@ Maximum time in milliseconds to wait for the browser instance to collect stories
 ### Storybook versions
 
 - [x] Storybook v5
-- [ ] Storybook v6 (**TODO**)
+- [x] Storybook v6
 
 ### UI frameworks
 
