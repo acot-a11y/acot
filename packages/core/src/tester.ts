@@ -257,12 +257,8 @@ export class Tester {
     page: Page,
     [id, rule, options]: TesterRuleGroup,
   ): Promise<void> {
-    const {
-      url,
-      workingDir,
-      onTestcaseStart,
-      onTestcaseComplete,
-    } = this._config;
+    const { url, workingDir, onTestcaseStart, onTestcaseComplete } =
+      this._config;
 
     await onTestcaseStart(url, id);
 

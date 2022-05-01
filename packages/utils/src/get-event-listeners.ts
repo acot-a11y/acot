@@ -13,14 +13,11 @@ export type EventListener = {
 export const getEventListeners = async (
   element: ElementHandle,
 ): Promise<EventListener[]> => {
-  const {
-    listeners,
-  }: any = await (element.executionContext() as any)._client.send(
-    'DOMDebugger.getEventListeners',
-    {
-      objectId: (element as any)._remoteObject.objectId,
-    },
-  );
+  const { listeners }: any = await (
+    element.executionContext() as any
+  )._client.send('DOMDebugger.getEventListeners', {
+    objectId: (element as any)._remoteObject.objectId,
+  });
 
   return listeners as EventListener[];
 };

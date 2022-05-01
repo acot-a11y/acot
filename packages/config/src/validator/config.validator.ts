@@ -115,8 +115,7 @@ export const ConfigSchema = {
               {
                 allOf: [
                   {
-                    $ref:
-                      '#/definitions/Pick<{with?:Record<string,any>;},"with">',
+                    $ref: '#/definitions/Pick<{with?:Record<string,any>;},"with">',
                   },
                   {
                     properties: {
@@ -141,8 +140,7 @@ export const ConfigSchema = {
             {
               allOf: [
                 {
-                  $ref:
-                    '#/definitions/Pick<{with?:Record<string,any>;},"with">',
+                  $ref: '#/definitions/Pick<{with?:Record<string,any>;},"with">',
                 },
                 {
                   properties: {

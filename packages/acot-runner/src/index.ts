@@ -16,12 +16,11 @@ import Emittery from 'emittery';
 import { createRunnerFactory } from '@acot/runner';
 const debug = require('debug')('acot:acot-runner');
 
-export type AcotRunnerConfig<
-  T extends RunnerOptions = {}
-> = RunnerFactoryConfig<T> & {
-  name: string;
-  version: string;
-};
+export type AcotRunnerConfig<T extends RunnerOptions = {}> =
+  RunnerFactoryConfig<T> & {
+    name: string;
+    version: string;
+  };
 
 export type AcotRunnerSetupResult = Promise<void>;
 export type AcotRunnerConnectResult = Promise<void>;
