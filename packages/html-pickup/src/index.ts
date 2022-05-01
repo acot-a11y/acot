@@ -112,7 +112,7 @@ export const pickup = (
   html: string,
   selector: string,
   options: Partial<PickupOptions> = {},
-): string => {
+): string | null => {
   const opts = {
     truncate: 120,
     color: true,
@@ -126,6 +126,10 @@ export const pickup = (
   const [node] = cssSelect(selector, parse(html), {
     adapter,
   }) as Node[];
+
+  if (node == null) {
+    return null;
+  }
 
   const output = stringify(node, chk);
 

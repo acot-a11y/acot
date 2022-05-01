@@ -64,8 +64,10 @@ export class DocResultReporter {
               color: false,
             });
 
-            meta.push(html);
-            meta.push(`at "${result.selector}"`);
+            if (html != null) {
+              meta.push(html);
+              meta.push(`at "${result.selector}"`);
+            }
           }
 
           meta.push(origin + generateDocPath(error.code));
