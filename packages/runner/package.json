@@ -1,6 +1,6 @@
 {
   "name": "@acot/runner",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A runner toolset for @acot/cli.",
   "keywords": [
     "acot"
@@ -36,13 +36,13 @@
     ]
   },
   "dependencies": {
-    "@acot/module-loader": "0.0.15",
+    "@acot/module-loader": "0.0.16",
     "debug": "^4.3.1",
     "emittery": "^0.10.0"
   },
   "devDependencies": {
-    "@acot/factory": "0.0.15",
-    "@acot/types": "0.0.15"
+    "@acot/factory": "0.0.16",
+    "@acot/types": "0.0.16"
   },
   "publishConfig": {
     "access": "public"

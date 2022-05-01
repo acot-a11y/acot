@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.16](https://github.com/acot-a11y/acot/compare/v0.0.15...v0.0.16) (2022-05-01)
+
+### Bug Fixes
+
+- fix a bug when Node not found on report ([4e65658](https://github.com/acot-a11y/acot/commit/4e656585b3aa63b17a63d71949326bdb4445af39))
+- upgrade to `emittery@0.10.0` ([75304e8](https://github.com/acot-a11y/acot/commit/75304e89832b671ca1a01015acf9283d13d042dd))
+- use puppeteer instance of default export ([14b26bb](https://github.com/acot-a11y/acot/commit/14b26bb55b12b1077f4c1c62fab8af934f11bc88))
+
+### Features
+
+- **acot-runner-storybook:** add collect stories timeout error ([c4ebb75](https://github.com/acot-a11y/acot/commit/c4ebb7560a295032e773c86ba76f22ffb97b5010))
+- **acot-runner-storybook:** add support storybook v6 ([691129c](https://github.com/acot-a11y/acot/commit/691129c54538c2882444d90c0827556dd7e8827d))
+
 ## [0.0.15](https://github.com/acot-a11y/acot/compare/v0.0.14...v0.0.15) (2022-03-27)
 
 ### Bug Fixes

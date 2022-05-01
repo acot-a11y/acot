@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner-sitemap",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "An acot custom runner reading audit pages from sitemap.",
   "keywords": [
     "acot",
@@ -37,10 +37,10 @@
     ]
   },
   "dependencies": {
-    "@acot/acot-runner": "0.0.15",
-    "@acot/config": "0.0.15",
-    "@acot/runner": "0.0.15",
-    "@acot/schema-validator": "0.0.15",
+    "@acot/acot-runner": "0.0.16",
+    "@acot/config": "0.0.16",
+    "@acot/runner": "0.0.16",
+    "@acot/schema-validator": "0.0.16",
     "@sinclair/typebox": "^0.23.2",
     "camaro": "^6.0.4",
     "debug": "^4.3.1",
@@ -51,8 +51,8 @@
     "serve-handler": "^6.1.3"
   },
   "devDependencies": {
-    "@acot/mock": "0.0.15",
-    "@acot/types": "0.0.15",
+    "@acot/mock": "0.0.16",
+    "@acot/types": "0.0.16",
     "@types/lodash": "4.14.180",
     "@types/micromatch": "4.0.2",
     "@types/node-fetch": "2.6.1",

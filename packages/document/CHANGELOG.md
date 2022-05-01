@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.16](https://github.com/acot-a11y/acot/compare/v0.0.15...v0.0.16) (2022-05-01)
+
+### Bug Fixes
+
+- fix a bug when Node not found on report ([4e65658](https://github.com/acot-a11y/acot/commit/4e656585b3aa63b17a63d71949326bdb4445af39))
+
 ## [0.0.15](https://github.com/acot-a11y/acot/compare/v0.0.14...v0.0.15) (2022-03-27)
 
 ### Features

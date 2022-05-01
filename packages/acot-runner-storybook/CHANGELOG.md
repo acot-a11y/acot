@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.16](https://github.com/acot-a11y/acot/compare/v0.0.15...v0.0.16) (2022-05-01)
+
+### Features
+
+- **acot-runner-storybook:** add collect stories timeout error ([c4ebb75](https://github.com/acot-a11y/acot/commit/c4ebb7560a295032e773c86ba76f22ffb97b5010))
+- **acot-runner-storybook:** add support storybook v6 ([691129c](https://github.com/acot-a11y/acot/commit/691129c54538c2882444d90c0827556dd7e8827d))
+
 ## [0.0.15](https://github.com/acot-a11y/acot/compare/v0.0.14...v0.0.15) (2022-03-27)
 
 ### Features

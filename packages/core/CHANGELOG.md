@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.16](https://github.com/acot-a11y/acot/compare/v0.0.15...v0.0.16) (2022-05-01)
+
+### Bug Fixes
+
+- upgrade to `emittery@0.10.0` ([75304e8](https://github.com/acot-a11y/acot/commit/75304e89832b671ca1a01015acf9283d13d042dd))
+- use puppeteer instance of default export ([14b26bb](https://github.com/acot-a11y/acot/commit/14b26bb55b12b1077f4c1c62fab8af934f11bc88))
+
 ## [0.0.15](https://github.com/acot-a11y/acot/compare/v0.0.14...v0.0.15) (2022-03-27)
 
 ### Bug Fixes
