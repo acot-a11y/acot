@@ -1,6 +1,6 @@
 import type { Browser as PuppeteerBrowser, Page } from 'puppeteer-core';
 import type { LaunchOptions } from '@acot/types';
-import { launch } from 'puppeteer-core';
+import puppeteer from 'puppeteer-core';
 const debug = require('debug')('acot:core');
 
 export class Browser {
@@ -38,7 +38,7 @@ export class Browser {
   }
 
   public async launch(launchOptions: LaunchOptions): Promise<Browser> {
-    this._browser = await launch(launchOptions);
+    this._browser = await puppeteer.launch(launchOptions);
 
     return this;
   }
