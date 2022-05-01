@@ -35,9 +35,9 @@
   },
   "devDependencies": {
     "@acot/tsconfig": "0.1.0",
-    "@commitlint/cli": "16.2.3",
-    "@commitlint/config-conventional": "16.2.1",
-    "@commitlint/config-lerna-scopes": "16.2.2",
+    "@commitlint/cli": "16.2.4",
+    "@commitlint/config-conventional": "16.2.4",
+    "@commitlint/config-lerna-scopes": "16.2.4",
     "@types/jest": "26.0.24",
     "@types/markdown-table": "2.0.0",
     "@types/mock-fs": "4.13.1",
