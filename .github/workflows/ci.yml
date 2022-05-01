@@ -36,7 +36,7 @@ jobs:
           cache: 'yarn'
       - name: Install depedencies
         run: yarn --frozen-lockfile --check-files
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: dist
       - run: yarn lint
@@ -52,7 +52,7 @@ jobs:
           cache: 'yarn'
       - name: Install depedencies
         run: yarn --frozen-lockfile --check-files
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: dist
       - run: yarn lerna link
@@ -77,7 +77,7 @@ jobs:
           cache: 'yarn'
       - name: Install depedencies
         run: yarn --frozen-lockfile --check-files
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: dist
       - name: Fetch all git tags
