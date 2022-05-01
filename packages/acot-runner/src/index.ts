@@ -35,7 +35,7 @@ export class AcotRunner<T extends RunnerOptions = {}> implements Runner {
   protected config: ResolvedConfig;
   protected options: T;
   protected conn: Connection | null = null;
-  protected emitter: Emittery.Typed<RunnerEventMap>;
+  protected emitter: Emittery<RunnerEventMap>;
   public name: string;
   public version: RunnerVersion;
 
@@ -55,7 +55,7 @@ export class AcotRunner<T extends RunnerOptions = {}> implements Runner {
     this.core = core;
     this.config = config;
     this.options = options;
-    this.emitter = new Emittery.Typed<RunnerEventMap>();
+    this.emitter = new Emittery<RunnerEventMap>();
 
     this._bindEvents();
   }

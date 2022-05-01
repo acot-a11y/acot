@@ -42,7 +42,8 @@ describe('Sitemap Runner', () => {
           }),
         );
 
-        server.listen(PORT, '0.0.0.0', () => {
+        server.listen(PORT, () => {
+          console.log(server.listening);
           resolve();
         });
       }),

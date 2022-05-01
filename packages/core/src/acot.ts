@@ -39,7 +39,7 @@ export class Acot implements Core {
   private _storeMap: Map<string, RuleStore> = new Map();
   private _testers: Tester[] = [];
   private _pool: BrowserPool | null = null;
-  private _emitter: Emittery.Typed<CoreEventMap>;
+  private _emitter: Emittery<CoreEventMap>;
   public version = require('../package.json').version;
 
   public constructor(config: Partial<AcotConfig> = {}) {
@@ -59,7 +59,7 @@ export class Acot implements Core {
 
     this._store = new RuleStore();
     this._store.import(this._config.presets);
-    this._emitter = new Emittery.Typed<CoreEventMap>();
+    this._emitter = new Emittery<CoreEventMap>();
   }
 
   private _getStore(presets: Preset[]): RuleStore {
