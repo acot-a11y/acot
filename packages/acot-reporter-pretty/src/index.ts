@@ -165,235 +165,243 @@ class AuditLinearProgress extends AuditProgress {
 }
 
 export default createReporterFactory(
-  ({ verbose, config, stdout }) => (runner) => {
-    const heading = chalk.bold.gray;
+  ({ verbose, config, stdout }) =>
+    (runner) => {
+      const heading = chalk.bold.gray;
 
-    const createSpinner = (text: string) =>
-      ora({ text, color: 'gray', stream: stdout, isEnabled: !verbose }).start();
+      const createSpinner = (text: string) =>
+        ora({
+          text,
+          color: 'gray',
+          stream: stdout,
+          isEnabled: !verbose,
+        }).start();
 
-    let spinner: ora.Ora;
+      let spinner: ora.Ora;
 
-    stdout.write('\n');
-    stdout.write(
-      boxen(
-        [
-          chalk.bold.green('Audit by acot'),
-          table(
-            [
-              [chalk.gray('acot core:'), `v${runner.version.core}`],
-              [
-                chalk.gray('runner:'),
-                `${runner.name} (v${runner.version.self})`,
-              ],
-              [chalk.gray('origin:'), chalk.underline(`${config.origin}`)],
-            ],
-            { stringLength },
-          ),
-        ].join('\n\n'),
-        { borderColor: 'gray', padding: 1 },
-      ),
-    );
-    stdout.write('\n\n');
-
-    let progress: AuditProgress | AuditLinearProgress | null = null;
-
-    runner.on('setup:start', () => {
-      stdout.write(heading('(Bootstrap)') + '\n');
-      spinner = createSpinner('Setting up...');
-    });
-
-    runner.on('setup:complete', () => {
-      spinner.succeed('Setup');
-    });
-
-    runner.on('connect:start', () => {
-      spinner = createSpinner('Connecting...');
-    });
-
-    runner.on('connect:complete', () => {
-      spinner.succeed(chalk`Connected {gray.underline (${config.origin})}`);
-    });
-
-    runner.on('collect:start', () => {
-      spinner = createSpinner('Collecting...');
-    });
-
-    runner.on('collect:complete', ([results]) => {
-      spinner.succeed(chalk`Collected {gray ({bold ${results.size}} cases)}`);
-    });
-
-    runner.on('launch:start', () => {
-      spinner = createSpinner('Launching...');
-    });
-
-    runner.on('launch:complete', ([urls]) => {
-      spinner.succeed('Launched!');
       stdout.write('\n');
-      progress = verbose
-        ? new AuditLinearProgress(urls, stdout)
-        : new AuditProgress(urls, stdout);
-    });
-
-    runner.on('audit:start', () => {
-      stdout.write(heading('(Audit)') + '\n');
-      progress!.start();
-    });
-
-    runner.on('test:start', ([, ids]) => {
-      progress!.add(ids.length);
-    });
-
-    runner.on('testcase:complete', ([url, id, results]) => {
-      progress!.increment(url, id, results);
-    });
-
-    runner.on('audit:complete', async ([summary]) => {
-      if (summary.results.length === 0) {
-        return;
-      }
-
-      stdout.write(heading('(Results)') + '\n');
-
-      await Promise.all(
-        summary.results.map(async (result) => {
-          if (result.results.length === 0) {
-            return;
-          }
-
-          if (result.errorCount === 0 && result.warningCount === 0) {
-            return;
-          }
-
-          const groups = await Promise.all(
-            result.results.map(async (res) => {
-              let status: string;
-              switch (res.status) {
-                case 'error':
-                  status = logSymbols.error;
-                  break;
-                case 'warn':
-                  status = logSymbols.warning;
-                  break;
-                default:
-                  return '';
-              }
-
-              const msg = res.message;
-              const rule = chalk.gray(res.rule);
-              const lines = [[status, msg, rule].join('  ')];
-              const meta: string[] = [];
-
-              if (res.htmlpath != null && res.selector) {
-                const html = await readFile(
-                  path.resolve(config.workingDir!, res.htmlpath),
-                  'utf8',
-                );
-
-                const selector = res.selector;
-                const code = pickup(html, selector, { color: false });
-
-                meta.push(code, `at "${selector}"`);
-              }
-
-              if (res.help) {
-                const url = chalk.underline(res.help);
-                meta.push(`see ${url}`);
-              }
-
-              if (meta.length > 0) {
-                const metaStr = meta
-                  .map((m, i) => {
-                    return i === meta.length - 1 ? `└─ ${m}` : `├─ ${m}`;
-                  })
-                  .join('\n');
-
-                lines.push(indent(chalk.gray(metaStr), 3));
-              }
-
-              return `${lines.join('\n')}`;
-            }),
-          );
-
-          const filtered = groups.filter((g) => g);
-          if (filtered.length === 0) {
-            return;
-          }
-
-          const label = result.errorCount
-            ? chalk.bgRed.black.bold(' ERROR ')
-            : chalk.bgYellow.black.bold(' WARN ');
-
-          const url = chalk.bold.underline(result.url);
-
-          const short = [
-            chalk.green(`${stripAnsi(logSymbols.success)} ${result.passCount}`),
-            chalk.red(`${stripAnsi(logSymbols.error)} ${result.errorCount}`),
-            chalk.yellow(
-              `${stripAnsi(logSymbols.warning)} ${result.warningCount}`,
+      stdout.write(
+        boxen(
+          [
+            chalk.bold.green('Audit by acot'),
+            table(
+              [
+                [chalk.gray('acot core:'), `v${runner.version.core}`],
+                [
+                  chalk.gray('runner:'),
+                  `${runner.name} (v${runner.version.self})`,
+                ],
+                [chalk.gray('origin:'), chalk.underline(`${config.origin}`)],
+              ],
+              { stringLength },
             ),
-          ].join(' ');
-
-          stdout.write(`${label} ${url} - ${short}\n`);
-          stdout.write(`${filtered.join('\n\n')}\n\n`);
-        }),
+          ].join('\n\n'),
+          { borderColor: 'gray', padding: 1 },
+        ),
       );
+      stdout.write('\n\n');
 
-      stdout.write(heading('(Summary)') + '\n');
+      let progress: AuditProgress | AuditLinearProgress | null = null;
 
-      const cliTable = new CLITable({
-        head: ['', 'Rule', '', 'Pass', 'Error', 'Warning'],
-        colAligns: ['middle', 'left', 'right', 'right', 'right', 'right'],
-        chars: {
-          'top-mid': '─',
-          'bottom-mid': '─',
-          'mid-mid': '─',
-          middle: ' ',
-        },
-        style: {
-          head: ['gray', 'bold'],
-          border: ['gray'],
-          compact: true,
-        },
+      runner.on('setup:start', () => {
+        stdout.write(heading('(Bootstrap)') + '\n');
+        spinner = createSpinner('Setting up...');
       });
 
-      const passCount = (n: number) =>
-        n > 0 ? chalk.green(n) : chalk.gray('-');
+      runner.on('setup:complete', () => {
+        spinner.succeed('Setup');
+      });
 
-      const errorCount = (n: number) =>
-        n > 0 ? chalk.red(n) : chalk.gray('-');
+      runner.on('connect:start', () => {
+        spinner = createSpinner('Connecting...');
+      });
 
-      const warningCount = (n: number) =>
-        n > 0 ? chalk.yellow(n) : chalk.gray('-');
+      runner.on('connect:complete', () => {
+        spinner.succeed(chalk`Connected {gray.underline (${config.origin})}`);
+      });
 
-      Object.entries(summary.rules).forEach(([rule, result]) => {
-        let status = logSymbols.success;
-        if (result.errorCount > 0) {
-          status = logSymbols.error;
-        } else if (result.warningCount > 0) {
-          status = logSymbols.warning;
+      runner.on('collect:start', () => {
+        spinner = createSpinner('Collecting...');
+      });
+
+      runner.on('collect:complete', ([results]) => {
+        spinner.succeed(chalk`Collected {gray ({bold ${results.size}} cases)}`);
+      });
+
+      runner.on('launch:start', () => {
+        spinner = createSpinner('Launching...');
+      });
+
+      runner.on('launch:complete', ([urls]) => {
+        spinner.succeed('Launched!');
+        stdout.write('\n');
+        progress = verbose
+          ? new AuditLinearProgress(urls, stdout)
+          : new AuditProgress(urls, stdout);
+      });
+
+      runner.on('audit:start', () => {
+        stdout.write(heading('(Audit)') + '\n');
+        progress!.start();
+      });
+
+      runner.on('test:start', ([, ids]) => {
+        progress!.add(ids.length);
+      });
+
+      runner.on('testcase:complete', ([url, id, results]) => {
+        progress!.increment(url, id, results);
+      });
+
+      runner.on('audit:complete', async ([summary]) => {
+        if (summary.results.length === 0) {
+          return;
         }
 
+        stdout.write(heading('(Results)') + '\n');
+
+        await Promise.all(
+          summary.results.map(async (result) => {
+            if (result.results.length === 0) {
+              return;
+            }
+
+            if (result.errorCount === 0 && result.warningCount === 0) {
+              return;
+            }
+
+            const groups = await Promise.all(
+              result.results.map(async (res) => {
+                let status: string;
+                switch (res.status) {
+                  case 'error':
+                    status = logSymbols.error;
+                    break;
+                  case 'warn':
+                    status = logSymbols.warning;
+                    break;
+                  default:
+                    return '';
+                }
+
+                const msg = res.message;
+                const rule = chalk.gray(res.rule);
+                const lines = [[status, msg, rule].join('  ')];
+                const meta: string[] = [];
+
+                if (res.htmlpath != null && res.selector) {
+                  const html = await readFile(
+                    path.resolve(config.workingDir!, res.htmlpath),
+                    'utf8',
+                  );
+
+                  const selector = res.selector;
+                  const code = pickup(html, selector, { color: false });
+
+                  meta.push(code, `at "${selector}"`);
+                }
+
+                if (res.help) {
+                  const url = chalk.underline(res.help);
+                  meta.push(`see ${url}`);
+                }
+
+                if (meta.length > 0) {
+                  const metaStr = meta
+                    .map((m, i) => {
+                      return i === meta.length - 1 ? `└─ ${m}` : `├─ ${m}`;
+                    })
+                    .join('\n');
+
+                  lines.push(indent(chalk.gray(metaStr), 3));
+                }
+
+                return `${lines.join('\n')}`;
+              }),
+            );
+
+            const filtered = groups.filter((g) => g);
+            if (filtered.length === 0) {
+              return;
+            }
+
+            const label = result.errorCount
+              ? chalk.bgRed.black.bold(' ERROR ')
+              : chalk.bgYellow.black.bold(' WARN ');
+
+            const url = chalk.bold.underline(result.url);
+
+            const short = [
+              chalk.green(
+                `${stripAnsi(logSymbols.success)} ${result.passCount}`,
+              ),
+              chalk.red(`${stripAnsi(logSymbols.error)} ${result.errorCount}`),
+              chalk.yellow(
+                `${stripAnsi(logSymbols.warning)} ${result.warningCount}`,
+              ),
+            ].join(' ');
+
+            stdout.write(`${label} ${url} - ${short}\n`);
+            stdout.write(`${filtered.join('\n\n')}\n\n`);
+          }),
+        );
+
+        stdout.write(heading('(Summary)') + '\n');
+
+        const cliTable = new CLITable({
+          head: ['', 'Rule', '', 'Pass', 'Error', 'Warning'],
+          colAligns: ['middle', 'left', 'right', 'right', 'right', 'right'],
+          chars: {
+            'top-mid': '─',
+            'bottom-mid': '─',
+            'mid-mid': '─',
+            middle: ' ',
+          },
+          style: {
+            head: ['gray', 'bold'],
+            border: ['gray'],
+            compact: true,
+          },
+        });
+
+        const passCount = (n: number) =>
+          n > 0 ? chalk.green(n) : chalk.gray('-');
+
+        const errorCount = (n: number) =>
+          n > 0 ? chalk.red(n) : chalk.gray('-');
+
+        const warningCount = (n: number) =>
+          n > 0 ? chalk.yellow(n) : chalk.gray('-');
+
+        Object.entries(summary.rules).forEach(([rule, result]) => {
+          let status = logSymbols.success;
+          if (result.errorCount > 0) {
+            status = logSymbols.error;
+          } else if (result.warningCount > 0) {
+            status = logSymbols.warning;
+          }
+
+          cliTable.push([
+            status,
+            rule,
+            chalk.gray(ms(result.duration)),
+            passCount(result.passCount),
+            errorCount(result.errorCount),
+            warningCount(result.warningCount),
+          ]);
+        });
+
         cliTable.push([
-          status,
-          rule,
-          chalk.gray(ms(result.duration)),
-          passCount(result.passCount),
-          errorCount(result.errorCount),
-          warningCount(result.warningCount),
+          '',
+          '',
+          '',
+          passCount(summary.passCount),
+          errorCount(summary.errorCount),
+          warningCount(summary.warningCount),
         ]);
+
+        stdout.write(`${cliTable.toString()}\n`);
+        stdout.write('\n');
       });
-
-      cliTable.push([
-        '',
-        '',
-        '',
-        passCount(summary.passCount),
-        errorCount(summary.errorCount),
-        warningCount(summary.warningCount),
-      ]);
-
-      stdout.write(`${cliTable.toString()}\n`);
-      stdout.write('\n');
-    });
-  },
+    },
 );

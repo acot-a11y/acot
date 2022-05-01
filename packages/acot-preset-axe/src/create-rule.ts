@@ -99,7 +99,7 @@ export const createRule = (config: CreateRuleConfig): Rule<Options> => {
           const assign = <
             T extends Record<string, any>,
             K extends keyof T,
-            U extends { [P in K]: T[K] | null }
+            U extends { [P in K]: T[K] | null },
           >(
             to: T,
             from: U,

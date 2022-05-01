@@ -24,7 +24,7 @@ export type CommandRunner<T extends CommandOption> = (
 
 export type CommandDefinition<
   O extends CommandOption = CommandOption,
-  A extends CommandOption = CommandOption
+  A extends CommandOption = CommandOption,
 > = {
   name: string;
   summary: string;
@@ -35,7 +35,7 @@ export type CommandDefinition<
 
 export type CommandModule<
   O extends CommandOption = CommandOption,
-  A extends CommandOption = CommandOption
+  A extends CommandOption = CommandOption,
 > = CommandDefinition<O, A> & {
   run: CommandRunner<O & A>;
   build: yargs.BuilderCallback<any, any>;
@@ -45,7 +45,7 @@ export type CommandList = Map<string, CommandModule<any, any>>;
 
 export type CommandFactory<
   O extends CommandOption = {},
-  A extends CommandOption = {}
+  A extends CommandOption = {},
 > = (
   runner: CommandRunner<O & A & typeof globalOptions>,
 ) => CommandModule<O, A>;
@@ -63,7 +63,7 @@ const buildCommandSignature = (name: string, args: CommandOption): string => {
 
 export const buildCommand = <
   O extends CommandOption = {},
-  A extends CommandOption = {}
+  A extends CommandOption = {},
 >(
   yargs: yargs.Argv<any>,
   module: CommandModule<O, A>,
@@ -77,7 +77,7 @@ export const buildCommand = <
 
 export const createCommand = <
   O extends CommandOption = {},
-  A extends CommandOption = {}
+  A extends CommandOption = {},
 >(
   definition: CommandDefinition<O, A>,
 ): CommandFactory<O, A> => {
