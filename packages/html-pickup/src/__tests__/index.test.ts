@@ -27,14 +27,20 @@ const html = `
 
 describe('pickup', () => {
   test('basic', () => {
-    const output = pickup(html, '#element');
+    const output = pickup(html, '#element') as string;
 
     expect(output).not.toBe(stripAnsi(output));
     expect(stripAnsi(output)).toMatchSnapshot();
   });
 
+  test('not found', () => {
+    const output = pickup('', '#element');
+
+    expect(output).toBe(null);
+  });
+
   test('disable color', () => {
-    const output = pickup(html, '#element', { color: false });
+    const output = pickup(html, '#element', { color: false }) as string;
 
     expect(output).toBe(stripAnsi(output));
   });

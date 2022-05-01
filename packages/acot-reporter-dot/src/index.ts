@@ -112,7 +112,9 @@ export default createReporterFactory(({ config, stdout }) => (runner) => {
               const selector = res.selector;
               const code = pickup(html, selector, { color: false });
 
-              meta.push(code, `at "${selector}"`);
+              if (code != null) {
+                meta.push(code, `at "${selector}"`);
+              }
             }
 
             if (res.help) {
