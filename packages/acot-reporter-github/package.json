@@ -46,7 +46,7 @@
     "@acot/mock": "0.0.15",
     "@acot/types": "0.0.15",
     "@types/env-ci": "3.1.1",
-    "nock": "13.2.1"
+    "nock": "13.2.4"
   },
   "publishConfig": {
     "access": "public"
