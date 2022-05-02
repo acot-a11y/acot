@@ -55,7 +55,7 @@
   "devDependencies": {
     "@acot/mock": "0.0.16",
     "@types/lodash": "4.14.180",
-    "puppeteer": "13.5.1"
+    "puppeteer": "13.7.0"
   },
   "publishConfig": {
     "access": "public"
