@@ -26,10 +26,11 @@
     "!**/__tests__"
   ],
   "scripts": {
+    "acot": "node ../cli/lib/bin.js",
     "build": "tsc",
-    "docgen": "acot preset docgen README.md",
-    "serve": "acot preset serve --watch",
-    "test": "acot preset test --port 1235"
+    "docgen": "yarn acot preset docgen README.md",
+    "serve": "yarn acot preset serve --watch",
+    "test": "yarn acot preset test --port 1235"
   },
   "dependencies": {
     "@acot/cli": "0.0.16",

@@ -5,10 +5,12 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "lerna run build --stream",
-    "postbuild": "lerna link",
-    "clean": "rimraf \"packages/**/tsconfig.tsbuildinfo\" \"packages/**/lib\" \"**/.acot\"",
-    "docgen": "lerna run docgen",
+    "build": "turbo run build",
+    "clean": "yarn clean:cache",
+    "clean:all": "run-s clean:cache clean:deps",
+    "clean:cache": "rimraf \".turbo\" \"packages/**/tsconfig.tsbuildinfo\" \"packages/**/lib\" \"**/.acot\" \"**/.turbo\"",
+    "clean:deps": "rimraf \"packages/*/node_modules\" \"examples/*/node_modules\" node_modules",
+    "docgen": "turbo run docgen",
     "format": "run-s format:prettier format:script",
     "format:prettier": "prettier --write .",
     "format:script": "yarn lint:script --fix",
@@ -18,8 +20,7 @@
     "release": "lerna publish from-package",
     "release:canary": "yarn release --dist-tag canary",
     "scaffold": "yarn scaffdog generate",
-    "test": "lerna run --no-bail --stream --scope \"@acot/*\" test",
-    "test:ci": "yarn test --parallel",
+    "test": "turbo run test --filter=\"@acot/*\"",
     "versionup": "lerna version",
     "versionup:canary": "lerna version prerelease --preid canary",
     "versionup:cancel": "git tag --points-at @ | xargs -I{} git tag --delete {} && git reset --hard @^",
@@ -56,7 +57,7 @@
     "eslint-plugin-jest": "26.1.5",
     "husky": "7.0.4",
     "jest": "26.6.3",
-    "lerna": "4.0.0",
+    "lerna": "^4.0.0",
     "lint-staged": "10.5.4",
     "mock-fs": "5.1.2",
     "npm-run-all": "4.1.5",
@@ -66,6 +67,7 @@
     "scaffdog": "1.2.0",
     "ts-jest": "26.5.6",
     "ts-node": "9.1.1",
+    "turbo": "^1.2.6",
     "type-fest": "0.20.2",
     "typescript": "4.6.4"
   }
