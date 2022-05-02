@@ -43,7 +43,6 @@ describe('Sitemap Runner', () => {
         );
 
         server.listen(PORT, () => {
-          console.log(server.listening);
           resolve();
         });
       }),
@@ -254,6 +253,27 @@ describe('Sitemap Runner', () => {
         expect.stringMatching(/\/guidelines\/(nest1|nest2)\/(bar|baz)/),
       ]),
     );
+  });
+
+  test('collect - merge paths', async () => {
+    const paths = ['/merge1.html', '/merge2.html'];
+
+    const sources = await new SitemapRunner({
+      ...config,
+      config: {
+        ...config.config,
+        paths,
+      },
+    })['collect']();
+
+    expect(Array.from(sources.keys())).toEqual([
+      ...paths,
+      '/',
+      '/page1?search=query',
+      '/page2?search=query#hash',
+      '/page3',
+      '/page4',
+    ]);
   });
 
   test('collect - source not found', async () => {

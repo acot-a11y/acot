@@ -123,8 +123,9 @@ const fetchSitemap = async (url: string, options: Options) => {
 
 export class SitemapRunner extends AcotRunner<Options> {
   protected async collect(): AcotRunnerCollectResult {
+    const sources = await super.collect();
+
     const router = new ConfigRouter(this.config);
-    const sources = new Map();
 
     let entries = await fetchSitemap(this.options.source, {
       timeout: DEFAULT_TIMEOUT,
@@ -135,6 +136,8 @@ export class SitemapRunner extends AcotRunner<Options> {
       this.options.limit != null
         ? entries.slice(0, this.options.limit)
         : entries;
+
+    debug('collected paths: %O', entries);
 
     entries.forEach((path) => {
       const entry = router.resolve(path);
