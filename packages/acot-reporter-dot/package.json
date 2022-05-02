@@ -46,7 +46,7 @@
     "log-symbols": "^4.0.0",
     "log-update": "^4.0.0",
     "plur": "^4.0.0",
-    "strip-ansi": "^6.0.0"
+    "strip-ansi": "^7.0.0"
   },
   "devDependencies": {
     "@acot/types": "0.0.16"
