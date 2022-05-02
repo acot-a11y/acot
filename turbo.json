@@ -1,0 +1,19 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/canary",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["lib/**"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "inputs": ["src/**/*.ts", "src/**/*.ts", "docs/**/*.md"]
+    },
+    "docgen": {
+      "dependsOn": ["^docgen"],
+      "outputs": ["README.md"]
+    }
+  }
+}
