@@ -57,8 +57,9 @@ export default createCommand({
     parallel: {
       type: 'number',
       alias: 'p',
-      default: os.cpus().length,
-      description: 'Number of parallel audit browsers.',
+      default: os.cpus().length - 1,
+      description:
+        'Number of parallel audit browsers. (default: "os.cpus().length - 1")',
     },
     config: {
       type: 'string',
