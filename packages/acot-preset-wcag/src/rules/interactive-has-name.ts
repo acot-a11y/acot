@@ -1,6 +1,6 @@
 import { createRule } from '@acot/core';
-import { getEventListeners } from '@acot/utils';
 import type { ComputedAccessibleNode } from '@acot/types';
+import { getEventListeners, isElementHidden } from '@acot/utils';
 
 type Options = {};
 
@@ -33,6 +33,11 @@ export default createRule<Options>({
     await Promise.all(
       nodes.map(async (node) => {
         try {
+          const hidden = await isElementHidden(node);
+          if (hidden) {
+            return;
+          }
+
           const name = await node.evaluate(async (el) => {
             const ax = await ((window as any).getComputedAccessibleNode(
               el,
