@@ -5,7 +5,7 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter=\"@acot/*\"",
     "clean": "yarn clean:cache",
     "clean:all": "run-s clean:cache clean:deps",
     "clean:cache": "rimraf \".turbo\" \"packages/**/tsconfig.tsbuildinfo\" \"packages/**/lib\" \"**/.acot\" \"**/.turbo\"",
