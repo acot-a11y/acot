@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.17-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.16...v0.0.17-canary.0) (2022-05-05)
+
+### Bug Fixes
+
+- **cli:** fix default value for `parallel` option ([9325b5a](https://github.com/acot-a11y/acot/commit/9325b5abe79cab852706d733dada5ba824e91c95))
+
+### Features
+
+- **acot-runner-sitemap:** add behavior to merge `config.paths` with collected paths ([fdcf2aa](https://github.com/acot-a11y/acot/commit/fdcf2aa6d8689e906ec86db86d296cf5317cea61))
+
+### Reverts
+
+- **core:** remove `immutable` rule flags ([7bd940b](https://github.com/acot-a11y/acot/commit/7bd940bdb08e277b3fdf3208ce0eac345e79dd8a))
+
 ## [0.0.16](https://github.com/acot-a11y/acot/compare/v0.0.15...v0.0.16) (2022-05-01)
 
 ### Bug Fixes

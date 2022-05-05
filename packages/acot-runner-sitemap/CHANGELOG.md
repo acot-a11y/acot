@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.17-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.16...v0.0.17-canary.0) (2022-05-05)
+
+### Features
+
+- **acot-runner-sitemap:** add behavior to merge `config.paths` with collected paths ([fdcf2aa](https://github.com/acot-a11y/acot/commit/fdcf2aa6d8689e906ec86db86d296cf5317cea61))
+
 ## [0.0.16](https://github.com/acot-a11y/acot/compare/v0.0.15...v0.0.16) (2022-05-01)
 
 ### Bug Fixes

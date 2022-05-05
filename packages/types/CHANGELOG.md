@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.17-canary.0](https://github.com/acot-a11y/acot/compare/v0.0.16...v0.0.17-canary.0) (2022-05-05)
+
+### Reverts
+
+- **core:** remove `immutable` rule flags ([7bd940b](https://github.com/acot-a11y/acot/commit/7bd940bdb08e277b3fdf3208ce0eac345e79dd8a))
+
 ## [0.0.16](https://github.com/acot-a11y/acot/compare/v0.0.15...v0.0.16) (2022-05-01)
 
 **Note:** Version bump only for package @acot/types

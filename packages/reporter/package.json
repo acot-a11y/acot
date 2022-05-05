@@ -1,6 +1,6 @@
 {
   "name": "@acot/reporter",
-  "version": "0.0.16",
+  "version": "0.0.17-canary.0",
   "description": "A reporter toolset for @acot/cli.",
   "keywords": [
     "acot"
@@ -52,7 +52,7 @@
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.16",
+    "@acot/types": "0.0.17-canary.0",
     "@types/cli-table": "0.3.0",
     "@types/text-table": "0.2.2"
   },

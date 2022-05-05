@@ -1,6 +1,6 @@
 {
   "name": "@acot/core",
-  "version": "0.0.16",
+  "version": "0.0.17-canary.0",
   "description": "More accessible web, all over the world.",
   "keywords": [
     "acot"
@@ -36,13 +36,13 @@
     ]
   },
   "dependencies": {
-    "@acot/factory": "0.0.16",
+    "@acot/factory": "0.0.17-canary.0",
     "@acot/find-chrome": "0.0.16",
     "@acot/html-pickup": "0.0.16",
     "@acot/logger": "0.0.16",
     "@acot/module-loader": "0.0.16",
     "@acot/schema-validator": "0.0.16",
-    "@acot/types": "0.0.16",
+    "@acot/types": "0.0.17-canary.0",
     "@acot/utils": "0.0.16",
     "debug": "^4.3.1",
     "emittery": "^0.10.0",
@@ -53,7 +53,7 @@
     "puppeteer-element2selector": "^0.0.3"
   },
   "devDependencies": {
-    "@acot/mock": "0.0.16",
+    "@acot/mock": "0.0.17-canary.0",
     "@types/lodash": "4.14.182",
     "puppeteer": "13.7.0"
   },

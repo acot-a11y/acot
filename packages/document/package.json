@@ -1,6 +1,6 @@
 {
   "name": "@acot/document",
-  "version": "0.0.16",
+  "version": "0.0.17-canary.0",
   "description": "A set of tools for working with documentation for acot presets.",
   "keywords": [
     "acot"
@@ -44,8 +44,8 @@
     ]
   },
   "dependencies": {
-    "@acot/core": "0.0.16",
-    "@acot/factory": "0.0.16",
+    "@acot/core": "0.0.17-canary.0",
+    "@acot/factory": "0.0.17-canary.0",
     "@acot/find-chrome": "0.0.16",
     "@acot/html-pickup": "0.0.16",
     "@acot/logger": "0.0.16",
