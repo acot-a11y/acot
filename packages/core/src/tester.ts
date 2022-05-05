@@ -275,7 +275,9 @@ export class Tester {
       });
 
     try {
+      this._debug(`${id} -- test start`);
       await rule.test(context);
+      this._debug(`${id} -- test complete`);
     } catch (e) {
       this._debug('Unexpected error occurred:', e);
 

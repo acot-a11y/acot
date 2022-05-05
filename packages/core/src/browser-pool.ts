@@ -118,8 +118,15 @@ export class BrowserPool {
       return;
     }
 
+    debug(
+      'browser pool stats >> available %d | busy %d | queue %d',
+      this._available.size,
+      this._busy.size,
+      this._queue.size,
+    );
+
     const job = this._queue.dequeue()!;
-    const browser = [...this._available.values()].shift()!;
+    const browser = this._available.values().next().value as Browser;
 
     this._available.delete(browser);
     this._busy.add(browser);
