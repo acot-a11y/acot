@@ -5,7 +5,6 @@ import tags from 'language-tags';
 type Options = {};
 
 export default createRule<Options>({
-  immutable: true,
   meta: {
     help: 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html',
     recommended: true,

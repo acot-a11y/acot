@@ -77,20 +77,6 @@ createRule<Options>({
   - returns: <[void]>
 - `options` <`T`> The option values passed to rule in configuration.
 
-#### `immutable`
-
-Set `true` if the rule does not change the page. Changes are, for example, changing the DOM or shifting the focus.
-
-```typescript
-createRule<Options>({
-  immutable: true,
-
-  /* ... */
-});
-```
-
-If the page doesn't change, audit runs in parallel to speed things up.
-
 #### `schema`
 
 Validate optional values in [JSON Schema](https://json-schema.org/) format.

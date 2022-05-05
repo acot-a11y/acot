@@ -84,7 +84,6 @@ export type CreateRuleConfig = {
 
 export const createRule = (config: CreateRuleConfig): Rule<Options> => {
   return createAcotRule<Options>({
-    immutable: true,
     meta: {
       recommended: true,
     },

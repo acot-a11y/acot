@@ -19,6 +19,9 @@ const rootDebug = require('debug')('acot');
 
 const writeFile = promisify(fs.writeFile);
 
+const errorMessage = (e: unknown) =>
+  e instanceof Error ? e.message : String(e);
+
 const buildFilename = (...args: string[]) => {
   return args
     .map((arg) => {
@@ -35,7 +38,7 @@ const element2selectorIfNeeded = async (node: ElementHandle | undefined) => {
   try {
     return await element2selector(node);
   } catch (e) {
-    debug('Element to Selector Error:', e);
+    debug('Element to Selector Error: %s', errorMessage(e));
     return null;
   }
 };
@@ -52,7 +55,7 @@ const screenshotIfNeeded = async (
     await node.screenshot({ path: to });
     return true;
   } catch (e) {
-    debug('Screenshot Error:', e);
+    debug('Screenshot Error: %s', errorMessage(e));
     return false;
   }
 };

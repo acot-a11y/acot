@@ -25,7 +25,6 @@ const SELECTOR = [
   .join('');
 
 export default createRule<Options>({
-  immutable: true,
   meta: {
     recommended: true,
   },
