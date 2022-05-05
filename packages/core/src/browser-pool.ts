@@ -133,9 +133,5 @@ export class BrowserPool {
 
     this._busy.delete(browser);
     this._available.add(browser);
-
-    if (this._queue.size > 0) {
-      this._work();
-    }
   }
 }
