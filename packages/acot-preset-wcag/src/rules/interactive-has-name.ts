@@ -22,7 +22,6 @@ const SELECTOR = [
   .join('');
 
 export default createRule<Options>({
-  immutable: true,
   meta: {
     help: 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html',
     recommended: true,

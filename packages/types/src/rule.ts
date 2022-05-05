@@ -24,7 +24,6 @@ export type RuleMeta = {
 
 export type Rule<T extends RuleOptions = RuleOptions> = {
   schema?: Schema;
-  immutable?: boolean;
   meta?: RuleMeta;
   test: (context: RuleContext<T>) => Promise<void>;
 };

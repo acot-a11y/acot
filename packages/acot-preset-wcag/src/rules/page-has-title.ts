@@ -4,7 +4,6 @@ import { createRule } from '@acot/core';
 type Options = {};
 
 export default createRule<Options>({
-  immutable: true,
   meta: {
     help: 'https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html',
     recommended: true,

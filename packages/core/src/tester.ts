@@ -1,23 +1,22 @@
+import { createStat, createTestcaseResult } from '@acot/factory';
+import { validate } from '@acot/schema-validator';
 import type {
-  RuleId,
-  Rule,
+  CoreEventMap,
   NormalizedRuleConfig,
+  Rule,
+  RuleId,
+  Stat,
   Status,
   TestcaseResult,
   TestResult,
-  CoreEventMap,
-  Stat,
 } from '@acot/types';
-import { validate } from '@acot/schema-validator';
-import { createStat, createTestcaseResult } from '@acot/factory';
 import _ from 'lodash';
 import type { Page, Viewport } from 'puppeteer-core';
-import series from 'p-series';
-import type { BrowserPool } from './browser-pool';
-import type { RuleStore } from './rule-store';
-import { createRuleContext } from './rule-context';
 import type { Browser } from './browser';
+import type { BrowserPool } from './browser-pool';
 import { debug } from './logging';
+import { createRuleContext } from './rule-context';
+import type { RuleStore } from './rule-store';
 import { mark } from './timing';
 
 type TesterRuleOptions = NormalizedRuleConfig[RuleId];
@@ -62,8 +61,8 @@ export class Tester {
 
   public async test({ pool }: TesterContext): Promise<TestResult> {
     const { priority, url, onTestStart, onTestComplete } = this._config;
-    const { immutable, mutable } = this._prepare();
-    const ids = [...immutable, ...mutable].map(([id]) => id);
+    const rules = this._prepare();
+    const ids = rules.map(([id]) => id);
 
     await onTestStart(url, ids);
 
@@ -71,43 +70,26 @@ export class Tester {
 
     this._debug(`start ${ids.length} rules`);
 
-    await Promise.allSettled([
-      immutable.length > 0
-        ? pool.execute(priority, async (browser) => {
-            const page = await this._createPage(browser);
-
-            try {
-              await series(
-                immutable.map((args) => async () => {
-                  await this._execute(browser, page, args);
-                  await this._cleanupPage(page);
-                }),
-              );
-            } catch (e) {
-              this._debug(e);
-            } finally {
-              await page.close();
-            }
-          })
-        : Promise.resolve(),
-      ...mutable.map(async (loop) => {
-        await pool.execute(
+    await Promise.allSettled(
+      rules.map((loop) =>
+        pool.execute(
           priority,
           async (browser, args) => {
-            const page = await this._createPage(browser);
+            let page: Page | null = null;
 
             try {
+              page = await this._createPage(browser);
               await this._execute(browser, page, args);
             } catch (e) {
               this._debug(e);
             } finally {
-              await page.close();
+              await page?.close();
             }
           },
           loop,
-        );
-      }),
-    ]);
+        ),
+      ),
+    );
 
     const rulesAndStat = this._results.reduce<
       Pick<TestResult, keyof Stat | 'rules'>
@@ -168,11 +150,8 @@ export class Tester {
     return result;
   }
 
-  private _prepare(): {
-    immutable: TesterRuleGroup[];
-    mutable: TesterRuleGroup[];
-  } {
-    return Object.entries(this._config.rules).reduce(
+  private _prepare(): TesterRuleGroup[] {
+    return Object.entries(this._config.rules).reduce<TesterRuleGroup[]>(
       (acc, [id, options]) => {
         const rule = this._config.store.get(id);
         if (rule == null) {
@@ -201,13 +180,13 @@ export class Tester {
           } catch (e) {
             debug('validation error:', e);
 
+            const msg = e instanceof Error ? e.message : String(e);
+
             this._results.push(
               createTestcaseResult({
                 status: 'error',
                 rule: id,
-                message: `${id} validation error: ${
-                  e instanceof Error ? e.message : String(e)
-                }`,
+                message: `${id} validation error: ${msg}`,
               }),
             );
 
@@ -215,20 +194,11 @@ export class Tester {
           }
         }
 
-        const group: TesterRuleGroup = [id, rule, opts];
-
-        if (rule.immutable) {
-          acc.immutable.push(group);
-        } else {
-          acc.mutable.push(group);
-        }
+        acc.push([id, rule, opts]);
 
         return acc;
       },
-      {
-        immutable: [] as TesterRuleGroup[],
-        mutable: [] as TesterRuleGroup[],
-      },
+      [],
     );
   }
 
@@ -250,8 +220,24 @@ export class Tester {
     return page;
   }
 
-  private async _cleanupPage(page: Page): Promise<void> {
-    await page.focus('body');
+  private async _waitForReady(page: Page): Promise<void> {
+    const { url, readyTimeout: timeout } = this._config;
+
+    try {
+      await Promise.all([
+        page.goto(url, {
+          waitUntil: 'networkidle2',
+          timeout,
+        }),
+        page.waitForNavigation({
+          waitUntil: 'domcontentloaded',
+          timeout,
+        }),
+      ]);
+    } catch (e) {
+      this._debug(e);
+      throw e;
+    }
   }
 
   private async _execute(
@@ -314,26 +300,6 @@ export class Tester {
     await onTestcaseComplete(url, id, results);
 
     this._results.push(...results);
-  }
-
-  private async _waitForReady(page: Page): Promise<void> {
-    const { url, readyTimeout: timeout } = this._config;
-
-    try {
-      await Promise.all([
-        page.goto(url, {
-          waitUntil: 'networkidle2',
-          timeout,
-        }),
-        page.waitForNavigation({
-          waitUntil: 'domcontentloaded',
-          timeout,
-        }),
-      ]);
-    } catch (e) {
-      this._debug(e);
-      throw e;
-    }
   }
 
   private _debug(...args: any[]) {

@@ -17,7 +17,6 @@ const SELECTOR = [
 type Options = {};
 
 export default createRule<Options>({
-  immutable: true,
   meta: {
     help: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html',
     recommended: true,
