@@ -113,20 +113,7 @@ export const ConfigSchema = {
           items: {
             anyOf: [
               {
-                allOf: [
-                  {
-                    $ref: '#/definitions/Pick<{with?:Record<string,any>;},"with">',
-                  },
-                  {
-                    properties: {
-                      uses: {
-                        $ref: '#/definitions/U',
-                      },
-                    },
-                    required: ['uses'],
-                    type: 'object',
-                  },
-                ],
+                $ref: '#/definitions/Simplify<Merge_<{with?:Record<string,any>;},{uses:string;}>>',
               },
               {
                 type: 'string',
@@ -138,20 +125,7 @@ export const ConfigSchema = {
         runner: {
           anyOf: [
             {
-              allOf: [
-                {
-                  $ref: '#/definitions/Pick<{with?:Record<string,any>;},"with">',
-                },
-                {
-                  properties: {
-                    uses: {
-                      $ref: '#/definitions/U',
-                    },
-                  },
-                  required: ['uses'],
-                  type: 'object',
-                },
-              ],
+              $ref: '#/definitions/Simplify<Merge_<{with?:Record<string,any>;},{uses:string;}>>',
             },
             {
               type: 'string',
@@ -188,30 +162,32 @@ export const ConfigSchema = {
       $ref: '#/definitions/__type_2',
     },
     LaunchOptions: {
-      $ref: '#/definitions/__type_4',
-    },
-    'Pick<{with?:Record<string,any>;},"with">': {
-      properties: {
-        with: {
-          $ref: '#/definitions/T',
-        },
-      },
-      type: 'object',
+      $ref: '#/definitions/__type_3',
     },
     Record: {
       $ref: '#/definitions/__type',
     },
     Record_1: {
-      $ref: '#/definitions/__type_5',
+      $ref: '#/definitions/__type_4',
     },
     RuleConfig: {
       $ref: '#/definitions/__type_1',
     },
-    T: {
-      $ref: '#/definitions/__type_3',
+    'Simplify<Merge_<{with?:Record<string,any>;},{uses:string;}>>': {
+      properties: {
+        uses: {
+          $ref: '#/definitions/U',
+        },
+        with: {
+          $ref: '#/definitions/T',
+        },
+      },
+      required: ['uses'],
+      type: 'object',
     },
+    T: {},
     TargetFilterCallback: {
-      $ref: '#/definitions/__type_6',
+      $ref: '#/definitions/__type_5',
     },
     U: {
       type: 'string',
@@ -266,9 +242,6 @@ export const ConfigSchema = {
       type: 'object',
     },
     __type_3: {
-      type: 'object',
-    },
-    __type_4: {
       properties: {
         args: {
           description:
@@ -382,10 +355,10 @@ export const ConfigSchema = {
       },
       type: 'object',
     },
-    __type_5: {
+    __type_4: {
       type: 'object',
     },
-    __type_6: {
+    __type_5: {
       type: 'object',
     },
   },
