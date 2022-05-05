@@ -53,7 +53,7 @@
   "devDependencies": {
     "@acot/mock": "0.0.16",
     "@acot/types": "0.0.16",
-    "@types/lodash": "4.14.180",
+    "@types/lodash": "4.14.182",
     "@types/micromatch": "4.0.2",
     "@types/node-fetch": "2.6.1",
     "@types/serve-handler": "6.1.1"
