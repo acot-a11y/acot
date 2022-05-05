@@ -1,6 +1,6 @@
 {
   "name": "@acot/cli",
-  "version": "0.0.17-canary.0",
+  "version": "0.0.17-canary.1",
   "description": "More accessible web, all over the world.",
   "keywords": [
     "acot"
@@ -38,10 +38,10 @@
   },
   "dependencies": {
     "@acot/acot-reporter-pretty": "0.0.17-canary.0",
-    "@acot/acot-runner": "0.0.17-canary.0",
-    "@acot/config": "0.0.17-canary.0",
-    "@acot/core": "0.0.17-canary.0",
-    "@acot/document": "0.0.17-canary.0",
+    "@acot/acot-runner": "0.0.17-canary.1",
+    "@acot/config": "0.0.17-canary.1",
+    "@acot/core": "0.0.17-canary.1",
+    "@acot/document": "0.0.17-canary.1",
     "@acot/find-chrome": "0.0.16",
     "@acot/logger": "0.0.16",
     "@acot/reporter": "0.0.17-canary.0",

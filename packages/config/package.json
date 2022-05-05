@@ -1,6 +1,6 @@
 {
   "name": "@acot/config",
-  "version": "0.0.17-canary.0",
+  "version": "0.0.17-canary.1",
   "description": "A module to manipulate configs of acot.",
   "keywords": [
     "acot"
@@ -38,7 +38,7 @@
     ]
   },
   "dependencies": {
-    "@acot/core": "0.0.17-canary.0",
+    "@acot/core": "0.0.17-canary.1",
     "@acot/module-loader": "0.0.16",
     "@acot/reporter": "0.0.17-canary.0",
     "@acot/runner": "0.0.17-canary.0",

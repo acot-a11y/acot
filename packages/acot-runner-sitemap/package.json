@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner-sitemap",
-  "version": "0.0.17-canary.0",
+  "version": "0.0.17-canary.1",
   "description": "An acot custom runner reading audit pages from sitemap.",
   "keywords": [
     "acot",
@@ -37,8 +37,8 @@
     ]
   },
   "dependencies": {
-    "@acot/acot-runner": "0.0.17-canary.0",
-    "@acot/config": "0.0.17-canary.0",
+    "@acot/acot-runner": "0.0.17-canary.1",
+    "@acot/config": "0.0.17-canary.1",
     "@acot/runner": "0.0.17-canary.0",
     "@acot/schema-validator": "0.0.16",
     "@sinclair/typebox": "^0.23.2",
