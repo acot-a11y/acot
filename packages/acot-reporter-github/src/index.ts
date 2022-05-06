@@ -1,10 +1,11 @@
 import { createReporterFactory } from '@acot/reporter';
 import { validate } from '@acot/schema-validator';
-import env from 'env-ci';
-import chalk from 'chalk';
-import got from 'got';
+import type { Summary } from '@acot/types';
 import type { Static } from '@sinclair/typebox';
 import { Type } from '@sinclair/typebox';
+import chalk from 'chalk';
+import env from 'env-ci';
+import got from 'got';
 const debug = require('debug')('acot:reporter:github');
 
 const findToken = (options: GitHubReporterOptions) => {
@@ -86,7 +87,42 @@ export default createReporterFactory<GitHubReporterOptions>(
         },
       });
 
-      runner.on('audit:complete', async ([summary]) => {
+      let summary: Summary;
+
+      runner.on('audit:complete', async ([result]) => {
+        summary = result;
+        try {
+          debug(`Start PR Comment to ${number}.`);
+
+          const response = await api
+            .post('pr/comment', {
+              json: {
+                number,
+                meta: {
+                  core: {
+                    version: runner.version.core,
+                  },
+                  runner: {
+                    name: runner.name,
+                    version: runner.version.self,
+                  },
+                  origin: config.origin,
+                  commit: ci.commit,
+                },
+                summary,
+              },
+            })
+            .json();
+
+          debug('API Response: %O', response);
+          debug('Finish PR comment!');
+        } catch (e) {
+          debug(e);
+          error('API Error: ' + (e instanceof Error ? e.message : `${e}`));
+        }
+      });
+
+      runner.on('close:complete', async () => {
         try {
           debug(`Start PR Comment to ${number}.`);
 
