@@ -76,8 +76,11 @@ export default createReporterFactory<GitHubReporterOptions>(
         return;
       }
 
+      const endpoint = options.endpoint ?? 'https://gh-app-api.acot.dev';
+      debug('endpoint to use: %s', endpoint);
+
       const api = got.extend({
-        prefixUrl: options.endpoint ?? 'https://gh-app-api.acot.dev',
+        prefixUrl: endpoint,
         headers: {
           Authorization: `Bearer ${token}`,
         },
