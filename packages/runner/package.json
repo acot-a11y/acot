@@ -1,6 +1,6 @@
 {
   "name": "@acot/runner",
-  "version": "0.0.17-canary.0",
+  "version": "0.0.17-canary.2",
   "description": "A runner toolset for @acot/cli.",
   "keywords": [
     "acot"

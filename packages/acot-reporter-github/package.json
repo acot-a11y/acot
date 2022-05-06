@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-github",
-  "version": "0.0.17-canary.0",
+  "version": "0.0.17-canary.2",
   "description": "GitHub reporter for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-github",
   "bugs": {
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@acot/factory": "0.0.17-canary.0",
-    "@acot/mock": "0.0.17-canary.0",
+    "@acot/mock": "0.0.17-canary.2",
     "@acot/types": "0.0.17-canary.0",
     "@types/env-ci": "3.1.1",
     "nock": "13.2.4"
