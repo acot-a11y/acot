@@ -1,4 +1,7 @@
 import { createRule } from '@acot/core';
+import pLimit from 'p-limit';
+
+const limit = pLimit(1);
 
 const SELECTOR = [
   'input',
@@ -25,50 +28,56 @@ export default createRule<Options>({
   test: async (context) => {
     const nodes = await context.page.$$(SELECTOR);
 
-    for (const node of nodes) {
-      try {
-        const getComputedOutlineStyleAndCssText = (el: Element) => {
-          const styles = window.getComputedStyle(el);
+    await Promise.all(
+      nodes.map(async (node) => {
+        try {
+          const { before, after } = await limit(() =>
+            node.evaluate((el) => {
+              const getComputedOutlineStyleAndCssText = (el: Element) => {
+                const styles = window.getComputedStyle(el);
 
-          return {
-            outline: {
-              color: styles.outlineColor,
-              style: styles.outlineStyle,
-              width: styles.outlineWidth,
-            },
-            css: JSON.stringify(styles),
-          };
-        };
+                return {
+                  outline: {
+                    color: styles.outlineColor,
+                    style: styles.outlineStyle,
+                    width: styles.outlineWidth,
+                  },
+                  css: JSON.stringify(styles),
+                };
+              };
 
-        const before = await node.evaluate(getComputedOutlineStyleAndCssText);
+              const before = getComputedOutlineStyleAndCssText(el);
+              (el as HTMLElement).focus();
+              const after = getComputedOutlineStyleAndCssText(el);
 
-        await node.focus();
+              return { before, after };
+            }),
+          );
 
-        const after = await node.evaluate(getComputedOutlineStyleAndCssText);
+          context.debug('outline: %o', after!.outline);
 
-        context.debug('outline: %O', after.outline);
+          if (
+            after!.outline.color !== 'transparent' &&
+            after!.outline.style !== 'none' &&
+            after!.outline.width !== '0px'
+          ) {
+            return;
+          }
 
-        if (
-          after.outline.color !== 'transparent' &&
-          after.outline.style !== 'none' &&
-          after.outline.width !== '0px'
-        ) {
-          continue;
+          const isSameStyle = before!.css === after!.css;
+
+          context.debug(`before === after: ${isSameStyle}`);
+
+          if (isSameStyle) {
+            await context.report({
+              node,
+              message: `The focusable element MUST have visible focus indicator when focused.`,
+            });
+          }
+        } catch (e) {
+          context.debug(e);
         }
-
-        const isSameStyle = before.css === after.css;
-
-        context.debug(`before === after: ${isSameStyle}`);
-
-        if (isSameStyle) {
-          await context.report({
-            node,
-            message: `The focusable element MUST have visible focus indicator when focused.`,
-          });
-        }
-      } catch (e) {
-        context.debug(e);
-      }
-    }
+      }),
+    );
   },
 });
