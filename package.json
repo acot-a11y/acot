@@ -17,6 +17,8 @@
     "lint": "run-p lint:*",
     "lint:prettier": "prettier --check .",
     "lint:script": "eslint . --ext \".js,.jsx,.ts,.tsx\"",
+    "linkall": "lerna exec --scope \"@acot/*\" --parallel yarn link",
+    "unlinkall": "lerna exec --scope \"@acot/*\" --parallel --bail=false yarn unlink",
     "release": "lerna publish from-package",
     "release:canary": "yarn release --dist-tag canary",
     "scaffold": "yarn scaffdog generate",
