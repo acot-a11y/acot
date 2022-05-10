@@ -25,6 +25,14 @@ Interactive elements MUST has name.
 <div id="div" tabindex="0">Element</div>
 ```
 
+If the element is not exposed to the accessibility API, name allows an empty.
+
+```html
+<div aria-hidden="true">
+  <button></button>
+</div>
+```
+
 ## :warning: Incorrect
 
 ```html

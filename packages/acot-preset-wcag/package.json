@@ -36,6 +36,7 @@
   "dependencies": {
     "@acot/cli": "0.0.17-canary.2",
     "@acot/core": "0.0.17-canary.2",
+    "@acot/utils": "0.0.16",
     "language-tags": "^1.0.5",
     "p-limit": "3.1.0"
   },

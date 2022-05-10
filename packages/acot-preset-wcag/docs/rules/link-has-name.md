@@ -18,6 +18,14 @@ Link MUST has name.
 >
 ```
 
+If the element is not exposed to the accessibility API, name allows an empty.
+
+```html
+<div aria-hidden="true">
+  <a href="https://www.w3.org/TR/WCAG21/#name-role-value"></a>
+</div>
+```
+
 ## :warning: Incorrect
 
 ```html

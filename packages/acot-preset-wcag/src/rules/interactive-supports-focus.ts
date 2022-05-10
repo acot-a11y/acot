@@ -1,5 +1,5 @@
 import { createRule } from '@acot/core';
-import { getEventListeners } from '@acot/utils';
+import { getEventListeners, isElementHidden } from '@acot/utils';
 
 // FIXME @masuP9
 
@@ -35,6 +35,11 @@ export default createRule<Options>({
     await Promise.all(
       nodes.map(async (node) => {
         try {
+          const hidden = await isElementHidden(node);
+          if (hidden) {
+            return;
+          }
+
           // if focusable
           // TODO refactor
           const focusable = await node.evaluate((el) => {

@@ -14,6 +14,14 @@ The `img` element or img role MUST has name.
 <svg role="img" aria-label="bear"></svg>
 ```
 
+If the element is not exposed to the accessibility API, name allows an empty.
+
+```html
+<div aria-hidden="true">
+  <img src="https://placebear.com/350/250" />
+</div>
+```
+
 ## :warning: Incorrect
 
 ```html
