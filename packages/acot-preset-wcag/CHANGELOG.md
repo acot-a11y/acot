@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.17](https://github.com/acot-a11y/acot/compare/v0.0.17-canary.3...v0.0.17) (2022-05-10)
+
+### Bug Fixes
+
+- **acot-preset-wcag:** improve rule apply for hidden elements ([5f80cd8](https://github.com/acot-a11y/acot/commit/5f80cd81bc99fa1d35f8b7a39a95fb0e01c08216))
+
+### Performance Improvements
+
+- **acot-preset-wcag:** improve `focusable-has-indicator` performance ([a795308](https://github.com/acot-a11y/acot/commit/a7953080857b19b4b864031baf6dd4b5f9ded492))
+
 ## [0.0.17-canary.2](https://github.com/acot-a11y/acot/compare/v0.0.17-canary.1...v0.0.17-canary.2) (2022-05-06)
 
 **Note:** Version bump only for package @acot/acot-preset-wcag

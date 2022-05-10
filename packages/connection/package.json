@@ -1,6 +1,6 @@
 {
   "name": "@acot/connection",
-  "version": "0.0.17-canary.0",
+  "version": "0.0.17",
   "description": "Manage the connection to the server.",
   "keywords": [
     "acot"
@@ -32,7 +32,7 @@
     "wait-on": "^5.2.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.17-canary.0",
+    "@acot/types": "0.0.17",
     "@types/wait-on": "5.3.1"
   },
   "publishConfig": {

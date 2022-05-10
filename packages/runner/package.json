@@ -1,6 +1,6 @@
 {
   "name": "@acot/runner",
-  "version": "0.0.17-canary.2",
+  "version": "0.0.17",
   "description": "A runner toolset for @acot/cli.",
   "keywords": [
     "acot"
@@ -36,13 +36,13 @@
     ]
   },
   "dependencies": {
-    "@acot/module-loader": "0.0.16",
+    "@acot/module-loader": "0.0.17",
     "debug": "^4.3.1",
     "emittery": "^0.11.0"
   },
   "devDependencies": {
-    "@acot/factory": "0.0.17-canary.0",
-    "@acot/types": "0.0.17-canary.0"
+    "@acot/factory": "0.0.17",
+    "@acot/types": "0.0.17"
   },
   "publishConfig": {
     "access": "public"
