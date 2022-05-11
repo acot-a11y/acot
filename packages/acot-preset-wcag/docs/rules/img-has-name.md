@@ -6,6 +6,14 @@ The `img` element or img role MUST has name.
 
 [WCAG 2.1 - 1.1.1: Non-text Content](https://www.w3.org/TR/WCAG21/#non-text-content)
 
+## Options
+
+### `ignore: string | string[]`
+
+**Default:** None
+
+Ignores the element specified in the selector string from the validation target.
+
 ## :white_check_mark: Correct
 
 ```html
@@ -20,6 +28,14 @@ If the element is not exposed to the accessibility API, name allows an empty.
 <div aria-hidden="true">
   <img src="https://placebear.com/350/250" />
 </div>
+```
+
+**Example:** `ignore: '[data-testid="img"]'`
+
+Some `img` element can be ignored by specifying the `ignore` option.
+
+```html ignore:"[data-testid='img']"
+<img src="https://placebear.com/350/250" data-testid="img" />
 ```
 
 ## :warning: Incorrect
