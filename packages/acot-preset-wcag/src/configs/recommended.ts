@@ -8,7 +8,6 @@ const config: Config = {
     '@acot/wcag/img-has-name': 'error',
     '@acot/wcag/interactive-has-enough-size': 'warn',
     '@acot/wcag/interactive-has-name': 'error',
-    '@acot/wcag/interactive-supports-focus': 'error',
     '@acot/wcag/link-has-name': 'error',
     '@acot/wcag/page-has-title': 'error',
     '@acot/wcag/page-has-valid-lang': 'error',

@@ -46,10 +46,6 @@ type Options = Static<typeof schema>;
 export default createRule<Options>({
   schema,
 
-  meta: {
-    recommended: true,
-  },
-
   test: async (context) => {
     const { ignore } = context.options;
 
