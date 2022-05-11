@@ -6,6 +6,14 @@ Move focus to inside dialog or set dialog after trigger.
 
 [Understanding Success Criterion 2\.4\.3: Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html)
 
+## Options
+
+### `ignore: string | string[]`
+
+**Default:** None
+
+Ignores the element specified in the selector string from the validation target.
+
 ## :white_check_mark: Correct
 
 ```html
@@ -38,6 +46,18 @@ Move focus to inside dialog or set dialog after trigger.
     dialog.hidden = false;
   });
 </script>
+```
+
+**Example:** `ignore: '[data-testid="dialog"]'`
+
+The button does not respond, but does not report an error because it is excluded.
+
+```html ignore:"[data-testid='dialog']"
+<button type="button" aria-haspopup="dialog" data-testid="dialog">open</button>
+
+<dialog>
+  <button type="type">OK</button>
+</dialog>
 ```
 
 ## :warning: Incorrect

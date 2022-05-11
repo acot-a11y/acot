@@ -6,6 +6,14 @@ Interactive elements MUST has name.
 
 [WCAG 2.1 - 4.1.2: Name, Role, Value](https://www.w3.org/TR/WCAG21/#name-role-value)
 
+## Options
+
+### `ignore: string | string[]`
+
+**Default:** None
+
+Ignores the element specified in the selector string from the validation target.
+
 ## :white_check_mark: Correct
 
 ```html
@@ -31,6 +39,14 @@ If the element is not exposed to the accessibility API, name allows an empty.
 <div aria-hidden="true">
   <button></button>
 </div>
+```
+
+**Example:** `ignore: '[data-testid="aware-invalid-button"]'`
+
+You can use the `ignore` option to ignore certain buttons.
+
+```html ignore:"[data-testid='aware-invalid-button']"
+<button data-testid="aware-invalid-button"></button>
 ```
 
 ## :warning: Incorrect

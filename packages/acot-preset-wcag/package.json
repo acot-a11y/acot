@@ -37,6 +37,7 @@
     "@acot/cli": "0.0.17",
     "@acot/core": "0.0.17",
     "@acot/utils": "0.0.17",
+    "@sinclair/typebox": "^0.23.2",
     "language-tags": "^1.0.5",
     "p-limit": "3.1.0"
   },

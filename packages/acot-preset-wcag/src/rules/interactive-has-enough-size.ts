@@ -1,4 +1,7 @@
 import { createRule } from '@acot/core';
+import { isElementMatches } from '@acot/utils';
+import type { Static } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
 
 const SIZE = 44;
 
@@ -33,19 +36,41 @@ const SELECTOR = [
   'video:not([controls="false"])',
 ].join(',');
 
-type Options = {};
+const schema = Type.Strict(
+  Type.Object(
+    {
+      ignore: Type.Optional(
+        Type.Union([Type.String(), Type.Array(Type.String())]),
+      ),
+    },
+    {
+      additionalProperties: false,
+    },
+  ),
+);
+
+type Options = Static<typeof schema>;
 
 export default createRule<Options>({
+  schema,
+
   meta: {
     help: 'https://www.w3.org/WAI/WCAG21/Understanding/target-size.html',
     recommended: true,
   },
 
   test: async (context) => {
+    const { ignore } = context.options;
+
     const nodes = await context.page.$$(SELECTOR);
 
     await Promise.all(
       nodes.map(async (node) => {
+        const ignored = await isElementMatches(node, ignore ?? []);
+        if (ignored) {
+          return;
+        }
+
         const styles = await node.evaluate((el) => {
           const rect = el.getBoundingClientRect();
 

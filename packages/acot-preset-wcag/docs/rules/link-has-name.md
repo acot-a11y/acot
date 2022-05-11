@@ -10,6 +10,14 @@ Link MUST has name.
 
 [WCAG 2.1 - 4.1.2 Name, Role, Value](https://www.w3.org/TR/WCAG21/#name-role-value)
 
+## Options
+
+### `ignore: string | string[]`
+
+**Default:** None
+
+Ignores the element specified in the selector string from the validation target.
+
 ## :white_check_mark: Correct
 
 ```html
@@ -24,6 +32,17 @@ If the element is not exposed to the accessibility API, name allows an empty.
 <div aria-hidden="true">
   <a href="https://www.w3.org/TR/WCAG21/#name-role-value"></a>
 </div>
+```
+
+**Example:** `ignore: '[data-testid="aware-invalid-link"]'`
+
+The button does not respond, but does not report an error because it is excluded.
+
+```html ignore:"[data-testid='aware-invalid-link']"
+<a
+  href="https://www.w3.org/TR/WCAG21/#name-role-value"
+  data-testid="aware-invalid-link"
+></a>
 ```
 
 ## :warning: Incorrect

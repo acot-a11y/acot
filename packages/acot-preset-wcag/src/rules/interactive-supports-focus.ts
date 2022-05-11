@@ -1,9 +1,13 @@
 import { createRule } from '@acot/core';
-import { getEventListeners, isElementHidden } from '@acot/utils';
+import {
+  getEventListeners,
+  isElementHidden,
+  isElementMatches,
+} from '@acot/utils';
+import type { Static } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
 
 // FIXME @masuP9
-
-type Options = {};
 
 const SELECTOR = [
   'base',
@@ -24,19 +28,42 @@ const SELECTOR = [
   .map((s) => `:not(${s})`)
   .join('');
 
+const schema = Type.Strict(
+  Type.Object(
+    {
+      ignore: Type.Optional(
+        Type.Union([Type.String(), Type.Array(Type.String())]),
+      ),
+    },
+    {
+      additionalProperties: false,
+    },
+  ),
+);
+
+type Options = Static<typeof schema>;
+
 export default createRule<Options>({
+  schema,
+
   meta: {
     recommended: true,
   },
 
   test: async (context) => {
+    const { ignore } = context.options;
+
     const nodes = await context.page.$$(SELECTOR);
 
     await Promise.all(
       nodes.map(async (node) => {
         try {
-          const hidden = await isElementHidden(node);
-          if (hidden) {
+          const [hidden, ignored] = await Promise.all([
+            isElementHidden(node),
+            isElementMatches(node, ignore ?? []),
+          ]);
+
+          if (hidden || ignored) {
             return;
           }
 
