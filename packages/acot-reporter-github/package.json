@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-github",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "GitHub reporter for @acot/cli.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/acot-reporter-github",
   "bugs": {
@@ -33,8 +33,8 @@
     ]
   },
   "dependencies": {
-    "@acot/reporter": "0.0.17",
-    "@acot/schema-validator": "0.0.17",
+    "@acot/reporter": "0.0.18",
+    "@acot/schema-validator": "0.0.18",
     "@sinclair/typebox": "^0.23.2",
     "chalk": "^4.0.0",
     "debug": "^4.3.1",
@@ -42,9 +42,9 @@
     "got": "11.8.3"
   },
   "devDependencies": {
-    "@acot/factory": "0.0.17",
-    "@acot/mock": "0.0.17",
-    "@acot/types": "0.0.17",
+    "@acot/factory": "0.0.18",
+    "@acot/mock": "0.0.18",
+    "@acot/types": "0.0.18",
     "@types/env-ci": "3.1.1",
     "nock": "13.2.4"
   },

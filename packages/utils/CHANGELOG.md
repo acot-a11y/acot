@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.18](https://github.com/acot-a11y/acot/compare/v0.0.17...v0.0.18) (2022-05-11)
+
+### Features
+
+- **utils:** add `isElementMatches` utilify function ([53c4c58](https://github.com/acot-a11y/acot/commit/53c4c58db1e06127250ad1b1d4f97e6452dd754a))
+
 ## [0.0.17](https://github.com/acot-a11y/acot/compare/v0.0.17-canary.3...v0.0.17) (2022-05-10)
 
 ### Features

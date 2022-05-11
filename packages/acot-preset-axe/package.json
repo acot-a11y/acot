@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-preset-axe",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "An axe rule set for acot.",
   "keywords": [
     "acot",
@@ -33,8 +33,8 @@
     "test": "yarn acot preset test --port 1235"
   },
   "dependencies": {
-    "@acot/cli": "0.0.17",
-    "@acot/core": "0.0.17",
+    "@acot/cli": "0.0.18",
+    "@acot/core": "0.0.18",
     "@sinclair/typebox": "^0.23.2",
     "axe-core": "^4.1.1"
   },

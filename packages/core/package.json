@@ -1,6 +1,6 @@
 {
   "name": "@acot/core",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "More accessible web, all over the world.",
   "keywords": [
     "acot"
@@ -36,14 +36,14 @@
     ]
   },
   "dependencies": {
-    "@acot/factory": "0.0.17",
-    "@acot/find-chrome": "0.0.17",
-    "@acot/html-pickup": "0.0.17",
-    "@acot/logger": "0.0.17",
-    "@acot/module-loader": "0.0.17",
-    "@acot/schema-validator": "0.0.17",
-    "@acot/types": "0.0.17",
-    "@acot/utils": "0.0.17",
+    "@acot/factory": "0.0.18",
+    "@acot/find-chrome": "0.0.18",
+    "@acot/html-pickup": "0.0.18",
+    "@acot/logger": "0.0.18",
+    "@acot/module-loader": "0.0.18",
+    "@acot/schema-validator": "0.0.18",
+    "@acot/types": "0.0.18",
+    "@acot/utils": "0.0.18",
     "debug": "^4.3.1",
     "emittery": "^0.11.0",
     "filenamify": "^4.1.0",
@@ -53,7 +53,7 @@
     "puppeteer-element2selector": "^0.0.3"
   },
   "devDependencies": {
-    "@acot/mock": "0.0.17",
+    "@acot/mock": "0.0.18",
     "@types/lodash": "4.14.182",
     "puppeteer": "13.7.0"
   },

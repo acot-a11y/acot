@@ -1,6 +1,6 @@
 {
   "name": "@acot/cli",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "More accessible web, all over the world.",
   "keywords": [
     "acot"
@@ -37,17 +37,17 @@
     ]
   },
   "dependencies": {
-    "@acot/acot-reporter-pretty": "0.0.17",
-    "@acot/acot-runner": "0.0.17",
-    "@acot/config": "0.0.17",
-    "@acot/core": "0.0.17",
-    "@acot/document": "0.0.17",
-    "@acot/find-chrome": "0.0.17",
-    "@acot/logger": "0.0.17",
-    "@acot/reporter": "0.0.17",
-    "@acot/runner": "0.0.17",
-    "@acot/schema-validator": "0.0.17",
-    "@acot/utils": "0.0.17",
+    "@acot/acot-reporter-pretty": "0.0.18",
+    "@acot/acot-runner": "0.0.18",
+    "@acot/config": "0.0.18",
+    "@acot/core": "0.0.18",
+    "@acot/document": "0.0.18",
+    "@acot/find-chrome": "0.0.18",
+    "@acot/logger": "0.0.18",
+    "@acot/reporter": "0.0.18",
+    "@acot/runner": "0.0.18",
+    "@acot/schema-validator": "0.0.18",
+    "@acot/utils": "0.0.18",
     "boxen": "^5.0.0",
     "chalk": "^4.0.0",
     "chokidar": "^3.4.1",
@@ -70,7 +70,7 @@
     "yargs": "^16.1.1"
   },
   "devDependencies": {
-    "@acot/mock": "0.0.17",
+    "@acot/mock": "0.0.18",
     "@types/is-ci": "3.0.0",
     "@types/listr": "0.14.4",
     "@types/node-emoji": "1.8.1",

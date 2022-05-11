@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-reporter-pretty",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A pretty reporter for @acot/cli.",
   "keywords": [
     "acot",
@@ -36,9 +36,9 @@
     ]
   },
   "dependencies": {
-    "@acot/html-pickup": "0.0.17",
-    "@acot/module-loader": "0.0.17",
-    "@acot/reporter": "0.0.17",
+    "@acot/html-pickup": "0.0.18",
+    "@acot/module-loader": "0.0.18",
+    "@acot/reporter": "0.0.18",
     "boxen": "^5.0.0",
     "chalk": "^4.0.0",
     "cli-table": "^0.3.4",
@@ -53,7 +53,7 @@
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.17",
+    "@acot/types": "0.0.18",
     "@types/cli-table": "0.3.0",
     "@types/text-table": "0.2.2"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@example/storybook6",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "private": true,
   "scripts": {
     "start": "start-storybook -p 6007",
@@ -8,9 +8,9 @@
     "test:server": "acot run"
   },
   "devDependencies": {
-    "@acot/acot-preset-wcag": "0.0.17",
-    "@acot/acot-runner-storybook": "0.0.17",
-    "@acot/cli": "0.0.17",
+    "@acot/acot-preset-wcag": "0.0.18",
+    "@acot/acot-runner-storybook": "0.0.18",
+    "@acot/cli": "0.0.18",
     "@babel/core": "^7.17.10",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.17.9",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.18](https://github.com/acot-a11y/acot/compare/v0.0.17...v0.0.18) (2022-05-11)
+
+### Features
+
+- **acot-preset-wcag:** add `ignore` option to `dialog-focus` rule ([959bcbc](https://github.com/acot-a11y/acot/commit/959bcbc6f698e565f2a5b452970dfa0031d4fb6c))
+- **acot-preset-wcag:** add `ignore` option to `img-has-name` rule ([36a152e](https://github.com/acot-a11y/acot/commit/36a152ef468f0ddfce15037eda23b9f2ed6ed51f))
+- **acot-preset-wcag:** add `ignore` option to `interactive-has-enough-size` rule ([640a0aa](https://github.com/acot-a11y/acot/commit/640a0aa1530a20d7105d8ddab36d709681f3f776))
+- **acot-preset-wcag:** add `ignore` option to `interactive-has-name` rule ([bcf6119](https://github.com/acot-a11y/acot/commit/bcf61195285a49ade70049f7a82643d8c6914ef1))
+- **acot-preset-wcag:** add `ignore` option to `interactive-supports-focus` rule ([a563858](https://github.com/acot-a11y/acot/commit/a56385803a010589ac51fe52e37b496dd5e4d527))
+- **acot-preset-wcag:** add `ignore` option to `link-has-name` rule ([97e01a5](https://github.com/acot-a11y/acot/commit/97e01a594c7a4b95cd4afdaa304ccd7554924a2b))
+
 ## [0.0.17](https://github.com/acot-a11y/acot/compare/v0.0.17-canary.3...v0.0.17) (2022-05-10)
 
 ### Bug Fixes

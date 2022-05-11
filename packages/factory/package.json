@@ -1,6 +1,6 @@
 {
   "name": "@acot/factory",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A factory toolset for various acot objects.",
   "keywords": [
     "acot"
@@ -27,7 +27,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/types": "0.0.17",
+    "@acot/types": "0.0.18",
     "deepmerge": "^4.2.2",
     "is-plain-object": "^5.0.0",
     "type-fest": "^2.12.2"

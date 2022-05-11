@@ -1,6 +1,6 @@
 {
   "name": "@acot/mock",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "acot mock modules.",
   "keywords": [
     "acot"
@@ -27,11 +27,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/factory": "0.0.17",
+    "@acot/factory": "0.0.18",
     "emittery": "^0.11.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.17"
+    "@acot/types": "0.0.18"
   },
   "publishConfig": {
     "access": "public"
