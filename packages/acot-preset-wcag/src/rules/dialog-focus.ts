@@ -1,15 +1,35 @@
 import { createRule } from '@acot/core';
 import type { ComputedAccessibleNode } from '@acot/types';
+import { isElementMatches } from '@acot/utils';
+import type { Static } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
 
-type Options = {};
+const schema = Type.Strict(
+  Type.Object(
+    {
+      ignore: Type.Optional(
+        Type.Union([Type.String(), Type.Array(Type.String())]),
+      ),
+    },
+    {
+      additionalProperties: false,
+    },
+  ),
+);
+
+type Options = Static<typeof schema>;
 
 export default createRule<Options>({
+  schema,
+
   meta: {
     help: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html',
     recommended: true,
   },
 
   test: async (context) => {
+    const { ignore } = context.options;
+
     const nodes = await context.page.$$('[aria-haspopup="dialog"]');
 
     const activeElementHasParentDialogRole = async () => {
@@ -36,6 +56,11 @@ export default createRule<Options>({
 
     for (const node of nodes) {
       try {
+        const ignored = await isElementMatches(node, ignore ?? []);
+        if (ignored) {
+          continue;
+        }
+
         await node.click();
 
         const hasDialogRoleInParentByClick = await context.page.evaluate(
