@@ -1,22 +1,45 @@
 import { createRule } from '@acot/core';
-import { isElementHidden } from '@acot/utils';
+import { isElementHidden, isElementMatches } from '@acot/utils';
+import type { Static } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
 
-type Options = {};
+const schema = Type.Strict(
+  Type.Object(
+    {
+      ignore: Type.Optional(
+        Type.Union([Type.String(), Type.Array(Type.String())]),
+      ),
+    },
+    {
+      additionalProperties: false,
+    },
+  ),
+);
+
+type Options = Static<typeof schema>;
 
 export default createRule<Options>({
+  schema,
+
   meta: {
     help: 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html',
     recommended: true,
   },
 
   test: async (context) => {
+    const { ignore } = context.options;
+
     const nodes = await context.page.$$('aria/[role="link"]');
 
     await Promise.all(
       nodes.map(async (node) => {
         try {
-          const hidden = await isElementHidden(node);
-          if (hidden) {
+          const [hidden, ignored] = await Promise.all([
+            isElementHidden(node),
+            isElementMatches(node, ignore ?? []),
+          ]);
+
+          if (hidden || ignored) {
             return;
           }
 
