@@ -1,11 +1,22 @@
-import stripAnsi from 'strip-ansi';
+import { PassThrough } from 'stream';
 import { createTestcaseResult } from '@acot/factory';
-import { DocResultReporter } from '../doc-result-reporter';
+import stripAnsi from 'strip-ansi';
+import { DocReporter } from '../doc-reporter';
+import { createDocCode } from '../__mocks__/doc-code';
 import { createDocError } from '../__mocks__/doc-error';
 import { createDocResult } from '../__mocks__/doc-result';
-import { createDocCode } from '../__mocks__/doc-code';
 
-describe('DocResultReporter', () => {
+const createMockStream = (data: string[]) => {
+  const stream = new PassThrough();
+
+  stream.on('data', (buf) => {
+    data.push(buf.toString().replace(/\n$/, ''));
+  });
+
+  return stream;
+};
+
+describe('DocReporter', () => {
   const html = `
 <div class="wrapper">
   <section>
@@ -20,29 +31,49 @@ describe('DocResultReporter', () => {
 </div>
     `.trim();
 
-  let reporter: DocResultReporter;
+  let reporter: DocReporter;
+  let output: {
+    stdout: string[];
+    stderr: string[];
+  };
 
   beforeEach(() => {
-    reporter = new DocResultReporter();
+    output = {
+      stdout: [],
+      stderr: [],
+    };
+
+    reporter = new DocReporter({
+      stdout: createMockStream(output.stdout),
+      stderr: createMockStream(output.stderr),
+    });
   });
 
-  test('empty', () => {
-    const output = new DocResultReporter().format(createDocResult());
+  test('empty', async () => {
+    await reporter.onComplete(createDocResult());
 
-    expect(output).not.toBe(stripAnsi(output));
-    expect(stripAnsi(output)).toMatchSnapshot();
+    const stdout = output.stdout.join('');
+
+    expect(stdout).not.toBe(stripAnsi(stdout));
+    expect(stripAnsi(stdout)).toMatchSnapshot();
   });
 
-  test('color disable', () => {
-    const output = new DocResultReporter({ color: false }).format(
-      createDocResult(),
-    );
+  test('color disable', async () => {
+    const instance = new DocReporter({
+      color: false,
+      stdout: createMockStream(output.stdout),
+      stderr: createMockStream(output.stderr),
+    });
 
-    expect(output).toBe(stripAnsi(output));
+    await instance.onComplete(createDocResult());
+
+    const stdout = output.stdout.join('');
+
+    expect(stdout).toBe(stripAnsi(stdout));
   });
 
-  test('passed and errors', () => {
-    const output = reporter.format(
+  test('passed and errors', async () => {
+    await reporter.onComplete(
       createDocResult({
         skips: [createDocCode({ rule: 'skip-name1', id: '1' })],
         passes: [
@@ -112,12 +143,14 @@ describe('DocResultReporter', () => {
       }),
     );
 
-    expect(output).not.toBe(stripAnsi(output));
-    expect(stripAnsi(output)).toMatchSnapshot();
+    const stdout = output.stdout.join('');
+
+    expect(stdout).not.toBe(stripAnsi(stdout));
+    expect(stripAnsi(stdout)).toMatchSnapshot();
   });
 
-  test('only passed', () => {
-    const output = reporter.format(
+  test('only passed', async () => {
+    await reporter.onComplete(
       createDocResult({
         passes: [
           createDocCode({ rule: 'pass-name1', id: '1' }),
@@ -126,12 +159,14 @@ describe('DocResultReporter', () => {
       }),
     );
 
-    expect(output).not.toBe(stripAnsi(output));
-    expect(stripAnsi(output)).toMatchSnapshot();
+    const stdout = output.stdout.join('');
+
+    expect(stdout).not.toBe(stripAnsi(stdout));
+    expect(stripAnsi(stdout)).toMatchSnapshot();
   });
 
-  test('only errors', () => {
-    const output = reporter.format(
+  test('only errors', async () => {
+    await reporter.onComplete(
       createDocResult({
         errors: [
           createDocError({
@@ -153,7 +188,9 @@ describe('DocResultReporter', () => {
       }),
     );
 
-    expect(output).not.toBe(stripAnsi(output));
-    expect(stripAnsi(output)).toMatchSnapshot();
+    const stdout = output.stdout.join('');
+
+    expect(stdout).not.toBe(stripAnsi(stdout));
+    expect(stripAnsi(stdout)).toMatchSnapshot();
   });
 });
