@@ -7,6 +7,7 @@ import {
   DocRunner,
   DocServer,
 } from '@acot/document';
+import chalk from 'chalk';
 import { getPortPromise } from 'portfinder';
 import { createCommand } from '../command';
 import { DEFAULT_PORT } from '../constants';
@@ -73,6 +74,7 @@ export default createCommand({
 
   const reporter = new DocReporter({
     origin: `http://localhost:${port}`,
+    color: chalk.supportsColor !== false,
     stdout: logger.getStdout(),
     stderr: logger.getStderr(),
   });
