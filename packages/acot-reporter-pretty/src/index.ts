@@ -28,8 +28,8 @@ const summarize = (results: TestcaseResult[]) => {
   const stat = results.reduce(
     (acc, cur) => {
       acc.pass += cur.status === 'pass' ? 1 : 0;
-      acc.pass += cur.status === 'error' ? 1 : 0;
-      acc.pass += cur.status === 'warn' ? 1 : 0;
+      acc.error += cur.status === 'error' ? 1 : 0;
+      acc.warn += cur.status === 'warn' ? 1 : 0;
       return acc;
     },
     {
