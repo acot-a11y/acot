@@ -1,10 +1,10 @@
 import path from 'path';
 import type { DocProject } from '@acot/document';
 import {
-  DocResultReporter,
   DocProjectLoader,
+  DocReporter,
+  DocRunner,
   DocServer,
-  DocTester,
 } from '@acot/document';
 import { getPortPromise } from 'portfinder';
 import { createCommand } from '../command';
@@ -64,16 +64,19 @@ export default createCommand({
     port,
   });
 
-  const tester = new DocTester(server, {});
-
-  const reporter = new DocResultReporter({
+  const reporter = new DocReporter({
     origin: `http://localhost:${port}`,
+    stdout: logger.getStdout(),
+    stderr: logger.getStderr(),
+  });
+
+  const runner = new DocRunner(server, reporter, {
+    project,
   });
 
   try {
-    const result = await tester.test(project, args.pattern);
+    const result = await runner.run(args.pattern);
     debug('result: %O', result);
-    logger.print(reporter.format(result));
     return result.errors.length > 0 ? 1 : 0;
   } catch (e) {
     logger.error('DocTester#test Error:', e);

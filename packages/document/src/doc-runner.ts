@@ -1,41 +1,48 @@
 import os from 'os';
-import type { TestcaseResult } from '@acot/types';
 import { Acot } from '@acot/core';
 import { findChrome } from '@acot/find-chrome';
-import plur from 'plur';
+import type { CoreEventMap, TestcaseResult } from '@acot/types';
 import micromatch from 'micromatch';
-import type { DocServer } from './doc-server';
+import plur from 'plur';
 import type { DocCode } from './doc-code';
-import { generateDocUrl, extractCodeMeta, generateDocPath } from './doc-code';
+import { extractCodeMeta, generateDocPath, generateDocUrl } from './doc-code';
 import type { DocProject } from './doc-project';
+import type { DocReporter } from './doc-reporter';
 import type { DocResult } from './doc-result';
+import type { DocServer } from './doc-server';
 import { debug } from './logging';
 
-export type DocTesterConfig = {
-  parallel: number;
+export type DocRunnerConfig = {
+  project: DocProject;
+  parallel?: number;
 };
 
-export class DocTester {
+export class DocRunner {
   private _server: DocServer;
-  private _config: DocTesterConfig;
+  private _reporter: DocReporter;
+  private _config: DocRunnerConfig;
 
-  public constructor(server: DocServer, config: Partial<DocTesterConfig> = {}) {
+  public constructor(
+    server: DocServer,
+    reporter: DocReporter,
+    config: DocRunnerConfig,
+  ) {
     this._server = server;
+    this._reporter = reporter;
     this._config = {
-      parallel: os.cpus().length,
+      parallel: os.cpus().length - 1,
       ...config,
     };
   }
 
-  public async test(project: DocProject, pattern?: string): Promise<DocResult> {
+  public async run(pattern?: string): Promise<DocResult> {
+    const { project } = this._config;
     const port = this._server.port;
 
     const chromium = await findChrome();
-    debug('found chromium: %O', chromium);
+    debug('found chromium: %o', chromium);
 
     await this._server.bootstrap(project);
-
-    debug('listening...');
 
     // acot
     const acot = new Acot({
@@ -75,6 +82,8 @@ export class DocTester {
     };
 
     try {
+      acot.on('testcase:complete', this._handleTestcaseComplete);
+
       const summary = await acot.audit();
 
       project.codes.forEach((code) => {
@@ -132,6 +141,16 @@ export class DocTester {
 
     await this._server.terminate();
 
+    await this._reporter.onComplete(result);
+
     return result;
   }
+
+  private _handleTestcaseComplete = async ([
+    url,
+    id,
+    results,
+  ]: CoreEventMap['testcase:complete']) => {
+    await this._reporter.onTestcaseComplete(new URL(url).pathname, id, results);
+  };
 }

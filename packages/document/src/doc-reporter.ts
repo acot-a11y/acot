@@ -1,34 +1,82 @@
+import ms from 'pretty-ms';
 import { pickup } from '@acot/html-pickup';
+import type { RuleId, TestcaseResult } from '@acot/types';
 import chalk from 'chalk';
 import indent from 'indent-string';
-import plur from 'plur';
 import logSymbols from 'log-symbols';
-import type { DocResult } from './doc-result';
-import type { DocError } from './doc-error';
+import plur from 'plur';
+import stripAnsi from 'strip-ansi';
 import { generateDocPath } from './doc-code';
+import type { DocError } from './doc-error';
+import type { DocResult } from './doc-result';
 
-export type DocResultReporterConfig = {
-  origin: string;
-  color: boolean;
+const symbols = {
+  success: stripAnsi(logSymbols.success),
+  warning: stripAnsi(logSymbols.warning),
+  error: stripAnsi(logSymbols.error),
 };
 
-export class DocResultReporter {
-  private _config: DocResultReporterConfig;
+export type DocReporterConfig = {
+  origin: string;
+  color: boolean;
+  stdout: NodeJS.WritableStream;
+  stderr: NodeJS.WritableStream;
+};
+
+export class DocReporter {
+  private _stdout: NodeJS.WritableStream;
+  private _config: DocReporterConfig;
   private _chalk: chalk.Chalk;
 
-  public constructor(config: Partial<DocResultReporterConfig> = {}) {
+  public constructor(config: Partial<DocReporterConfig> = {}) {
     this._config = {
       origin: 'http://localhost:1234',
       color: true,
+      stdout: process.stdout,
+      stderr: process.stderr,
       ...config,
     };
+
+    this._stdout = this._config.stdout;
 
     this._chalk = new chalk.Instance({
       level: this._config.color ? 1 : 0,
     });
   }
 
-  public format(result: DocResult): string {
+  public async onTestcaseComplete(
+    path: string,
+    _id: RuleId,
+    results: TestcaseResult[],
+  ): Promise<void> {
+    const chk = this._chalk;
+
+    const data = results.reduce(
+      (acc, cur) => {
+        acc.duration += cur.duration;
+        acc.pass += cur.status === 'pass' ? 1 : 0;
+        acc.warning += cur.status === 'warn' ? 1 : 0;
+        acc.error += cur.status === 'error' ? 1 : 0;
+        return acc;
+      },
+      {
+        duration: 0,
+        pass: 0,
+        warning: 0,
+        error: 0,
+      },
+    );
+
+    let output = `${path} `;
+    output += chk` {gray ${symbols.success}} {bold.gray ${data.pass}}`;
+    output += chk` {gray ${symbols.warning}} {bold.gray ${data.warning}}`;
+    output += chk` {gray ${symbols.error}} {bold.gray ${data.error}}`;
+    output += chk`  {gray (${ms(data.duration)})}`;
+
+    this._stdout.write(`${output}\n`);
+  }
+
+  public async onComplete(result: DocResult): Promise<void> {
     const { origin } = this._config;
     const chk = this._chalk;
 
@@ -128,6 +176,6 @@ export class DocResultReporter {
 
     output += footer.join('\n');
 
-    return chk.reset(`${output}\n`);
+    this._stdout.write(chk.reset(`${output}\n\n`));
   }
 }

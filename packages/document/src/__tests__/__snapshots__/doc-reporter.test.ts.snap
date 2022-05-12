@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DocResultReporter empty 1`] = `
+exports[`DocReporter empty 1`] = `
 "
 Rules:      0 total
 Test Cases: 0 total
+
 "
 `;
 
-exports[`DocResultReporter only errors 1`] = `
+exports[`DocReporter only errors 1`] = `
 "
  FAIL  error-name1 (1 error)
 
@@ -19,17 +20,19 @@ exports[`DocResultReporter only errors 1`] = `
 
 Rules:      1 failed, 1 total
 Test Cases: 1 failed, 1 total
+
 "
 `;
 
-exports[`DocResultReporter only passed 1`] = `
+exports[`DocReporter only passed 1`] = `
 "
 Rules:      2 passed, 2 total
 Test Cases: 2 passed, 2 total
+
 "
 `;
 
-exports[`DocResultReporter passed and errors 1`] = `
+exports[`DocReporter passed and errors 1`] = `
 "
  FAIL  error-name1 (1 error)
 
@@ -63,5 +66,6 @@ exports[`DocResultReporter passed and errors 1`] = `
 
 Rules:      1 passed, 4 failed, 5 total
 Test Cases: 2 passed, 4 failed, 6 total
+
 "
 `;
