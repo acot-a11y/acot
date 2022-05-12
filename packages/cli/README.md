@@ -190,6 +190,7 @@ acot preset test [flags]
 -p, --project   Directory path that contains the package.json that makes up the preset.
 -d, --docs      Directory path that contains the rule documentation.
     --port      Port number for preview server.
+    --parallel  Number of parallel audit browsers. (default: "os.cpus().length - 1")
 ```
 
 **Example:**

@@ -1,3 +1,4 @@
+import os from 'os';
 import path from 'path';
 import type { DocProject } from '@acot/document';
 import {
@@ -39,6 +40,12 @@ export default createCommand({
       type: 'number',
       description: 'Port number for preview server.',
     },
+    parallel: {
+      type: 'number',
+      default: os.cpus().length - 1,
+      description:
+        'Number of parallel audit browsers. (default: "os.cpus().length - 1")',
+    },
   },
 })(async ({ cwd, logger, args }) => {
   const proj = path.resolve(cwd, args.project);
@@ -72,6 +79,7 @@ export default createCommand({
 
   const runner = new DocRunner(server, reporter, {
     project,
+    parallel: args.parallel,
   });
 
   try {
