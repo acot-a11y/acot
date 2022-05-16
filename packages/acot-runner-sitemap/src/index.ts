@@ -7,12 +7,13 @@ import { validate } from '@acot/schema-validator';
 import type { Static } from '@sinclair/typebox';
 import { Type } from '@sinclair/typebox';
 import { transform } from 'camaro';
+import got from 'got';
 import _ from 'lodash';
 import micromatch from 'micromatch';
-import fetch from 'node-fetch';
 const debug = require('debug')('acot:runner:sitemap');
 
-const DEFAULT_TIMEOUT = 60 * 1000;
+const DEFAULT_TIMEOUT = 30 * 1000;
+const DEFAULT_RETRY = 3;
 
 const schema = Type.Strict(
   Type.Object(
@@ -35,7 +36,8 @@ const schema = Type.Strict(
         ),
       ),
       headers: Type.Optional(Type.Record(Type.String(), Type.String())),
-      timeout: Type.Optional(Type.Number({ minimum: 0 })),
+      timeout: Type.Optional(Type.Number({ minimum: 1 })),
+      retry: Type.Optional(Type.Number({ minimum: 0 })),
     },
     {
       additionalProperties: false,
@@ -50,16 +52,15 @@ const url2path = (url: string) => {
   return o.pathname + o.search + o.hash;
 };
 
+const match = (path: string, pattern: string) =>
+  micromatch.isMatch(path, pattern);
+
 const filterUrls = (urls: string[], options: Options) => {
   const include = options.include ?? [];
   const exclude = options.exclude ?? [];
   const random = options.random ?? [];
 
-  const match = (path: string, pattern: string) =>
-    micromatch.isMatch(path, pattern);
-
   let results = urls;
-
   results = include.length > 0 ? micromatch(results, include) : results;
   results = exclude.length > 0 ? micromatch.not(results, exclude) : results;
 
@@ -86,17 +87,13 @@ const filterUrls = (urls: string[], options: Options) => {
 const fetchSitemap = async (url: string, options: Options) => {
   debug('fetch sitemap: %s', url);
 
-  const now = Date.now();
-  const res = await fetch(url, {
+  const xml = await got(url, {
     headers: options.headers,
     timeout: options.timeout!,
-  });
-
-  if (res.ok === false) {
-    throw new Error(`Network response was not ok. (source: ${url})`);
-  }
-
-  const xml = await res.text();
+    retry: {
+      limit: options.retry!,
+    },
+  }).text();
 
   const transformed: { urls: string[]; maps: string[] } = await transform(xml, {
     urls: ['/urlset/url', 'loc'],
@@ -107,12 +104,7 @@ const fetchSitemap = async (url: string, options: Options) => {
 
   if (transformed.maps.length > 0) {
     const children = await Promise.all(
-      transformed.maps.map((child) =>
-        fetchSitemap(child, {
-          ...options,
-          timeout: Math.max(1, options.timeout! - (Date.now() - now)),
-        }),
-      ),
+      transformed.maps.map((child) => fetchSitemap(child, options)),
     );
 
     urls = urls.concat(...children);
@@ -129,6 +121,7 @@ export class SitemapRunner extends AcotRunner<Options> {
 
     let entries = await fetchSitemap(this.options.source, {
       timeout: DEFAULT_TIMEOUT,
+      retry: DEFAULT_RETRY,
       ...this.options,
     });
 
@@ -142,7 +135,7 @@ export class SitemapRunner extends AcotRunner<Options> {
     entries.forEach((path) => {
       const entry = router.resolve(path);
 
-      debug('path: %s, %O', path, entry);
+      debug('path: %s, %o', path, entry);
 
       sources.set(path, {
         rules: entry.rules,

@@ -44,9 +44,9 @@
     "@sinclair/typebox": "^0.23.2",
     "camaro": "^6.0.4",
     "debug": "^4.3.1",
+    "got": "11.8.3",
     "lodash": "^4.17.19",
     "micromatch": "^4.0.2",
-    "node-fetch": "^2.6.1",
     "puppeteer-core": "^13.5.1",
     "serve-handler": "^6.1.3"
   },
@@ -55,7 +55,6 @@
     "@acot/types": "0.0.18",
     "@types/lodash": "4.14.182",
     "@types/micromatch": "4.0.2",
-    "@types/node-fetch": "2.6.1",
     "@types/serve-handler": "6.1.1"
   },
   "publishConfig": {
