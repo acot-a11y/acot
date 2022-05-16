@@ -160,7 +160,7 @@ The key-value of the header used when fetching the `sitemap.xml` specified in [s
 ### `timeout`
 
 **Type:** `number`  
-**Default:** `60000`  
+**Default:** `30000`  
 **Required:** `false`
 
 Maximum time in milliseconds to wait for collecting sitemaps.
@@ -171,6 +171,24 @@ Maximum time in milliseconds to wait for collecting sitemaps.
   "with": {
     "source": "https://acot.example/sitemap.xml",
     "timeout": 120000
+  }
+}
+```
+
+### `retry`
+
+**Type:** `number`  
+**Default:** `3`  
+**Required:** `false`
+
+The maximum retry count.
+
+```json
+{
+  "runner": "@acot/sitemap",
+  "with": {
+    "source": "https://acot.example/sitemap.xml",
+    "retry": 2
   }
 }
 ```

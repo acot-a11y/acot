@@ -10,6 +10,13 @@ const SOURCE = `http://localhost:${PORT}/sitemap.xml`;
 describe('Sitemap Runner', () => {
   let server: http.Server;
 
+  const close = () =>
+    new Promise<void>((resolve) => {
+      server.close(() => {
+        resolve();
+      });
+    });
+
   const config = {
     core: new MockCore(),
     config: {
@@ -36,11 +43,11 @@ describe('Sitemap Runner', () => {
   beforeAll(
     () =>
       new Promise<void>((resolve) => {
-        server = http.createServer((request, response) =>
+        server = http.createServer((request, response) => {
           handler(request, response, {
             public: path.resolve(__dirname, 'fixtures'),
-          }),
-        );
+          });
+        });
 
         server.listen(PORT, () => {
           resolve();
@@ -48,14 +55,9 @@ describe('Sitemap Runner', () => {
       }),
   );
 
-  afterAll(
-    () =>
-      new Promise<void>((resolve) => {
-        server.close(() => {
-          resolve();
-        });
-      }),
-  );
+  afterAll(async () => {
+    await close();
+  });
 
   test.each([
     [
@@ -100,6 +102,18 @@ describe('Sitemap Runner', () => {
         },
       },
     ],
+    [
+      {
+        source: SOURCE,
+        timeout: 1,
+      },
+    ],
+    [
+      {
+        source: SOURCE,
+        retry: 0,
+      },
+    ],
   ])('options - valid (%p)', (options) => {
     expect(() => {
       factory({
@@ -138,6 +152,8 @@ describe('Sitemap Runner', () => {
       },
     ],
     [{ source: SOURCE, headers: 'str' }],
+    [{ source: SOURCE, timeout: 0 }],
+    [{ source: SOURCE, retry: -1 }],
   ])('options - invalid (%p)', (options) => {
     expect(() => {
       factory({
@@ -167,6 +183,43 @@ describe('Sitemap Runner', () => {
       '@example/foo': ['error'],
       '@example/bar': ['off'],
     });
+  });
+
+  test('collect - retry', async () => {
+    await close();
+
+    let count = 3;
+
+    await new Promise<void>((resolve) => {
+      server = http.createServer((request, response) => {
+        if (request.url === '/sitemap_0002.xml' && count > 1) {
+          count--;
+          response.statusCode = 408;
+          response.end();
+          return;
+        }
+
+        handler(request, response, {
+          public: path.resolve(__dirname, 'fixtures'),
+        });
+      });
+
+      server.listen(PORT, () => {
+        resolve();
+      });
+    });
+
+    const sources = await new SitemapRunner(config)['collect']();
+
+    expect(Array.from(sources.keys())).toEqual([
+      '/',
+      '/page1?search=query',
+      '/page2?search=query#hash',
+      '/page3',
+      '/page4',
+    ]);
+
+    expect(count).toBe(1);
   });
 
   test('collect - urlset', async () => {
