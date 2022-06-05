@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-runner",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A default runner module of acot.",
   "keywords": [
     "acot",
@@ -28,14 +28,14 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@acot/config": "0.0.18",
-    "@acot/connection": "0.0.18",
-    "@acot/runner": "0.0.18",
+    "@acot/config": "0.0.19",
+    "@acot/connection": "0.0.19",
+    "@acot/runner": "0.0.19",
     "debug": "^4.3.1",
     "emittery": "^0.11.0"
   },
   "devDependencies": {
-    "@acot/types": "0.0.18"
+    "@acot/types": "0.0.19"
   },
   "publishConfig": {
     "access": "public"

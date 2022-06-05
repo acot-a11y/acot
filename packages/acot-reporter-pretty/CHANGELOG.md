@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.19](https://github.com/acot-a11y/acot/compare/v0.0.18...v0.0.19) (2022-06-05)
+
+### Bug Fixes
+
+- **acot-reporter-pretty:** fix stat bugs in testcase summary ([f9a2552](https://github.com/acot-a11y/acot/commit/f9a2552fc758dd205d7431c1b8819aa297a18d09))
+
 ## [0.0.18](https://github.com/acot-a11y/acot/compare/v0.0.17...v0.0.18) (2022-05-11)
 
 **Note:** Version bump only for package @acot/acot-reporter-pretty

@@ -1,6 +1,6 @@
 {
   "name": "@acot/schema-validator",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A simple wrapper module for schema-utils.",
   "homepage": "https://github.com/acot-a11y/acot/tree/main/packages/schema-validator",
   "bugs": {

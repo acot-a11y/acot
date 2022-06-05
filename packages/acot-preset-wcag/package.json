@@ -1,6 +1,6 @@
 {
   "name": "@acot/acot-preset-wcag",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A WCAG-based rule set for acot.",
   "keywords": [
     "acot",
@@ -34,9 +34,9 @@
     "test": "yarn acot preset test --port 1234"
   },
   "dependencies": {
-    "@acot/cli": "0.0.18",
-    "@acot/core": "0.0.18",
-    "@acot/utils": "0.0.18",
+    "@acot/cli": "0.0.19",
+    "@acot/core": "0.0.19",
+    "@acot/utils": "0.0.19",
     "@sinclair/typebox": "^0.23.2",
     "language-tags": "^1.0.5",
     "p-limit": "3.1.0"

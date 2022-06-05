@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.19](https://github.com/acot-a11y/acot/compare/v0.0.18...v0.0.19) (2022-06-05)
+
+### Features
+
+- **acot-preset-wcag:** add `invalid-id-reference` rule ([2a70d7e](https://github.com/acot-a11y/acot/commit/2a70d7e99342c360a0f788ddd96d357dc3a34944))
+
 ## [0.0.18](https://github.com/acot-a11y/acot/compare/v0.0.17...v0.0.18) (2022-05-11)
 
 ### Features

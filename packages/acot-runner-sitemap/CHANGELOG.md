@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.19](https://github.com/acot-a11y/acot/compare/v0.0.18...v0.0.19) (2022-06-05)
+
+### Features
+
+- **acot-runner-sitemap:** add retry behavior to sitemap fetcher ([fcc1293](https://github.com/acot-a11y/acot/commit/fcc1293fdb162115d87303f59c36b9958ebcd874))
+
 ## [0.0.18](https://github.com/acot-a11y/acot/compare/v0.0.17...v0.0.18) (2022-05-11)
 
 **Note:** Version bump only for package @acot/acot-runner-sitemap

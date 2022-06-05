@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.19](https://github.com/acot-a11y/acot/compare/v0.0.18...v0.0.19) (2022-06-05)
+
+### Bug Fixes
+
+- **acot-reporter-pretty:** fix stat bugs in testcase summary ([f9a2552](https://github.com/acot-a11y/acot/commit/f9a2552fc758dd205d7431c1b8819aa297a18d09))
+- **cli:** support non TTY environment on `preset test` ([48e3ce0](https://github.com/acot-a11y/acot/commit/48e3ce04cd12016e1deafbc63dc8e90482f6d212))
+
+### Features
+
+- **acot-preset-wcag:** add `invalid-id-reference` rule ([2a70d7e](https://github.com/acot-a11y/acot/commit/2a70d7e99342c360a0f788ddd96d357dc3a34944))
+- **acot-runner-sitemap:** add retry behavior to sitemap fetcher ([fcc1293](https://github.com/acot-a11y/acot/commit/fcc1293fdb162115d87303f59c36b9958ebcd874))
+- **cli:** add `parallel` option to `preset test` command ([32f7e1e](https://github.com/acot-a11y/acot/commit/32f7e1e523bf8e03b61f2e776e4e06535a44afd7))
+- **document:** add progress indicator to documentation testing ([756158b](https://github.com/acot-a11y/acot/commit/756158bea53f797972bca577c0235a763fcef922))
+
 ## [0.0.18](https://github.com/acot-a11y/acot/compare/v0.0.17...v0.0.18) (2022-05-11)
 
 ### Features
