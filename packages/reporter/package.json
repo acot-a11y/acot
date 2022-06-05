@@ -38,7 +38,7 @@
   "dependencies": {
     "@acot/html-pickup": "0.0.19",
     "@acot/module-loader": "0.0.19",
-    "boxen": "^5.0.0",
+    "boxen": "^6.0.0",
     "chalk": "^4.0.0",
     "cli-table": "^0.3.4",
     "figures": "^3.2.0",
