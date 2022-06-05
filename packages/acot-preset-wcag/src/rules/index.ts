@@ -5,6 +5,7 @@ import imgHasName from './img-has-name';
 import interactiveHasEnoughSize from './interactive-has-enough-size';
 import interactiveHasName from './interactive-has-name';
 import interactiveSupportsFocus from './interactive-supports-focus';
+import invalidIdReference from './invalid-id-reference';
 import linkHasName from './link-has-name';
 import pageHasTitle from './page-has-title';
 import pageHasValidLang from './page-has-valid-lang';
@@ -16,6 +17,7 @@ export const rules: RuleRecord = {
   'interactive-has-enough-size': interactiveHasEnoughSize,
   'interactive-has-name': interactiveHasName,
   'interactive-supports-focus': interactiveSupportsFocus,
+  'invalid-id-reference': invalidIdReference,
   'link-has-name': linkHasName,
   'page-has-title': pageHasTitle,
   'page-has-valid-lang': pageHasValidLang,

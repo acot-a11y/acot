@@ -1,16 +1,19 @@
 ---
 name: 'rule'
-description: 'Generate a rule.'
-message: 'Please enter the rule name.'
 root: '.'
 output: '.'
-ignore: ['**/*']
+questions:
+  name: 'Please enter the rule name.'
 ---
 
-# `docs/rules/{{ input }}.md`
+# Variables
+
+- name: `{{ inputs.name | kebab }}`
+
+# `docs/rules/{{ name }}.md`
 
 ````markdown
-# {{ input }}
+# {{ name }}
 
 **TODO:** Short summary.
 
@@ -29,7 +32,7 @@ ignore: ['**/*']
 ```
 ````
 
-# `src/rules/{{ input }}.ts`
+# `src/rules/{{ name }}.ts`
 
 ```typescript
 import { createRule } from '@acot/core';
