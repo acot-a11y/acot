@@ -36,7 +36,7 @@
     "@acot/reporter": "0.0.19",
     "@acot/schema-validator": "0.0.19",
     "@sinclair/typebox": "^0.23.2",
-    "chalk": "^4.0.0",
+    "chalk": "^5.0.0",
     "debug": "^4.3.1",
     "env-ci": "6.0.0",
     "got": "11.8.3"
