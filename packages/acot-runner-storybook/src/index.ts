@@ -40,6 +40,11 @@ declare global {
       store?: () => {
         _configuring?: boolean; // This parameter is enabled with SB v6 or later
       };
+      storyStore?: {
+        // available SB v6.4 or later
+        cacheAllCSFFiles: () => Promise<void>;
+        cachedCSFFiles?: Record<string, unknown>;
+      };
     };
   }
 }
@@ -113,6 +118,11 @@ export class StorybookRunner extends AcotRunner<Options> {
         timeout: 60_000,
       });
 
+      await page.evaluate(() => {
+        const { __STORYBOOK_CLIENT_API__: api } = window;
+        api.storyStore && api.storyStore.cacheAllCSFFiles();
+      });
+
       const raw = await page.evaluate(
         () =>
           new Promise<{
@@ -126,7 +136,11 @@ export class StorybookRunner extends AcotRunner<Options> {
 
               // for Storybook v6
               const configuring = api.store?.()?._configuring;
-              if (configuring) {
+              // for Storybook v6 and 'storyStoreV7' option
+              const configuringV7store =
+                api.storyStore && !api.storyStore.cachedCSFFiles;
+
+              if (configuring || configuringV7store) {
                 if (count < MAX_CONFIGURE_WAIT_COUNT) {
                   setTimeout(() => getStories(++count), 16);
                 } else {

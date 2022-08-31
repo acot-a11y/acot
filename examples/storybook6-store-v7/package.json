@@ -1,0 +1,43 @@
+{
+  "name": "@example/storybook6-store-v7",
+  "version": "0.0.19",
+  "private": true,
+  "scripts": {
+    "start": "start-storybook -p 6008",
+    "test": "acot run --command \"yarn start --ci\"",
+    "test:server": "acot run"
+  },
+  "devDependencies": {
+    "@acot/acot-config": "^0.0.19",
+    "@acot/acot-runner-storybook": "^0.0.19",
+    "@acot/cli": "^0.0.19",
+    "@babel/core": "^7.18.13",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack4": "^6.5.10",
+    "@storybook/manager-webpack4": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
+    "puppeteer": "^17.0.0"
+  },
+  "acot": {
+    "origin": "http://localhost:6008",
+    "runner": {
+      "uses": "@acot/storybook",
+      "with": {
+        "exclude": [
+          "exclude/**"
+        ]
+      }
+    },
+    "presets": [
+      "@acot/wcag"
+    ],
+    "extends": [
+      "preset:@acot/wcag/recommended"
+    ]
+  }
+}
