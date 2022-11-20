@@ -44,7 +44,7 @@
     "@acot/runner": "0.0.19",
     "@acot/types": "0.0.19",
     "@acot/utils": "0.0.19",
-    "ajv": "^6.12.3",
+    "ajv": "^8.0.0",
     "cosmiconfig": "^7.0.0",
     "debug": "^4.3.1",
     "deepmerge": "^4.2.2",
