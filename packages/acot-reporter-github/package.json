@@ -45,7 +45,7 @@
     "@acot/factory": "0.0.19",
     "@acot/mock": "0.0.19",
     "@acot/types": "0.0.19",
-    "@types/env-ci": "3.1.1",
+    "@types/env-ci": "3.1.4",
     "nock": "13.2.4"
   },
   "publishConfig": {
