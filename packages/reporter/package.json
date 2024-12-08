@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@acot/types": "0.0.19",
-    "@types/cli-table": "0.3.0",
+    "@types/cli-table": "0.3.4",
     "@types/text-table": "0.2.2"
   },
   "publishConfig": {
