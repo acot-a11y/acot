@@ -4908,10 +4908,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/language-tags@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@types/language-tags/-/language-tags-1.0.0.tgz#81829b5c50e324c0e6637264cd0d2754e7d7ba1a"
-  integrity sha512-pSCb1l71akSb46t3+kKyjEEe1Gb1NxxWfVeUacXwpYc4KGKF1+QnECQ26cGwVCTp9lqKAmNNN2d0FYMO2LV03Q==
+"@types/language-tags@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@types/language-tags/-/language-tags-1.0.4.tgz#c622209605b919c41cbf5a78c2fb58dbc3d6f029"
+  integrity sha512-20PQbifv3v/djCT+KlXybv0KqO5ofoR1qD1wkinN59kfggTPVTWGmPFgL/1yWuDyRcsQP/POvkqK+fnl5nOwTg==
 
 "@types/listr@0.14.4":
   version "0.14.4"

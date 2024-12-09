@@ -42,7 +42,7 @@
     "p-limit": "3.1.0"
   },
   "devDependencies": {
-    "@types/language-tags": "1.0.0"
+    "@types/language-tags": "1.0.4"
   },
   "publishConfig": {
     "access": "public"
