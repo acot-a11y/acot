@@ -4790,10 +4790,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/env-ci@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@types/env-ci/-/env-ci-3.1.1.tgz#e1ff1b648c01b0f5202de5633c00f711f0f3ac03"
-  integrity sha512-JuX+LHsvhktApmZxmBrG458kfSvPAvs2Kqhyrow3IKtDsbcRco7NFgpsNthjp8EQxKA6PMw3DrY/IH8ZAuTYlQ==
+"@types/env-ci@3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@types/env-ci/-/env-ci-3.1.4.tgz#2fd9f39b10c8407ebf5887d68398413606ae00f9"
+  integrity sha512-WwSUcrqHNzRz+3nIZYO+p1OxJ/yDNSKFTpor06W+L2ie/K76a/Wb49LxHHiJMH44UeK7GM2kyWpL++e09v4qkA==
 
 "@types/glob@*":
   version "7.2.0"
