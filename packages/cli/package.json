@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@acot/mock": "0.0.19",
-    "@types/is-ci": "3.0.0",
+    "@types/is-ci": "3.0.4",
     "@types/listr": "0.14.4",
     "@types/node-emoji": "1.8.1",
     "@types/opener": "1.4.0",
