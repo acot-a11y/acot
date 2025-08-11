@@ -48,7 +48,7 @@
     "@commitlint/config-lerna-scopes": "16.2.4",
     "@types/jest": "26.0.24",
     "@types/markdown-table": "2.0.0",
-    "@types/mock-fs": "4.13.1",
+    "@types/mock-fs": "4.13.4",
     "@types/node": "16.11.36",
     "@typescript-eslint/eslint-plugin": "5.25.0",
     "@typescript-eslint/parser": "5.25.0",
