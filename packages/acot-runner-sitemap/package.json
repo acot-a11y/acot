@@ -54,7 +54,7 @@
     "@acot/mock": "0.0.19",
     "@acot/types": "0.0.19",
     "@types/lodash": "4.14.182",
-    "@types/micromatch": "4.0.2",
+    "@types/micromatch": "4.0.10",
     "@types/serve-handler": "6.1.1"
   },
   "publishConfig": {
