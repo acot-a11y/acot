@@ -4967,10 +4967,10 @@
   resolved "https://registry.yarnpkg.com/@types/mustache/-/mustache-4.1.2.tgz#d0e158013c81674a5b6d8780bc3fe234e1804eaf"
   integrity sha512-c4OVMMcyodKQ9dpwBwh3ofK9P6U9ZktKU9S+p33UqwMNN1vlv2P0zJZUScTshnx7OEoIIRcCFNQ904sYxZz8kg==
 
-"@types/node-emoji@1.8.1":
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/@types/node-emoji/-/node-emoji-1.8.1.tgz#689cb74fdf6e84309bcafce93a135dfecd01de3f"
-  integrity sha512-0fRfA90FWm6KJfw6P9QGyo0HDTCmthZ7cWaBQndITlaWLTZ6njRyKwrwpzpg+n6kBXBIGKeUHEQuBx7bphGJkA==
+"@types/node-emoji@1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@types/node-emoji/-/node-emoji-1.8.2.tgz#8f24f44dcfcbb69dcbf5a64e7f4df3c1900097fd"
+  integrity sha512-PfF1qL/9veo8BSHLV84C9ORNr3lHSlnWJ6yU8OdNufoftajeWHTLVbGHvp2B7e7DPDS9gMs6cfeSsqo5rqSitg==
 
 "@types/node-fetch@^2.5.7":
   version "2.6.1"
